@@ -141,6 +141,19 @@
   <ItemGroup>
     <ClCompile Include="ibasicLibrary.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\include\ibasicLibrary_all_public_headers" />
+    <None Include="..\include\ibasic\ibasic_all_public_headers" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\build\filelist.txt" />
+    <Text Include="..\docs\filelist.txt" />
+    <Text Include="..\lib-src\filelist.txt" />
+    <Text Include="..\other\filelist.txt" />
+    <Text Include="..\resource\filelist.txt" />
+    <Text Include="..\third-party\filelist.txt" />
+    <Text Include="..\tools\filelist.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

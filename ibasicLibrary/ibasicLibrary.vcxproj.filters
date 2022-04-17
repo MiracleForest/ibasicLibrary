@@ -1,22 +1,74 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="源文件">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="头文件">
+    <Filter Include="include">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="资源文件">
+    <Filter Include="test">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="resource">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="docs">
+      <UniqueIdentifier>{b537703f-5e6c-4303-b8c5-b563eae3e230}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib-src">
+      <UniqueIdentifier>{2c248049-10a5-4a6a-aaad-cc6560619441}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="other">
+      <UniqueIdentifier>{130e958a-558d-43a1-adb8-d0713fd388fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tools">
+      <UniqueIdentifier>{ddd9da03-4abc-4497-98bf-6b38d937a767}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="build">
+      <UniqueIdentifier>{2367b554-8b8f-41bf-a6f1-d68384f341f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="third-party">
+      <UniqueIdentifier>{d6f92415-320b-444e-8de5-35ad2897b9b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\ibasic">
+      <UniqueIdentifier>{a50de011-c66d-470b-bd92-dea87ec7fab4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ibasicLibrary.cpp">
-      <Filter>源文件</Filter>
+      <Filter>test</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\include\ibasicLibrary_all_public_headers">
+      <Filter>include</Filter>
+    </None>
+    <None Include="..\include\ibasic\ibasic_all_public_headers">
+      <Filter>include\ibasic</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\docs\filelist.txt">
+      <Filter>docs</Filter>
+    </Text>
+    <Text Include="..\lib-src\filelist.txt">
+      <Filter>lib-src</Filter>
+    </Text>
+    <Text Include="..\build\filelist.txt">
+      <Filter>build</Filter>
+    </Text>
+    <Text Include="..\third-party\filelist.txt">
+      <Filter>third-party</Filter>
+    </Text>
+    <Text Include="..\tools\filelist.txt">
+      <Filter>tools</Filter>
+    </Text>
+    <Text Include="..\other\filelist.txt">
+      <Filter>other</Filter>
+    </Text>
+    <Text Include="..\resource\filelist.txt">
+      <Filter>resource</Filter>
+    </Text>
   </ItemGroup>
 </Project>
