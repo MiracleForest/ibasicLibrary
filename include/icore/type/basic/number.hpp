@@ -30,9 +30,33 @@ namespace i::core
 	{
 		namespace basic
 		{
+			/// <summary>
+			/// Define concept arithmetic 
+			/// </summary>
 			template <typename T>
 			concept arithmetic = std::is_arithmetic<T>::value;
 
+			/// <summary>
+			/// type traits is_std_string
+			/// </summary>
+			template <typename Type>
+			struct is_std_string : std::false_type {};
+
+			template <>
+			struct is_std_string<std::string> : std::true_type {};
+
+			template<>
+			struct is_std_string<std::wstring> : std::true_type {};
+
+			template <typename Type>
+			constexpr bool is_std_string_v = is_std_string<Type>::value;
+
+			template <typename T>
+			concept stdString = is_std_string_v<T>;
+
+			/// <summary>
+			/// Class number, a wrapper for arithmetic type
+			/// <summary>
 			template <arithmetic Type>
 			class number
 			{
@@ -72,6 +96,31 @@ namespace i::core
 				}
 
 				/// <summary>
+				/// Convert std::string or std::wstring into Type
+				/// </summary>
+				void fromStdString(stdString auto&& str)
+				{
+					if constexpr (std::is_same_v<Type, int>)
+						_value = std::stoi(str);
+					else if (std::is_same_v<Type, long>)
+						_value = std::stol(str);
+					else if (std::is_same_v<Type, unsigned long>)
+						_value = std::stoul(str);
+					else if (std::is_same_v<Type, long long>)
+						_value = std::stoll(str);
+					else if (std::is_same_v<Type, unsigned long long>)
+						_value = std::stoull(str);
+					else if (std::is_same_v<Type, float>)
+						_value = std::stof(str);
+					else if (std::is_same_v<Type, double>)
+						_value = std::stod(str);
+					else if (std::is_same_v<Type, long double>)
+						_value = std::stold(str);
+					else
+						{}
+				}
+
+				/// <summary>
 				/// Reset the _value to 0, depends on Type
 				/// </summary>
 				void reset()
@@ -79,6 +128,9 @@ namespace i::core
 					_value = static_cast<Type>(0);
 				}
                 
+				/// <summary>
+				/// Avoiding ambiguous, full implement have been given below 
+				/// </summary>
                 auto operator<=>(const number&) const = delete;
 
 				/// <summary>
