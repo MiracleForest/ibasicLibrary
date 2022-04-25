@@ -2,14 +2,12 @@
 * 
 * Copyright(C) 2022 ClockParadox Studio. All Rights Reserved.
 * 
-* @filename:
-* number.hpp
-* @creation time:
-* 2022.4.25 21:25
-* @created by:WitherVictor
-* @project:
+* @filename : number.hpp
+* @creation time : 2022.4.25 21:25
+* @created by : WitherVictor
+* @project : iBasicLibrary-BasicType
 * -----------------------------------------------------------------------------
-* 
+* Contains definition of class number
 * 
 * -----------------------------------------------------------------------------
 * If you have contact or find bugs,
@@ -40,32 +38,42 @@ namespace i::core
 			{
 			public:
 
-				/// class number ctor
+				/// <summary>
+				/// Class number ctor
+				/// </summary>
 				number()
 					: _value(static_cast<Type>(0)) {}
 
 				number(Type val)
 					: _value(val) {}
 
-				/// get the data of number<T>
+				/// <summary>
+				/// Return the _value that number contains
+				/// </summary>
 				Type data() const
 				{
 					return _value;
 				}
 
-				/// get the string form of number<T>
+				/// <summary>
+				/// Get _value that convert to std::string
+				/// </summary>
 				std::string toStdString()
 				{
 					return std::to_string(_value);
 				}
 
-				/// get std::wstring form of number<T>
+				/// <summary>
+				/// Get _value that convert to std::string
+				/// </summary>
 				std::wstring toStdWstring()
 				{
 					return std::to_wstring(_value);
 				}
 
-				/// reset the value of number
+				/// <summary>
+				/// Reset the _value to 0, depends on Type
+				/// </summary>
 				void reset()
 				{
 					_value = static_cast<Type>(0);
@@ -73,25 +81,33 @@ namespace i::core
                 
                 auto operator<=>(const number&) const = delete;
 
-				/// convertion function for class number
+				/// <summary>
+				/// Type convertion function
+				/// </summary>
 				template <typename T>
 				operator T()
 				{
 					return static_cast<T>(_value);
 				}
 
-                ///operator<=> for different type of class number declaration
+                /// <summary>
+				/// operator<=> declaration
+				/// </summary>
                 template <typename T, typename U>
                 friend auto operator<=>(const number<T>& first, const number<U>& last);
 
-                ///overloading for ostream
+                /// <summary>
+				/// Overloading for std::ostream
+				/// </summary>
 				friend std::ostream& operator<<(std::ostream& os, const number& value)
 				{
 					os << value._value;
 					return os;
 				}
 
-				///operator + - * / declaration
+				/// <summary>
+				/// operator+, -, *, / declaration
+				/// </summary>
 				template <typename T, typename U>
 				friend auto operator+(const number<T>& first, const number<U>& last)
 					-> number<std::common_type_t<T, U>>;
@@ -112,14 +128,18 @@ namespace i::core
 				Type _value;
 			}; /// end class number
 
-            ///operator<=> for different type of class number definition
+            /// <summary>
+			/// operator<=> definition
+			/// </summary>
             template <typename T, typename U>
             static auto operator<=>(const number<T>& first, const number<U>& last)
             {
                 return first._value <=> last._value;
             }
 
-			///operator + - * / for different type of class definition
+			/// <summary>
+			/// operator+, -, *, / definition
+			/// </summary>
 			template <typename T, typename U>
 			auto operator+(const number<T>& first, const number<U>& last)
 				-> number<std::common_type_t<T, U>>
