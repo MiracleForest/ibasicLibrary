@@ -1,6 +1,6 @@
 /*
 * 
-* Copyright(C) 2022 ClockParadox Studio. All Rights Reserved.
+* Copyright(C) 2022 MiracleForest Studio. All Rights Reserved.
 * 
 * @filename : number.hpp
 * @creation time : 2022.4.25 21:25

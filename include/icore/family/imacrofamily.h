@@ -1,6 +1,6 @@
 /* 
  ​* 
- ​* Copyright(C) 2022 ClockParadox Studio. All Rights Reserved. 
+ ​* Copyright(C) 2022 MiracleForest Studio. All Rights Reserved. 
  ​* 
  ​* @filename:imacrofamily.h 
  ​* @creation time:2022.?.?.??:?? 
