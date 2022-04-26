@@ -89,4 +89,18 @@
       <Filter>include\icore\type\type</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\include\icore\family\family_all_public_headers">
+      <Filter>include\icore\family</Filter>
+    </None>
+    <None Include="..\include\icore\type\basic\basic_all_public_headers">
+      <Filter>include\icore\type\basic</Filter>
+    </None>
+    <None Include="..\include\icore\type\type\type_all_public_headers">
+      <Filter>include\icore\type\type</Filter>
+    </None>
+    <None Include="..\include\icore\type\type_all_public_headers">
+      <Filter>include\icore\type</Filter>
+    </None>
+  </ItemGroup>
 </Project>

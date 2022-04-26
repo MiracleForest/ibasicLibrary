@@ -13,12 +13,14 @@
 * you can go to Github or email (MiracleForest@Outlook.com) to give feedback.
 * We will try to do our best!
 */
-#ifndef ___TYPE_TRAITS___
-#define ___TYPE_TRAITS___
+#ifndef ___MIRACLEFOREST_I_TYPE_TRAITS___
+#define ___MIRACLEFOREST_I_TYPE_TRAITS___
 
 #include "../../family/imacrofamily.h"
 
+#include <type_traits>
 #include <string>
+#include <concepts>
 
 namespace i::core {
 	namespace type {
@@ -39,4 +41,4 @@ namespace i::core {
 		}
 	}
 }
-#endif //!___TYPE_TRAITS___
+#endif //!___MIRACLEFOREST_I_TYPE_TRAITS___

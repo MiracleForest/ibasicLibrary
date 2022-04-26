@@ -164,6 +164,12 @@
     <ClInclude Include="..\include\icore\family\imacrofamily.h" />
     <ClInclude Include="..\include\icore\type\basic\number.hpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\include\icore\family\family_all_public_headers" />
+    <None Include="..\include\icore\type\basic\basic_all_public_headers" />
+    <None Include="..\include\icore\type\type\type_all_public_headers" />
+    <None Include="..\include\icore\type\type_all_public_headers" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

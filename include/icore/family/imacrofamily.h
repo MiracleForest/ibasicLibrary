@@ -14,8 +14,8 @@
  ​* We will try to do our best! 
  ​*/
 
-#ifndef __IMACROFAMILY_H__
-#define __IMACROFAMILY_H__
+#ifndef __MIRACLEFOREST_I_IMACROFAMILY_H__
+#define __MIRACLEFOREST_I_IMACROFAMILY_H__
 
 #ifdef __ANDROID__
 #elif __linux__
@@ -33,4 +33,4 @@ namespace i::core {
 	using ibool = int;
 }
 
-#endif //!__IMACROFAMILY_H__
+#endif //!__MIRACLEFOREST_I_IMACROFAMILY_H__

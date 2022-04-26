@@ -14,8 +14,8 @@
 * We will try to do our best!
 */
 
-#ifndef ___NUMBER___
-#define ___NUMBER___
+#ifndef ___MIRACLEFOREST_I_NUMBER___
+#define ___MIRACLEFOREST_I_NUMBER___
 
 #include "../../family/imacrofamily.h"
 #include "../type/type_traits.hpp"
@@ -208,4 +208,4 @@ namespace i::core {
 	} /// namespace type
 } /// namespace i::core
 
-#endif // !___NUMBER___
+#endif // !___MIRACLEFOREST_I_NUMBER___
