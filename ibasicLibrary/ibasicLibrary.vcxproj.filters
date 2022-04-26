@@ -31,22 +31,26 @@
     <Filter Include="third-party">
       <UniqueIdentifier>{d6f92415-320b-444e-8de5-35ad2897b9b5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="include\ibasic">
+    <Filter Include="include\icore">
       <UniqueIdentifier>{a50de011-c66d-470b-bd92-dea87ec7fab4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\icore\family">
+      <UniqueIdentifier>{0f93c4f4-07e1-49d7-82f3-758568e7801b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\icore\type">
+      <UniqueIdentifier>{9f658ca5-0a61-44fe-8049-10cbe4e939d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\icore\type\basic">
+      <UniqueIdentifier>{c8df3e30-c56d-4316-b648-685b2396d90b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\icore\type\type">
+      <UniqueIdentifier>{bd80c216-546d-4470-bd94-bac746603be9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ibasicLibrary.cpp">
       <Filter>test</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\include\ibasicLibrary_all_public_headers">
-      <Filter>include</Filter>
-    </None>
-    <None Include="..\include\ibasic\ibasic_all_public_headers">
-      <Filter>include\ibasic</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\docs\filelist.txt">
@@ -70,5 +74,19 @@
     <Text Include="..\resource\filelist.txt">
       <Filter>resource</Filter>
     </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\icore\family\imacrofamily.h">
+      <Filter>include\icore\family</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\icore\type\basic\number.hpp">
+      <Filter>include\icore\type\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\ibasicLibrary_all_public_headers">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\icore\type\type\type_traits.hpp">
+      <Filter>include\icore\type\type</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

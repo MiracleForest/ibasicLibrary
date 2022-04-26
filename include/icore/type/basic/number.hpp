@@ -8,15 +8,17 @@
 * @project : iBasicLibrary-BasicType
 * -----------------------------------------------------------------------------
 * Contains definition of class number
-* 
 * -----------------------------------------------------------------------------
 * If you have contact or find bugs,
 * you can go to Github or email (MiracleForest@Outlook.com) to give feedback. 
 * We will try to do our best!
 */
 
-#ifndef __NUMBER_HPP__
-#define __NUMBER_HPP__
+#ifndef ___NUMBER___
+#define ___NUMBER___
+
+#include "../../family/imacrofamily.h"
+#include "../type/type_traits.hpp"
 
 #include <type_traits>
 #include <concepts>
@@ -24,35 +26,17 @@
 #include <ostream>
 #include <string>
 
-namespace i::core
-{
-	namespace type
-	{
-		namespace basic
-		{
+namespace i::core {
+	namespace type {
+		namespace basic {
 			/// <summary>
 			/// Define concept arithmetic 
 			/// </summary>
 			template <typename T>
 			concept arithmetic = std::is_arithmetic<T>::value;
 
-			/// <summary>
-			/// type traits is_std_string
-			/// </summary>
-			template <typename Type>
-			struct is_std_string : std::false_type {};
-
-			template <>
-			struct is_std_string<std::string> : std::true_type {};
-
-			template<>
-			struct is_std_string<std::wstring> : std::true_type {};
-
-			template <typename Type>
-			constexpr bool is_std_string_v = is_std_string<Type>::value;
-
 			template <typename T>
-			concept stdString = is_std_string_v<T>;
+			concept stdString = i::core::type::type_traits::is_std_string_v<T>;
 
 			/// <summary>
 			/// Class number, a wrapper for arithmetic type
@@ -220,8 +204,8 @@ namespace i::core
 				return first._value / last._value;
 			}
 
-		} /// end namespace basic
-	} /// end namespace type
-} /// end namespace i::core
+		} /// namespace basic
+	} /// namespace type
+} /// namespace i::core
 
-#endif // __NUMBER_HPP__
+#endif // !___NUMBER___

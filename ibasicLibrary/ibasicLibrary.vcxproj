@@ -78,6 +78,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)build\$(Platform)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -116,6 +117,9 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -142,8 +146,10 @@
     <ClCompile Include="ibasicLibrary.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\include\ibasicLibrary_all_public_headers" />
-    <None Include="..\include\ibasic\ibasic_all_public_headers" />
+    <ClInclude Include="..\include\ibasicLibrary_all_public_headers">
+      <FileType>Document</FileType>
+    </ClInclude>
+    <ClInclude Include="..\include\icore\type\type\type_traits.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\build\filelist.txt" />
@@ -153,6 +159,10 @@
     <Text Include="..\resource\filelist.txt" />
     <Text Include="..\third-party\filelist.txt" />
     <Text Include="..\tools\filelist.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\icore\family\imacrofamily.h" />
+    <ClInclude Include="..\include\icore\type\basic\number.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
