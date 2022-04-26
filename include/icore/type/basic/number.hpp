@@ -5,7 +5,7 @@
 * @filename : number.hpp
 * @creation time : 2022.4.25 21:25
 * @created by : WitherVictor
-* @project : iBasicLibrary-BasicType
+* @project:iBasicLibrary-BasicType
 * -----------------------------------------------------------------------------
 * Contains definition of class number
 * -----------------------------------------------------------------------------

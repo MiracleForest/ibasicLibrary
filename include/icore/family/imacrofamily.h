@@ -5,7 +5,7 @@
  ​* @filename:imacrofamily.h 
  ​* @creation time:2022.?.?.??:?? 
  ​* @created by:Lovelylavender4 
- * @project : iBasicLibrary-Family
+ * @project:iBasicLibrary-Family
  ​* ----------------------------------------------------------------------------- 
  ​* This file only defines some macros and alias. 
  ​* ----------------------------------------------------------------------------- 
@@ -30,7 +30,11 @@
 #endif
 
 namespace i::core {
+
+    using ushort = unsigned short;
+    using ulong = unsigned long;
 	using ibool = int;
+
 }
 
 #endif //!__MIRACLEFOREST_I_IMACROFAMILY_H__

@@ -149,6 +149,7 @@
     <ClInclude Include="..\include\ibasicLibrary_all_public_headers">
       <FileType>Document</FileType>
     </ClInclude>
+    <ClInclude Include="..\include\icore\libcolor\color.hpp" />
     <ClInclude Include="..\include\icore\type\type\type_traits.hpp" />
   </ItemGroup>
   <ItemGroup>
@@ -165,10 +166,24 @@
     <ClInclude Include="..\include\icore\type\basic\number.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\include\icore\family\family_all_public_headers" />
-    <None Include="..\include\icore\type\basic\basic_all_public_headers" />
-    <None Include="..\include\icore\type\type\type_all_public_headers" />
-    <None Include="..\include\icore\type\type_all_public_headers" />
+    <ClInclude Include="..\include\icore\family\family_all_public_headers">
+      <FileType>Document</FileType>
+    </ClInclude>
+    <ClInclude Include="..\include\icore\type\basic\basic_all_public_headers">
+      <FileType>Document</FileType>
+    </ClInclude>
+    <ClInclude Include="..\include\icore\type\type\type_all_public_headers">
+      <FileType>Document</FileType>
+    </ClInclude>
+    <ClInclude Include="..\include\icore\type\type_all_public_headers">
+      <FileType>Document</FileType>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\include\icore\algorithm\algorithm_all_public_headers" />
+    <None Include="..\include\icore\icore_all_public_headers" />
+    <None Include="..\include\icore\libcolor\libmath_all_public_headers" />
+    <None Include="..\include\icore\libmath\libmath_all_public_headers" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

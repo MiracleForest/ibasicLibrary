@@ -1,2 +1,2 @@
-#include "icore/family/imacrofamily.h"
-#include "icore/type/basic/number.hpp"
+#include "icore/family/family_all_public_headers"
+#include "icore/type/type_all_public_headers"

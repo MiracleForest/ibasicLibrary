@@ -5,7 +5,7 @@
 * @filename:type_traits.hpp
 * @creation time:2022.4.26.13:00
 * @created by:Lovelylavender4
-* @project : iBasicLibrary-Type-Type_traits
+* @project:iBasicLibrary-Type-Type_traits
 * -----------------------------------------------------------------------------
 * type traits
 * -----------------------------------------------------------------------------
