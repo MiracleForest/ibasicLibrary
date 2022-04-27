@@ -55,6 +55,20 @@ namespace i::core {
 				number(Type val)
 					: _value(val) {}
 
+				number(const number& other)
+					: _value(other._value) {}
+
+				number& operator=(const number& other)
+				{
+					_value = other._value;
+					return *this;
+				}
+
+				number& operator=(Type other)
+				{
+					return _value;
+				}
+
 				/// <summary>
 				/// Return the _value that number contains
 				/// </summary>
