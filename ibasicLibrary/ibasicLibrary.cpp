@@ -1,9 +1,10 @@
 ﻿#include <iostream>
 #include "../include/icore/type/basic/number.hpp"
+#include "../include/icore/type/type/type.hpp"
 
-int main()
-{
-    std::cout << "Hello World!\n";
+int main(){
+
+
     system("pause");
     return 0;
 }
