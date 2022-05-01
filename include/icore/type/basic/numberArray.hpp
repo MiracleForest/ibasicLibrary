@@ -13,8 +13,12 @@
 * you can go to Github or email (MiracleForest@Outlook.com) to give feedback. 
 * We will try to do our best!
 */
+#ifndef ___MIRACLEFOREST_I_NUMBERARRAY___
+#define ___MIRACLEFOREST_I_NUMBERARRAY___
 
+#include "../../family/imacrofamily.h"
 #include "number.hpp"
+
 #include <iterator>
 #include <initializer_list>
 #include <exception>
@@ -236,3 +240,4 @@ namespace std
     numberArray_const_iterator<T, S> cend(const basic_number<T>& obj) { return obj.cend(); };
 
 }
+#endif//!___MIRACLEFOREST_I_NUMBERARRAY___

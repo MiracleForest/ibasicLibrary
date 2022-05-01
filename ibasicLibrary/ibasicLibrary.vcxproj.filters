@@ -55,6 +55,12 @@
     <Filter Include="include\icore\libmath">
       <UniqueIdentifier>{6ecc7d47-64bd-49b2-81ef-1fdf1774a5d8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include\icore\type\basic\basic">
+      <UniqueIdentifier>{adf5a426-2904-45cd-a787-8a419f10f52f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\icore\exception">
+      <UniqueIdentifier>{55604364-b858-48b4-bf79-ecc0e33e5d06}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ibasicLibrary.cpp">
@@ -111,6 +117,24 @@
     </ClInclude>
     <ClInclude Include="..\include\icore\libcolor\color.hpp">
       <Filter>include\icore\libcolor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\icore\type\basic\numberArray.hpp">
+      <Filter>include\icore\type\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\icore\type\basic\basic\basic_number_type.hpp">
+      <Filter>include\icore\type\basic\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\icore\type\basic\basic\ibasic.hpp">
+      <Filter>include\icore\type\basic\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\icore\type\type\type.hpp">
+      <Filter>include\icore\type\type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\icore\type\type\concepts.hpp">
+      <Filter>include\icore\type\type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\icore\exception\exception.hpp">
+      <Filter>include\icore\exception</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

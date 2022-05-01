@@ -19,6 +19,7 @@
 
 #include "../../family/imacrofamily.h"
 #include "../type/type_traits.hpp"
+#include "../type/concepts.hpp"
 
 #include <type_traits>
 #include <concepts>
@@ -29,18 +30,11 @@
 namespace i::core {
 	namespace type {
 		namespace basic {
-			/// <summary>
-			/// Define concept arithmetic 
-			/// </summary>
-			template <typename T>
-			concept arithmetic = std::is_arithmetic<T>::value;
 
-			template <typename T>
-			concept stdString = i::core::type::type_traits::is_std_string_v<T>;
 
 			/// <summary>
 			/// Class number, a wrapper for arithmetic type
-			/// <summary>
+			/// </summary>
 			template <arithmetic Type>
 			class number
 			{
