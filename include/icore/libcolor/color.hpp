@@ -24,6 +24,9 @@
 namespace i::core {
 	namespace icolor {
 
+		/// <summary>
+		/// 
+		/// </summary>
 		struct RGB {
 			RGB() :r(0), g(0), b(0) {}
 			RGB(ushort _r, ushort _g, ushort _b) :r(_r), g(_g), b(_b) {}
@@ -32,6 +35,9 @@ namespace i::core {
 			ushort b;
 		};
 
+		/// <summary>
+		/// 
+		/// </summary>
 		class icolor {
 		public:
 			icolor() :rgb(0, 0, 0) {}
@@ -39,18 +45,35 @@ namespace i::core {
 			icolor(ushort _r, ushort _g, ushort _b) :rgb(_r, _g, _b) {}
 			~icolor() {}
 		public:
+			/// <summary>
+			/// 
+			/// </summary>
+			/// <returns></returns>
 			ulong gethex()const {
 				return rgb.r << 16 | rgb.g << 8 | rgb.b;
 			}
-
+			/// <summary>
+			/// 
+			/// </summary>
+			/// <returns></returns>
 			RGB getRGB()const {
 				return rgb;
 			}
-
+			/// <summary>
+			/// 
+			/// </summary>
+			/// <param name="_rgb"></param>
 			void setRGB(RGB _rgb) {
 				rgb = _rgb;
 			}
 		public:
+			/// <summary>
+			/// 
+			/// </summary>
+			/// <param name="_r"></param>
+			/// <param name="_g"></param>
+			/// <param name="_b"></param>
+			/// <returns></returns>
 			static ushort tohex(ushort _r, ushort _g, ushort _b) {
 				return _r << 16 | _g << 8 | _b;
 			}

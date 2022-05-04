@@ -136,6 +136,9 @@
     <ClInclude Include="..\include\icore\exception\exception.hpp">
       <Filter>include\icore\exception</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\icore\type\basic\istring.hpp">
+      <Filter>include\icore\type\basic</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\include\icore\icore_all_public_headers">

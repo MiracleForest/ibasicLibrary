@@ -153,6 +153,7 @@
     <ClInclude Include="..\include\icore\libcolor\color.hpp" />
     <ClInclude Include="..\include\icore\type\basic\basic\basic_number_type.hpp" />
     <ClInclude Include="..\include\icore\type\basic\basic\ibasic.hpp" />
+    <ClInclude Include="..\include\icore\type\basic\istring.hpp" />
     <ClInclude Include="..\include\icore\type\basic\numberArray.hpp" />
     <ClInclude Include="..\include\icore\type\type\concepts.hpp" />
     <ClInclude Include="..\include\icore\type\type\type.hpp" />
