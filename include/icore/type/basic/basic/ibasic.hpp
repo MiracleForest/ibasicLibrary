@@ -21,6 +21,10 @@
 
 namespace i::icore {
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="Type"></typeparam>
     template<typename Type>
     class ibasic {
 
@@ -28,11 +32,13 @@ namespace i::icore {
 
     };
 
-
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="Type"></typeparam>
     template<typename Type>
     class ibasic_data_type : public ibasic<Type> {
 
-        virtual Type data() = 0;
 
     };
 

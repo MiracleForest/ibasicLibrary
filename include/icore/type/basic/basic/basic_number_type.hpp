@@ -17,8 +17,12 @@
 
 #include "../../../family/imacrofamily.h"
 
-namespace i::core::type::basic{
+namespace i::core::type::basic {
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="Type"></typeparam>
     template<typename Type>
     class basic_number_type {
 

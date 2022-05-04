@@ -26,15 +26,29 @@ namespace i::core {
 	namespace type {
 		namespace type_traits {
 
+			/// <summary>
+			/// 
+			/// </summary>
+			/// <typeparam name="Type"></typeparam>
 			template <typename Type>
 			struct is_std_string : std::false_type {};
 
+			/// <summary>
+			/// 
+			/// </summary>
 			template<>
 			struct is_std_string<std::string> : std::true_type {};
 
+			/// <summary>
+			/// 
+			/// </summary>
 			template<>
 			struct is_std_string<std::wstring> : std::true_type {};
 
+			/// <summary>
+			/// 
+			/// </summary>
+			/// <typeparam name="Type"></typeparam>
 			template <typename Type>
 			constexpr bool is_std_string_v = is_std_string<Type>::value;
 

@@ -15,6 +15,10 @@
 #ifndef ___MIRACLEFOREST_I_EXCEPTION___
 #define ___MIRACLEFOREST_I_EXCEPTION___
 
+#include <exception>
 
+namespace i::core {
+
+}
 
 #endif //!___MIRACLEFOREST_I_EXCEPTION___

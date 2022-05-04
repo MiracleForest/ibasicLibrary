@@ -1,7 +1,7 @@
 /*
-* 
+*
 * Copyright(C) 2022 MiracleForest Studio. All Rights Reserved.
-* 
+*
 * @filename : number.hpp
 * @creation time : 2022.4.25 21:25
 * @created by : WitherVictor
@@ -10,7 +10,7 @@
 * Contains definition of class number
 * -----------------------------------------------------------------------------
 * If you have contact or find bugs,
-* you can go to Github or email (MiracleForest@Outlook.com) to give feedback. 
+* you can go to Github or email (MiracleForest@Outlook.com) to give feedback.
 * We will try to do our best!
 */
 
@@ -66,6 +66,7 @@ namespace i::core {
 				/// <summary>
 				/// Return the _value that number contains
 				/// </summary>
+				/// <returns></returns>
 				Type data() const
 				{
 					return _value;
@@ -74,6 +75,7 @@ namespace i::core {
 				/// <summary>
 				/// Get _value that convert to std::string
 				/// </summary>
+				/// <returns>string</returns>
 				std::string toStdString()
 				{
 					return std::to_string(_value);
@@ -82,6 +84,7 @@ namespace i::core {
 				/// <summary>
 				/// Get _value that convert to std::string
 				/// </summary>
+				/// <returns></returns>
 				std::wstring toStdWstring()
 				{
 					return std::to_wstring(_value);
@@ -90,6 +93,7 @@ namespace i::core {
 				/// <summary>
 				/// Convert std::string or std::wstring into Type
 				/// </summary>
+				/// <param name="str"></param>
 				void fromStdString(stdString auto&& str)
 				{
 					if constexpr (std::is_same_v<Type, int>)
@@ -109,7 +113,8 @@ namespace i::core {
 					else if (std::is_same_v<Type, long double>)
 						_value = std::stold(str);
 					else
-						{}
+					{
+					}
 				}
 
 				/// <summary>
@@ -119,30 +124,41 @@ namespace i::core {
 				{
 					_value = static_cast<Type>(0);
 				}
-                
+
 				/// <summary>
-				/// Avoiding ambiguous, full implement have been given below 
+				/// Avoiding ambiguous, full implement have been given below
 				/// </summary>
-                auto operator<=>(const number&) const = delete;
+				/// <param name=""></param>
+				/// <returns></returns>
+				auto operator<=>(const number&) const = delete;
 
 				/// <summary>
 				/// Type convertion function
 				/// </summary>
+				/// <typeparam name="T"></typeparam>
 				template <typename T>
 				operator T()
 				{
 					return static_cast<T>(_value);
 				}
 
-                /// <summary>
-				/// operator<=> declaration
+				/// <summary>
+				/// operator declaration
 				/// </summary>
-                template <typename T, typename U>
-                friend auto operator<=>(const number<T>& first, const number<U>& last);
+				/// <typeparam name="T"></typeparam>
+				/// <typeparam name="U"></typeparam>
+				/// <param name="first"></param>
+				/// <param name="last"></param>
+				/// <returns></returns>
+				template <typename T, typename U>
+				friend auto operator<=>(const number<T>& first, const number<U>& last);
 
-                /// <summary>
+				/// <summary>
 				/// Overloading for std::ostream
 				/// </summary>
+				/// <param name="os"></param>
+				/// <param name="value"></param>
+				/// <returns></returns>
 				friend std::ostream& operator<<(std::ostream& os, const number& value)
 				{
 					os << value._value;
@@ -150,40 +166,79 @@ namespace i::core {
 				}
 
 				/// <summary>
-				/// operator+, -, *, / declaration
+				/// operator + declaration
 				/// </summary>
+				/// <typeparam name="T"></typeparam>
+				/// <typeparam name="U"></typeparam>
+				/// <param name="first"></param>
+				/// <param name="last"></param>
+				/// <returns></returns>
 				template <typename T, typename U>
 				friend auto operator+(const number<T>& first, const number<U>& last)
-					-> number<std::common_type_t<T, U>>;
-				
+					->number<std::common_type_t<T, U>>;
+
+				/// <summary>
+				/// operator - declaration
+				/// </summary>
+				/// <typeparam name="T"></typeparam>
+				/// <typeparam name="U"></typeparam>
+				/// <param name="first"></param>
+				/// <param name="last"></param>
+				/// <returns></returns>
 				template <typename T, typename U>
 				friend auto operator-(const number<T>& first, const number<U>& last)
-					-> number<std::common_type_t<T, U>>;
+					->number<std::common_type_t<T, U>>;
 
+				/// <summary>
+				/// operator * declaration
+				/// </summary>
+				/// <typeparam name="T"></typeparam>
+				/// <typeparam name="U"></typeparam>
+				/// <param name="first"></param>
+				/// <param name="last"></param>
+				/// <returns></returns>
 				template <typename T, typename U>
 				friend auto operator*(const number<T>& first, const number<U>& last)
-					-> number<std::common_type_t<T, U>>;
+					->number<std::common_type_t<T, U>>;
 
+				/// <summary>
+				/// operator / declaration
+				/// </summary>
+				/// <typeparam name="T"></typeparam>
+				/// <typeparam name="U"></typeparam>
+				/// <param name="first"></param>
+				/// <param name="last"></param>
+				/// <returns></returns>
 				template <typename T, typename U>
 				friend auto operator/(const number<T>& first, const number<U>& last)
-					-> number<std::common_type_t<T, U>>;
+					->number<std::common_type_t<T, U>>;
 
 			private:
 				Type _value;
 			}; /// end class number
 
-            /// <summary>
-			/// operator<=> definition
+			/// <summary>
+			/// operator definition
 			/// </summary>
-            template <typename T, typename U>
-            static auto operator<=>(const number<T>& first, const number<U>& last)
-            {
-                return first._value <=> last._value;
-            }
+			/// <typeparam name="T"></typeparam>
+			/// <typeparam name="U"></typeparam>
+			/// <param name="first"></param>
+			/// <param name="last"></param>
+			/// <returns></returns>
+			template <typename T, typename U>
+			static auto operator<=>(const number<T>& first, const number<U>& last)
+			{
+				return first._value <=> last._value;
+			}
 
 			/// <summary>
-			/// operator+, -, *, / definition
+			/// operator + definition
 			/// </summary>
+			/// <typeparam name="T"></typeparam>
+			/// <typeparam name="U"></typeparam>
+			/// <param name="first"></param>
+			/// <param name="last"></param>
+			/// <returns></returns>
 			template <typename T, typename U>
 			auto operator+(const number<T>& first, const number<U>& last)
 				-> number<std::common_type_t<T, U>>
@@ -191,6 +246,14 @@ namespace i::core {
 				return first._value + last._value;
 			}
 
+			/// <summary>
+			/// operator - definition
+			/// </summary>
+			/// <typeparam name="T"></typeparam>
+			/// <typeparam name="U"></typeparam>
+			/// <param name="first"></param>
+			/// <param name="last"></param>
+			/// <returns></returns>
 			template <typename T, typename U>
 			auto operator-(const number<T>& first, const number<U>& last)
 				-> number<std::common_type_t<T, U>>
@@ -198,6 +261,14 @@ namespace i::core {
 				return first._value - last._value;
 			}
 
+			/// <summary>
+			/// operator * definition
+			/// </summary>
+			/// <typeparam name="T"></typeparam>
+			/// <typeparam name="U"></typeparam>
+			/// <param name="first"></param>
+			/// <param name="last"></param>
+			/// <returns></returns>
 			template <typename T, typename U>
 			auto operator*(const number<T>& first, const number<U>& last)
 				-> number<std::common_type_t<T, U>>
@@ -205,6 +276,14 @@ namespace i::core {
 				return first._value * last._value;
 			}
 
+			/// <summary>
+			/// operator / definition
+			/// </summary>
+			/// <typeparam name="T"></typeparam>
+			/// <typeparam name="U"></typeparam>
+			/// <param name="first"></param>
+			/// <param name="last"></param>
+			/// <returns></returns>
 			template <typename T, typename U>
 			auto operator/(const number<T>& first, const number<U>& last)
 				-> number<std::common_type_t<T, U>>
