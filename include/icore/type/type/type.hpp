@@ -16,10 +16,14 @@
 #define ___MIRACLEFOREST_I_TYPE___
 
 #include "../../family/imacrofamily.h"
+#include <windows.h>
 #include <string>
 #include <stringapiset.h>
 #include <atlstr.h>
 
+/// <summary>
+/// 
+/// </summary>
 namespace i::core {
 
 	/// <summary>
@@ -54,6 +58,9 @@ namespace i::core {
 		/// <summary>
 		/// get type
 		/// </summary>
+		/// <warning></warning>
+		/// <include></include>
+		/// <bug></bug>
 		/// <returns>type enum</returns>
 		itype getType()const {
 			return typeList::itype;
@@ -62,12 +69,18 @@ namespace i::core {
 		/// <summary>
 		/// get data
 		/// </summary>
+		/// <warning></warning>
+		/// <include></include>
+		/// <bug></bug>
 		/// <returns>data</returns>
 		iType data()const { return mType; }
 
 		/// <summary>
 		/// set data
 		/// </summary>
+		/// <warning></warning>
+		/// <include></include>
+		/// <bug></bug>
 		/// <param name="t">new data</param>
 		void setdata(iType t) { mType = t; }
 
@@ -75,6 +88,9 @@ namespace i::core {
 		/// Get the name of the type enum
 		/// </summary>
 		/// <param name="t">type enum</param>
+		/// <warning></warning>
+		/// <include></include>
+		/// <bug></bug>
 		/// <returns>Type Name</returns>
 		static const char* getString(iType t) {
 			switch (t) {
@@ -106,6 +122,9 @@ namespace i::core {
 		/// Get the name of the type
 		/// </summary>
 		/// <typeparam name="Type">type</typeparam>
+		/// <warning></warning>
+		/// <include></include>
+		/// <bug></bug>
 		/// <returns>Type Name</returns>
 		template<typename Type>
 		static const char* getTypeString() {
@@ -117,6 +136,9 @@ namespace i::core {
 		/// </summary>
 		/// <typeparam name="Type">-</typeparam>
 		/// <param name="t">type</param>
+		/// <warning></warning>
+		/// <include></include>
+		/// <bug></bug>
 		/// <returns>Type Name</returns>
 		template<typename Type>
 		static const char* getTypeString(Type t) {
@@ -127,25 +149,47 @@ namespace i::core {
 		/// other2string
 		/// </summary>
 		/// <param name="value">Value</param>
+		/// <warning></warning>
+		/// <include></include>
+		/// <bug></bug>
 		/// <returns>string</returns>
 		template<typename Type>
 		static std::string toStdString(Type value) {
-			return std::to_string(s);
+			return std::to_string(value);
 		}
 
 		/// <summary>
 		/// const char* 2string
 		/// </summary>
 		/// <param name="s">const char* value</param>
+		/// <warning></warning>
+		/// <include></include>
+		/// <bug></bug>
 		/// <returns>string</returns>
 		static std::string toStdString(const char* value) {
 			return std::string(value);
 		}
+				
+		/// <summary>
+		/// char2string
+		/// </summary>
+		/// <param name="s">char value</param>
+		/// <warning></warning>
+		/// <include></include>
+		/// <bug></bug>
+		/// <returns>string</returns>
+		static std::string toStdString(char value) {
+			return std::string(1, value);
+		}
+
 
 		/// <summary>
 		/// string2string
 		/// </summary>
 		/// <param name="value">string value</param>
+		/// <warning></warning>
+		/// <include></include>
+		/// <bug></bug>
 		/// <returns>string</returns>
 		static std::string toStdString(const std::string& value) {
 			return value;
@@ -155,6 +199,9 @@ namespace i::core {
 		/// wchar_t2string
 		/// </summary>
 		/// <param name="value">wchar_t</param>
+		/// <warning></warning>
+		/// <include></include>
+		/// <bug></bug>
 		/// <returns>string</returns>
 		static std::string toStdString(const wchar_t value) {
 			return wideChar2UTF8(std::wstring(1, value));
@@ -164,6 +211,9 @@ namespace i::core {
 		/// const wchar_t* 2string
 		/// </summary>
 		/// <param name="value">const wchar_t* value</param>
+		/// <warning></warning>
+		/// <include></include>
+		/// <bug></bug>
 		/// <returns>string</returns>
 		static std::string toStdString(const wchar_t* value) {
 			return wideChar2UTF8(value);
@@ -173,6 +223,9 @@ namespace i::core {
 		/// wstring2string
 		/// </summary>
 		/// <param name="value">wstring value</param>
+		/// <warning></warning>
+		/// <include></include>
+		/// <bug></bug>
 		/// <returns>string</returns>
 		static std::string toStdString(const std::wstring& value) {
 			return wideChar2UTF8(value);
@@ -183,6 +236,9 @@ namespace i::core {
 		/// </summary>
 		/// <param name="code_page">code_page</param>
 		/// <param name="src_str">src_str</param>
+		/// <warning></warning>
+		/// <include></include>
+		/// <bug></bug>
 		/// <returns>wstring</returns>
 		static std::wstring toWideChar(std::uint32_t code_page, const std::string& src_str) {
 			if (src_str.empty()) {
@@ -208,6 +264,9 @@ namespace i::core {
 		/// </summary>
 		/// <param name="code_page">code_page</param>
 		/// <param name="src_wstr">src_wstr</param>
+		/// <warning></warning>
+		/// <include></include>
+		/// <bug></bug>
 		/// <returns>string</returns>
 		static std::string fromWideChar(std::uint32_t code_page, const std::wstring& src_wstr) {
 			if (src_wstr.empty()) {
@@ -232,6 +291,9 @@ namespace i::core {
 		/// isWideCharHex
 		/// </summary>
 		/// <param name="wch">wchar_t value</param>
+		/// <warning></warning>
+		/// <include></include>
+		/// <bug></bug>
 		/// <returns>isWideCharHex</returns>
 		static bool isWideCharHex(wchar_t wch) {
 			return (wch >= L'0' && wch <= L'9') || (wch >= L'a' && wch <= L'f') || (wch >= L'A' && wch <= L'F');
@@ -241,6 +303,9 @@ namespace i::core {
 		/// wideChar2hex
 		/// </summary>
 		/// <param name="wch">wchar_t value</param>
+		/// <warning></warning>
+		/// <include></include>
+		/// <bug></bug>
 		/// <returns>hex</returns>
 		static std::uint8_t wideChar2hex(wchar_t wch) {
 			if (wch >= L'0' && wch <= L'9') {
@@ -258,6 +323,9 @@ namespace i::core {
 		/// hex2char
 		/// </summary>
 		/// <param name="hex">hex value</param>
+		/// <warning></warning>
+		/// <include></include>
+		/// <bug></bug>
 		/// <returns>char</returns>
 		static char hex2char(uint8_t hex) {
 			if (hex <= 9) {
@@ -272,6 +340,9 @@ namespace i::core {
 		/// wideChar2UCS2
 		/// </summary>
 		/// <param name="wch">wchar_t value</param>
+		/// <warning></warning>
+		/// <include></include>
+		/// <bug></bug>
 		/// <returns>string</returns>
 		static std::string wideChar2UCS2(wchar_t wch) {
 			auto wch_value = static_cast<uint16_t>(wch);
@@ -289,6 +360,9 @@ namespace i::core {
 		/// hex2wideChar
 		/// </summary>
 		/// <param name="hex">hex value</param>
+		/// <warning></warning>
+		/// <include></include>
+		/// <bug></bug>
 		/// <returns>char</returns>
 		static char hex2wideChar(uint8_t hex) {
 			if (hex <= 9) {
@@ -303,6 +377,9 @@ namespace i::core {
 		/// wideChar2wideCharUCS2
 		/// </summary>
 		/// <param name="wch">wchar_t value</param>
+		/// <warning></warning>
+		/// <include></include>
+		/// <bug></bug>
 		/// <returns>wstring</returns>
 		static std::wstring wideChar2wideCharUCS2(wchar_t wch) {
 			auto wch_value = static_cast<uint16_t>(wch);
@@ -320,6 +397,9 @@ namespace i::core {
 		/// Convert a UTF8 encoded string to a wide string
 		/// </summary>
 		/// <param name="utf8" The UTF8 encoded string to be converted</param>
+		/// <warning></warning>
+		/// <include></include>
+		/// <bug></bug>
 		/// <returns>The converted wide string</returns>
 		static std::wstring UTF82wideChar(const std::string& utf8) {
 			return toWideChar(CP_UTF8, utf8);
@@ -329,6 +409,9 @@ namespace i::core {
 		/// Convert wide strings to UTF8-encoded strings
 		/// </summary>
 		/// <param name="wstr">The wide string to be converted into an encoding</param>
+		/// <warning></warning>
+		/// <include></include>
+		/// <bug></bug>
 		/// <returns>The converted UTF8 encoded string</returns>
 		static std::string wideChar2UTF8(const std::wstring& wstr) {
 			return fromWideChar(CP_UTF8, wstr);
@@ -338,6 +421,9 @@ namespace i::core {
 		/// Convert ANSI-encoded strings to wide strings
 		/// </summary>
 		/// <param name="ansi">ANSI-encoded string to be converted</param>
+		/// <warning></warning>
+		/// <include></include>
+		/// <bug></bug>
 		/// <returns>The converted wide string</returns>
 		static std::wstring ANSI2wideChar(const std::string& ansi) {
 			return toWideChar(CP_ACP, ansi);
@@ -347,6 +433,9 @@ namespace i::core {
 		/// Convert wide strings to ANSI-encoded strings
 		/// </summary>
 		/// <param name="wstr">The wide string to be converted into an encoding</param>
+		/// <warning></warning>
+		/// <include></include>
+		/// <bug></bug>
 		/// <returns>Converted ANSI-encoded string</returns>
 		static std::string wideChar2ANSI(const std::wstring& wstr) {
 			return fromWideChar(CP_ACP, wstr);
@@ -357,6 +446,9 @@ namespace i::core {
 		/// </summary>
 		/// <param name="ansi_with_ucs2">ANSI-encoded mixed UCS2 encoded strings to be converted</param>
 		/// <param name="not_unescape_wide_chars">Wide character set without inverse escaping</param>
+		/// <warning></warning>
+		/// <include></include>
+		/// <bug></bug>
 		/// <returns>The converted wide string</returns>
 		static std::wstring ANSIWithUCS22WideChar(const std::string& ansi_with_ucs2, const std::wstring& not_unescape_wide_chars) {
 			return unescapeWideChar(ANSI2wideChar(ansi_with_ucs2), not_unescape_wide_chars);
@@ -367,6 +459,9 @@ namespace i::core {
 		/// </summary>
 		/// <param name="wstr">Wide string of codes to be converted</param>
 		/// <param name="force_escape_wide_chars">Wide set of characters to be forcibly escaped</param>
+		/// <warning></warning>
+		/// <include></include>
+		/// <bug></bug>
 		/// <returns>Converted ANSI-encoded mixed UCS2 encoded strings</returns>
 		static std::string wideChar2ANSIWithUCS2(const std::wstring& wstr, const std::wstring& force_escape_wide_chars) {
 			if (wstr.empty()) {
@@ -448,6 +543,11 @@ namespace i::core {
 		/// </summary>
 		/// <param name="wstr">Wide string containing the wide characters to be escaped</param>
 		/// <param name="escape_wide_chars">Wide set of characters to be escaped</param>
+		/// <warning>null</warning>
+		/// <include>
+		/// string
+		/// </include>
+		/// <bug>null</bug>
 		/// <returns>The escaped wide string</returns>
 		static std::wstring escapeWideChar(const std::wstring& wstr, const std::wstring& escape_wide_chars) {
 			if (wstr.empty()) {
@@ -473,6 +573,11 @@ namespace i::core {
 		/// </summary>
 		/// <param name="wstr_with_ucs2">Wide strings to be inverse-translated</param>
 		/// <param name="not_unescape_wide_chars">Wide character set without inverse escaping</param>
+		/// <warning>null</warning>
+		/// <include>
+		/// string
+		/// </include>
+		/// <bug>null</bug>
 		/// <returns>Wide string after inverse escape</returns>
 		static std::wstring unescapeWideChar(const std::wstring& wstr_with_ucs2, const std::wstring& not_unescape_wide_chars) {
 			if (wstr_with_ucs2.empty()) {
@@ -525,6 +630,9 @@ namespace i::core {
 		/// </summary>
 		/// <param name="utf8">String containing the UTF8 encoding to be escaped</param>
 		/// <param name="escape_utf8_chars">The character set of the UTF8 encoding to be escaped</param>
+		/// <warning></warning>
+		/// <include></include>
+		/// <bug></bug>
 		/// <returns>The escaped UTF8 encoded string</returns>
 		static std::string escapeUTF8(const std::string& utf8, const std::string& escape_utf8_chars) {
 			return wideChar2UTF8(escapeWideChar(UTF82wideChar(utf8), UTF82wideChar(escape_utf8_chars)));
@@ -535,6 +643,9 @@ namespace i::core {
 		/// </summary>
 		/// <param name="utf8_with_ucs2">UTF8 encoded string to be escaped</param>
 		/// <param name="not_unescape_utf8_chars">UTF8 encoded character set without escaping</param>
+		/// <warning></warning>
+		/// <include></include>
+		/// <bug></bug>
 		/// <returns>Reverse-escaped UTF8-encoded string</returns>
 		static std::string unescapeUTF8(const std::string& utf8_with_ucs2, const std::string& not_unescape_utf8_chars) {
 			return wideChar2UTF8(unescapeWideChar(UTF82wideChar(utf8_with_ucs2), UTF82wideChar(not_unescape_utf8_chars)));
@@ -544,6 +655,9 @@ namespace i::core {
 		/// UCS22WideChar
 		/// </summary>
 		/// <param name="ucs2">ucs2 value</param>
+		/// <warning></warning>
+		/// <include></include>
+		/// <bug></bug>
 		/// <returns>wchar_t</returns>
 		static wchar_t UCS22WideChar(const std::wstring& ucs2) {
 			auto it = ucs2.cbegin();
@@ -562,6 +676,9 @@ namespace i::core {
 		/// string2wcharStr
 		/// </summary>
 		/// <param name="ucs2">ucs2 value</param>
+		/// <warning></warning>
+		/// <include></include>
+		/// <bug></bug>
 		/// <returns>wchar_t</returns>
 		wchar_t* string2wcharStr(std::string value) {
 			CString crpr((value).c_str());
@@ -580,6 +697,9 @@ namespace i::core {
 	/// toStdString
 	/// </summary>
 	/// <param name="value">value</param>
+	/// <warning></warning>
+	/// <include></include>
+	/// <bug></bug>
 	/// <returns>Converted string</returns>
 	template <typename T>
 	inline std::string toStdString(T value) {

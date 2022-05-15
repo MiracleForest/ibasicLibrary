@@ -46,24 +46,36 @@ namespace i::core::type::basic
         /// 
         /// </summary>
         /// <param name="other"></param>
+        /// <warning></warning>
+        /// <include></include>
+        /// <bug></bug>
         /// <returns></returns>
         bool operator==(const self& other) const { return ptr == other.ptr; }
 
         /// <summary>
         /// 
         /// </summary>
+        /// <warning></warning>
+        /// <include></include>
+        /// <bug></bug>
         /// <returns></returns>
         reference operator* () const { return *ptr; }
 
         /// <summary>
         /// 
         /// </summary>
+        /// <warning></warning>
+        /// <include></include>
+        /// <bug></bug>
         /// <returns></returns>
         pointer operator->() const { return ptr; }
 
         /// <summary>
         /// 
         /// </summary>
+        /// <warning></warning>
+        /// <include></include>
+        /// <bug></bug>
         /// <returns></returns>
         self& operator++() {
             ptr++;
@@ -74,6 +86,9 @@ namespace i::core::type::basic
         /// 
         /// </summary>
         /// <param name=""></param>
+        /// <warning></warning>
+        /// <include></include>
+        /// <bug></bug>
         /// <returns></returns>
         self operator++(int) {
             self tmp = *this;
@@ -84,6 +99,9 @@ namespace i::core::type::basic
         /// <summary>
         /// 
         /// </summary>
+        /// <warning></warning>
+        /// <include></include>
+        /// <bug></bug>
         /// <returns></returns>
         self& operator--() {
             ptr--;
@@ -94,6 +112,9 @@ namespace i::core::type::basic
         /// 
         /// </summary>
         /// <param name=""></param>
+        /// <warning></warning>
+        /// <include></include>
+        /// <bug></bug>
         /// <returns></returns>
         self operator--(int) {
             self tmp = *this;
@@ -123,24 +144,36 @@ namespace i::core::type::basic
         /// 
         /// </summary>
         /// <param name="other"></param>
+        /// <warning></warning>
+        /// <include></include>
+        /// <bug></bug>
         /// <returns></returns>
         bool operator==(const self& other) const { return ptr == other.ptr; }
 
         /// <summary>
         /// 
         /// </summary>
+        /// <warning></warning>
+        /// <include></include>
+        /// <bug></bug>
         /// <returns></returns>
         reference operator* () { return *ptr; }
 
         /// <summary>
         /// 
         /// </summary>
+        /// <warning></warning>
+        /// <include></include>
+        /// <bug></bug>
         /// <returns></returns>
         pointer operator->() { return ptr; }
 
         /// <summary>
         /// 
         /// </summary>
+        /// <warning></warning>
+        /// <include></include>
+        /// <bug></bug>
         /// <returns></returns>
         self& operator++() {
             ptr++;
@@ -151,6 +184,9 @@ namespace i::core::type::basic
         /// 
         /// </summary>
         /// <param name=""></param>
+        /// <warning></warning>
+        /// <include></include>
+        /// <bug></bug>
         /// <returns></returns>
         self operator++(int) {
             self tmp = *this;
@@ -161,6 +197,9 @@ namespace i::core::type::basic
         /// <summary>
         /// 
         /// </summary>
+        /// <warning></warning>
+        /// <include></include>
+        /// <bug></bug>
         /// <returns></returns>
         self& operator--() {
             ptr--;
@@ -171,6 +210,9 @@ namespace i::core::type::basic
         /// 
         /// </summary>
         /// <param name=""></param>
+        /// <warning></warning>
+        /// <include></include>
+        /// <bug></bug>
         /// <returns></returns>
         self operator--(int) {
             self tmp = *this;
@@ -222,24 +264,36 @@ namespace i::core::type::basic
         /// <summary>
         /// 
         /// </summary>
+        /// <warning></warning>
+        /// <include></include>
+        /// <bug></bug>
         /// <returns></returns>
         iterator begin() { return iterator(_arr); }
 
         /// <summary>
         /// 
         /// </summary>
+        /// <warning></warning>
+        /// <include></include>
+        /// <bug></bug>
         /// <returns></returns>
         iterator end() { return iterator(_arr + Size); }
 
         /// <summary>
         /// 
         /// </summary>
+        /// <warning></warning>
+        /// <include></include>
+        /// <bug></bug>
         /// <returns></returns>
         const_iterator cbegin() { return const_iterator(_arr); }
 
         /// <summary>
         /// 
         /// </summary>
+        /// <warning></warning>
+        /// <include></include>
+        /// <bug></bug>
         /// <returns></returns>
         const_iterator cend() { return const_iterator(_arr + Size); }
     private:
@@ -252,6 +306,9 @@ namespace std
     /// <summary>
     /// 
     /// </summary>
+    /// <warning></warning>
+    /// <include></include>
+    /// <bug></bug>
     /// <typeparam name="T"></typeparam>
     template <typename T>
     using numberArray_iterator = i::core::type::basic::numberArray_iterator<T>;
@@ -259,6 +316,9 @@ namespace std
     /// <summary>
     /// 
     /// </summary>
+    /// <warning></warning>
+    /// <include></include>
+    /// <bug></bug>
     /// <typeparam name="T"></typeparam>
     template <typename T>
     using numberArray_const_iterator = i::core::type::basic::numberArray_const_iterator<T>;
@@ -266,6 +326,9 @@ namespace std
     /// <summary>
     /// 
     /// </summary>
+    /// <warning></warning>
+    /// <include></include>
+    /// <bug></bug>
     /// <typeparam name="T"></typeparam>
     template <typename T>
     using basic_number = i::core::type::basic::number<T>;
@@ -275,6 +338,9 @@ namespace std
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="obj"></param>
+    /// <warning></warning>
+    /// <include></include>
+    /// <bug></bug>
     /// <returns></returns>
     template <typename T>
     numberArray_iterator<T> begin(const basic_number<T>& obj) { return obj.begin(); };
@@ -284,6 +350,9 @@ namespace std
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="obj"></param>
+    /// <warning></warning>
+    /// <include></include>
+    /// <bug></bug>
     /// <returns></returns>
     template <typename T>
     numberArray_iterator<T> end(const basic_number<T>& obj) { return obj.end(); };
@@ -293,6 +362,9 @@ namespace std
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="obj"></param>
+    /// <warning></warning>
+    /// <include></include>
+    /// <bug></bug>
     /// <returns></returns>
     template <typename T>
     numberArray_iterator<T> cbegin(const basic_number<T>& obj) { return obj.cbegin(); };
@@ -302,6 +374,9 @@ namespace std
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="obj"></param>
+    /// <warning></warning>
+    /// <include></include>
+    /// <bug></bug>
     /// <returns></returns>
     template <typename T>
     numberArray_iterator<T> cend(const basic_number<T>& obj) { return obj.cend(); };

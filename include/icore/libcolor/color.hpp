@@ -48,6 +48,9 @@ namespace i::core {
 			/// <summary>
 			/// 
 			/// </summary>
+			/// <warning></warning>
+			/// <include></include>
+			/// <bug></bug>
 			/// <returns></returns>
 			ulong gethex()const {
 				return rgb.r << 16 | rgb.g << 8 | rgb.b;
@@ -55,6 +58,9 @@ namespace i::core {
 			/// <summary>
 			/// 
 			/// </summary>
+			/// <warning></warning>
+			/// <include></include>
+			/// <bug></bug>
 			/// <returns></returns>
 			RGB getRGB()const {
 				return rgb;
@@ -63,6 +69,9 @@ namespace i::core {
 			/// 
 			/// </summary>
 			/// <param name="_rgb"></param>
+			/// <warning></warning>
+			/// <include></include>
+			/// <bug></bug>
 			void setRGB(RGB _rgb) {
 				rgb = _rgb;
 			}
@@ -73,6 +82,9 @@ namespace i::core {
 			/// <param name="_r"></param>
 			/// <param name="_g"></param>
 			/// <param name="_b"></param>
+			/// <warning></warning>
+			/// <include></include>
+			/// <bug></bug>
 			/// <returns></returns>
 			static ushort tohex(ushort _r, ushort _g, ushort _b) {
 				return _r << 16 | _g << 8 | _b;

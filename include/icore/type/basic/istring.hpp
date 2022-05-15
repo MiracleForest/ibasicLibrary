@@ -6,8 +6,8 @@
 * @creation time:2022.5.4.12:50
 * @created by:Lovelylavender4
 * -----------------------------------------------------------------------------
-*
-*
+* 
+* 
 * -----------------------------------------------------------------------------
 * If you have contact or find bugs,
 * you can go to Github or email (MiracleForest@Outlook.com) to give feedback.
@@ -26,6 +26,8 @@ namespace i::core {
 				istring() {}
 				istring(Type _data) :_Dat(_data) {}
 				~istring() {}
+			public:
+
 			public:
 
 			public:

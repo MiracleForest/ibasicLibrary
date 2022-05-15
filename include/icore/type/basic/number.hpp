@@ -66,6 +66,9 @@ namespace i::core {
 				/// <summary>
 				/// Return the _value that number contains
 				/// </summary>
+				/// <warning></warning>
+				/// <include></include>
+				/// <bug></bug>
 				/// <returns></returns>
 				Type data() const
 				{
@@ -75,6 +78,9 @@ namespace i::core {
 				/// <summary>
 				/// Get _value that convert to std::string
 				/// </summary>
+				/// <warning></warning>
+				/// <include></include>
+				/// <bug></bug>
 				/// <returns>string</returns>
 				std::string toStdString()
 				{
@@ -84,6 +90,9 @@ namespace i::core {
 				/// <summary>
 				/// Get _value that convert to std::string
 				/// </summary>
+				/// <warning></warning>
+				/// <include></include>
+				/// <bug></bug>
 				/// <returns></returns>
 				std::wstring toStdWstring()
 				{
@@ -93,6 +102,9 @@ namespace i::core {
 				/// <summary>
 				/// Convert std::string or std::wstring into Type
 				/// </summary>
+				/// <warning></warning>
+				/// <include></include>
+				/// <bug></bug>
 				/// <param name="str"></param>
 				void fromStdString(stdString auto&& str)
 				{
@@ -120,6 +132,9 @@ namespace i::core {
 				/// <summary>
 				/// Reset the _value to 0, depends on Type
 				/// </summary>
+				/// <warning></warning>
+				/// <include></include>
+				/// <bug></bug>
 				void reset()
 				{
 					_value = static_cast<Type>(0);
@@ -129,12 +144,18 @@ namespace i::core {
 				/// Avoiding ambiguous, full implement have been given below
 				/// </summary>
 				/// <param name=""></param>
+				/// <warning></warning>
+				/// <include></include>
+				/// <bug></bug>
 				/// <returns></returns>
 				auto operator<=>(const number&) const = delete;
 
 				/// <summary>
 				/// Type convertion function
 				/// </summary>
+				/// <warning></warning>
+				/// <include></include>
+				/// <bug></bug>
 				/// <typeparam name="T"></typeparam>
 				template <typename T>
 				operator T()
@@ -149,6 +170,9 @@ namespace i::core {
 				/// <typeparam name="U"></typeparam>
 				/// <param name="first"></param>
 				/// <param name="last"></param>
+				/// <warning></warning>
+				/// <include></include>
+				/// <bug></bug>
 				/// <returns></returns>
 				template <typename T, typename U>
 				friend auto operator<=>(const number<T>& first, const number<U>& last);
@@ -158,6 +182,9 @@ namespace i::core {
 				/// </summary>
 				/// <param name="os"></param>
 				/// <param name="value"></param>
+				/// <warning></warning>
+				/// <include></include>
+				/// <bug></bug>
 				/// <returns></returns>
 				friend std::ostream& operator<<(std::ostream& os, const number& value)
 				{
@@ -172,6 +199,9 @@ namespace i::core {
 				/// <typeparam name="U"></typeparam>
 				/// <param name="first"></param>
 				/// <param name="last"></param>
+				/// <warning></warning>
+				/// <include></include>
+				/// <bug></bug>
 				/// <returns></returns>
 				template <typename T, typename U>
 				friend auto operator+(const number<T>& first, const number<U>& last)
@@ -184,6 +214,9 @@ namespace i::core {
 				/// <typeparam name="U"></typeparam>
 				/// <param name="first"></param>
 				/// <param name="last"></param>
+				/// <warning></warning>
+				/// <include></include>
+				/// <bug></bug>
 				/// <returns></returns>
 				template <typename T, typename U>
 				friend auto operator-(const number<T>& first, const number<U>& last)
@@ -196,6 +229,9 @@ namespace i::core {
 				/// <typeparam name="U"></typeparam>
 				/// <param name="first"></param>
 				/// <param name="last"></param>
+				/// <warning></warning>
+				/// <include></include>
+				/// <bug></bug>
 				/// <returns></returns>
 				template <typename T, typename U>
 				friend auto operator*(const number<T>& first, const number<U>& last)
@@ -208,6 +244,9 @@ namespace i::core {
 				/// <typeparam name="U"></typeparam>
 				/// <param name="first"></param>
 				/// <param name="last"></param>
+				/// <warning></warning>
+				/// <include></include>
+				/// <bug></bug>
 				/// <returns></returns>
 				template <typename T, typename U>
 				friend auto operator/(const number<T>& first, const number<U>& last)
@@ -224,6 +263,9 @@ namespace i::core {
 			/// <typeparam name="U"></typeparam>
 			/// <param name="first"></param>
 			/// <param name="last"></param>
+			/// <warning></warning>
+			/// <include></include>
+			/// <bug></bug>
 			/// <returns></returns>
 			template <typename T, typename U>
 			static auto operator<=>(const number<T>& first, const number<U>& last)
@@ -238,6 +280,9 @@ namespace i::core {
 			/// <typeparam name="U"></typeparam>
 			/// <param name="first"></param>
 			/// <param name="last"></param>
+			/// <warning></warning>
+			/// <include></include>
+			/// <bug></bug>
 			/// <returns></returns>
 			template <typename T, typename U>
 			auto operator+(const number<T>& first, const number<U>& last)
@@ -253,6 +298,9 @@ namespace i::core {
 			/// <typeparam name="U"></typeparam>
 			/// <param name="first"></param>
 			/// <param name="last"></param>
+			/// <warning></warning>
+			/// <include></include>
+			/// <bug></bug>
 			/// <returns></returns>
 			template <typename T, typename U>
 			auto operator-(const number<T>& first, const number<U>& last)
@@ -268,6 +316,9 @@ namespace i::core {
 			/// <typeparam name="U"></typeparam>
 			/// <param name="first"></param>
 			/// <param name="last"></param>
+			/// <warning></warning>
+			/// <include></include>
+			/// <bug></bug>
 			/// <returns></returns>
 			template <typename T, typename U>
 			auto operator*(const number<T>& first, const number<U>& last)
@@ -283,6 +334,9 @@ namespace i::core {
 			/// <typeparam name="U"></typeparam>
 			/// <param name="first"></param>
 			/// <param name="last"></param>
+			/// <warning></warning>
+			/// <include></include>
+			/// <bug></bug>
 			/// <returns></returns>
 			template <typename T, typename U>
 			auto operator/(const number<T>& first, const number<U>& last)
