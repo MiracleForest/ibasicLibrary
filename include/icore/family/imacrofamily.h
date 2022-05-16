@@ -80,6 +80,7 @@ namespace i::core {
     using ushort = unsigned short;
     using uint = unsigned int;
     using ulong = unsigned long;
+    using ullong = unsigned long long;
     using u = unsigned;
 
 }

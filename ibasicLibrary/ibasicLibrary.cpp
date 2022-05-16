@@ -28,8 +28,6 @@ int main(){
     std::cout << test << std::endl;
 
     i::core::type::basic::numberArray<int,10> test2;
-
-
     system("pause");
     return 0;
 }

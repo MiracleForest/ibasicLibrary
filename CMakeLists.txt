@@ -11,7 +11,7 @@ set(CMAKE_CXX_STANDARD 20)
 include_directories(include)
 
 # set the include file suffix
-list(APPEND CPP_INCLUDE_SUFFIX "*.hpp" *.h)
+list(APPEND CPP_INCLUDE_SUFFIX "*.hpp" "*.h" "*.inl")
 # search the include files
 # include icore/algorithm
 file(GLOB_RECURSE INCLUDE_CORE_ALGORITHM ${PROJECT_SOURCE_DIR}/include/icore/algorithm ${CPP_INCLUDE_SUFFIX})
@@ -35,6 +35,5 @@ add_executable(ibasicLibrary
         ${INCLUDE_CORE_LIBCOLOR}
         ${INCLUDE_CORE_LIBMATH}
         ${INCLUDE_CORE_TYPE}
-        include/iplatform.hpp
         ibasicLibrary/ibasicLibrary.cpp)
 
