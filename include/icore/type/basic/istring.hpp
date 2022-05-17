@@ -1154,9 +1154,13 @@ namespace i::core {
 				Type _data;
 			};
 
-
-            template<typename Type, std::enable_if_t <type_traits::is_std_string_v<Type>, Type> t>
+#ifdef __CPP_20__
+            template <typename Type> requires type::type_traits::is_std_string_v<Type>
+            bool istring<Type>::startsWith(const istring& sub, const istring& str)
+#else
+            template <typename Type, std::enable_if_t <type_traits::is_std_string_v<Type>, Type> t>
             bool istring<Type, t>::startsWith(const istring &sub, const istring &str)
+#endif
             {
                 if (sub.length() > str.length()){
                     return false;
@@ -1173,8 +1177,13 @@ namespace i::core {
                 return true;
             }
 
-            template<typename Type, std::enable_if_t <type_traits::is_std_string_v<Type>, Type> t>
+#ifdef __CPP_20__
+            template <typename Type> requires type::type_traits::is_std_string_v<Type>
+            bool istring<Type>::endsWith(const istring& sub, const istring& str)
+#else
+            template <typename Type, std::enable_if_t <type_traits::is_std_string_v<Type>, Type> t>
             bool istring<Type, t>::endsWith(const istring &sub, const istring &str)
+#endif
             {
                 if (sub.length() > str.length()){
                     return false;
@@ -1190,7 +1199,6 @@ namespace i::core {
                 }
                 return true;
             }
-
 
         }//namespace basic
 	}//namespace type
