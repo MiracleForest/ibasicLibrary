@@ -6,7 +6,7 @@
 * @creation time:2022.5.2.17:09
 * @created by:Lovelylavender4
 * -----------------------------------------------------------------------------
-*
+* some macro and Type Alias
 * -----------------------------------------------------------------------------
 * If you have contact or find bugs,
 * you can go to Github or email (MiracleForest@Outlook.com) to give feedback.
@@ -80,8 +80,6 @@
 #endif
 
 
-// C++ language standard detection
-// if the user manually specified the used c++ version this is skipped
 #if !defined(__CPP_23__) &&\
     !defined(__CPP_20__) &&\
     !defined(__CPP_17__) &&\
