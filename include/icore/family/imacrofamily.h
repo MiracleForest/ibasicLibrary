@@ -15,43 +15,48 @@
 #ifndef ___MIRACLEFOREST_I_IMACROFAMILY___
 #define ___MIRACLEFOREST_I_IMACROFAMILY___
 
+#ifdef _MSVC_LANG
+#define _STL_LANG _MSVC_LANG
+#elif defined(__cplusplus) // ^^^ use _MSVC_LANG / use __cplusplus vvv
+#define _STL_LANG __cplusplus
+#else  // ^^^ use __cplusplus / no C++ support vvv
+#define _STL_LANG 0L
+#endif // ^^^ no C++ support ^^^
 
-// C++ language standard detection
-// if the user manually specified the used c++ version this is skipped
-#if !defined(__CPP_23__) &&\
-    !defined(__CPP_20__) &&\
-    !defined(__CPP_17__) &&\
-    !defined(__CPP_14__) &&\
-    !defined(__CPP_11__)
-#ifdef _HAS_CXX23
-#define __CPP_23__
-#define __CPP_20__
-#define __CPP_17__
-#define __CPP_14__
-#elif _HAS_CXX20
-#define __CPP_20__
-#define __CPP_17__
-#define __CPP_14__
-#elif _HAS_CXX17
-#define __CPP_17__
-#define __CPP_14__
+#ifndef _HAS_CXX17
+#if _STL_LANG > 201402L
+#define _HAS_CXX17 1
 #else
-#define __CPP_14__
+#define _HAS_CXX17 0
 #endif
-#define __CPP_11__
+#endif // _HAS_CXX17
+
+#ifndef _HAS_CXX20
+#if _HAS_CXX17 && _STL_LANG > 201703L
+#define _HAS_CXX20 1
+#else
+#define _HAS_CXX20 0
+#endif
+#endif // _HAS_CXX20
+
+#ifndef _HAS_CXX23
+#if _HAS_CXX20 && _STL_LANG > 202002L
+#define _HAS_CXX23 1
+#else
+#define _HAS_CXX23 0
+#endif
+#endif // _HAS_CXX23
+
+#undef _STL_LANG
+
+#if _HAS_CXX20 && !_HAS_CXX17
+#error _HAS_CXX20 must imply _HAS_CXX17.
 #endif
 
-#ifdef _WIN32
-#define __WIN32__
-#elif defined __linux__
-#define __LINUX__
-#elif defined __APPLE__
-#define __APPLE__
-#elif defined __unix__
-#define __UNIX__
-#else
-#define __UNK__
+#if _HAS_CXX23 && !_HAS_CXX20
+#error _HAS_CXX23 must imply _HAS_CXX20.
 #endif
+
 
 #if defined(__ICC) || defined(__INTEL_COMPILER)
 #define __ICC__ __INTEL_COMPILER
@@ -72,6 +77,44 @@
 #define __SUNPRO__ __SUNPRO_CC
 #else
 #define __UNKNOWN__
+#endif
+
+
+// C++ language standard detection
+// if the user manually specified the used c++ version this is skipped
+#if !defined(__CPP_23__) &&\
+    !defined(__CPP_20__) &&\
+    !defined(__CPP_17__) &&\
+    !defined(__CPP_14__) &&\
+    !defined(__CPP_11__)
+#if _HAS_CXX23 
+#define __CPP_23__ 1
+#define __CPP_20__ 1
+#define __CPP_17__ 1
+#define __CPP_14__ 1
+#elif _HAS_CXX20
+#define __CPP_20__ 1
+#define __CPP_17__ 1
+#define __CPP_14__ 1
+#elif _HAS_CXX17
+#define __CPP_17__ 1
+#define __CPP_14__ 1
+#else
+#define __CPP_14__ 1
+#endif
+#define __CPP_11__ 1
+#endif
+
+#ifdef _WIN32
+#define __WIN32__ 1
+#elif defined __linux__
+#define __LINUX__ 1
+#elif defined __APPLE__
+#define __APPLE__ 1
+#elif defined __unix__
+#define __UNIX__ 1
+#else
+#define __UNK__ 1
 #endif
 
 
