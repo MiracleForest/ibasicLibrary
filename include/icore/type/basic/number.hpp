@@ -52,6 +52,9 @@ namespace i::core {
 				number(const number& other)
 					: _value(other._value) {}
 
+				number(Type&& val)
+					: _value(val) {}
+
 				number& operator=(const number& other)
 				{
 					_value = other._value;
