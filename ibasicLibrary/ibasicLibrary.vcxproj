@@ -79,6 +79,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SolutionDir)build\$(Platform)\$(Configuration)\</OutDir>
+    <IncludePath>$(SolutionDir)third-party;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -158,6 +159,7 @@
     <ClInclude Include="..\include\icore\type\type\concepts.hpp" />
     <ClInclude Include="..\include\icore\type\type\type.hpp" />
     <ClInclude Include="..\include\icore\type\type\type_traits.hpp" />
+    <ClInclude Include="..\third-party\nlohmann\json.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\build\filelist.txt" />

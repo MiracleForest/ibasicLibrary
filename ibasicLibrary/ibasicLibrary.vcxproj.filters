@@ -61,6 +61,9 @@
     <Filter Include="include\icore\exception">
       <UniqueIdentifier>{55604364-b858-48b4-bf79-ecc0e33e5d06}</UniqueIdentifier>
     </Filter>
+    <Filter Include="third-party\nlohmann">
+      <UniqueIdentifier>{456b3dcd-d44d-488a-b592-5530be515432}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ibasicLibrary.cpp">
@@ -138,6 +141,9 @@
     </ClInclude>
     <ClInclude Include="..\include\icore\type\basic\istring.hpp">
       <Filter>include\icore\type\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third-party\nlohmann\json.hpp">
+      <Filter>third-party\nlohmann</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

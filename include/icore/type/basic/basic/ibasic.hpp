@@ -36,6 +36,7 @@ namespace i::icore {
     /// 
     /// </summary>
     /// <typeparam name="Type"></typeparam>
+    /// <warning></warning>
     template<typename Type>
     class ibasic_data_type : public ibasic<Type> {
 
