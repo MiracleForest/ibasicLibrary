@@ -45,6 +45,27 @@ namespace i::core {
 			template<>
 			struct is_std_string<std::wstring> : std::true_type {};
 
+#ifdef __cpp_lib_char8_t
+			/// <summary>
+			/// 
+			/// </summary>
+			template<>
+			struct is_std_string<std::u8string> : std::true_type {};
+#endif
+
+
+			/// <summary>
+			/// 
+			/// </summary>
+			template<>
+			struct is_std_string<std::u16string> : std::true_type {};
+
+			/// <summary>
+			/// 
+			/// </summary>
+			template<>
+			struct is_std_string<std::u32string> : std::true_type {};
+
 			/// <summary>
 			/// 
 			/// </summary>
