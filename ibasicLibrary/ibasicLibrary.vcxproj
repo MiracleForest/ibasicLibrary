@@ -150,15 +150,21 @@
     <ClInclude Include="..\include\ibasicLibrary_all_public_headers">
       <FileType>Document</FileType>
     </ClInclude>
+    <ClInclude Include="..\include\icore\exception\error.hpp" />
+    <ClInclude Include="..\include\icore\exception\errorcode.hpp" />
     <ClInclude Include="..\include\icore\exception\exception.hpp" />
     <ClInclude Include="..\include\icore\libcolor\color.hpp" />
     <ClInclude Include="..\include\icore\type\basic\basic\basic_number_type.hpp" />
     <ClInclude Include="..\include\icore\type\basic\basic\ibasic.hpp" />
+    <ClInclude Include="..\include\icore\type\basic\basic\position.hpp" />
     <ClInclude Include="..\include\icore\type\basic\istring.hpp" />
     <ClInclude Include="..\include\icore\type\basic\numberArray.hpp" />
+    <ClInclude Include="..\include\icore\type\filepos.hpp" />
+    <ClInclude Include="..\include\icore\type\level.hpp" />
     <ClInclude Include="..\include\icore\type\type\concepts.hpp" />
     <ClInclude Include="..\include\icore\type\type\type.hpp" />
     <ClInclude Include="..\include\icore\type\type\type_traits.hpp" />
+    <ClInclude Include="..\include\icore\type\vec3.hpp" />
     <ClInclude Include="..\third-party\nlohmann\json.hpp" />
   </ItemGroup>
   <ItemGroup>

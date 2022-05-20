@@ -19,30 +19,32 @@
 #include "../../../family/imacrofamily.h"
 #include "../../type/type.hpp"
 
-namespace i::icore {
+namespace i{
+    namespace core {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="Type"></typeparam>
+        template<typename Type>
+        class ibasic {
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <typeparam name="Type"></typeparam>
-    template<typename Type>
-    class ibasic {
+        };//class ibasic
 
-        virtual Type data() = 0;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="Type"></typeparam>
+        /// <warning></warning>
+        template<typename Type>
+        class ibasic_data_type : public ibasic<Type> {
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <returns></returns>
+            virtual Type data() = 0;
 
-    };
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <typeparam name="Type"></typeparam>
-    /// <warning></warning>
-    template<typename Type>
-    class ibasic_data_type : public ibasic<Type> {
-
-
-    };
-
+        };//class ibasic_data_type : public ibasic<Type>
+    }
 }//namespace i
 
 #endif //!___MIRACLEFOREST_I_INASIC___
