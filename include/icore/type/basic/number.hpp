@@ -49,6 +49,7 @@ namespace i::core {
 				number(Type val)
 					: _value(val) {}
 
+				/*
 				number(const number& other)
 					: _value(other._value) {}
 
@@ -61,10 +62,11 @@ namespace i::core {
 					return *this;
 				}
 
-				number& operator=(Type other)
+				number& operator=(Type&& other)
 				{
 					return _value;
 				}
+				*/
 
 				/// <summary>
 				/// Return the _value that number contains
@@ -255,6 +257,65 @@ namespace i::core {
 				friend auto operator/(const number<T>& first, const number<U>& last)
 					->number<std::common_type_t<T, U>>;
 
+				///<summary>
+				/// operator between arithmetic type and number<_Tp>
+				///<summary>
+				template <arithmetic U>
+				friend auto operator+(const number& num, U value)
+					->number<std::common_type_t<Type, U>>
+				{
+					return { num.data() + value };
+				}
+
+				template <arithmetic U>
+				friend auto operator+(U value, const number& num)
+					->number<std::common_type_t<Type, U>>
+				{
+					return { num.data() + value };
+				}
+
+				template <arithmetic U>
+				friend auto operator-(const number& num, U value)
+					->number<std::common_type_t<Type, U>>
+				{
+					return { num.data() - value };
+				}
+
+				template <arithmetic U>
+				friend auto operator-(U value, const number& num)
+					->number<std::common_type_t<Type, U>>
+				{
+					return { num.data() - value };
+				}
+
+				template <arithmetic U>
+				friend auto operator*(const number& num, U value)
+					->number<std::common_type_t<Type, U>>
+				{
+					return { num.data() * value };
+				}
+
+				template <arithmetic U>
+				friend auto operator*(U value, const number& num)
+					->number<std::common_type_t<Type, U>>
+				{
+					return { num.data() * value };
+				}
+
+				template <arithmetic U>
+				friend auto operator/(const number& num, U value)
+					->number<std::common_type_t<Type, U>>
+				{
+					return { num.data() / value };
+				}
+
+				template <arithmetic U>
+				friend auto operator/(U value, const number& num)
+					->number<std::common_type_t<Type, U>>
+				{
+					return { num.data() / value };
+				}
+
 			private:
 				Type _value;
 			}; /// end class number
@@ -270,7 +331,7 @@ namespace i::core {
 			/// <include></include>
 			/// <bug></bug>
 			/// <returns></returns>
-			template <typename T, typename U>
+			template <arithmetic T, arithmetic U>
 			static auto operator<=>(const number<T>& first, const number<U>& last)
 			{
 				return first._value <=> last._value;
@@ -341,12 +402,28 @@ namespace i::core {
 			/// <include></include>
 			/// <bug></bug>
 			/// <returns></returns>
-			template <typename T, typename U>
+			template <arithmetic T, arithmetic U>
 			auto operator/(const number<T>& first, const number<U>& last)
 				-> number<std::common_type_t<T, U>>
 			{
 				return first._value / last._value;
 			}
+
+			/*
+			template<arithmetic T, arithmetic U = T>
+			auto operator+(const number<T>& num, U value)
+				->number<std::common_type_t<T, U>>
+			{
+				return { num.data() + value };
+			}
+
+			template<arithmetic T, arithmetic U = T>
+			auto operator+(U value, const number<T>& num)
+				->number<std::common_type_t<T, U>>
+			{
+				return { num.data() + value };
+			}
+			*/
 
 		} /// namespace basic
 	} /// namespace type
