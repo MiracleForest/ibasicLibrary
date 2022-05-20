@@ -17,18 +17,22 @@
 
 #include "../../../family/imacrofamily.h"
 
-namespace i::core::type::basic {
+namespace i {
+    namespace core {
+        namespace type {
+            namespace basic {
+                /// <summary>
+                /// 
+                /// </summary>
+                /// <typeparam name="Type"></typeparam>
+                template<typename Type>
+                class basic_number_type {
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <typeparam name="Type"></typeparam>
-    template<typename Type>
-    class basic_number_type {
+                };//class basic_number_type
 
-    };
-
-
+            }//namespace basic
+        }//namespace type
+    }//namespace core
 }//namespace i::core::type::basic
 
 #endif //!___MIRACLEFOREST_I_BASIC_NUMBER_TYPE___

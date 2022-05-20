@@ -145,6 +145,24 @@
     <ClInclude Include="..\third-party\nlohmann\json.hpp">
       <Filter>third-party\nlohmann</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\icore\exception\error.hpp">
+      <Filter>include\icore\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\icore\exception\errorcode.hpp">
+      <Filter>include\icore\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\icore\type\filepos.hpp">
+      <Filter>include\icore\type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\icore\type\level.hpp">
+      <Filter>include\icore\type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\icore\type\basic\basic\position.hpp">
+      <Filter>include\icore\type\basic\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\icore\type\vec3.hpp">
+      <Filter>include\icore\type</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\include\icore\icore_all_public_headers">
