@@ -69,30 +69,18 @@ namespace i {
                     type::level _level = 0,
                     uint _canBeIgnored = 0
                 ) {
-                
+                    
                 }
 
                 /// <summary>
                 /// 
                 /// </summary>
                 /// <param name="_code"></param>
-                /// <param name="_icode"></param>
-                /// <param name="_dscription"></param>
-                /// <param name="_suggestion"></param>
-                /// <param name="_position"></param>
-                /// <param name="_level"></param>
-                /// <param name="_canBeIgnored"></param>
                 /// <returns></returns>
                 static error make(
-                    ErrorCode _code,
-                    int _icode,
-                    std::string _dscription,
-                    std::string _suggestion,
-                    type::FilePos _position,
-                    type::level _level,
-                    uint _canBeIgnored
+                    ErrorCode _code
                 ) {
-                
+                    
                 }
 
                 ErrorInfo data()const {

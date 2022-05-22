@@ -16,25 +16,31 @@
 #define ___MIRACLEFOREST_I_CONCEPTS___
 
 #include "../../family/imacrofamily.h"
-
 #include <type_traits>
 #include "type_traits.hpp"
 
+#ifndef __CPP_20__
+#pragma message("The contents of <concepts> are available only with C++20 concepts support.")
+#else
 
-namespace i::core {
+#include <concepts>
 
-    /// <summary>
-    /// Define concept arithmetic 
-    /// </summary>
-    template <typename T>
-    concept arithmetic = std::is_arithmetic<T>::value;
+namespace i {
+    namespace core {
+        /// <summary>
+        /// Define concept arithmetic 
+        /// </summary>
+        template <typename T>
+        concept arithmetic = std::is_arithmetic<T>::value;
 
-    /// <summary>
-    /// 
-    /// </summary>
-    template <typename T>
-    concept stdString = i::core::type::type_traits::is_std_string_v<T>;
+        /// <summary>
+        /// 
+        /// </summary>
+        template <typename T>
+        concept stdString = i::core::type::type_traits::is_std_string_v<T>;
 
-
+    }
 }
+#endif//!__CPP_20__
+
 #endif //!___MIRACLEFOREST_I_CONCEPTS___

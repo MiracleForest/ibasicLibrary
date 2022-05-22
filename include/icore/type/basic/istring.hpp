@@ -16,20 +16,30 @@
 #ifndef ___MIRACLEFOREST_I_ISTRING___
 #define ___MIRACLEFOREST_I_ISTRING___
 
+#include "../../family/imacrofamily.h"
+#include "../type/type_traits.hpp"
+
 #include <iostream>
 #include <string>
 #include <vector>
 #include <regex>
+#include <set>
+#include <list>
+#include <map>
+#ifdef __WINDOWS__
+#include <windows.h>
 #include <stringapiset.h>
-#include <atlstr.h>
-#include "../type/type_traits.hpp"
+#endif
+#ifdef __CPP_20__
+#include <format>
+#endif
 
 namespace i {
     namespace core {
         namespace type {
             namespace basic {
 #ifdef __CPP_20__
-                template <typename Type = std::string> requires type_traits::is_std_string_v<Type>
+                template <typename Type> requires type_traits::is_std_string_v<Type>
 #else
                 template <typename Type, std::enable_if_t<type_traits::is_std_string_v<Type>, Type> = 0>
 #endif
@@ -558,7 +568,7 @@ namespace i {
                         return this->append(std::move(istring::valueOf(ll)));
                     }
 
-                    istring& append(i::core::ullong ull)
+                    istring& append(i::core::uint64 ull)
                     {
                         return this->append(std::move(istring::valueOf(ull)));
                     }
@@ -886,6 +896,11 @@ namespace i {
                         return (wch >= L'0' && wch <= L'9') || (wch >= L'a' && wch <= L'f') || (wch >= L'A' && wch <= L'F');
                     }
 
+                    /// <summary>
+                    /// 
+                    /// </summary>
+                    /// <param name="wch"></param>
+                    /// <returns></returns>
                     static std::uint8_t wideChar2hex(wchar_t wch) {
                         if (wch >= L'0' && wch <= L'9') {
                             return wch - L'0';
@@ -898,6 +913,11 @@ namespace i {
                         }
                     }
 
+                    /// <summary>
+                    /// 
+                    /// </summary>
+                    /// <param name="hex"></param>
+                    /// <returns></returns>
                     static char hex2char(uint8_t hex) {
                         if (hex <= 9) {
                             return '0' + hex;
@@ -907,6 +927,11 @@ namespace i {
                         }
                     }
 
+                    /// <summary>
+                    /// 
+                    /// </summary>
+                    /// <param name="wch"></param>
+                    /// <returns></returns>
                     static std::string wideChar2UCS2(wchar_t wch) {
                         auto wch_value = static_cast<uint16_t>(wch);
                         std::string ucs2;
@@ -919,6 +944,11 @@ namespace i {
                         return ucs2;
                     }
 
+                    /// <summary>
+                    /// 
+                    /// </summary>
+                    /// <param name="hex"></param>
+                    /// <returns></returns>
                     static char hex2wideChar(uint8_t hex) {
                         if (hex <= 9) {
                             return L'0' + hex;
@@ -928,6 +958,11 @@ namespace i {
                         }
                     }
 
+                    /// <summary>
+                    /// 
+                    /// </summary>
+                    /// <param name="wch"></param>
+                    /// <returns></returns>
                     static std::wstring wideChar2wideCharUCS2(wchar_t wch) {
                         auto wch_value = static_cast<uint16_t>(wch);
                         std::wstring ucs2;
@@ -1214,18 +1249,142 @@ namespace i {
                     }
 
                     /// <summary>
-                    /// string2wcharStr
+                    /// 
                     /// </summary>
-                    /// <param name="ucs2">ucs2 value</param>
-                    /// <warning></warning>
-                    /// <include></include>
-                    /// <bug></bug>
-                    /// <returns>wchar_t</returns>
-                    wchar_t* string2wcharStr(std::string value) {
-                        CString crpr((value).c_str());
-                        const wchar_t* u(crpr);
-                        wchar_t* u2 = const_cast<LPWSTR>(u);
-                        return u2;
+                    /// <param name="str"></param>
+                    /// <param name="oldStr"></param>
+                    /// <param name="newStr"></param>
+                    /// <returns></returns>
+                    static bool replaceString(
+                        istring& str,
+                        const istring& oldStr,
+                        const istring& newStr
+                    ) {
+                        bool found = false;
+                        size_t pos = 0;
+                        while ((pos = str.find(oldStr.data(), pos)) != npos) {
+                            found = true;
+                            str.replace(pos, oldStr.length(), newStr.data());
+                            pos += newStr.length();
+                        }
+                        return found;
+                    }
+
+                public:
+
+                    /// <summary>
+                    /// 
+                    /// </summary>
+                    /// <param name="delimiters"></param>
+                    /// <param name="pushEmpty"></param>
+                    /// <param name="vInversion"></param>
+                    /// <returns></returns>
+                    std::list<Type> split2List(
+                        const istring& delimiters,
+                        bool pushEmpty = false,
+                        bool vInversion = false){
+                        std::list<Type> arr;
+                        if (!this->_data.empty()) {
+                            size_type start = 0;
+                            size_type end = (this->_data).find_first_of(delimiters.data(), start);
+                            while (end != npos) {
+                                Type token = (this->_data).substr(start, end - start);
+                                if (!token.empty() || (token.empty() && pushEmpty)) {
+                                    if (vInversion) arr.emplace_front(token);
+                                    else arr.emplace_back(token);
+                                }
+                                start = end + 1;
+                                end = (this->_data).find_first_of(delimiters.data(), start);
+                            }
+                            Type token = (this->_data).substr(start);
+                            if (!token.empty() || (token.empty() && pushEmpty)) {
+                                if (vInversion) {
+                                    arr.emplace_front(token);
+                                }
+                                else {
+                                    arr.emplace_back(token);
+                                }
+                            }
+                        }
+                        return arr;
+                    }
+                    
+                    /// <summary>
+                    /// 
+                    /// </summary>
+                    /// <param name="delimiters"></param>
+                    /// <param name="pushEmpty"></param>
+                    /// <returns></returns>
+                    std::vector<Type> split2Vector(
+                        const istring& delimiters,
+                        bool pushEmpty = false) {
+                        std::vector<Type> arr;
+                        if (!(this->_data).empty()) {
+                            size_type start = 0;
+                            size_type end = (this->_data).find_first_of(delimiters.data(), start);
+                            while (end != npos) {
+                                Type token = (this->_data).substr(start, end - start);
+                                if (!token.empty() || (token.empty() && pushEmpty)) {
+                                    arr.emplace_back(token);
+                                }
+                                start = end + 1;
+                                end = (this->_data).find_first_of(delimiters.data(), start);
+                            }
+                            Type token = (this->_data).substr(start);
+                            if (!token.empty() || (token.empty() && pushEmpty)) {
+                                arr.emplace_back(token);
+                            }
+                        }
+                        return arr;
+                    }
+                    
+                    /// <summary>
+                    /// 
+                    /// </summary>
+                    /// <param name="delimiters"></param>
+                    /// <param name="pushEmpty"></param>
+                    /// <returns></returns>
+                    std::set<Type> split2Set(
+                        const istring& delimiters,
+                        bool pushEmpty = false) {
+                        std::set<Type> arr;
+                        if (!(this->_data).empty()) {
+                            size_type start = 0;
+                            size_type end = (this->_data).find_first_of(delimiters.data(), start);
+                            while (end != npos){
+                                Type token = (this->_data).substr(start, end - start);
+                                if (!token.empty() || (token.empty() && pushEmpty))
+                                    arr.emplace(token);
+                                start = end + 1;
+                                end = (this->_data).find_first_of(delimiters, start);
+                            }
+                            Type token = (this->_data).substr(start);
+                            if (!token.empty() || (token.empty() && pushEmpty)) {
+                                arr.emplace(token);
+                            }
+                        }
+                        return arr;
+                    }
+                    
+                public:
+                    /// <summary>
+                    /// 
+                    /// </summary>
+                    /// <returns></returns>
+                    std::string toHexStdString(){
+                        std::ostringstream os;
+                        os << std::hex << this->_data;
+                        return os.str();
+                    }
+
+                    /// <summary>
+                    /// 
+                    /// </summary>
+                    /// <returns></returns>
+                    std::string toDecStr(){
+                        std::ostringstream os;
+                        os << std::dec << this->_data;
+                        return os.str();
                     }
 
                 public:
@@ -1435,7 +1594,7 @@ namespace i {
                         return this->append(ll);
                     }
 
-                    istring& operator << (i::core::ullong ull)
+                    istring& operator << (i::core::uint64 ull)
                     {
                         return this->append(ull);
                     }
@@ -1593,7 +1752,7 @@ namespace i {
                 private:
                     Type _data;
                 };
-
+                /*
 #ifdef __CPP_20__
                 template <typename Type> requires type::type_traits::is_std_string_v<Type>
                 bool istring<Type>::startsWith(const istring& sub, const istring& str)
@@ -1616,7 +1775,8 @@ namespace i {
                     }
                     return true;
                 }
-
+                
+                
 #ifdef __CPP_20__
                 template <typename Type> requires type::type_traits::is_std_string_v<Type>
                 bool istring<Type>::endsWith(const istring& sub, const istring& str)
@@ -1639,6 +1799,7 @@ namespace i {
                     }
                     return true;
                 }
+                */
 
             }//namespace basic
         }//namespace type

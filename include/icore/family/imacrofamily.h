@@ -15,6 +15,8 @@
 #ifndef ___MIRACLEFOREST_I_IMACROFAMILY___
 #define ___MIRACLEFOREST_I_IMACROFAMILY___
 
+
+
 #ifdef _MSVC_LANG
 #define _STL_LANG _MSVC_LANG
 #elif defined(__cplusplus) // ^^^ use _MSVC_LANG / use __cplusplus vvv
@@ -58,6 +60,7 @@
 #endif
 
 
+/*------------------------Compiler judgment------------------------*/
 #if defined(__ICC) || defined(__INTEL_COMPILER)
 #define __ICC__ __INTEL_COMPILER
 #elif defined(__clang__)
@@ -80,6 +83,7 @@
 #endif
 
 
+/*------------------------C++ standard judgment------------------------*/
 #if !defined(__CPP_23__) &&\
     !defined(__CPP_20__) &&\
     !defined(__CPP_17__) &&\
@@ -103,8 +107,11 @@
 #define __CPP_11__ 1
 #endif
 
+
+/*------------------------Platform Judgment------------------------*/
 #ifdef _WIN32
 #define __WIN32__ 1
+#define __WINDOWS__ 1
 #elif defined __linux__
 #define __LINUX__ 1
 #elif defined __APPLE__
@@ -115,14 +122,34 @@
 #define __UNK__ 1
 #endif
 
+/*------------------------About decimals------------------------*/
+#define IS_FLOAT_DIFFERENT(a,b) (fabsf((a) - (b)) > FLT_EPSILON)
+#define IS_FLOAT_EQUAL(a,b) (fabsf((a) - (b)) < FLT_EPSILON)
+#define IS_DOUBLE_DIFFERENT(a,b) (fabs((a) - (b)) > DBL_EPSILON)
+#define IS_DOUBLE_EQUAL(a,b) (fabs((a) - (b)) < DBL_EPSILON)
+
 
 namespace i::core {
 
     using ushort = unsigned short;
     using uint = unsigned int;
     using ulong = unsigned long;
-    using ullong = unsigned long long;
     using u = unsigned;
+
+#ifdef __WINDOWS__
+    typedef __int64   int64;
+    typedef unsigned __int64   uint64;
+#else
+    typedef long long int64;
+    typedef unsigned long long uint64;
+#endif//__WINDOWS__
+    
+
+    using VA = uint64;
+    using RVA = unsigned int;
+
+    template<typename Type>
+    using Ptr = Type*;
 
 }
 
