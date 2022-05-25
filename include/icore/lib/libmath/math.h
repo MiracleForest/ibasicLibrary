@@ -38,7 +38,9 @@ namespace i {
 				/// <param name="v"></param>
 				/// <returns></returns>
 				template <typename T> 
-				inline T round(const T& v) { return (T)(std::round((double)v)); }
+				inline T round(const T& v) {
+					return (T)(std::round((double)v));
+				}
 				
 				/// <summary>
 				/// 
@@ -47,7 +49,9 @@ namespace i {
 				/// <param name="v"></param>
 				/// <returns></returns>
 				template <typename T> 
-				inline T floor(const T& v) { return (T)(std::floor((double)v)); }
+				inline T floor(const T& v) {
+					return (T)(std::floor((double)v));
+				}
 				
 				/// <summary>
 				/// 
@@ -56,7 +60,9 @@ namespace i {
 				/// <param name="v"></param>
 				/// <returns></returns>
 				template <typename T> 
-				inline T ceil(const T& v) { return (T)(std::ceil((double)v)); }
+				inline T ceil(const T& v) {
+					return (T)(std::ceil((double)v));
+				}
 				
 				/// <summary>
 				/// 
@@ -65,7 +71,9 @@ namespace i {
 				/// <param name="v"></param>
 				/// <returns></returns>
 				template <typename T> 
-				inline T fract(const T& v) { return v - floor<T>(v); }
+				inline T fract(const T& v) {
+					return v - floor<T>(v);
+				}
 				
 				/// <summary>
 				/// 
@@ -74,7 +82,9 @@ namespace i {
 				/// <param name="v"></param>
 				/// <returns></returns>
 				template <typename T> 
-				inline T cos(const T& v) { return std::cos(v); }
+				inline T cos(const T& v) {
+					return std::cos(v);
+				}
 
 				/// <summary>
 				/// 
@@ -83,7 +93,9 @@ namespace i {
 				/// <param name="v"></param>
 				/// <returns></returns>
 				template <typename T>
-				inline T acos(const T& v) { return std::acos(v); }
+				inline T acos(const T& v) {
+					return std::acos(v);
+				}
 
 				/// <summary>
 				/// 
@@ -92,7 +104,9 @@ namespace i {
 				/// <param name="v"></param>
 				/// <returns></returns>
 				template <typename T> 
-				inline T sin(const T& v) { return std::sin(v); }
+				inline T sin(const T& v) {
+					return std::sin(v);
+				}
 
 				/// <summary>
 				/// 
@@ -101,7 +115,9 @@ namespace i {
 				/// <param name="v"></param>
 				/// <returns></returns>
 				template <typename T> 
-				inline T asin(const T& v) { return std::asin(v); }
+				inline T asin(const T& v) {
+					return std::asin(v);
+				}
 
 				/// <summary>
 				/// 
@@ -110,7 +126,9 @@ namespace i {
 				/// <param name="v"></param>
 				/// <returns></returns>
 				template <typename T> 
-				inline T tan(const T& v) { return std::tan(v); }
+				inline T tan(const T& v) {
+					return std::tan(v);
+				}
 
 				/// <summary>
 				/// 
@@ -119,7 +137,9 @@ namespace i {
 				/// <param name="v"></param>
 				/// <returns></returns>
 				template <typename T> 
-				inline T atan(const T& v) { return std::atan(v); }
+				inline T atan(const T& v) {
+					return std::atan(v);
+				}
 
 				/// <summary>
 				/// 
@@ -129,7 +149,9 @@ namespace i {
 				/// <param name="b"></param>
 				/// <returns></returns>
 				template <typename T> 
-				inline T mini(const T& a, const T& b) { return a < b ? a : b; }
+				inline T mini(const T& a, const T& b) {
+					return a < b ? a : b;
+				}
 
 				/// <summary>
 				/// 
@@ -139,7 +161,9 @@ namespace i {
 				/// <param name="b"></param>
 				/// <returns></returns>
 				template <typename T> 
-				inline T maxi(const T& a, const T& b) { return a > b ? a : b; }
+				inline T maxi(const T& a, const T& b) {
+					return a > b ? a : b;
+				}
 
 				/// <summary>
 				/// 
@@ -149,7 +173,9 @@ namespace i {
 				/// <param name="b"></param>
 				/// <returns></returns>
 				template <typename T> 
-				inline T internalMini(const T& a, const T& b) { return a < b ? a : b; }
+				inline T internalMini(const T& a, const T& b) {
+					return a < b ? a : b;
+				}
 				
 				/// <summary>
 				/// 
@@ -159,7 +185,9 @@ namespace i {
 				/// <param name="b"></param>
 				/// <returns></returns>
 				template <typename T> 
-				inline T internalMaxi(const T& a, const T& b) { return a > b ? a : b; }
+				inline T internalMaxi(const T& a, const T& b) {
+					return a > b ? a : b;
+				}
 
 				/// <summary>
 				/// 
@@ -168,7 +196,9 @@ namespace i {
 				/// <param name="n"></param>
 				/// <returns></returns>
 				template <typename T> 
-				inline T clamp(const T& n) { return n >= T(0) && n <= T(1) ? n : T(n > T(0)); } // clamp n => 0 to 1
+				inline T clamp(const T& n) {
+					return n >= T(0) && n <= T(1) ? n : T(n > T(0));
+				} 
 				
 				/// <summary>
 				/// 
@@ -178,7 +208,9 @@ namespace i {
 				/// <param name="b"></param>
 				/// <returns></returns>
 				template <typename T> 
-				inline T clamp(const T& n, const T& b) { return n >= T(0) && n <= b ? n : T(n > T(0)) * b; } // clamp n => 0 to b
+				inline T clamp(const T& n, const T& b) {
+					return n >= T(0) && n <= b ? n : T(n > T(0)) * b;
+				}
 				
 				/// <summary>
 				/// 
@@ -189,7 +221,9 @@ namespace i {
 				/// <param name="b"></param>
 				/// <returns></returns>
 				template <typename T> 
-				inline T clamp(const T& n, const T& a, const T& b) { return n >= a && n <= b ? n : n < a ? a : b; } // clamp n => a to b
+				inline T clamp(const T& n, const T& a, const T& b) {
+					return n >= a && n <= b ? n : n < a ? a : b;
+				}
 
 				/// <summary>
 				/// 
@@ -198,7 +232,9 @@ namespace i {
 				/// <param name="a"></param>
 				/// <returns></returns>
 				template <typename T> 
-				inline T abs(const T& a) { return a < 0 ? a * (T)-1 : a; }
+				inline T abs(const T& a) {
+					return a < 0 ? a * (T)-1 : a;
+				}
 				
 				/// <summary>
 				/// 
@@ -207,7 +243,9 @@ namespace i {
 				/// <param name="a"></param>
 				/// <returns></returns>
 				template <typename T> 
-				inline T sign(const T& a) { return a < 0 ? (T)-1 : (T)1; }
+				inline T sign(const T& a) {
+					return a < 0 ? (T)-1 : (T)1;
+				}
 				
 				/// <summary>
 				/// 
@@ -217,7 +255,9 @@ namespace i {
 				/// <param name="b"></param>
 				/// <returns></returns>
 				template <typename T> 
-				inline T step(const T& a, const T& b) { return b < a ? (T)0 : (T)1; }
+				inline T step(const T& a, const T& b) {
+					return b < a ? (T)0 : (T)1;
+				}
 				
 				/// <summary>
 				/// 
@@ -227,7 +267,9 @@ namespace i {
 				/// <param name="l"></param>
 				/// <returns></returns>
 				template <typename T> 
-				inline T mod(const T& v, const T& l) { return std::modf(v, l); }
+				inline T mod(const T& v, const T& l) {
+					return std::modf(v, l);
+				}
 				
 				/// <summary>
 				/// 
@@ -238,7 +280,9 @@ namespace i {
 				/// <param name="r"></param>
 				/// <returns></returns>
 				template <typename T> 
-				inline T invMix(const T& i, const T& s, const T& r) { return (r - i) / (s - i); }
+				inline T invMix(const T& i, const T& s, const T& r) {
+					return (r - i) / (s - i);
+				}
 
 				/// <summary>
 				/// 
@@ -249,7 +293,9 @@ namespace i {
 				/// <param name="t"></param>
 				/// <returns></returns>
 				template <typename T> 
-				inline T lerp(const T& a, const T& b, const T& t) { return a * (1.0f - t) + b * t; }
+				inline T lerp(const T& a, const T& b, const T& t) {
+					return a * (1.0f - t) + b * t;
+				}
 				
 				/// <summary>
 				/// 
@@ -260,7 +306,10 @@ namespace i {
 				/// <param name="t"></param>
 				/// <returns></returns>
 				template <typename T> 
-				inline T eerp(const T& a, const T& b, const T& t) { if (a == (T)0) return T(0); return pow(a * (b / a), t); }
+				inline T eerp(const T& a, const T& b, const T& t) {
+					if (a == (T)0) return T(0);
+					return pow(a * (b / a), t);
+				}
 
 				/// <summary>
 				/// 
@@ -271,7 +320,9 @@ namespace i {
 				/// <param name="t"></param>
 				/// <returns></returns>
 				template <typename T> 
-				inline T mix(const T& a, const T& b, const T& t) { return lerp(a, b, t); }
+				inline T mix(const T& a, const T& b, const T& t) {
+					return lerp(a, b, t);
+				}
 
 				/// <summary>
 				/// 

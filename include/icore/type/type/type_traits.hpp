@@ -78,4 +78,5 @@ namespace i {
 		}
 	}
 }
+
 #endif //!___MIRACLEFOREST_I_TYPE_TRAITS___

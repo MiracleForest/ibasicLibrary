@@ -156,6 +156,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\icore\lib\libmath\math.h" />
+    <ClInclude Include="..\..\include\icore\lib\libmath\rect.hpp" />
     <ClInclude Include="..\..\include\icore\lib\libmath\vec2.hpp" />
     <ClInclude Include="..\..\include\icore\lib\libmath\vec3.hpp" />
     <ClInclude Include="..\..\include\icore\lib\libmath\vec4.hpp" />

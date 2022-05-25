@@ -48,7 +48,7 @@ namespace i {
             public:
                 FilePos() {}
                 FilePos(basic::istring<std::string>,int,int) {}
-                FilePos(fPos pos) {}
+                FilePos(fPos pos):_pos(pos) {}
                 ~FilePos(){}
             public:
                 /// <summary>

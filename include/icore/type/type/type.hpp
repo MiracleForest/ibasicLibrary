@@ -39,6 +39,7 @@ namespace i {
 			numberArray_iterator,
 			numberArray,
 			istring
+			
 		};
 		using iType = typeList;
 
@@ -170,6 +171,7 @@ namespace i {
 		inline std::string toStdString(T value) {
 			return itype::toStdString(value);
 		}
+
 	}//namespace icore
 }//namespace i
 

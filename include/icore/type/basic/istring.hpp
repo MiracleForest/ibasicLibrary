@@ -1270,6 +1270,104 @@ namespace i {
                         return found;
                     }
 
+
+                    /// <summary>
+                    /// 
+                    /// </summary>
+                    /// <param name="delimiters"></param>
+                    /// <param name="pushEmpty"></param>
+                    /// <param name="vInversion"></param>
+                    /// <returns></returns>
+                    static std::list<Type> istringSplit2List(
+                        const istring& str,
+                        const istring& delimiters,
+                        bool pushEmpty = false,
+                        bool vInversion = false) {
+                        std::list<Type> arr;
+                        if (!str.empty()) {
+                            size_type start = 0;
+                            size_type end = str.data().find_first_of(delimiters.data(), start);
+                            while (end != npos) {
+                                Type token = str.data().substr(start, end - start);
+                                if (!token.empty() || (token.empty() && pushEmpty)) {
+                                    if (vInversion) arr.emplace_front(token);
+                                    else arr.emplace_back(token);
+                                }
+                                start = end + 1;
+                                end = str.data().find_first_of(delimiters.data(), start);
+                            }
+                            Type token = str.data().substr(start);
+                            if (!token.empty() || (token.empty() && pushEmpty)) {
+                                if (vInversion) {
+                                    arr.emplace_front(token);
+                                }
+                                else {
+                                    arr.emplace_back(token);
+                                }
+                            }
+                        }
+                        return arr;
+                    }
+
+                    /// <summary>
+                    /// 
+                    /// </summary>
+                    /// <param name="delimiters"></param>
+                    /// <param name="pushEmpty"></param>
+                    /// <returns></returns>
+                    static std::vector<Type> istringSplit2Vector(
+                        const istring& str,
+                        const istring& delimiters,
+                        bool pushEmpty = false) {
+                        std::vector<Type> arr;
+                        if (!str.empty()) {
+                            size_type start = 0;
+                            size_type end = str.data().find_first_of(delimiters.data(), start);
+                            while (end != npos) {
+                                Type token = str.data().substr(start, end - start);
+                                if (!token.empty() || (token.empty() && pushEmpty)) {
+                                    arr.emplace_back(token);
+                                }
+                                start = end + 1;
+                                end = str.data().find_first_of(delimiters.data(), start);
+                            }
+                            Type token = str.data().substr(start);
+                            if (!token.empty() || (token.empty() && pushEmpty)) {
+                                arr.emplace_back(token);
+                            }
+                        }
+                        return arr;
+                    }
+
+                    /// <summary>
+                    /// 
+                    /// </summary>
+                    /// <param name="delimiters"></param>
+                    /// <param name="pushEmpty"></param>
+                    /// <returns></returns>
+                    static std::set<Type> istringSplit2Set(
+                        const istring& str,
+                        const istring& delimiters,
+                        bool pushEmpty = false) {
+                        std::set<Type> arr;
+                        if (!str.empty()) {
+                            size_type start = 0;
+                            size_type end = str.data().find_first_of(delimiters.data(), start);
+                            while (end != npos) {
+                                Type token = str.data().substr(start, end - start);
+                                if (!token.empty() || (token.empty() && pushEmpty))
+                                    arr.emplace(token);
+                                start = end + 1;
+                                end = str.data().find_first_of(delimiters, start);
+                            }
+                            Type token = str.data().substr(start);
+                            if (!token.empty() || (token.empty() && pushEmpty)) {
+                                arr.emplace(token);
+                            }
+                        }
+                        return arr;
+                    }
+
                 public:
 
                     /// <summary>
@@ -1366,6 +1464,7 @@ namespace i {
                         return arr;
                     }
                     
+
                 public:
                     /// <summary>
                     /// 
@@ -1752,6 +1851,7 @@ namespace i {
                 private:
                     Type _data;
                 };
+
                 /*
 #ifdef __CPP_20__
                 template <typename Type> requires type::type_traits::is_std_string_v<Type>

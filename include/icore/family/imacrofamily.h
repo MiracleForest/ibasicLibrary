@@ -109,6 +109,7 @@
 
 
 /*------------------------Platform Judgment------------------------*/
+
 #ifdef _WIN32
 #define __WIN32__ 1
 #define __WINDOWS__ 1
@@ -123,6 +124,7 @@
 #endif
 
 /*------------------------About decimals------------------------*/
+
 #define IS_FLOAT_DIFFERENT(a,b) (fabsf((a) - (b)) > FLT_EPSILON)
 #define IS_FLOAT_EQUAL(a,b) (fabsf((a) - (b)) < FLT_EPSILON)
 #define IS_DOUBLE_DIFFERENT(a,b) (fabs((a) - (b)) > DBL_EPSILON)
@@ -150,6 +152,9 @@ namespace i::core {
 
     template<typename Type>
     using Ptr = Type*;
+
+    template<typename Type>
+    using CPtr = const Type*;
 
 }
 

@@ -36,6 +36,9 @@
     <ClInclude Include="..\..\include\icore\lib\libmath\vec4.hpp">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\icore\lib\libmath\rect.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">

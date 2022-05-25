@@ -29,8 +29,7 @@ namespace i {
 		namespace libmath {
 
 			template <typename T>
-			class Vec3
-			{
+			class Vec3{
 			public:
 				T x, y, z;
 				Vec3() : x((T)0), y((T)0), z((T)0) {}
@@ -38,16 +37,29 @@ namespace i {
 				Vec3(const T& xyz) : x(xyz), y(xyz), z(xyz) {}
 				Vec3(const T& x, const T& y, const T& z) : x(x), y(y), z(z) {}
 				Vec3(const Vec2<T>& xy, const T& z) : x(xy.x), y(xy.y), z(z) {}
-				Vec3(const ::std::string& vec, const char& c = ';', Vec3<T>* def = nullptr)
-				{
+				Vec3(const ::std::string& vec, const char& c = ';', Vec3<T>* def = nullptr){
 					if (def) { x = def->x; y = def->y; z = def->z; }
-					::std::vector<T> result = _function::StringToNumberVector<T>(vec, c);
+					std::vector<T> result = _function::StringToNumberVector<T>(vec, c);
 					const size_t s = result.size();
 					if (s > 0) x = result[0];
 					if (s > 1) y = result[1];
 					if (s > 2) z = result[2];
 				}
+			public:
+				
+				/// <summary>
+				/// 
+				/// </summary>
+				/// <returns></returns>
 				T& operator [] (const size_t& i) { return (&x)[i]; }
+				
+				/// <summary>
+				/// 
+				/// </summary>
+				/// <param name="vX"></param>
+				/// <param name="vY"></param>
+				/// <param name="vZ"></param>
+				/// <returns></returns>
 				Vec3<T> Offset(const T& vX, const T& vY, const T& vZ) const { return Vec3<T>(x + vX, y + vY, z + vZ); }
 				void Set(const T& vX, const T& vY, const T& vZ) { x = vX; y = vY; z = vZ; }
 				Vec3<T> operator -() const { return Vec3<T>(-x, -y, -z); }
@@ -121,6 +133,7 @@ namespace i {
 			template <typename T> inline T dotS(Vec3<T> a, Vec3<T> b) { return a.x * b.x + a.y * b.y + a.z * b.z; }
 			template <typename T> inline Vec3<T> cCross(Vec3<T> a, Vec3<T> b) { return Vec3<T>(a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z, a.x * b.y - a.y * b.x); }
 			template <typename T> inline Vec3<T> cReflect(Vec3<T> I, Vec3<T> N) { return I - (T)2 * dotS(N, I) * N; }
+			
 			using dVec3 = Vec3<double>;
 			using fVec3 = Vec3<float>;
 			using bVec3 = Vec3<bool>;
@@ -136,11 +149,40 @@ namespace i {
 			using u32Vec3 = Vec3<uint32_t>;
 			using u64Vec3 = Vec3<uint64_t>;
 
+			/// <summary>
+			/// 
+			/// </summary>
+			/// <param name="a"></param>
+			/// <returns></returns>
+			inline bool valid(const fVec3& a) {
+				return _function::floatIsValid(a.x) &&
+					_function::floatIsValid(a.y) &&
+					_function::floatIsValid(a.z);
+			}
 
-			inline bool valid(const fVec3& a) { return _function::floatIsValid(a.x) && _function::floatIsValid(a.y) && _function::floatIsValid(a.z); }
+			/// <summary>
+			/// 
+			/// </summary>
+			/// <param name="v"></param>
+			/// <param name="f"></param>
+			/// <returns></returns>
+			inline bool operator == (const fVec3& v, const fVec3& f) {
+				return IS_FLOAT_EQUAL(f.x, v.x) &&
+					IS_FLOAT_EQUAL(f.y, v.y) &&
+					IS_FLOAT_EQUAL(f.z, v.z);
+			}
 
-			inline bool operator == (const fVec3& v, const fVec3& f) { return IS_FLOAT_EQUAL(f.x, v.x) && IS_FLOAT_EQUAL(f.y, v.y) && IS_FLOAT_EQUAL(f.z, v.z); }
-			inline bool operator != (const fVec3& v, const fVec3& f) { return IS_FLOAT_DIFFERENT(f.x, v.x) || IS_FLOAT_DIFFERENT(f.y, v.y) || IS_FLOAT_DIFFERENT(f.z, v.z); }
+			/// <summary>
+			/// 
+			/// </summary>
+			/// <param name="v"></param>
+			/// <param name="f"></param>
+			/// <returns></returns>
+			inline bool operator != (const fVec3& v, const fVec3& f) {
+				return IS_FLOAT_DIFFERENT(f.x, v.x) ||
+					IS_FLOAT_DIFFERENT(f.y, v.y) ||
+					IS_FLOAT_DIFFERENT(f.z, v.z);
+			}
 
 
 		}

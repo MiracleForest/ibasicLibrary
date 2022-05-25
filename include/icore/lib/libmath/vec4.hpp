@@ -184,30 +184,161 @@ namespace i {
 				/// </summary>
 				/// <param name="a"></param>
 				void operator += (const T& a) { x += a; y += a; z += a; w += a; }
+				
+				/// <summary>
+				/// 
+				/// </summary>
+				/// <param name="v"></param>
 				void operator += (const Vec4<T>& v) { x += v.x; y += v.y; z += v.z; w += v.w; }
+				
+				/// <summary>
+				/// 
+				/// </summary>
+				/// <param name="a"></param>
 				void operator -= (const T& a) { x -= a; y -= a; z -= a; w -= a; }
+				
+				/// <summary>
+				/// 
+				/// </summary>
+				/// <param name="v"></param>
 				void operator -= (const Vec4<T>& v) { x -= v.x; y -= v.y; z -= v.z; w -= v.w; }
+				
+				/// <summary>
+				/// 
+				/// </summary>
+				/// <param name="a"></param>
+				/// <returns></returns>
 				bool operator == (const T& a) { return (x == a) && (y == a) && (z == a) && (w == a); }
+				
+				/// <summary>
+				/// 
+				/// </summary>
+				/// <param name="v"></param>
+				/// <returns></returns>
 				bool operator == (const Vec4<T>& v) { return (x == v.x) && (y == v.y) && (z == v.z) && (w == v.w); }
+				
+				/// <summary>
+				/// 
+				/// </summary>
+				/// <param name="a"></param>
+				/// <returns></returns>
 				bool operator != (const T& a) { return (x != a) || (y != a) || (z != a) || (w != a); }
+				
+				/// <summary>
+				/// 
+				/// </summary>
+				/// <param name="v"></param>
+				/// <returns></returns>
 				bool operator != (const Vec4<T>& v) { return (x != v.x) || (y != v.y) || (z != v.z) || (w != v.w); }
+				
+				/// <summary>
+				/// 
+				/// </summary>
+				/// <param name="a"></param>
 				void operator *= (const T& a) { x *= a; y *= a; z *= a; w *= a; }
+				
+				/// <summary>
+				/// 
+				/// </summary>
+				/// <param name="v"></param>
 				void operator *= (const Vec4<T>& v) { x *= v.x; y *= v.y; z *= v.z; w *= v.w; }
+				
+				/// <summary>
+				/// 
+				/// </summary>
+				/// <param name="a"></param>
 				void operator /= (const T& a) { x /= a; y /= a; z /= a; w /= a; }
+				
+				/// <summary>
+				/// 
+				/// </summary>
+				/// <param name="v"></param>
 				void operator /= (const Vec4<T>& v) { x /= v.x; y /= v.y; z /= v.z; w /= v.w; }
+				
+
+				/// <summary>
+				/// 
+				/// </summary>
+				/// <returns></returns>
 				Vec2<T> SizeLBRT() const { return Vec2<T>(z - x, w - y); }
+				
+				/// <summary>
+				/// 
+				/// </summary>
+				/// <returns></returns>
 				Vec2<T> pos() const { return xy(); }
+				
+				/// <summary>
+				/// 
+				/// </summary>
+				/// <returns></returns>
 				Vec2<T> size() const { return zw(); }
+				
+				/// <summary>
+				/// 
+				/// </summary>
+				/// <returns></returns>
 				T length() const { return (T)sqrt(lengthSquared()); }
+				
+				/// <summary>
+				/// 
+				/// </summary>
+				/// <returns></returns>
 				T lengthSquared() const { return x * x + y * y + z * z + w * w; }
+				
+				/// <summary>
+				/// 
+				/// </summary>
+				/// <returns></returns>
 				T normalize() { T _length = length(); if (_length < (T)1e-5)return (T)0; T _invLength = (T)1 / _length; x *= _invLength; y *= _invLength; z *= _invLength; w *= _invLength; return _length; }
+				
+				/// <summary>
+				/// 
+				/// </summary>
+				/// <returns></returns>
 				Vec4<T> GetNormalized() const { Vec4<T> n = Vec4<T>(x, y, z, w); n.normalize(); return n; }
+				
+				/// <summary>
+				/// 
+				/// </summary>
+				/// <returns></returns>
 				bool emptyAND() const { return x == (T)0 && y == (T)0 && z == (T)0 && w == (T)0; }
+				
+				/// <summary>
+				/// 
+				/// </summary>
+				/// <returns></returns>
 				bool emptyOR() const { return x == (T)0 || y == (T)0 || z == (T)0 || w == (T)0; }
+				
+				/// <summary>
+				/// 
+				/// </summary>
+				/// <returns></returns>
 				T sum() const { return x + y + z + w; }
+				
+				/// <summary>
+				/// 
+				/// </summary>
+				/// <returns></returns>
 				T sumAbs() const { return abs<T>(x) + _function::abs<T>(y) + _function::abs<T>(z) + _function::abs<T>(w); }
+				
+				/// <summary>
+				/// 
+				/// </summary>
+				/// <param name="c"></param>
+				/// <returns></returns>
 				std::string string(char c = ';') const { return std::to_string(x) + c + std::to_string(y) + c + std::to_string(z) + c + std::to_string(w); }
+				
+				/// <summary>
+				/// 
+				/// </summary>
+				/// <returns></returns>
 				T mini() const { return _function::internalMini<T>(x, _function::internalMini<T>(y, _function::internalMini<T>(z, w))); }
+				
+				/// <summary>
+				/// 
+				/// </summary>
+				/// <returns></returns>
 				T maxi() const { return _function::internalMaxi<T>(x, _function::internalMaxi<T>(y, _function::internalMaxi<T>(z, w))); }
 			};
 
@@ -243,6 +374,8 @@ namespace i {
 			template <typename T> inline Vec4<T> sin(Vec4<T> a) { return Vec4<T>(_function::sin<T>(a.x), _function::sin<T>(a.y), _function::sin<T>(a.z), _function::sin<T>(a.w)); }
 			template <typename T> inline Vec4<T> cos(Vec4<T> a) { return Vec4<T>(_function::cos<T>(a.x), _function::cos<T>(a.y), _function::cos<T>(a.z), _function::cos<T>(a.w)); }
 			template <typename T> inline Vec4<T> tan(Vec4<T> a) { return Vec4<T>(_function::tan<T>(a.x), _function::tan<T>(a.y), _function::tan<T>(a.z), _function::tan<T>(a.w)); }
+			
+			
 			using dVec4 = Vec4<double>;
 			using fVec4 = Vec4<float>;
 			using bVec4 = Vec4<bool>;
@@ -269,8 +402,21 @@ namespace i {
 					_function::floatIsValid(a.z) &&
 					_function::floatIsValid(a.w);
 			}
-
+			
+			/// <summary>
+			/// 
+			/// </summary>
+			/// <param name="v"></param>
+			/// <param name="f"></param>
+			/// <returns></returns>
 			inline bool operator == (const fVec4& v, const fVec4& f) { return IS_FLOAT_EQUAL(f.x, v.x) && IS_FLOAT_EQUAL(f.y, v.y) && IS_FLOAT_EQUAL(f.z, v.z) && IS_FLOAT_EQUAL(f.w, v.w); }
+			
+			/// <summary>
+			/// 
+			/// </summary>
+			/// <param name="v"></param>
+			/// <param name="f"></param>
+			/// <returns></returns>
 			inline bool operator != (const fVec4& v, const fVec4& f) { return IS_FLOAT_DIFFERENT(f.x, v.x) || IS_FLOAT_DIFFERENT(f.y, v.y) || IS_FLOAT_DIFFERENT(f.z, v.z) || IS_FLOAT_DIFFERENT(f.w, v.w); }
 		}
 	}

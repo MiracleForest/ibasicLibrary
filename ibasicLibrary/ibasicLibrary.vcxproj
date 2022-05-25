@@ -144,6 +144,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="A:\360data\重要数据\桌面\cTools\cTools.cpp" />
+    <None Include="A:\360data\重要数据\桌面\cTools\FileHelper.cpp" />
     <ClCompile Include="ibasicLibrary.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -153,6 +155,11 @@
     <ClInclude Include="..\include\icore\exception\error.hpp" />
     <ClInclude Include="..\include\icore\exception\errorcode.hpp" />
     <ClInclude Include="..\include\icore\exception\exception.hpp" />
+    <ClInclude Include="..\include\icore\lib\libmath\math.h" />
+    <ClInclude Include="..\include\icore\lib\libmath\rect.hpp" />
+    <ClInclude Include="..\include\icore\lib\libmath\vec2.hpp" />
+    <ClInclude Include="..\include\icore\lib\libmath\vec3.hpp" />
+    <ClInclude Include="..\include\icore\lib\libmath\vec4.hpp" />
     <ClInclude Include="..\include\icore\type\basic\basic\basic_number_type.hpp" />
     <ClInclude Include="..\include\icore\type\basic\basic\ibasic.hpp" />
     <ClInclude Include="..\include\icore\type\basic\basic\position.hpp" />
@@ -164,6 +171,8 @@
     <ClInclude Include="..\include\icore\type\type\type.hpp" />
     <ClInclude Include="..\include\icore\type\type\type_traits.hpp" />
     <ClInclude Include="..\third-party\nlohmann\json.hpp" />
+    <ClInclude Include="A:\360data\重要数据\桌面\cTools\cTools.h" />
+    <ClInclude Include="A:\360data\重要数据\桌面\cTools\FileHelper.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\build\filelist.txt" />
