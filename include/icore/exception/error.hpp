@@ -6,8 +6,8 @@
 * @creation time:2022.5.19.13:09
 * @created by:Lovelylavender4
 * -----------------------------------------------------------------------------
-*
-*
+* Contains the error class, and related content
+* 
 * -----------------------------------------------------------------------------
 * If you have contact or find bugs,
 * you can go to Github or email (MiracleForest@Outlook.com) to give feedback.
@@ -69,7 +69,15 @@ namespace i {
                     type::level _level = 0,
                     uint _canBeIgnored = 0
                 ) {
-                    
+                    ErrorInfo errorinfo;
+                    errorinfo._code = ErrorCode::unkError;
+                    errorinfo._icode = _code;
+                    errorinfo._dscription = _dscription;
+                    errorinfo._suggestion = _suggestion;
+                    errorinfo._position = _position;
+                    errorinfo._level = _level;
+                    errorinfo._canBeIgnored = _canBeIgnored;
+                    return errorinfo;
                 }
 
                 /// <summary>

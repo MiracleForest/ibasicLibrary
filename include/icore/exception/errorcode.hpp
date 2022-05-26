@@ -13,15 +13,15 @@
 * you can go to Github or email (MiracleForest@Outlook.com) to give feedback.
 * We will try to do our best!
 */
-#ifndef ___MIRACLEFOREST_I_ERROR___
-#define ___MIRACLEFOREST_I_ERROR___
+#ifndef ___MIRACLEFOREST_I_ERRORCODE___
+#define ___MIRACLEFOREST_I_ERRORCODE___
 
 namespace i {
     namespace core {
         namespace iexception {
 
             enum class ErrorCode {
-
+                unkError = -1
             };
 
         }//namespace iexception
@@ -29,4 +29,4 @@ namespace i {
 }//namespace i
 
 
-#endif //!___MIRACLEFOREST_I_ERROR___
+#endif //!___MIRACLEFOREST_I_ERRORCODE___
