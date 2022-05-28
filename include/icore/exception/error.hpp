@@ -7,7 +7,6 @@
 * @created by:Lovelylavender4
 * -----------------------------------------------------------------------------
 * Contains the error class, and related content
-* 
 * -----------------------------------------------------------------------------
 * If you have contact or find bugs,
 * you can go to Github or email (MiracleForest@Outlook.com) to give feedback.
@@ -37,24 +36,45 @@ namespace i {
                 std::string _suggestion;
                 type::FilePos _position;
                 type::level _level;
-                uint _canBeIgnored;
+                bool _canBeIgnored;
             };
 
 
 
             class error {
             private:
-                error() {}
+
+                error():_noError(1) {}
+
                 error(ErrorInfo errorinfo)
-                    :_errorinfo(errorinfo) {}
+                    :_errorinfo(errorinfo),
+                    _noError(0) {}            
+
+            public:
                 ~error() {}
             public:
 
-            public:
+                /// <summary>
+                /// Can the error be ignored
+                /// </summary>
+                /// <returns></returns>
+                bool isCanBeIgnored() const{
+                    return _errorinfo._canBeIgnored;
+                }
+
                 /// <summary>
                 /// 
                 /// </summary>
-                /// <param name="_code"></param>
+                /// <returns></returns>
+                bool isNoError() {
+                    return _noError;
+                }
+
+            public:
+                /// <summary>
+                /// Create a custom error
+                /// </summary>
+                /// <param name="_code">error code</param>
                 /// <param name="_dscription"></param>
                 /// <param name="_suggestion"></param>
                 /// <param name="_position"></param>
@@ -67,9 +87,11 @@ namespace i {
                     std::string _suggestion = "",
                     type::FilePos _position = type::fPos::makeDefault(),
                     type::level _level = 0,
-                    uint _canBeIgnored = 0
+                    bool _canBeIgnored = 0
                 ) {
+
                     ErrorInfo errorinfo;
+
                     errorinfo._code = ErrorCode::unkError;
                     errorinfo._icode = _code;
                     errorinfo._dscription = _dscription;
@@ -77,11 +99,12 @@ namespace i {
                     errorinfo._position = _position;
                     errorinfo._level = _level;
                     errorinfo._canBeIgnored = _canBeIgnored;
+
                     return errorinfo;
                 }
 
                 /// <summary>
-                /// 
+                /// make a error
                 /// </summary>
                 /// <param name="_code"></param>
                 /// <returns></returns>
@@ -91,11 +114,27 @@ namespace i {
                     
                 }
 
+                /// <summary>
+                /// 
+                /// </summary>
+                /// <returns></returns>
+                static error noError() {
+                    return error();
+                }
+
+            public:
+
+                /// <summary>
+                /// get ErrorInfo
+                /// </summary>
+                /// <returns>ErrorInfo</returns>
                 ErrorInfo data()const {
                     return _errorinfo;
                 }
+
             private:
                 ErrorInfo _errorinfo;
+                bool _noError;
             };//class error
 
         }//namespace iexception
