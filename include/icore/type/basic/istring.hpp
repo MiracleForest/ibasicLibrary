@@ -13,8 +13,8 @@
 * We will try to do our best!
 */
 
-#ifndef ___MIRACLEFOREST_I_ISTRING___
-#define ___MIRACLEFOREST_I_ISTRING___
+#ifndef ___MIRACLEFOREST_I_BASIC_ISTRING___
+#define ___MIRACLEFOREST_I_BASIC_ISTRING___
 
 #include "../../family/imacrofamily.h"
 #include "../type/type_traits.hpp"
@@ -30,9 +30,6 @@
 #include <windows.h>
 #include <stringapiset.h>
 #endif
-#ifdef __CPP_20__
-#include <format>
-#endif
 
 namespace i {
     namespace core {
@@ -43,7 +40,7 @@ namespace i {
 #else
                 template <typename Type, std::enable_if_t<type_traits::is_std_string_v<Type>, Type> = 0>
 #endif
-                class istring final {
+                class basic_istring final {
                 public:
 
                     /// <summary>
@@ -65,56 +62,56 @@ namespace i {
                     static const size_type npos = Type::npos;
                 public:
                     /// <summary>
-                    /// istring all Constructor
+                    /// basic_istring all Constructor
                     /// </summary>
-                    explicit istring()
+                    explicit basic_istring()
                         : _data() {}
 
-                    explicit istring(const Type& str)
+                    explicit basic_istring(const Type& str)
                         : _data(str) {}
 
-                    explicit istring(Type&& str) noexcept
+                    explicit basic_istring(Type&& str) noexcept
                         : _data(str) {}
 
-                    istring(size_type count, value_type ch)
+                    basic_istring(size_type count, value_type ch)
                         : _data(count, ch) {}
 
-                    istring(const istring& other, size_type pos, size_t count)
+                    basic_istring(const basic_istring& other, size_type pos, size_t count)
                         : _data(other, pos, count) {}
 
-                    istring(const istring& other, size_type pos)
+                    basic_istring(const basic_istring& other, size_type pos)
                         : _data(other, pos) {}
 
-                    istring(const value_type* s, size_type count)
+                    basic_istring(const value_type* s, size_type count)
                         : _data(s, count) {}
 
-                    istring(const value_type* s)
+                    basic_istring(const value_type* s)
                         : _data(s) {}
 
-                    istring(const istring& other)
+                    basic_istring(const basic_istring& other)
                         : _data(other._data) {}
 
-                    istring(istring&& other) noexcept
+                    basic_istring(basic_istring&& other) noexcept
                         : _data(std::move(other._data)) {}
 
-                    istring(std::initializer_list<value_type> ilist)
+                    basic_istring(std::initializer_list<value_type> ilist)
                         : _data(ilist) {}
 
-                    template<class InputIt> istring(InputIt first, InputIt last)
+                    template<class InputIt> basic_istring(InputIt first, InputIt last)
                         : _data(first, last) {}
 
-                    ~istring() {}
+                    ~basic_istring() {}
 
                     /// <summary>
-                    /// istring assign as stdString assign
+                    /// basic_istring assign as stdString assign
                     /// </summary>
-                    istring& assign(size_type count, value_type ch)
+                    basic_istring& assign(size_type count, value_type ch)
                     {
                         this->_data.assign(count, ch);
                         return *this;
                     }
 
-                    istring& assign(const istring& str)
+                    basic_istring& assign(const basic_istring& str)
                     {
                         if (*this == str) {
                             return *this;
@@ -123,43 +120,43 @@ namespace i {
                         return *this;
                     }
 
-                    istring& assign(const istring& str, size_type pos, size_type count)
+                    basic_istring& assign(const basic_istring& str, size_type pos, size_type count)
                     {
                         this->_data.assign(str._data, pos, count);
                         return *this;
                     }
 
-                    istring& assign(const istring& str, size_type pos)
+                    basic_istring& assign(const basic_istring& str, size_type pos)
                     {
                         this->_data.assign(str._data, pos);
                         return *this;
                     }
 
-                    istring& assign(istring&& str) noexcept
+                    basic_istring& assign(basic_istring&& str) noexcept
                     {
                         this->_data.assign(std::move(str._data));
                         return this;
                     }
 
-                    istring& assign(const value_type* s, size_type count)
+                    basic_istring& assign(const value_type* s, size_type count)
                     {
                         this->_data.assign(s, count);
                         return *this;
                     }
 
-                    istring& assign(const value_type* s)
+                    basic_istring& assign(const value_type* s)
                     {
                         this->_data.assign(s);
                         return *this;
                     }
 
-                    istring& assign(std::initializer_list<value_type> ilist)
+                    basic_istring& assign(std::initializer_list<value_type> ilist)
                     {
                         this->_data.assign(ilist);
                         return *this;
                     }
 
-                    template<class InputIt> istring& assign(InputIt first, InputIt last)
+                    template<class InputIt> basic_istring& assign(InputIt first, InputIt last)
                     {
                         this->_data.assign(first, last);
                         return *this;
@@ -174,7 +171,7 @@ namespace i {
                     }
 
                     /// <summary>
-                    /// get the istring char at pos
+                    /// get the basic_istring char at pos
                     /// </summary>
                     /// <warning>
                     /// exception : when pos >= length() throw std::out_of_range
@@ -190,10 +187,10 @@ namespace i {
                     }
 
                     /// <summary>
-                    /// get istring first char
+                    /// get basic_istring first char
                     /// </summary>
                     /// <warning>
-                    /// if istring length() == 0, the behavior is undefined
+                    /// if basic_istring length() == 0, the behavior is undefined
                     /// </warning>
                     reference front()
                     {
@@ -206,10 +203,10 @@ namespace i {
                     }
 
                     /// <summary>
-                    /// get istring last char
+                    /// get basic_istring last char
                     /// </summary>
                     /// <warning>
-                    /// if istring length() == 0, the behavior is undefined
+                    /// if basic_istring length() == 0, the behavior is undefined
                     /// </warning>
                     reference back()
                     {
@@ -222,7 +219,7 @@ namespace i {
                     }
 
                     /// <summary>
-                    /// get istring string pointer
+                    /// get basic_istring string pointer
                     /// </summary>
                     Type data() const noexcept
                     {
@@ -235,7 +232,7 @@ namespace i {
                     }
 
                     /// <summary>
-                    /// get istring c style string
+                    /// get basic_istring c style string
                     /// </summary>
                     const value_type* cStr() const noexcept
                     {
@@ -243,7 +240,7 @@ namespace i {
                     }
 
                     /// <summary>
-                    /// get istring first  iterator
+                    /// get basic_istring first  iterator
                     /// </summary>
                     iterator begin() noexcept
                     {
@@ -261,7 +258,7 @@ namespace i {
                     }
 
                     /// <summary>
-                    /// get istring last iterator
+                    /// get basic_istring last iterator
                     /// </summary>
                     iterator end() noexcept
                     {
@@ -279,7 +276,7 @@ namespace i {
                     }
 
                     /// <summary>
-                    /// get istring first reverse iterator
+                    /// get basic_istring first reverse iterator
                     /// </summary>
                     reverse_iterator rbegin() noexcept
                     {
@@ -297,7 +294,7 @@ namespace i {
                     }
 
                     /// <summary>
-                    /// get istring last reverse iterator
+                    /// get basic_istring last reverse iterator
                     /// </summary>
                     reverse_iterator rend() noexcept
                     {
@@ -315,7 +312,7 @@ namespace i {
                     }
 
                     /// <summary>
-                    /// check istring length() == 0
+                    /// check basic_istring length() == 0
                     /// </summary>
                     bool empty() const noexcept
                     {
@@ -323,7 +320,7 @@ namespace i {
                     }
 
                     /// <summary>
-                    /// get istring length
+                    /// get basic_istring length
                     /// </summary>
                     size_type length() const noexcept
                     {
@@ -336,7 +333,7 @@ namespace i {
                     }
 
                     /// <summary>
-                    /// get istring max contain
+                    /// get basic_istring max contain
                     /// </summary>
                     size_type maxSize() const noexcept
                     {
@@ -344,7 +341,7 @@ namespace i {
                     }
 
                     /// <summary>
-                    /// set istring alloc size
+                    /// set basic_istring alloc size
                     /// </summary>
                     void reserve(size_type new_cap = static_cast<size_type>(0))
                     {
@@ -352,7 +349,7 @@ namespace i {
                     }
 
                     /// <summary>
-                    /// get istring alloc current size
+                    /// get basic_istring alloc current size
                     /// </summary>
                     size_type capacity() const noexcept
                     {
@@ -368,7 +365,7 @@ namespace i {
                     }
 
                     /// <summary>
-                    /// clear istring
+                    /// clear basic_istring
                     /// </summary>
                     void clear() noexcept
                     {
@@ -376,39 +373,39 @@ namespace i {
                     }
 
                     /// <summary>
-                    /// insert ch or string to istring
+                    /// insert ch or string to basic_istring
                     /// </summary>
-                    istring& insert(size_type pos, size_type count, value_type ch)
+                    basic_istring& insert(size_type pos, size_type count, value_type ch)
                     {
                         this->_data.insert(pos, count, ch);
                         return *this;
                     }
 
-                    istring& insert(size_type pos, const value_type* s, size_type count)
+                    basic_istring& insert(size_type pos, const value_type* s, size_type count)
                     {
                         this->_data.insert(pos, s, count);
                         return *this;
                     }
 
-                    istring& insert(size_type pos, const value_type* s)
+                    basic_istring& insert(size_type pos, const value_type* s)
                     {
                         this->_data.insert(pos, s);
                         return *this;
                     }
 
-                    istring& insert(size_type pos, const istring& str)
+                    basic_istring& insert(size_type pos, const basic_istring& str)
                     {
                         this->_data.insert(pos, str);
                         return *this;
                     }
 
-                    istring& insert(size_type pos, const istring& str, size_type str_pos, size_type str_count)
+                    basic_istring& insert(size_type pos, const basic_istring& str, size_type str_pos, size_type str_count)
                     {
                         this->_data.insert(pos, str, str_pos, str_count);
                         return *this;
                     }
 
-                    istring& insert(size_type pos, const istring& str, size_type str_pos)
+                    basic_istring& insert(size_type pos, const basic_istring& str, size_type str_pos)
                     {
                         this->_data.insert(pos, str, str_pos);
                         return *this;
@@ -435,9 +432,9 @@ namespace i {
                     }
 
                     /// <summary>
-                    /// erase the char or str in istring
+                    /// erase the char or str in basic_istring
                     /// </summary>
-                    istring& erase(size_type pos = 0, size_type count = istring::npos)
+                    basic_istring& erase(size_type pos = 0, size_type count = basic_istring::npos)
                     {
                         this->_data.erase(pos, count);
                         return *this;
@@ -454,7 +451,7 @@ namespace i {
                     }
 
                     /// <summary>
-                    /// add a char in istring end
+                    /// add a char in basic_istring end
                     /// </summary>
                     void pushBack(value_type ch)
                     {
@@ -462,10 +459,10 @@ namespace i {
                     }
 
                     /// <summary>
-                    /// remove istring last char
+                    /// remove basic_istring last char
                     /// </summary>
                     /// <warning>
-                    /// if istring length() == 0 , the behavior is undefined
+                    /// if basic_istring length() == 0 , the behavior is undefined
                     /// <warning>
                     void popBack()
                     {
@@ -473,198 +470,198 @@ namespace i {
                     }
 
                     /// <summary>
-                    /// append char or string in istring
+                    /// append char or string in basic_istring
                     /// </summary>
-                    istring& append(size_type count, value_type ch)
+                    basic_istring& append(size_type count, value_type ch)
                     {
                         this->_data.append(count, ch);
                         return *this;
                     }
 
-                    istring& append(const istring& str)
+                    basic_istring& append(const basic_istring& str)
                     {
                         this->_data.append(str._data);
                         return *this;
                     }
 
-                    istring& append(istring&& str)
+                    basic_istring& append(basic_istring&& str)
                     {
                         this->_data.append(std::move(str._data));
                     }
 
-                    istring& append(const Type& str)
+                    basic_istring& append(const Type& str)
                     {
                         this->_data.append(str);
                         return *this;
                     }
 
-                    istring& append(const istring& str, size_type pos, size_type count)
+                    basic_istring& append(const basic_istring& str, size_type pos, size_type count)
                     {
                         this->_data.append(str._data, pos, count);
                         return *this;
                     }
 
-                    istring& append(const istring& str, size_type pos)
+                    basic_istring& append(const basic_istring& str, size_type pos)
                     {
                         this->_data.append(str._data, pos);
                         return *this;
                     }
 
-                    istring& append(const value_type* s, size_type count)
+                    basic_istring& append(const value_type* s, size_type count)
                     {
                         this->_data.append(s, count);
                         return *this;
                     }
 
-                    istring& append(const value_type* s)
+                    basic_istring& append(const value_type* s)
                     {
                         this->_data.append(s);
                         return *this;
                     }
 
-                    istring& append(std::initializer_list<value_type> ilist)
+                    basic_istring& append(std::initializer_list<value_type> ilist)
                     {
                         this->_data.append(ilist);
                         return *this;
                     }
 
-                    istring& append(value_type ch)
+                    basic_istring& append(value_type ch)
                     {
                         this->_data.push_back(ch);
                         return *this;
                     }
 
-                    template <typename InputIt> istring& append(InputIt first, InputIt last)
+                    template <typename InputIt> basic_istring& append(InputIt first, InputIt last)
                     {
                         this->_data.append(first, last);
                         return *this;
                     }
 
                     /// <summary>
-                    /// append number in istring
+                    /// append number in basic_istring
                     /// </summary>
-                    istring& append(int i)
+                    basic_istring& append(int i)
                     {
-                        return this->append(std::move(istring::valueOf(i)));
+                        return this->append(std::move(basic_istring::valueOf(i)));
                     }
 
-                    istring& append(i::core::uint ui)
+                    basic_istring& append(i::core::uint ui)
                     {
-                        return this->append(std::move(istring::valueOf(ui)));
+                        return this->append(std::move(basic_istring::valueOf(ui)));
                     }
 
-                    istring& append(long l)
+                    basic_istring& append(long l)
                     {
-                        return this->append(std::move(istring::valueOf(l)));
+                        return this->append(std::move(basic_istring::valueOf(l)));
                     }
 
-                    istring& append(i::core::ulong ul)
+                    basic_istring& append(i::core::ulong ul)
                     {
-                        return this->append(std::move(istring::valueOf(ul)));
+                        return this->append(std::move(basic_istring::valueOf(ul)));
                     }
 
-                    istring& append(long long ll)
+                    basic_istring& append(long long ll)
                     {
-                        return this->append(std::move(istring::valueOf(ll)));
+                        return this->append(std::move(basic_istring::valueOf(ll)));
                     }
 
-                    istring& append(i::core::uint64 ull)
+                    basic_istring& append(i::core::uint64 ull)
                     {
-                        return this->append(std::move(istring::valueOf(ull)));
+                        return this->append(std::move(basic_istring::valueOf(ull)));
                     }
 
-                    istring& append(float f)
+                    basic_istring& append(float f)
                     {
-                        return this->append(std::move(istring::valueOf(f)));
+                        return this->append(std::move(basic_istring::valueOf(f)));
                     }
 
-                    istring& append(double d)
+                    basic_istring& append(double d)
                     {
-                        return this->append(std::move(istring::valueOf(d)));
+                        return this->append(std::move(basic_istring::valueOf(d)));
                     }
 
                     /// <summary>
-                    /// replace some str in istring
+                    /// replace some str in basic_istring
                     /// </summary>
-                    istring& replace(size_type pos, size_type count, const istring& str)
+                    basic_istring& replace(size_type pos, size_type count, const basic_istring& str)
                     {
                         this->_data.replace(pos, count, str._data);
                         return *this;
                     }
 
-                    istring& replace(const_iterator first, const_iterator last, const istring& str)
+                    basic_istring& replace(const_iterator first, const_iterator last, const basic_istring& str)
                     {
                         this->_data.replace(first, last, str._data);
                         return *this;
                     }
 
-                    istring& replace(size_type pos, size_type count, const istring& str,
-                        size_type str_pos, size_type str_count = istring::npos)
+                    basic_istring& replace(size_type pos, size_type count, const basic_istring& str,
+                        size_type str_pos, size_type str_count = basic_istring::npos)
                     {
                         this->_data.replace(pos, count, str._data, str_pos, str_count);
                         return *this;
                     }
 
                     template <typename InputIt>
-                    istring& replace(const_iterator first, const_iterator last, InputIt first1, InputIt last1)
+                    basic_istring& replace(const_iterator first, const_iterator last, InputIt first1, InputIt last1)
                     {
                         this->_data.replace(first, last, first1, last1);
                         return *this;
                     }
 
-                    istring& replace(size_type pos, size_type count, const value_type* s, size_type s_count)
+                    basic_istring& replace(size_type pos, size_type count, const value_type* s, size_type s_count)
                     {
                         this->_data.replace(pos, count, s, s_count);
                         return *this;
                     }
 
-                    istring& replace(size_type pos, size_type count, const value_type* s)
+                    basic_istring& replace(size_type pos, size_type count, const value_type* s)
                     {
                         this->_data.replace(pos, count, s);
                         return *this;
                     }
 
-                    istring& replace(const_iterator first, const_iterator last, const value_type* s)
+                    basic_istring& replace(const_iterator first, const_iterator last, const value_type* s)
                     {
                         this->_data.replace(first, last, s);
                         return *this;
                     }
 
-                    istring& replace(size_type pos, size_type count, size_type ch_count, value_type ch)
+                    basic_istring& replace(size_type pos, size_type count, size_type ch_count, value_type ch)
                     {
                         this->_data.replace(pos, count, ch_count, ch);
                         return *this;
                     }
 
-                    istring& replace(const_iterator first, const_iterator last, size_type count, value_type ch)
+                    basic_istring& replace(const_iterator first, const_iterator last, size_type count, value_type ch)
                     {
                         this->_data.replace(first, last, count, ch);
                         return *this;
                     }
 
-                    istring& replace(const_iterator first, const_iterator last, std::initializer_list<value_type> ilist)
+                    basic_istring& replace(const_iterator first, const_iterator last, std::initializer_list<value_type> ilist)
                     {
                         this->_data.replace(first, last, ilist);
                         return *this;
                     }
 
-                    istring& replace(size_type pos, size_type count, std::initializer_list<value_type> ilist)
+                    basic_istring& replace(size_type pos, size_type count, std::initializer_list<value_type> ilist)
                     {
                         this->_data.replace(this->_data.begin() + pos, this->_data.begin() + pos + count, ilist);
                         return *this;
                     }
 
                     /// <summary>
-                    /// get istring sub string in [pos, pos + count)
+                    /// get basic_istring sub string in [pos, pos + count)
                     /// </summary>
-                    istring substr(size_type pos = 0, size_type count = istring::npos) const
+                    basic_istring substr(size_type pos = 0, size_type count = basic_istring::npos) const
                     {
-                        istring str(this->_data.substr(pos, count).data());
+                        basic_istring str(this->_data.substr(pos, count).data());
                         return std::move(str);
                     }
 
                     /// <summary>
-                    /// copy istring [pos, count) str to dest
+                    /// copy basic_istring [pos, count) str to dest
                     /// </summary>
                     /// <warning>
                     /// if pos > length(), throw std::out_of_range()
@@ -675,7 +672,7 @@ namespace i {
                     }
 
                     /// <summary>
-                    /// set istring ch count to count
+                    /// set basic_istring ch count to count
                     /// </summary>
                     void resize(size_type count)
                     {
@@ -687,7 +684,7 @@ namespace i {
                         this->_data.resize(count, ch);
                     }
 
-                    void swap(istring& other)
+                    void swap(basic_istring& other)
                     {
                         if (*this == other) {
                             return;
@@ -696,9 +693,9 @@ namespace i {
                     }
 
                     /// <summary>
-                    /// find the str or ch in istring
+                    /// find the str or ch in basic_istring
                     /// </summary>
-                    size_type find(const istring& str, size_type pos = 0) const
+                    size_type find(const basic_istring& str, size_type pos = 0) const
                     {
                         return this->_data.find(str._data, pos);
                     }
@@ -718,7 +715,7 @@ namespace i {
                         return this->_data.rfind(ch, pos);
                     }
 
-                    size_type rfind(const istring& str, size_type pos = istring::npos) const
+                    size_type rfind(const basic_istring& str, size_type pos = basic_istring::npos) const
                     {
                         return this->_data.rfind(str._data, pos);
                     }
@@ -728,48 +725,48 @@ namespace i {
                         return this->_data.rfind(s, pos, count);
                     }
 
-                    size_type rfind(const value_type* s, size_type pos = istring::npos) const
+                    size_type rfind(const value_type* s, size_type pos = basic_istring::npos) const
                     {
                         return this->_data.rfind(s, pos);
                     }
 
-                    size_type rfind(value_type ch, size_type pos = istring::npos) const
+                    size_type rfind(value_type ch, size_type pos = basic_istring::npos) const
                     {
                         return this->_data.rfind(ch, pos);
                     }
 
                     /// <summary>
-                    /// check istring start with str
+                    /// check basic_istring start with str
                     /// </summary>
-                    bool startsWith(const istring& str)
+                    bool startsWith(const basic_istring& str)
                     {
 #ifdef __CPP_20__
                         return this->_data.starts_with(str._data);
 #else
-                        return istring::startsWith(str, *this);
+                        return basic_istring::startsWith(str, *this);
 #endif
                     }
 
                     /// <summary>
-                    /// check istring end with str
+                    /// check basic_istring end with str
                     /// </summary>
-                    bool endsWith(const istring& str)
+                    bool endsWith(const basic_istring& str)
                     {
 #ifdef __CPP_20__
                         return this->_data.ends_with(str._data);
 #else
-                        return istring::endsWith(str, *this);
+                        return basic_istring::endsWith(str, *this);
 #endif
                     }
 
                     /// <summary>
-                    /// split istring with  char
+                    /// split basic_istring with  char
                     /// </summary>
-                    std::vector<istring> split(value_type ch)
+                    std::vector<basic_istring> split(value_type ch)
                     {
-                        std::vector<istring> strs;
+                        std::vector<basic_istring> strs;
                         size_type pos = this->find(ch), start = 0;
-                        while (pos != istring::npos) {
+                        while (pos != basic_istring::npos) {
                             strs.push_back(this->substr(start, pos));
                             start = pos + 1;
                             pos = this->find(ch, pos + 1);
@@ -781,7 +778,7 @@ namespace i {
                     }
 
                     /// <summary>
-                    /// match the istring with regex
+                    /// match the basic_istring with regex
                     /// </summary>
                     bool match(const std::basic_regex<value_type>& regex, bool search = false)
                     {
@@ -1256,9 +1253,9 @@ namespace i {
                     /// <param name="newStr"></param>
                     /// <returns></returns>
                     static bool replaceString(
-                        istring& str,
-                        const istring& oldStr,
-                        const istring& newStr
+                        basic_istring& str,
+                        const basic_istring& oldStr,
+                        const basic_istring& newStr
                     ) {
                         bool found = false;
                         size_t pos = 0;
@@ -1279,8 +1276,8 @@ namespace i {
                     /// <param name="vInversion"></param>
                     /// <returns></returns>
                     static std::list<Type> istringSplit2List(
-                        const istring& str,
-                        const istring& delimiters,
+                        const basic_istring& str,
+                        const basic_istring& delimiters,
                         bool pushEmpty = false,
                         bool vInversion = false) {
                         std::list<Type> arr;
@@ -1316,8 +1313,8 @@ namespace i {
                     /// <param name="pushEmpty"></param>
                     /// <returns></returns>
                     static std::vector<Type> istringSplit2Vector(
-                        const istring& str,
-                        const istring& delimiters,
+                        const basic_istring& str,
+                        const basic_istring& delimiters,
                         bool pushEmpty = false) {
                         std::vector<Type> arr;
                         if (!str.empty()) {
@@ -1346,8 +1343,8 @@ namespace i {
                     /// <param name="pushEmpty"></param>
                     /// <returns></returns>
                     static std::set<Type> istringSplit2Set(
-                        const istring& str,
-                        const istring& delimiters,
+                        const basic_istring& str,
+                        const basic_istring& delimiters,
                         bool pushEmpty = false) {
                         std::set<Type> arr;
                         if (!str.empty()) {
@@ -1378,7 +1375,7 @@ namespace i {
                     /// <param name="vInversion"></param>
                     /// <returns></returns>
                     std::list<Type> split2List(
-                        const istring& delimiters,
+                        const basic_istring& delimiters,
                         bool pushEmpty = false,
                         bool vInversion = false){
                         std::list<Type> arr;
@@ -1414,7 +1411,7 @@ namespace i {
                     /// <param name="pushEmpty"></param>
                     /// <returns></returns>
                     std::vector<Type> split2Vector(
-                        const istring& delimiters,
+                        const basic_istring& delimiters,
                         bool pushEmpty = false) {
                         std::vector<Type> arr;
                         if (!(this->_data).empty()) {
@@ -1443,7 +1440,7 @@ namespace i {
                     /// <param name="pushEmpty"></param>
                     /// <returns></returns>
                     std::set<Type> split2Set(
-                        const istring& delimiters,
+                        const basic_istring& delimiters,
                         bool pushEmpty = false) {
                         std::set<Type> arr;
                         if (!(this->_data).empty()) {
@@ -1488,9 +1485,9 @@ namespace i {
 
                 public:
                     /// <summary>
-                    /// istring assignment operator
+                    /// basic_istring assignment operator
                     /// </summary>
-                    istring& operator = (const istring& str)
+                    basic_istring& operator = (const basic_istring& str)
                     {
                         if (*this == str) {
                             return *this;
@@ -1499,7 +1496,7 @@ namespace i {
                         return *this;
                     }
 
-                    istring& operator = (istring&& str) noexcept
+                    basic_istring& operator = (basic_istring&& str) noexcept
                     {
                         if (*this == str) {
                             return *this;
@@ -1507,26 +1504,26 @@ namespace i {
                         this->_data = std::move(str);
                     }
 
-                    istring& operator = (const value_type* s)
+                    basic_istring& operator = (const value_type* s)
                     {
                         this->_data = s;
                         return *this;
                     }
 
-                    istring& operator = (value_type ch)
+                    basic_istring& operator = (value_type ch)
                     {
                         this->_data = ch;
                         return *this;
                     }
 
-                    istring& operator = (std::initializer_list<value_type> ilist)
+                    basic_istring& operator = (std::initializer_list<value_type> ilist)
                     {
                         this->_data = ilist;
                         return *this;
                     }
 
                     /// <summary>
-                    /// get istring char at pos
+                    /// get basic_istring char at pos
                     /// </summary>
                     /// <warning>
                     /// if pos >= size(), the behavior is undefined
@@ -1542,276 +1539,276 @@ namespace i {
                     }
 
                     /// <summary>
-                    /// istring += operator
+                    /// basic_istring += operator
                     /// </summary>
-                    istring& operator += (const istring& str)
+                    basic_istring& operator += (const basic_istring& str)
                     {
                         this->_data += str._data;
                         return *this;
                     }
 
-                    istring& operator += (value_type ch)
+                    basic_istring& operator += (value_type ch)
                     {
                         this->_data += ch;
                         return *this;
                     }
 
-                    istring& operator += (const value_type* s)
+                    basic_istring& operator += (const value_type* s)
                     {
                         this->_data += s;
                         return *this;
                     }
 
-                    istring& operator += (std::initializer_list<value_type> ilist)
+                    basic_istring& operator += (std::initializer_list<value_type> ilist)
                     {
                         this->_data += ilist;
                         return *this;
                     }
 
-                    friend bool operator == (const istring& ls, const istring& rs) noexcept
+                    friend bool operator == (const basic_istring& ls, const basic_istring& rs) noexcept
                     {
                         return ls._data == rs._data;
                     }
 
-                    friend bool operator != (const istring& ls, const istring& rs) noexcept
+                    friend bool operator != (const basic_istring& ls, const basic_istring& rs) noexcept
                     {
                         return ls._data != rs._data;
                     }
 
-                    friend bool operator < (const istring& ls, const istring& rs) noexcept
+                    friend bool operator < (const basic_istring& ls, const basic_istring& rs) noexcept
                     {
                         return ls._data < rs._data;
                     }
 
-                    friend bool operator <= (const istring& ls, const istring& rs) noexcept
+                    friend bool operator <= (const basic_istring& ls, const basic_istring& rs) noexcept
                     {
                         return ls._data <= rs._data;
                     }
 
-                    friend bool operator > (const istring& ls, const istring& rs) noexcept
+                    friend bool operator > (const basic_istring& ls, const basic_istring& rs) noexcept
                     {
                         return ls._data > rs._data;
                     }
 
-                    friend bool operator >= (const istring& ls, const istring& rs) noexcept
+                    friend bool operator >= (const basic_istring& ls, const basic_istring& rs) noexcept
                     {
                         return ls._data >= rs._data;
                     }
 
-                    friend bool operator == (const value_type* s, const istring& rs) noexcept
+                    friend bool operator == (const value_type* s, const basic_istring& rs) noexcept
                     {
                         return s == rs;
                     }
 
-                    friend bool operator == (const istring& ls, const value_type* s)
+                    friend bool operator == (const basic_istring& ls, const value_type* s)
                     {
                         return ls == s;
                     }
 
-                    friend bool operator != (const istring& ls, const value_type* s)
+                    friend bool operator != (const basic_istring& ls, const value_type* s)
                     {
                         return ls != s;
                     }
 
-                    friend bool operator < (const istring& ls, const value_type* s)
+                    friend bool operator < (const basic_istring& ls, const value_type* s)
                     {
                         return ls < s;
                     }
 
-                    friend bool operator <= (const istring& ls, const value_type* s)
+                    friend bool operator <= (const basic_istring& ls, const value_type* s)
                     {
                         return ls <= s;
                     }
 
-                    friend bool operator > (const istring& ls, const value_type* s)
+                    friend bool operator > (const basic_istring& ls, const value_type* s)
                     {
                         return ls > s;
                     }
 
-                    friend bool operator >= (const istring& ls, const value_type* s)
+                    friend bool operator >= (const basic_istring& ls, const value_type* s)
                     {
                         return ls >= s;
                     }
 
-                    friend std::ostream& operator << (std::ostream& os, const istring& str)
+                    friend std::ostream& operator << (std::ostream& os, const basic_istring& str)
                     {
                         os << str._data;
                         return os;
                     }
 
-                    friend std::istream& operator >> (std::istream& is, const istring& str)
+                    friend std::istream& operator >> (std::istream& is, const basic_istring& str)
                     {
                         is >> str._data;
                         return is;
                     }
 
                     /// <summary>
-                    /// stream input str or ch or number to istring
+                    /// stream input str or ch or number to basic_istring
                     /// </summary>
-                    istring& operator << (const istring& str)
+                    basic_istring& operator << (const basic_istring& str)
                     {
                         return this->append(str);
                     }
 
-                    istring& operator << (const value_type* s)
+                    basic_istring& operator << (const value_type* s)
                     {
                         return this->append(s);
                     }
 
-                    istring& operator << (const Type& str)
+                    basic_istring& operator << (const Type& str)
                     {
                         return this->append(str);
                     }
 
-                    istring& operator << (value_type ch)
+                    basic_istring& operator << (value_type ch)
                     {
                         return this->append(ch);
                     }
 
-                    istring& operator << (int i)
+                    basic_istring& operator << (int i)
                     {
                         return this->append(i);
                     }
 
-                    istring& operator << (i::core::uint ui)
+                    basic_istring& operator << (i::core::uint ui)
                     {
                         return this->append(ui);
                     }
 
-                    istring& operator << (long l)
+                    basic_istring& operator << (long l)
                     {
                         return this->append(l);
                     }
 
-                    istring& operator << (i::core::ulong ul)
+                    basic_istring& operator << (i::core::ulong ul)
                     {
                         return this->append(ul);
                     }
 
-                    istring& operator << (long long ll)
+                    basic_istring& operator << (long long ll)
                     {
                         return this->append(ll);
                     }
 
-                    istring& operator << (i::core::uint64 ull)
+                    basic_istring& operator << (i::core::uint64 ull)
                     {
                         return this->append(ull);
                     }
 
-                    istring& operator << (float f)
+                    basic_istring& operator << (float f)
                     {
                         return this->append(f);
                     }
 
-                    istring& operator << (double d)
+                    basic_istring& operator << (double d)
                     {
                         return this->append(d);
                     }
 
-                    istring& operator << (std::initializer_list<value_type> ilist)
+                    basic_istring& operator << (std::initializer_list<value_type> ilist)
                     {
                         return this->append(ilist);
                     }
 
                     /// <summary>
-                    /// append ls and rs to a new istring
+                    /// append ls and rs to a new basic_istring
                     /// </summary>
-                    friend istring operator + (const istring& ls, const istring& rs)
+                    friend basic_istring operator + (const basic_istring& ls, const basic_istring& rs)
                     {
-                        istring str(ls);
+                        basic_istring str(ls);
                         str.append(rs);
                         return std::move(str);
                     }
 
-                    friend istring operator + (istring&& ls, const istring& rs)
+                    friend basic_istring operator + (basic_istring&& ls, const basic_istring& rs)
                     {
                         ls.append(rs);
                         return ls;
                     }
 
-                    friend istring operator + (istring&& ls, istring&& rs)
+                    friend basic_istring operator + (basic_istring&& ls, basic_istring&& rs)
                     {
                         ls.append(rs);
                         return ls;
                     }
 
-                    friend istring operator + (const istring& ls, const value_type* s)
+                    friend basic_istring operator + (const basic_istring& ls, const value_type* s)
                     {
-                        istring str(ls);
+                        basic_istring str(ls);
                         str.append(s);
                         return std::move(str);
                     }
 
-                    friend istring operator + (istring&& ls, const value_type* s)
+                    friend basic_istring operator + (basic_istring&& ls, const value_type* s)
                     {
                         ls.append(s);
                         return ls;
                     }
 
-                    friend istring operator + (const istring& ls, value_type ch)
+                    friend basic_istring operator + (const basic_istring& ls, value_type ch)
                     {
-                        istring str(ls);
+                        basic_istring str(ls);
                         str.pushBack(ch);
                         return std::move(str);
                     }
 
-                    friend istring operator + (istring&& ls, value_type ch)
+                    friend basic_istring operator + (basic_istring&& ls, value_type ch)
                     {
                         ls.pushBack(ch);
                         return ls;
                     }
 
-                    friend istring operator + (const istring& ls, std::initializer_list<value_type> ilist)
+                    friend basic_istring operator + (const basic_istring& ls, std::initializer_list<value_type> ilist)
                     {
-                        istring str(ls);
+                        basic_istring str(ls);
                         str.append(ilist);
                         return std::move(str);
                     }
 
-                    friend istring operator + (istring&& ls, std::initializer_list<value_type> ilist)
+                    friend basic_istring operator + (basic_istring&& ls, std::initializer_list<value_type> ilist)
                     {
                         ls.append(ilist);
                         return ls;
                     }
 
-                    friend istring operator + (value_type ch, const istring& rs)
+                    friend basic_istring operator + (value_type ch, const basic_istring& rs)
                     {
-                        istring str(1, ch);
+                        basic_istring str(1, ch);
                         str.append(rs);
                         return std::move(str);
                     }
 
-                    friend istring operator + (value_type ch, istring&& rs)
+                    friend basic_istring operator + (value_type ch, basic_istring&& rs)
                     {
-                        istring str(1, ch);
+                        basic_istring str(1, ch);
                         str.append(rs);
                         return std::move(str);
                     }
 
-                    friend istring operator + (const value_type* s, const istring& rs)
+                    friend basic_istring operator + (const value_type* s, const basic_istring& rs)
                     {
-                        istring str(s);
+                        basic_istring str(s);
                         str.append(rs);
                         return std::move(str);
                     }
 
-                    friend istring operator + (const value_type* s, istring&& rs)
+                    friend basic_istring operator + (const value_type* s, basic_istring&& rs)
                     {
-                        istring str(s);
+                        basic_istring str(s);
                         str.append(rs);
                         return std::move(str);
                     }
 
-                    friend istring operator + (std::initializer_list<value_type> ilist, const istring& rs)
+                    friend basic_istring operator + (std::initializer_list<value_type> ilist, const basic_istring& rs)
                     {
-                        istring str(ilist);
+                        basic_istring str(ilist);
                         str.append(rs);
                         return std::move(str);
                     }
 
-                    friend istring operator + (std::initializer_list<value_type> ilist, istring&& rs)
+                    friend basic_istring operator + (std::initializer_list<value_type> ilist, basic_istring&& rs)
                     {
-                        istring str(ilist);
+                        basic_istring str(ilist);
                         str.append(rs);
                         return std::move(str);
                     }
@@ -1821,30 +1818,30 @@ namespace i {
                     /// to_string / to_wstring
                     /// </summary>
                     template <typename T>
-                    static istring valueOf(T&& value)
+                    static basic_istring valueOf(T&& value)
                     {
 #ifdef __CPP_17__
                         if constexpr (std::is_same_v<Type, std::string>) {
-                            return static_cast<istring>(std::to_string(value));
+                            return static_cast<basic_istring>(std::to_string(value));
                         }
-                        return static_cast<istring>(std::to_wstring(value));
+                        return static_cast<basic_istring>(std::to_wstring(value));
 #else
                         if (std::is_same_v<Type, std::string>) {
-                            return static_cast<istring>(std::to_string(value));
+                            return static_cast<basic_istring>(std::to_string(value));
                         }
-                        return static_cast<istring>(std::to_wstring(value));
+                        return static_cast<basic_istring>(std::to_wstring(value));
 #endif
                     }
 
                     /// <summary>
                     /// check str start with sub
                     /// </summary>
-                    static bool startsWith(const istring& sub, const istring& str);
+                    static bool startsWith(const basic_istring& sub, const basic_istring& str);
 
                     /// <summary>
                     /// check str end with sub
                     /// </summary>
-                    static bool endsWith(const istring& sub, const istring& str);
+                    static bool endsWith(const basic_istring& sub, const basic_istring& str);
 
                 protected:
 
@@ -1855,10 +1852,10 @@ namespace i {
                 /*
 #ifdef __CPP_20__
                 template <typename Type> requires type::type_traits::is_std_string_v<Type>
-                bool istring<Type>::startsWith(const istring& sub, const istring& str)
+                bool basic_istring<Type>::startsWith(const basic_istring& sub, const basic_istring& str)
 #else
                 template <typename Type, std::enable_if_t <type_traits::is_std_string_v<Type>, Type> t>
-                bool istring<Type, t>::startsWith(const istring& sub, const istring& str)
+                bool basic_istring<Type, t>::startsWith(const basic_istring& sub, const basic_istring& str)
 #endif
                 {
                     if (sub.length() > str.length()) {
@@ -1879,10 +1876,10 @@ namespace i {
                 
 #ifdef __CPP_20__
                 template <typename Type> requires type::type_traits::is_std_string_v<Type>
-                bool istring<Type>::endsWith(const istring& sub, const istring& str)
+                bool basic_istring<Type>::endsWith(const basic_istring& sub, const basic_istring& str)
 #else
                 template <typename Type, std::enable_if_t <type_traits::is_std_string_v<Type>, Type> t>
-                bool istring<Type, t>::endsWith(const istring& sub, const istring& str)
+                bool basic_istring<Type, t>::endsWith(const basic_istring& sub, const basic_istring& str)
 #endif
                 {
                     if (sub.length() > str.length()) {
@@ -1907,4 +1904,4 @@ namespace i {
 }//namespace i
 
 
-#endif //!___MIRACLEFOREST_I_ISTRING___
+#endif //!___MIRACLEFOREST_I_BASIC_ISTRING___

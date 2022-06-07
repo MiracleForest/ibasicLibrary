@@ -8,7 +8,7 @@ class MessageBoxDlg : public CDialogEx {
 	DECLARE_DYNAMIC(MessageBoxDlg)
 
 public:
-	MessageBoxDlg(CWnd* pParent = nullptr);   // 标准构造函数
+	MessageBoxDlg(CWnd* pParent = nullptr);
 	virtual ~MessageBoxDlg();
 
 
@@ -17,7 +17,7 @@ public:
 #endif
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持
+	virtual void DoDataExchange(CDataExchange* pDX);
 
 	DECLARE_MESSAGE_MAP()
 public:

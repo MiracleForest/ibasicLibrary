@@ -18,7 +18,7 @@
 
 #include "../family/imacrofamily.h"
 #include <string>
-#include "basic/istring.hpp"
+#include "istring.hpp"
 #include "basic/basic/position.hpp"
 
 namespace i {
@@ -39,7 +39,7 @@ namespace i {
                     return p;
                 }
 
-                basic::istring<std::string> _fileName;
+                istring _fileName;
                 int x;
                 int y;
             };
@@ -47,7 +47,7 @@ namespace i {
             class FilePos :public position {
             public:
                 FilePos() {}
-                FilePos(basic::istring<std::string>,int,int) {}
+                FilePos(istring,int,int) {}
                 FilePos(fPos pos):_pos(pos) {}
                 ~FilePos(){}
             public:

@@ -131,6 +131,17 @@
 #define IS_DOUBLE_EQUAL(a,b) (fabs((a) - (b)) < DBL_EPSILON)
 
 
+/*------------------------About dll------------------------*/
+#ifdef ___ILIBRARYEXPORT___
+#define IAPI _declspec(dllexport)
+#else
+#define IAPI _declspec(dllimport)
+#endif
+
+
+#define STATIC
+
+
 namespace i::core {
 
     using ushort = unsigned short;

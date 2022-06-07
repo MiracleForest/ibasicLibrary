@@ -144,6 +144,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="..\include\cppstd\format" />
+    <None Include="..\include\cppstd\thread" />
     <None Include="A:\360data\重要数据\桌面\cTools\cTools.cpp" />
     <None Include="A:\360data\重要数据\桌面\cTools\FileHelper.cpp" />
     <ClCompile Include="ibasicLibrary.cpp" />
@@ -156,6 +158,7 @@
     <ClInclude Include="..\include\icore\exception\errorcode.hpp" />
     <ClInclude Include="..\include\icore\exception\exception.hpp" />
     <ClInclude Include="..\include\icore\family\ifamily.hpp" />
+    <ClInclude Include="..\include\icore\lib\libIO\libIO.h" />
     <ClInclude Include="..\include\icore\lib\libmath\math.h" />
     <ClInclude Include="..\include\icore\lib\libmath\rect.hpp" />
     <ClInclude Include="..\include\icore\lib\libmath\vec2.hpp" />
@@ -167,6 +170,7 @@
     <ClInclude Include="..\include\icore\type\basic\istring.hpp" />
     <ClInclude Include="..\include\icore\type\basic\numberArray.hpp" />
     <ClInclude Include="..\include\icore\type\filepos.hpp" />
+    <ClInclude Include="..\include\icore\type\istring.hpp" />
     <ClInclude Include="..\include\icore\type\level.hpp" />
     <ClInclude Include="..\include\icore\type\type\concepts.hpp" />
     <ClInclude Include="..\include\icore\type\type\type.hpp" />

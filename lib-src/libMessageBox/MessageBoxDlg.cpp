@@ -30,16 +30,12 @@ BEGIN_MESSAGE_MAP(MessageBoxDlg, CDialogEx)
 END_MESSAGE_MAP()
 
 
-// MessageBoxDlg 消息处理程序
 
-
-void MessageBoxDlg::OnBnClickedOk()
-{
+void MessageBoxDlg::OnBnClickedOk() {
 	CDialogEx::OnOK();
 }
 
 
-void MessageBoxDlg::OnBnClickedCancel()
-{
+void MessageBoxDlg::OnBnClickedCancel() {
 	CDialogEx::OnCancel();
 }

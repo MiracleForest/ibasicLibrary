@@ -25,6 +25,9 @@
       <Filter>other</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
+      <Filter>resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\icore\lib\libIO\libIO.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
@@ -34,6 +37,9 @@
     </ClCompile>
     <ClCompile Include="pch.cpp">
       <Filter>other</Filter>
+    </ClCompile>
+    <ClCompile Include="src\libIO.cpp">
+      <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

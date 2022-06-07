@@ -85,6 +85,21 @@
     <Filter Include="third-party\nlohmann\detail\output">
       <UniqueIdentifier>{a67a029a-81aa-415e-ad2c-fbe547a5efe4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include\cppstd">
+      <UniqueIdentifier>{4071ab6c-51df-4508-aa5b-9cd682bf1c16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\icore\lib">
+      <UniqueIdentifier>{6ea9162e-02ce-4f0c-9ffb-e5a34e13d188}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\icore\lib\libIO">
+      <UniqueIdentifier>{448151e4-939f-4279-a792-b25b64b345e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\icore\lib\libmath">
+      <UniqueIdentifier>{4f1c6938-e106-4234-8b8d-2fd1deb5e9a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\icore\lib\libMessageBox">
+      <UniqueIdentifier>{38c9d0e5-eacb-476e-995f-0f2a5b851a22}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ibasicLibrary.cpp">
@@ -177,21 +192,6 @@
     </ClInclude>
     <ClInclude Include="A:\360data\重要数据\桌面\cTools\FileHelper.h">
       <Filter>build</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\icore\lib\libmath\math.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\icore\lib\libmath\rect.hpp">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\icore\lib\libmath\vec2.hpp">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\icore\lib\libmath\vec3.hpp">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\icore\lib\libmath\vec4.hpp">
-      <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="A:\360data\重要数据\桌面\cTools\cTools.h">
       <Filter>build</Filter>
@@ -322,6 +322,27 @@
     <ClInclude Include="..\include\icore\family\ifamily.hpp">
       <Filter>include\icore\family</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\icore\type\istring.hpp">
+      <Filter>include\icore\type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\icore\lib\libIO\libIO.h">
+      <Filter>include\icore\lib\libIO</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\icore\lib\libmath\math.h">
+      <Filter>include\icore\lib\libmath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\icore\lib\libmath\rect.hpp">
+      <Filter>include\icore\lib\libmath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\icore\lib\libmath\vec2.hpp">
+      <Filter>include\icore\lib\libmath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\icore\lib\libmath\vec3.hpp">
+      <Filter>include\icore\lib\libmath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\icore\lib\libmath\vec4.hpp">
+      <Filter>include\icore\lib\libmath</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\include\icore\icore_all_public_headers">
@@ -335,6 +356,12 @@
     </None>
     <None Include="A:\360data\重要数据\桌面\cTools\FileHelper.cpp">
       <Filter>build</Filter>
+    </None>
+    <None Include="..\include\cppstd\format">
+      <Filter>include\cppstd</Filter>
+    </None>
+    <None Include="..\include\cppstd\thread">
+      <Filter>include\cppstd</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
