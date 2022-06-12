@@ -100,6 +100,12 @@
     <Filter Include="include\icore\lib\libMessageBox">
       <UniqueIdentifier>{38c9d0e5-eacb-476e-995f-0f2a5b851a22}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include\icore\lib\libFile">
+      <UniqueIdentifier>{bab2cc79-fc7e-4b3a-aae4-765469c9c1f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\icore\lib\libProcess">
+      <UniqueIdentifier>{80fb0bb3-5b5e-46d7-ad6b-af2187fb8ac9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ibasicLibrary.cpp">
@@ -325,7 +331,7 @@
     <ClInclude Include="..\include\icore\type\istring.hpp">
       <Filter>include\icore\type</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\icore\lib\libIO\libIO.h">
+    <ClInclude Include="..\include\icore\lib\libIO\IO.h">
       <Filter>include\icore\lib\libIO</Filter>
     </ClInclude>
     <ClInclude Include="..\include\icore\lib\libmath\math.h">
@@ -342,6 +348,12 @@
     </ClInclude>
     <ClInclude Include="..\include\icore\lib\libmath\vec4.hpp">
       <Filter>include\icore\lib\libmath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\icore\lib\libFile\file.h">
+      <Filter>include\icore\lib\libFile</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\icore\lib\libProcess\process.h">
+      <Filter>include\icore\lib\libProcess</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

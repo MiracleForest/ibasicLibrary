@@ -5,19 +5,19 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="include">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
     <Filter Include="resource">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
     <Filter Include="src">
-      <UniqueIdentifier>{94788ffb-3437-4827-bc9d-ef75af9901f1}</UniqueIdentifier>
+      <UniqueIdentifier>{ec454f28-56f1-44da-87ba-cb95c2991245}</UniqueIdentifier>
     </Filter>
     <Filter Include="dllmain">
-      <UniqueIdentifier>{b663ef6a-9b01-44cf-8e3d-34d857b4345c}</UniqueIdentifier>
+      <UniqueIdentifier>{f70a3930-3375-4536-837d-a69ea7773a48}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -27,38 +27,26 @@
     <ClInclude Include="pch.h">
       <Filter>other</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\icore\lib\libmath\math.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\icore\lib\libmath\vec2.hpp">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\icore\lib\libmath\vec3.hpp">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\icore\lib\libmath\vec4.hpp">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\icore\lib\libmath\rect.hpp">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\icore\lib\libFile\file.h">
+      <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
       <Filter>other</Filter>
     </ClCompile>
-    <ClCompile Include="src\math.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="dllmain.cpp">
       <Filter>dllmain</Filter>
     </ClCompile>
+    <ClCompile Include="src\file.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="libmath.rc">
+    <ResourceCompile Include="libFile.rc">
       <Filter>resource</Filter>
     </ResourceCompile>
   </ItemGroup>

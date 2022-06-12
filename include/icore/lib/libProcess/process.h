@@ -2,51 +2,45 @@
 *
 * Copyright(C) 2022 MiracleForest Studio. All Rights Reserved.
 *
-* @filename:libIO.h
-* @creation time:2022.6.5.13:14
+* @filename:process.h
+* @creation time:2022.6.12.12:52
 * @created by:Lovelylavender4
 * -----------------------------------------------------------------------------
-* 
-* 
+*
+*
 * -----------------------------------------------------------------------------
 * If you have contact or find bugs,
 * you can go to Github or email (MiracleForest@Outlook.com) to give feedback.
 * We will try to do our best!
 */
-#ifndef ___MIRACLEFOREST_I__LIBIO_LIBIO___
-#define ___MIRACLEFOREST_I__LIBIO_LIBIO___
+#ifndef ___MIRACLEFOREST_I__LIBPROCESS_LIBPROCESS___
+#define ___MIRACLEFOREST_I__LIBPROCESS_LIBPROCESS___
 
-#define ___ILIBRARYEXPORT___ 1
 
-#include "../../../cppstd/format"
-#include "../../type/istring.hpp"
 #include "../../family/imacrofamily.h"
 
+#include "../../type/istring.hpp"
 
 namespace i {
     namespace core {
-        namespace libIO {
+        namespace libProcess {
 
-            class IAPI libIO {
+            class IAPI Process {
             public:
-                libIO();
-                ~libIO();
-
-            public:
-
+                Process();
+                ~Process();
             public:
 
             public STATIC:
-                static void printf() {
 
-                }
             protected:
             private:
 
-            };
+            };//class Process
 
-        }
-    }
-}
+        }//namespace libProcess
+    }//namespace core
+}//namespace i
 
-#endif //!___MIRACLEFOREST_I__LIBIO_LIBIO___
+
+#endif //!___MIRACLEFOREST_I__LIBPROCESS_LIBPROCESS___

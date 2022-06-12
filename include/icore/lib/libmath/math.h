@@ -29,7 +29,7 @@ namespace i {
 				/// </summary>
 				/// <param name="x"></param>
 				/// <returns></returns>
-				inline bool floatIsValid(float x);
+				IAPI inline bool floatIsValid(float x);
 
 				/// <summary>
 				/// 

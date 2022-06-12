@@ -1,5 +1,9 @@
 ﻿#include "pch.h"
 
+#define ___ILIBRARYEXPORT___ 1
+
+#include "../../include/icore/lib/libmath/math.h"
+
 BOOL APIENTRY DllMain( HMODULE hModule,
                        DWORD  ul_reason_for_call,
                        LPVOID lpReserved

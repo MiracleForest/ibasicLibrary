@@ -16,6 +16,9 @@
     <Filter Include="src">
       <UniqueIdentifier>{5819986f-c8d0-48f1-bd44-1f73a37430f2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="dllmain">
+      <UniqueIdentifier>{19c4cc5c-21b1-4e4e-916e-8a8afdfd7794}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -27,19 +30,19 @@
     <ClInclude Include="resource.h">
       <Filter>resource</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\icore\lib\libIO\libIO.h">
+    <ClInclude Include="..\..\include\icore\lib\libIO\IO.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="dllmain.cpp">
-      <Filter>other</Filter>
-    </ClCompile>
     <ClCompile Include="pch.cpp">
       <Filter>other</Filter>
     </ClCompile>
-    <ClCompile Include="src\libIO.cpp">
+    <ClCompile Include="src\IO.cpp">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>dllmain</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -158,12 +158,14 @@
     <ClInclude Include="..\include\icore\exception\errorcode.hpp" />
     <ClInclude Include="..\include\icore\exception\exception.hpp" />
     <ClInclude Include="..\include\icore\family\ifamily.hpp" />
-    <ClInclude Include="..\include\icore\lib\libIO\libIO.h" />
+    <ClInclude Include="..\include\icore\lib\libFile\file.h" />
+    <ClInclude Include="..\include\icore\lib\libIO\IO.h" />
     <ClInclude Include="..\include\icore\lib\libmath\math.h" />
     <ClInclude Include="..\include\icore\lib\libmath\rect.hpp" />
     <ClInclude Include="..\include\icore\lib\libmath\vec2.hpp" />
     <ClInclude Include="..\include\icore\lib\libmath\vec3.hpp" />
     <ClInclude Include="..\include\icore\lib\libmath\vec4.hpp" />
+    <ClInclude Include="..\include\icore\lib\libProcess\process.h" />
     <ClInclude Include="..\include\icore\type\basic\basic\basic_number_type.hpp" />
     <ClInclude Include="..\include\icore\type\basic\basic\ibasic.hpp" />
     <ClInclude Include="..\include\icore\type\basic\basic\position.hpp" />
