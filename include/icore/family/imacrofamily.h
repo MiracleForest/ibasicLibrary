@@ -15,7 +15,7 @@
 #ifndef ___MIRACLEFOREST_I_IMACROFAMILY___
 #define ___MIRACLEFOREST_I_IMACROFAMILY___
 
-
+#include <cstdint>
 
 #ifdef _MSVC_LANG
 #define _STL_LANG _MSVC_LANG
@@ -150,15 +150,15 @@ namespace i::core {
     using u = unsigned;
 
 #ifdef __WINDOWS__
-    typedef __int64   int64;
-    typedef unsigned __int64   uint64;
+    using int64 = ::std::uint64_t;
+    using uint64 = ::std::uint64_t;
 #else
     typedef long long int64;
     typedef unsigned long long uint64;
 #endif//__WINDOWS__
     
 
-    using VA = uint64;
+    using VA = ::std::int64_t;
     using RVA = unsigned int;
 
     template<typename Type>

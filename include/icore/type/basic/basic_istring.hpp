@@ -26,6 +26,11 @@
 #include <set>
 #include <list>
 #include <map>
+
+#ifdef __CPP_20__
+#include <ranges>
+#endif
+
 #ifdef __WINDOWS__
 #include <windows.h>
 #include <stringapiset.h>
@@ -760,24 +765,6 @@ namespace i {
                     }
 
                     /// <summary>
-                    /// split basic_istring with  char
-                    /// </summary>
-                    std::vector<basic_istring> split(value_type ch)
-                    {
-                        std::vector<basic_istring> strs;
-                        size_type pos = this->find(ch), start = 0;
-                        while (pos != basic_istring::npos) {
-                            strs.push_back(this->substr(start, pos));
-                            start = pos + 1;
-                            pos = this->find(ch, pos + 1);
-                        }
-                        if (start < this->length()) {
-                            strs.push_back(this->substr(start));
-                        }
-                        return std::move(strs);
-                    }
-
-                    /// <summary>
                     /// match the basic_istring with regex
                     /// </summary>
                     bool match(const std::basic_regex<value_type>& regex, bool search = false)
@@ -800,8 +787,9 @@ namespace i {
                         return result;
                     }
                 public:
-                    template<typename Type>
-                    static std::string toStdString(Type value) {
+
+                    template<typename T>
+                    static std::string toStdString(T value) {
                         return std::to_string(value);
                     }
 
@@ -1410,27 +1398,9 @@ namespace i {
                     /// <param name="delimiters"></param>
                     /// <param name="pushEmpty"></param>
                     /// <returns></returns>
-                    std::vector<Type> split2Vector(
-                        const basic_istring& delimiters,
-                        bool pushEmpty = false) {
-                        std::vector<Type> arr;
-                        if (!(this->_data).empty()) {
-                            size_type start = 0;
-                            size_type end = (this->_data).find_first_of(delimiters.data(), start);
-                            while (end != npos) {
-                                Type token = (this->_data).substr(start, end - start);
-                                if (!token.empty() || (token.empty() && pushEmpty)) {
-                                    arr.emplace_back(token);
-                                }
-                                start = end + 1;
-                                end = (this->_data).find_first_of(delimiters.data(), start);
-                            }
-                            Type token = (this->_data).substr(start);
-                            if (!token.empty() || (token.empty() && pushEmpty)) {
-                                arr.emplace_back(token);
-                            }
-                        }
-                        return arr;
+                    std::vector<Type> split2Vector(char split_char)
+                    {
+                        
                     }
                     
                     /// <summary>
@@ -1843,9 +1813,27 @@ namespace i {
                     /// </summary>
                     static bool endsWith(const basic_istring& sub, const basic_istring& str);
 
+                    //return a vector with split string as default
+                    std::vector<Type> split(char split_char)
+                    {
+                        auto split_view = m_get_split_view(split_char);
+                        return {split_view.begin(), split_view.end() };
+                    }
+
+
                 protected:
 
                 private:
+
+                    auto m_get_split_view(char split_char)
+                    {
+                        auto result_view = _data
+                                         | std::views::split(split_char)
+                                         | std::views::transform([](auto view) {
+                                            return Type{ view.begin(), view.end() };
+                                         });
+                        return result_view;
+                    }
                     Type _data;
                 };
 

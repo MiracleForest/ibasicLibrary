@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "atomic": "cpp",
+        "compare": "cpp",
+        "cstdint": "cpp"
+    }
+}

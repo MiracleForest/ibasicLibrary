@@ -18,7 +18,7 @@
 
 #include "../family/imacrofamily.h"
 #include <string>
-#include "basic/istring.hpp"
+#include "basic/basic_istring.hpp"
 
 namespace i {
     namespace core {
