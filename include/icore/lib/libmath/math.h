@@ -18,6 +18,7 @@
 
 #include "../../family/imacrofamily.h"
 #include "../../type/basic/istring.hpp"
+#include "../../../cppstd/cmath"
 
 namespace i {
     namespace core {

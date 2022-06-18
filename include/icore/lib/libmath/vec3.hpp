@@ -18,7 +18,7 @@
 
 #include "../../family/imacrofamily.h"
 #include "math.h"
-#include "../../../cppstd/math"
+#include "../../../cppstd/cmath"
 #include "../../type/istring.hpp"
 
 #include "vec2.hpp"
