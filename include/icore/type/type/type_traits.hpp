@@ -18,9 +18,9 @@
 
 #include "../../family/imacrofamily.h"
 
-#include <type_traits>
-#include <string>
-#include <concepts>
+#include "../../../cppstd/type_traits"
+#include "../../../cppstd/string"
+#include "../../../cppstd/concepts"
 
 namespace i {
 	namespace core{

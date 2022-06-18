@@ -18,8 +18,8 @@
 
 #include "../../family/imacrofamily.h"
 #include "math.h"
-#include <string>
-#include <thread>
+#include "../../type/istring.hpp"
+#include "../../../cppstd/thread"
 
 #ifdef __WINDOWS__
 #include <Windows.h>

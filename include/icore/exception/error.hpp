@@ -15,7 +15,8 @@
 #ifndef ___MIRACLEFOREST_I_ERROR___
 #define ___MIRACLEFOREST_I_ERROR___
 
-#include <string>
+#include "../../cppstd/string"
+#include "../../cppstd/source_location"
 #include "error.hpp"
 #include "exception.hpp"
 #include "errorcode.hpp"

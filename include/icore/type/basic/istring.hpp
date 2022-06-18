@@ -19,13 +19,13 @@
 #include "../../family/imacrofamily.h"
 #include "../type/type_traits.hpp"
 
-#include <iostream>
-#include <string>
-#include <vector>
-#include <regex>
-#include <set>
-#include <list>
-#include <map>
+#include "../../../cppstd/iostream"
+#include "../../../cppstd/string"
+#include "../../../cppstd/vector"
+#include "../../../cppstd/regex"
+#include "../../../cppstd/set"
+#include "../../../cppstd/list"
+#include "../../../cppstd/map"
 #ifdef __WINDOWS__
 #include <windows.h>
 #include <stringapiset.h>

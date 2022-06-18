@@ -21,11 +21,11 @@
 #include "../type/type_traits.hpp"
 #include "../type/concepts.hpp"
 
-#include <type_traits>
-#include <concepts>
-#include <compare>
-#include <ostream>
-#include <string>
+#include "../../../cppstd/type_traits"
+#include "../../../cppstd/concepts"
+#include "../../../cppstd/compare"
+#include "../../../cppstd/ostream"
+#include "../../../cppstd/string"
 
 namespace i{
 	namespace core {

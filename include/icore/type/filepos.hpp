@@ -17,7 +17,6 @@
 #define ___MIRACLEFOREST_I_FILEPOS___
 
 #include "../family/imacrofamily.h"
-#include <string>
 #include "istring.hpp"
 #include "basic/basic/position.hpp"
 

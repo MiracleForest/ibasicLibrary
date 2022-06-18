@@ -18,10 +18,10 @@
 #include "../../family/imacrofamily.h"
 #if __WIN32__
 #include <windows.h>
-#endif
-#include <string>
 #include <stringapiset.h>
 #include <atlstr.h>
+#endif
+#include "../../../cppstd/string"
 
 /// <summary>
 /// 

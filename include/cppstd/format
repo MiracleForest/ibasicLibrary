@@ -3099,12 +3099,6 @@ _NODISCARD string format(const _Fmt_string<_Types...> _Fmt, _Types&&... _Args) {
     return _STD vformat(_Fmt._Str, _STD make_format_args(_Args...));
 }
 
-#include "../icore/type/istring.hpp"
-
-template <class... _Types>
-_NODISCARD string format(const i::core::itype::istring _Fmt, _Types&&... _Args) {
-    return _STD format(_Fmt.data(), _STD make_format_args(_Args...));
-}
 
 template <class... _Types>
 _NODISCARD wstring format(const _Fmt_wstring<_Types...> _Fmt, _Types&&... _Args) {

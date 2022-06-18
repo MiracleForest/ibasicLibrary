@@ -18,8 +18,8 @@
 
 #include "../../family/imacrofamily.h"
 #include "math.h"
-#include <math.h>
-#include <string>
+#include "../../../cppstd/math"
+#include "../../type/istring.hpp"
 
 #include "vec2.hpp"
 

@@ -17,7 +17,6 @@
 #define ___MIRACLEFOREST_I_ISTRING___
 
 #include "../family/imacrofamily.h"
-#include <string>
 #include "basic/istring.hpp"
 
 namespace i {

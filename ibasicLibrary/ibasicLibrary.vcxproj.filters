@@ -126,9 +126,6 @@
     <ClCompile Include="ibasicLibrary.cpp">
       <Filter>test</Filter>
     </ClCompile>
-    <ClCompile Include="..\include\cppstd\delayhlp.cpp">
-      <Filter>include\cppstd</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\docs\filelist.txt">

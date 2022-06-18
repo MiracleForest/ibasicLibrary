@@ -16,14 +16,14 @@
 #define ___MIRACLEFOREST_I_CONCEPTS___
 
 #include "../../family/imacrofamily.h"
-#include <type_traits>
+#include "../../../cppstd/type_traits"
 #include "type_traits.hpp"
 
 #ifndef __CPP_20__
 #pragma message("The contents of <concepts> are available only with C++20 concepts support.")
 #else
 
-#include <concepts>
+#include "../../../cppstd/concepts"
 
 namespace i {
     namespace core {
