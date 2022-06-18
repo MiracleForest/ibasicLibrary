@@ -21,19 +21,31 @@
 #include "../exception/error.hpp"
 
 
-i::core::iexception::error start();
+class Main{
+public:
+    Main(){}
+    ~Main(){}
+public:
+    i::core::iexception::error start(int argc, char** argv, char** envp);
 
+};
 
-int main() {
+#include <iostream>
 
-    auto rt = start();
-    if (rt.isNoError()) {
-        return 0;
+int main(int argc,char** argv,char** envp) {
+    try {
+        Main appMain;
+        auto rt = appMain.start(argc, argv, envp);
+        if (rt.isNoError()) {
+            return 0;
+        }
+        if (rt.isCanBeIgnored()) {
+            return 1;
+        }
     }
-    if (rt.isCanBeIgnored()) {
-        return 1;
+    catch (...) {
+        return -2;
     }
-
     return -1;
 }
 

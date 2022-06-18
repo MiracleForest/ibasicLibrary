@@ -121,6 +121,18 @@
     <Filter Include="include\cppstd\msclr\com">
       <UniqueIdentifier>{b7b3a90b-e48e-4ced-8c8f-c097fd15b5fb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include\icore\lib\libTime">
+      <UniqueIdentifier>{7b31138c-921a-4d41-8d9b-0799e0e2b7fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\icore\lib\linDbg">
+      <UniqueIdentifier>{48310852-3ff2-4ab7-8736-0388712e5fee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\icore\lib\libNet">
+      <UniqueIdentifier>{2ee77632-a490-4c89-99ae-5e2696a99ec3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\icore\lib\libCode">
+      <UniqueIdentifier>{d4d0fa0e-8c63-42f1-a8fa-ec7312522984}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ibasicLibrary.cpp">
@@ -154,23 +166,8 @@
     <ClInclude Include="..\include\icore\type\basic\number.hpp">
       <Filter>include\icore\type\basic</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\ibasicLibrary_all_public_headers">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="..\include\icore\type\type\type_traits.hpp">
       <Filter>include\icore\type\type</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\icore\family\family_all_public_headers">
-      <Filter>include\icore\family</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\icore\type\basic\basic_all_public_headers">
-      <Filter>include\icore\type\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\icore\type\type\type_all_public_headers">
-      <Filter>include\icore\type\type</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\icore\type\type_all_public_headers">
-      <Filter>include\icore\type</Filter>
     </ClInclude>
     <ClInclude Include="..\include\icore\type\basic\numberArray.hpp">
       <Filter>include\icore\type\basic</Filter>
@@ -754,14 +751,11 @@
     <ClInclude Include="..\include\cppstd\msclr\com\ptr.h">
       <Filter>include\cppstd\msclr\com</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>resource</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\include\icore\icore_all_public_headers">
-      <Filter>include\icore</Filter>
-    </None>
-    <None Include="..\include\icore\algorithm\algorithm_all_public_headers">
-      <Filter>include\icore\algorithm</Filter>
-    </None>
     <None Include="..\include\cppstd\format">
       <Filter>include\cppstd</Filter>
     </None>
@@ -1472,5 +1466,10 @@
     <Library Include="..\third-party\detours\lib\syelog.lib">
       <Filter>third-party\detours\lib</Filter>
     </Library>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ibasicLibrary.rc">
+      <Filter>resource</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>
