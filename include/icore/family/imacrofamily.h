@@ -66,10 +66,10 @@
 #elif defined(__clang__)
 #define __CLANG__ __clang_version__
 #elif defined(__GNUC__) || defined(__GNUG__)
-#define __GCC__ 
+#define __GCC__ 1
 #define __GCCV__ std::to_string(__GNUC__) + "." + std::to_string(__GNUC_MINOR__) + "." + std::to_string(__GNUC_PATCHLEVEL__)
 #elif defined(__HP_cc) || defined(__HP_aCC)
-#define __HP__
+#define __HP__ 1  
 #elif defined(__IBMCPP__)
 #define __ILECPP__ __IBMCPP__
 #elif defined(_MSC_VER)
@@ -79,7 +79,7 @@
 #elif defined(__SUNPRO_CC)
 #define __SUNPRO__ __SUNPRO_CC
 #else
-#define __UNKNOWN__
+#define __UNKNOWN__ 1
 #endif
 
 
@@ -142,31 +142,31 @@
 #define STATIC
 
 
-namespace i::core {
-
-    using ushort = unsigned short;
-    using uint = unsigned int;
-    using ulong = unsigned long;
-    using u = unsigned;
+namespace i {
+    namespace core {
+        using ushort = unsigned short;
+        using uint = unsigned int;
+        using ulong = unsigned long;
+        using u = unsigned;
 
 #ifdef __WINDOWS__
-    typedef __int64   int64;
-    typedef unsigned __int64   uint64;
+        typedef __int64   int64;
+        typedef unsigned __int64   uint64;
 #else
-    typedef long long int64;
-    typedef unsigned long long uint64;
+        typedef long long int64;
+        typedef unsigned long long uint64;
 #endif//__WINDOWS__
-    
 
-    using VA = uint64;
-    using RVA = unsigned int;
 
-    template<typename Type>
-    using Ptr = Type*;
+        using VA = uint64;
+        using RVA = unsigned int;
 
-    template<typename Type>
-    using CPtr = const Type*;
+        template<typename Type>
+        using Ptr = Type*;
 
+        template<typename Type>
+        using CPtr = const Type*;
+    }
 }
 
 #endif //!___MIRACLEFOREST_I_IMACROFAMILY___

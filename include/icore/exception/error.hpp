@@ -17,7 +17,6 @@
 
 #include "../../cppstd/string"
 #include "../../cppstd/source_location"
-#include "error.hpp"
 #include "exception.hpp"
 #include "errorcode.hpp"
 #include "../family/imacrofamily.h"
@@ -33,11 +32,11 @@ namespace i {
             struct ErrorInfo {
                 ErrorCode _code;
                 int _icode;
-                std::string _dscription;
-                std::string _suggestion;
-                type::FilePos _position;
-                type::level _level;
-                bool _canBeIgnored;
+                std::string _dscription;//描述
+                std::string _suggestion;//建议
+                type::FilePos _position;//位置
+                type::level _level;//等级
+                bool _canBeIgnored;//是否可以忽略
             };
 
 
@@ -54,41 +53,92 @@ namespace i {
             public:
                 ~error() {}
             public:
+                
 
-                /// <summary>
-                /// Can the error be ignored
-                /// </summary>
-                /// <returns></returns>
+                /****
+                * @author Lovelylavender4
+                * @since 编写此代码的时间或版本
+                * @brief 此错误是否可以忽略
+                *
+                * @future 未来要做的事情
+                * @retval 此错误是否可以忽略
+                *
+                * @par Example
+                * @code
+                * 代码示例
+                * @endcode
+                * ...
+                * if(!xxx.isCanBeIgnored){
+                * ...
+                * }
+                * ...
+                * @include 需要包含的头文件
+                * @details
+                * 此错误是否可以忽略
+                * @enddetails
+                ****/
                 bool isCanBeIgnored() const{
                     return _errorinfo._canBeIgnored;
                 }
 
-                /// <summary>
-                /// 
-                /// </summary>
-                /// <returns></returns>
+                /****
+                * @author Lovelylavender4
+                * @since 编写此代码的时间或版本
+                * @brief 描述
+                *
+                * @param 参数名 注释
+                * @tparam 模板参数名 注释
+                * @future 未来要做的事情
+                * @retval 返回值注释
+                * @throws 抛出的异常
+                *
+                * @note
+                * 注意事项
+                * @endnote
+                * @pre 代码使用的前提条件
+                * @par Example
+                * @code
+                * 代码示例
+                * @endcode
+                *
+                * @warning 警告
+                * @bug 存在的漏洞
+                * @include 需要包含的头文件
+                * @details
+                * 详细描述
+                * @enddetails
+                * @other 其他
+                ****/
                 bool isNoError() {
                     return _noError;
                 }
 
-            public:
-                /// <summary>
-                /// Create a custom error
-                /// </summary>
-                /// <param name="_code">error code</param>
-                /// <param name="_dscription"></param>
-                /// <param name="_suggestion"></param>
-                /// <param name="_position"></param>
-                /// <param name="_level"></param>
-                /// <param name="_canBeIgnored"></param>
-                /// <returns></returns>
+            public:                
+                
+                /****
+                * @author Lovelylavender4
+                * @brief 创建一个自定义的错误
+                * @param _code 错诶代码
+                * @param _dscription = "" 描述
+                * @param _suggestion = "" 建议
+                * @param _position = type::fPos::makeDefault() 位置
+                * @param _level = 0 等级
+                * @param _canBeIgnored = false 是否可以忽略
+                * @retval 错误对象
+                * @note 错诶代码
+                * @par Example
+                * @code
+                * NULL
+                * @endcode
+                * @include <string>,filepos.hpp,level.hpp
+                ****/
                 static error make(
                     int _code,
                     std::string _dscription = "",
                     std::string _suggestion = "",
                     type::FilePos _position = type::fPos::makeDefault(),
                     type::level _level = 0,
-                    bool _canBeIgnored = 0
+                    bool _canBeIgnored = false
                 ) {
 
                     ErrorInfo errorinfo;
@@ -104,31 +154,63 @@ namespace i {
                     return errorinfo;
                 }
 
-                /// <summary>
-                /// make a error
-                /// </summary>
-                /// <param name="_code"></param>
-                /// <returns></returns>
+                /****
+                * @author Lovelylavender4
+                * @brief 创建一个错误
+                * @param _code 代码
+                * @future NULL
+                * @retval error对象
+                * @throws NULL
+                * @note NULL
+                * @par Example
+                * @code
+                * NULL
+                * @endcode
+                * @warning NULL
+                * @bug NULL
+                * @include NULL
+                ****/
                 static error make(
                     ErrorCode _code
                 ) {
                     
                 }
 
-                /// <summary>
-                /// 
-                /// </summary>
-                /// <returns></returns>
+                /****
+                * @author Lovelylavender4
+                * @brief 无错误
+                * @retval 错误对象
+                * @par Example
+                * 
+                * @code
+                * i::core::iexception::error testFunction(){
+                * return i::core::iexception::error::noError();
+                * }
+                * @endcode
+                * 
+                * @warning NULL
+                * @bug NULL
+                ****/
                 static error noError() {
                     return error();
                 }
 
             public:
-
-                /// <summary>
-                /// get ErrorInfo
-                /// </summary>
-                /// <returns>ErrorInfo</returns>
+                
+                /****
+                * @author Lovelylavender4
+                * @brief get ErrorInfo
+                * @retval ErrorInfo 错误信息
+                * @throws NULL
+                * @note NULL
+                * @par Example
+                * @code
+                * NULL
+                * @endcode
+                * @warning NULL
+                * @bug NULL
+                * @include NULL
+                ****/
                 ErrorInfo data()const {
                     return _errorinfo;
                 }

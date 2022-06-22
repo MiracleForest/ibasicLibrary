@@ -26,10 +26,7 @@ namespace i {
 
             struct fPos{
 
-                /// <summary>
-                /// 
-                /// </summary>
-                /// <returns></returns>
+
                 static fPos makeDefault(){
                     fPos p;
                     p.x = 0;
@@ -50,11 +47,10 @@ namespace i {
                 FilePos(fPos pos):_pos(pos) {}
                 ~FilePos(){}
             public:
-                /// <summary>
-                /// 
-                /// </summary>
-                /// <returns></returns>
+                
+
                 fPos data()const { return _pos; }
+
             public:
             protected:
             private:

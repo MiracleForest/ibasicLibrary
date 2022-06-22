@@ -27,15 +27,11 @@
 
 namespace i {
     namespace core {
-        /// <summary>
-        /// Define concept arithmetic 
-        /// </summary>
+
         template <typename T>
         concept arithmetic = std::is_arithmetic<T>::value;
 
-        /// <summary>
-        /// 
-        /// </summary>
+
         template <typename T>
         concept stdString = i::core::type::type_traits::is_std_string_v<T>;
 
