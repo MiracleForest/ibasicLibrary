@@ -18,34 +18,28 @@
 #include "../../family/imacrofamily.h"
 #if __WIN32__
 #include <windows.h>
-#endif
-#include <string>
 #include <stringapiset.h>
 #include <atlstr.h>
+#endif
+#include "../../../cppstd/string"
 
-/// <summary>
-/// 
-/// </summary>
+
 namespace i {
 	namespace core {
-		/// <summary>
-		/// 
-		/// </summary>
+
 		enum class typeList {
 			unkType,
 			itype,
-			number,
+			basic_number,
 			numberArray_const_iterator,
 			numberArray_iterator,
 			numberArray,
-			istring
+			basic_istring
 			
 		};
 		using iType = typeList;
 
-		/// <summary>
-		/// 
-		/// </summary>
+
 		class itype {
 		public:
 			itype() :mType(iType::unkType) { }
@@ -66,36 +60,73 @@ namespace i {
 			/// <include></include>
 			/// <bug></bug>
 			/// <returns>type enum</returns>
+			/****
+			* @author Lovelylavender4
+			* @since 2022.6.21.13:25
+			* @brief 获取类型枚举
+			*
+			* @retval 获取到的类型枚举
+			*
+			* @par Example
+			* @code
+			* 代码示例
+			* @endcode
+			*
+			* @include -
+			* @details
+			* 获取类型枚举
+			* @enddetails
+			****/
 			itype getType()const {
 				return typeList::itype;
 			}
 
-			/// <summary>
-			/// get data
-			/// </summary>
-			/// <warning></warning>
-			/// <include></include>
-			/// <bug></bug>
-			/// <returns>data</returns>
 			iType data()const { return mType; }
 
-			/// <summary>
-			/// set data
-			/// </summary>
-			/// <warning></warning>
-			/// <include></include>
-			/// <bug></bug>
-			/// <param name="t">new data</param>
+			/****
+			* @author Lovelylavender4
+			* @since 2022.6.21.13:28
+			* @brief 设置mType的值
+			*
+			* @param t mType的新值
+			*
+			* @par Example
+			* @code
+			* 代码示例
+			* @endcode
+			*
+			* @include -
+			* @details
+			* 设置mType的值
+			* @enddetails
+			****/
 			void setdata(iType t) { mType = t; }
 
 			/// <summary>
-			/// Get the name of the type enum
+			/// 
 			/// </summary>
 			/// <param name="t">type enum</param>
 			/// <warning></warning>
 			/// <include></include>
 			/// <bug></bug>
 			/// <returns>Type Name</returns>
+			/****
+			* @author Lovelylavender4
+			* @since 2022.6.21.13:30
+			* @brief 获取类型枚举的字符串名称
+			*
+			* @param t 类型枚举
+			* @retval 类型枚举的字符串名称
+			*
+			* @par Example
+			* @code
+			* 代码示例
+			* @endcode
+			*
+			* @details
+			* 获取类型枚举的字符串名称
+			* @enddetails
+			****/
 			static const char* getString(iType t) {
 				switch (t) {
 				case iType::unkType: {
@@ -104,8 +135,8 @@ namespace i {
 				case iType::itype: {
 					return "itype";
 				}
-				case iType::number: {
-					return "number";
+				case iType::basic_number: {
+					return "basic_number";
 				}
 				case iType::numberArray_const_iterator: {
 					return "numberArray_const_iterator";
@@ -116,8 +147,8 @@ namespace i {
 				case iType::numberArray: {
 					return "numberArray";
 				}
-				case iType::istring:{
-					return "istring";
+				case iType::basic_istring:{
+					return "basic_istring";
 				}
 				default: {
 					return "unk-Type";
@@ -125,28 +156,47 @@ namespace i {
 				}
 			}
 
-			/// <summary>
-			/// Get the name of the type
-			/// </summary>
-			/// <typeparam name="Type">type</typeparam>
-			/// <warning></warning>
-			/// <include></include>
-			/// <bug></bug>
-			/// <returns>Type Name</returns>
+			/****
+			* @author Lovelylavender4
+			* @since 2022.6.21.13:34
+			* @brief 获取类型的字符串名称
+			*
+			* @tparam Type 类型
+			* @retval 类型的字符串名称
+			*
+			* @par Example
+			* @code
+			* 代码示例
+			* @endcode
+			*
+			* @include 需要包含的头文件
+			* @details
+			* 获取类型的字符串名称
+			* @enddetails
+			****/
 			template<typename Type>
 			static const char* getTypeString() {
 				return typeid(Type).name();
 			}
 
-			/// <summary>
-			/// Get the name of the type
-			/// </summary>
-			/// <typeparam name="Type">-</typeparam>
-			/// <param name="t">type</param>
-			/// <warning></warning>
-			/// <include></include>
-			/// <bug></bug>
-			/// <returns>Type Name</returns>
+			/****
+			* @author Lovelylavender4
+			* @since 2022.6.21.13:35
+			* @brief 获取类型的字符串名称
+			*
+			* @param t -
+			* @retval 类型的字符串名称
+			*
+			* @par Example
+			* @code
+			* 代码示例
+			* @endcode
+			*
+			* @include -
+			* @details
+			* 获取类型的字符串名称
+			* @enddetails
+			****/
 			template<typename Type>
 			static const char* getTypeString(Type t) {
 				return typeid(t).name();
@@ -159,18 +209,6 @@ namespace i {
 			iType mType;
 		};
 
-		/// <summary>
-		/// toStdString
-		/// </summary>
-		/// <param name="value">value</param>
-		/// <warning></warning>
-		/// <include></include>
-		/// <bug></bug>
-		/// <returns>Converted string</returns>
-		template <typename T>
-		inline std::string toStdString(T value) {
-			return itype::toStdString(value);
-		}
 
 	}//namespace icore
 }//namespace i

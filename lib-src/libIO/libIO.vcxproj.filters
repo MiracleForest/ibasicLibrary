@@ -30,7 +30,13 @@
     <ClInclude Include="resource.h">
       <Filter>resource</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\icore\lib\libIO\IO.h">
+    <ClInclude Include="..\..\include\icore\lib\libIO\io.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\icore\lib\libIO\file.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\icore\lib\libIO\console.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
@@ -38,11 +44,17 @@
     <ClCompile Include="pch.cpp">
       <Filter>other</Filter>
     </ClCompile>
-    <ClCompile Include="src\IO.cpp">
+    <ClCompile Include="src\io.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="dllmain.cpp">
       <Filter>dllmain</Filter>
+    </ClCompile>
+    <ClCompile Include="src\file.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\console.cpp">
+      <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -6,8 +6,8 @@
 * @creation time:2022.5.26.13:13
 * @created by:Lovelylavender4
 * -----------------------------------------------------------------------------
-* 
-* 
+*
+*
 * -----------------------------------------------------------------------------
 * If you have contact or find bugs,
 * you can go to Github or email (MiracleForest@Outlook.com) to give feedback.
@@ -21,20 +21,86 @@
 #include "../exception/error.hpp"
 
 
-i::core::iexception::error start();
+class Main {
+public:
+	Main() {}
+	~Main() {}
+public:
+	/****
+	* @author Lovelylavender4
+	* @since 编写此代码的时间或版本
+	* @brief 描述
+	*
+	* @param 参数名 注释
+	* @tparam 模板参数名 注释
+	* @future 未来要做的事情
+	* @retval 返回值注释
+	* @throws 抛出的异常
+	*
+	* @note
+	* 注意事项
+	* @endnote
+	* @pre 使用此函数的前提条件
+	* @par Example
+	* @code
+	* 代码示例
+	* @endcode
+	*
+	* @warning 警告
+	* @bug 存在的漏洞
+	* @include 需要包含的头文件
+	* @details
+	* 详细描述
+	* @enddetails
+	* @other 其他
+	****/
+	i::core::iexception::error start(int argc, char** argv, char** envp);
 
+};
 
-int main() {
-
-    auto rt = start();
-    if (rt.isNoError()) {
-        return 0;
-    }
-    if (rt.isCanBeIgnored()) {
-        return 1;
-    }
-
-    return -1;
+/****
+* @author Lovelylavender4
+* @since 编写此代码的时间或版本
+* @brief 描述
+*
+* @param 参数名 注释
+* @tparam 模板参数名 注释
+* @future 未来要做的事情
+* @retval 返回值注释
+* @throws 抛出的异常
+*
+* @note
+* 注意事项
+* @endnote
+* @pre 使用此函数的前提条件
+* @par Example
+* @code
+* 代码示例
+* @endcode
+*
+* @warning 警告
+* @bug 存在的漏洞
+* @include 需要包含的头文件
+* @details
+* 详细描述
+* @enddetails
+* @other 其他
+****/
+int main(int argc, char** argv, char** envp) {
+	try {
+		Main appMain;
+		auto rt = appMain.start(argc, argv, envp);
+		if (rt.isNoError()) {
+			return 0;
+		}
+		if (rt.isCanBeIgnored()) {
+			return 1;
+		}
+	}
+	catch (...) {
+		return -2;
+	}
+	return -1;
 }
 
 

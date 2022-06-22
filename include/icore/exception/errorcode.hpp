@@ -16,6 +16,8 @@
 #ifndef ___MIRACLEFOREST_I_ERRORCODE___
 #define ___MIRACLEFOREST_I_ERRORCODE___
 
+#include "../family/imacrofamily.h"
+
 namespace i {
     namespace core {
         namespace iexception {

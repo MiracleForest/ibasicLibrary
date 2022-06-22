@@ -31,7 +31,7 @@ long long useTime(std::function<void()> func) {
 
 #endif
 
-i::core::iexception::error start() {
+i::core::iexception::error Main::start(int argc, char** argv, char** envp) {
 
     long long t = useTime([]() {
         {

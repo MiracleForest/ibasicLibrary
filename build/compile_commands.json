@@ -1,0 +1,7 @@
+[
+{
+  "directory": "C:/Users/dell/Desktop/Git_Project/ibasicLibrary/build",
+  "command": "E:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles/ibasicLibrary.dir/includes_CXX.rsp -g -std=gnu++20 -o CMakeFiles\\ibasicLibrary.dir\\ibasicLibrary\\ibasicLibrary.cpp.obj -c C:\\Users\\dell\\Desktop\\Git_Project\\ibasicLibrary\\ibasicLibrary\\ibasicLibrary.cpp",
+  "file": "C:/Users/dell/Desktop/Git_Project/ibasicLibrary/ibasicLibrary/ibasicLibrary.cpp"
+}
+]

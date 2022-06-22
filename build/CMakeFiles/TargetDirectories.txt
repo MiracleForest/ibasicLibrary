@@ -1,0 +1,3 @@
+C:/Users/dell/Desktop/Git_Project/ibasicLibrary/build/CMakeFiles/ibasicLibrary.dir
+C:/Users/dell/Desktop/Git_Project/ibasicLibrary/build/CMakeFiles/edit_cache.dir
+C:/Users/dell/Desktop/Git_Project/ibasicLibrary/build/CMakeFiles/rebuild_cache.dir

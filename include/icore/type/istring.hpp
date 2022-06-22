@@ -17,8 +17,12 @@
 #define ___MIRACLEFOREST_I_ISTRING___
 
 #include "../family/imacrofamily.h"
+<<<<<<< HEAD
 #include <string>
 #include "basic/basic_istring.hpp"
+=======
+#include "basic/istring.hpp"
+>>>>>>> 3763e3863391af183f7a848b6160c34ff3762012
 
 namespace i {
     namespace core {

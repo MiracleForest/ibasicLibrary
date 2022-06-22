@@ -13,41 +13,20 @@
 * you can go to Github or email (MiracleForest@Outlook.com) to give feedback.
 * We will try to do our best!
 */
-#ifndef ___MIRACLEFOREST_I__LIBIO_LIBIO___
-#define ___MIRACLEFOREST_I__LIBIO_LIBIO___
+#ifndef ___MIRACLEFOREST_I__LIBIO_IO___
+#define ___MIRACLEFOREST_I__LIBIO_IO___
 
+#include "../../family/imacrofamily.h"
 #include "../../../cppstd/format"
 #include "../../type/istring.hpp"
-#include "../../family/imacrofamily.h"
 
 
 namespace i {
     namespace core {
         namespace libIO {
 
-            class IAPI libIO {
-            public:
-                libIO();
-                ~libIO();
-
-            public:
-
-            public:
-
-            public STATIC:
-
-                template<class...Args>
-                static void printf(Args...args) {
-
-                }
-
-            protected:
-            private:
-
-            };//class IAPI libIO
-
         }//namespace libIO
     }//namespace core
 }//namespace i
 
-#endif //!___MIRACLEFOREST_I__LIBIO_LIBIO___
+#endif //!___MIRACLEFOREST_I__LIBIO_IO___

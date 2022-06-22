@@ -21,30 +21,50 @@
 
 namespace i{
     namespace core {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <typeparam name="Type"></typeparam>
+        
+
         template<typename Type>
         class ibasic {
 
         };//class ibasic
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <typeparam name="Type"></typeparam>
-        /// <warning></warning>
+        
+
         template<typename Type>
         class ibasic_data_type : public ibasic<Type> {
-            /// <summary>
-            /// 
-            /// </summary>
-            /// <returns></returns>
+            
+			/****
+			* @author Lovelylavender4
+			* @since 编写此代码的时间或版本
+			* @brief 描述
+			*
+			* @param 参数名 注释
+			* @tparam 模板参数名 注释
+			* @future 未来要做的事情
+			* @retval 返回值注释
+			* @throws 抛出的异常
+			*
+			* @note
+			* 注意事项
+			* @endnote
+			* @pre 使用此函数的前提条件
+			* @par Example
+			* @code
+			* 代码示例
+			* @endcode
+			*
+			* @warning 警告
+			* @bug 存在的漏洞
+			* @include 需要包含的头文件
+			* @details
+			* 详细描述
+			* @enddetails
+			* @other 其他
+			****/
             virtual Type data() = 0;
 
         };//class ibasic_data_type : public ibasic<Type>
-    }
+    }//namespace core
 }//namespace i
 
 #endif //!___MIRACLEFOREST_I_INASIC___

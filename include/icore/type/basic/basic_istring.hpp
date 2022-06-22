@@ -19,6 +19,7 @@
 #include "../../family/imacrofamily.h"
 #include "../type/type_traits.hpp"
 
+<<<<<<< HEAD:include/icore/type/basic/basic_istring.hpp
 #include <iostream>
 #include <string>
 #include <vector>
@@ -31,6 +32,15 @@
 #include <ranges>
 #endif
 
+=======
+#include "../../../cppstd/iostream"
+#include "../../../cppstd/string"
+#include "../../../cppstd/vector"
+#include "../../../cppstd/regex"
+#include "../../../cppstd/set"
+#include "../../../cppstd/list"
+#include "../../../cppstd/map"
+>>>>>>> 3763e3863391af183f7a848b6160c34ff3762012:include/icore/type/basic/istring.hpp
 #ifdef __WINDOWS__
 #include <windows.h>
 #include <stringapiset.h>
@@ -48,9 +58,7 @@ namespace i {
                 class basic_istring final {
                 public:
 
-                    /// <summary>
-                    /// typedef same as strString typedef
-                    /// </summary>
+                    // typedef same as strString typedef
                     typedef typename Type::traits_type traits_type;
                     typedef typename Type::value_type value_type;
                     typedef typename Type::allocator_type allocator_type;
@@ -66,9 +74,7 @@ namespace i {
                     typedef typename Type::const_reverse_iterator const_reverse_iterator;
                     static const size_type npos = Type::npos;
                 public:
-                    /// <summary>
-                    /// basic_istring all Constructor
-                    /// </summary>
+                    //basic_istring all Constructor
                     explicit basic_istring()
                         : _data() {}
 
@@ -107,15 +113,28 @@ namespace i {
 
                     ~basic_istring() {}
 
-                    /// <summary>
-                    /// basic_istring assign as stdString assign
-                    /// </summary>
+                    /****
+                    * @author ticks
+                    * @since 编写此代码的时间或版本
+                    * @brief basic_istring assign as stdString assign
+                    *
+                    * @param count 注释
+                    * @param ch 注释
+                    * @retval basic_istring&
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @include <string>
+                    ****/
                     basic_istring& assign(size_type count, value_type ch)
                     {
                         this->_data.assign(count, ch);
                         return *this;
                     }
 
+                    
                     basic_istring& assign(const basic_istring& str)
                     {
                         if (*this == str) {
@@ -167,20 +186,67 @@ namespace i {
                         return *this;
                     }
 
-                    /// <summary>
-                    /// get the stdString allocator
-                    /// </summary>
+                    /****
+                    * @author ticks
+                    * @since 编写此代码的时间或版本
+                    * @brief get the stdString allocator
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * get the stdString allocator
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     allocator_type getAllocator() const
                     {
                         return this->_data.get_allocator();
                     }
 
-                    /// <summary>
-                    /// get the basic_istring char at pos
-                    /// </summary>
-                    /// <warning>
-                    /// exception : when pos >= length() throw std::out_of_range
-                    /// </warning>
+                    /****
+                    * @author ticks
+                    * @since 编写此代码的时间或版本
+                    * @brief get the basic_istring char at pos
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws std::out_of_range : when pos >= length()
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     reference charAt(size_type pos)
                     {
                         return this->_data.at(pos);
@@ -191,12 +257,34 @@ namespace i {
                         return this->_data.at(pos);
                     }
 
-                    /// <summary>
-                    /// get basic_istring first char
-                    /// </summary>
-                    /// <warning>
-                    /// if basic_istring length() == 0, the behavior is undefined
-                    /// </warning>
+                    /****
+                    * @author ticks
+                    * @since 编写此代码的时间或版本
+                    * @brief get basic_istring first char
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning if basic_istring length() == 0, the behavior is undefined
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     reference front()
                     {
                         return this->_data.front();
@@ -207,12 +295,34 @@ namespace i {
                         return this->_data.front();
                     }
 
-                    /// <summary>
-                    /// get basic_istring last char
-                    /// </summary>
-                    /// <warning>
-                    /// if basic_istring length() == 0, the behavior is undefined
-                    /// </warning>
+                    /****
+                    * @author ticks
+                    * @since 编写此代码的时间或版本
+                    * @brief get basic_istring last char
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning if basic_istring length() == 0, the behavior is undefined
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     reference back()
                     {
                         return this->_data.back();
@@ -223,9 +333,31 @@ namespace i {
                         return this->_data.back();
                     }
 
-                    /// <summary>
-                    /// get basic_istring string pointer
-                    /// </summary>
+                    /****
+                    * @author ticks
+                    * @since 编写此代码的时间或版本
+                    * @brief get basic_istring string pointer
+                    *
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     Type data() const noexcept
                     {
                         return this->_data;
@@ -236,17 +368,62 @@ namespace i {
                         return this->_data;
                     }
 
-                    /// <summary>
-                    /// get basic_istring c style string
-                    /// </summary>
+                    /****
+                    * @author ticks
+                    * @since 编写此代码的时间或版本
+                    * @brief get basic_istring c style string
+                    *
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     const value_type* cStr() const noexcept
                     {
                         return this->_data.data();
                     }
 
-                    /// <summary>
-                    /// get basic_istring first  iterator
-                    /// </summary>
+                    /****
+                    * @author ticks
+                    * @since 编写此代码的时间或版本
+                    * @brief get basic_istring first  iterator
+                    *
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * get basic_istring first  iterator
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     iterator begin() noexcept
                     {
                         return this->_data.begin();
@@ -262,9 +439,34 @@ namespace i {
                         return this->_data.cbegin();
                     }
 
-                    /// <summary>
-                    /// get basic_istring last iterator
-                    /// </summary>
+                    /****
+                    * @author ticks
+                    * @since 编写此代码的时间或版本
+                    * @brief get basic_istring last iterator
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * get basic_istring last iterator
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     iterator end() noexcept
                     {
                         return this->_data.end();
@@ -280,9 +482,34 @@ namespace i {
                         return this->_data.cend();
                     }
 
-                    /// <summary>
-                    /// get basic_istring first reverse iterator
-                    /// </summary>
+                    /****
+                    * @author ticks
+                    * @since 编写此代码的时间或版本
+                    * @brief get basic_istring first reverse iterator
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * get basic_istring first reverse iterator
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     reverse_iterator rbegin() noexcept
                     {
                         return this->_data.rbegin();
@@ -298,9 +525,34 @@ namespace i {
                         return this->_data.crbegin();
                     }
 
-                    /// <summary>
-                    /// get basic_istring last reverse iterator
-                    /// </summary>
+                    /****
+                    * @author ticks
+                    * @since 编写此代码的时间或版本
+                    * @brief  get basic_istring last reverse iterator
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    *  get basic_istring last reverse iterator
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     reverse_iterator rend() noexcept
                     {
                         return this->_data.rend();
@@ -316,17 +568,67 @@ namespace i {
                         return this->_data.crend();
                     }
 
-                    /// <summary>
-                    /// check basic_istring length() == 0
-                    /// </summary>
+                    /****
+                    * @author ticks
+                    * @since 编写此代码的时间或版本
+                    * @brief check basic_istring length() == 0
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * check basic_istring length() == 0
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     bool empty() const noexcept
                     {
                         return this->_data.empty();
                     }
 
-                    /// <summary>
-                    /// get basic_istring length
-                    /// </summary>
+                    /****
+                    * @author ticks
+                    * @since 编写此代码的时间或版本
+                    * @brief get basic_istring length
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * get basic_istring length
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     size_type length() const noexcept
                     {
                         return this->_data.length();
@@ -337,49 +639,199 @@ namespace i {
                         return this->_data.size();
                     }
 
-                    /// <summary>
-                    /// get basic_istring max contain
-                    /// </summary>
+                    /****
+                    * @author ticks
+                    * @since 编写此代码的时间或版本
+                    * @brief get basic_istring max contain
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * get basic_istring max contain
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     size_type maxSize() const noexcept
                     {
                         return this->_data.max_size();
                     }
 
-                    /// <summary>
-                    /// set basic_istring alloc size
-                    /// </summary>
+                    /****
+                    * @author ticks
+                    * @since 编写此代码的时间或版本
+                    * @brief set basic_istring alloc size
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     void reserve(size_type new_cap = static_cast<size_type>(0))
                     {
                         this->_data.reserve(new_cap);
                     }
 
-                    /// <summary>
-                    /// get basic_istring alloc current size
-                    /// </summary>
+                    /****
+                    * @author ticks
+                    * @since 编写此代码的时间或版本
+                    * @brief get basic_istring alloc current size
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     size_type capacity() const noexcept
                     {
                         return this->_data.capacity();
                     }
 
-                    /// <summary>
-                    /// fit current alloc size to current string size
-                    /// </summary>
+                    /****
+                    * @author ticks
+                    * @since 编写此代码的时间或版本
+                    * @brief fit current alloc size to current string size
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * fit current alloc size to current string size
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     void fitAllocSize()
                     {
                         this->_data.shrink_to_fit();
                     }
 
-                    /// <summary>
-                    /// clear basic_istring
-                    /// </summary>
+                    /****
+                    * @author ticks
+                    * @since 编写此代码的时间或版本
+                    * @brief clear basic_istring
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     void clear() noexcept
                     {
                         this->_data.clear();
                     }
 
-                    /// <summary>
-                    /// insert ch or string to basic_istring
-                    /// </summary>
+                    /****
+                    * @author ticks
+                    * @since 编写此代码的时间或版本
+                    * @brief insert ch or string to basic_istring
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * insert ch or string to basic_istring
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     basic_istring& insert(size_type pos, size_type count, value_type ch)
                     {
                         this->_data.insert(pos, count, ch);
@@ -436,9 +888,34 @@ namespace i {
                         return this->_data.insert(pos, first, last);
                     }
 
-                    /// <summary>
-                    /// erase the char or str in basic_istring
-                    /// </summary>
+                    /****
+                    * @author Lovelylavender4
+                    * @since 编写此代码的时间或版本
+                    * @brief erase the char or str in basic_istring
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * erase the char or str in basic_istring
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     basic_istring& erase(size_type pos = 0, size_type count = basic_istring::npos)
                     {
                         this->_data.erase(pos, count);
@@ -455,28 +932,100 @@ namespace i {
                         return this->_data.erase(first, last);
                     }
 
-                    /// <summary>
-                    /// add a char in basic_istring end
-                    /// </summary>
+                    /****
+                    * @author ticks
+                    * @since 编写此代码的时间或版本
+                    * @brief add a char in basic_istring end
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     void pushBack(value_type ch)
                     {
                         this->_data.push_back(ch);
                     }
 
-                    /// <summary>
-                    /// remove basic_istring last char
-                    /// </summary>
-                    /// <warning>
-                    /// if basic_istring length() == 0 , the behavior is undefined
-                    /// <warning>
+                    /****
+                    * @author ticks
+                    * @since 编写此代码的时间或版本
+                    * @brief remove basic_istring last char
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning if basic_istring length() == 0 , the behavior is undefined
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     void popBack()
                     {
                         this->_data.pop_back();
                     }
 
-                    /// <summary>
-                    /// append char or string in basic_istring
-                    /// </summary>
+                    /****
+                    * @author ticks
+                    * @since 编写此代码的时间或版本
+                    * @brief append char or string in basic_istring
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     basic_istring& append(size_type count, value_type ch)
                     {
                         this->_data.append(count, ch);
@@ -542,9 +1091,34 @@ namespace i {
                         return *this;
                     }
 
-                    /// <summary>
-                    /// append number in basic_istring
-                    /// </summary>
+                    /****
+                    * @author ticks
+                    * @since 编写此代码的时间或版本
+                    * @brief append number in basic_istring
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     basic_istring& append(int i)
                     {
                         return this->append(std::move(basic_istring::valueOf(i)));
@@ -585,9 +1159,34 @@ namespace i {
                         return this->append(std::move(basic_istring::valueOf(d)));
                     }
 
-                    /// <summary>
-                    /// replace some str in basic_istring
-                    /// </summary>
+                    /****
+                    * @author ticks
+                    * @since 编写此代码的时间或版本
+                    * @brief replace some str in basic_istring
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     basic_istring& replace(size_type pos, size_type count, const basic_istring& str)
                     {
                         this->_data.replace(pos, count, str._data);
@@ -656,29 +1255,101 @@ namespace i {
                         return *this;
                     }
 
-                    /// <summary>
-                    /// get basic_istring sub string in [pos, pos + count)
-                    /// </summary>
+                    /****
+                    * @author ticks
+                    * @since 编写此代码的时间或版本
+                    * @brief get basic_istring sub string in [pos, pos + count)
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     basic_istring substr(size_type pos = 0, size_type count = basic_istring::npos) const
                     {
                         basic_istring str(this->_data.substr(pos, count).data());
                         return std::move(str);
                     }
 
-                    /// <summary>
-                    /// copy basic_istring [pos, count) str to dest
-                    /// </summary>
-                    /// <warning>
-                    /// if pos > length(), throw std::out_of_range()
-                    /// </warning>
+                    /****
+                    * @author ticks
+                    * @since 编写此代码的时间或版本
+                    * @brief copy basic_istring [pos, count) str to dest
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws std::out_of_range :  if pos > length()
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     size_type copy(value_type* dest, size_type count, size_type pos = 0) const
                     {
                         return this->_data.copy(dest, count, pos);
                     }
 
-                    /// <summary>
-                    /// set basic_istring ch count to count
-                    /// </summary>
+                    /****
+                    * @author ticks
+                    * @since 编写此代码的时间或版本
+                    * @brief set basic_istring ch count to count
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     void resize(size_type count)
                     {
                         this->_data.resize(count);
@@ -697,9 +1368,34 @@ namespace i {
                         this->_data.swap(other._data);
                     }
 
-                    /// <summary>
-                    /// find the str or ch in basic_istring
-                    /// </summary>
+                    /****
+                    * @author ticks
+                    * @since 编写此代码的时间或版本
+                    * @brief find the str or ch in basic_istring
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     size_type find(const basic_istring& str, size_type pos = 0) const
                     {
                         return this->_data.find(str._data, pos);
@@ -740,9 +1436,34 @@ namespace i {
                         return this->_data.rfind(ch, pos);
                     }
 
-                    /// <summary>
-                    /// check basic_istring start with str
-                    /// </summary>
+                    /****
+                    * @author ticks
+                    * @since 编写此代码的时间或版本
+                    * @brief check basic_istring start with str
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     bool startsWith(const basic_istring& str)
                     {
 #ifdef __CPP_20__
@@ -752,9 +1473,34 @@ namespace i {
 #endif
                     }
 
-                    /// <summary>
-                    /// check basic_istring end with str
-                    /// </summary>
+                    /****
+                    * @author ticks
+                    * @since 编写此代码的时间或版本
+                    * @brief check basic_istring end with str
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     bool endsWith(const basic_istring& str)
                     {
 #ifdef __CPP_20__
@@ -764,9 +1510,83 @@ namespace i {
 #endif
                     }
 
+<<<<<<< HEAD:include/icore/type/basic/basic_istring.hpp
                     /// <summary>
                     /// match the basic_istring with regex
                     /// </summary>
+=======
+                    /****
+                    * @author ticks
+                    * @since 编写此代码的时间或版本
+                    * @brief split basic_istring with  char
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
+                    std::vector<basic_istring> split(value_type ch)
+                    {
+                        std::vector<basic_istring> strs;
+                        size_type pos = this->find(ch), start = 0;
+                        while (pos != basic_istring::npos) {
+                            strs.push_back(this->substr(start, pos));
+                            start = pos + 1;
+                            pos = this->find(ch, pos + 1);
+                        }
+                        if (start < this->length()) {
+                            strs.push_back(this->substr(start));
+                        }
+                        return std::move(strs);
+                    }
+
+                    /****
+                    * @author ticks
+                    * @since 编写此代码的时间或版本
+                    * @brief match the basic_istring with regex
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
+>>>>>>> 3763e3863391af183f7a848b6160c34ff3762012:include/icore/type/basic/istring.hpp
                     bool match(const std::basic_regex<value_type>& regex, bool search = false)
                     {
                         if (!search) {
@@ -788,8 +1608,13 @@ namespace i {
                     }
                 public:
 
+<<<<<<< HEAD:include/icore/type/basic/basic_istring.hpp
                     template<typename T>
                     static std::string toStdString(T value) {
+=======
+                    template<typename Type>
+                    static std::string toStdString(Type value) {
+>>>>>>> 3763e3863391af183f7a848b6160c34ff3762012:include/icore/type/basic/istring.hpp
                         return std::to_string(value);
                     }
 
@@ -813,15 +1638,34 @@ namespace i {
                         return wideChar2UTF8(value);
                     }
 
-                    /// <summary>
-                    /// toWideChar
-                    /// </summary>
-                    /// <param name="code_page">code_page</param>
-                    /// <param name="src_str">src_str</param>
-                    /// <warning></warning>
-                    /// <include></include>
-                    /// <bug></bug>
-                    /// <returns>wstring</returns>
+                    /****
+                    * @author Lovelylavender4
+                    * @since 编写此代码的时间或版本
+                    * @brief 转到宽字符串
+                    *
+                    * @param code_page 注释
+                    * @param src_str 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     static std::wstring toWideChar(std::uint32_t code_page, const std::string& src_str) {
                         if (src_str.empty()) {
                             return L"";
@@ -841,15 +1685,34 @@ namespace i {
                         return wstr;
                     }
 
-                    /// <summary>
-                    /// wideChar2string
-                    /// </summary>
-                    /// <param name="code_page">code_page</param>
-                    /// <param name="src_wstr">src_wstr</param>
-                    /// <warning></warning>
-                    /// <include></include>
-                    /// <bug></bug>
-                    /// <returns>string</returns>
+                    /****
+                    * @author Lovelylavender4
+                    * @since 编写此代码的时间或版本
+                    * @brief 描述
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     static std::string fromWideChar(std::uint32_t code_page, const std::wstring& src_wstr) {
                         if (src_wstr.empty()) {
                             return "";
@@ -869,23 +1732,66 @@ namespace i {
                         return str;
                     }
 
-                    /// <summary>
-                    /// isWideCharHex
-                    /// </summary>
-                    /// <param name="wch">wchar_t value</param>
-                    /// <warning></warning>
-                    /// <include></include>
-                    /// <bug></bug>
-                    /// <returns>isWideCharHex</returns>
+                    /****
+                    * @author Lovelylavender4
+                    * @since 编写此代码的时间或版本
+                    * @brief 描述
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     static bool isWideCharHex(wchar_t wch) {
                         return (wch >= L'0' && wch <= L'9') || (wch >= L'a' && wch <= L'f') || (wch >= L'A' && wch <= L'F');
                     }
 
-                    /// <summary>
-                    /// 
-                    /// </summary>
-                    /// <param name="wch"></param>
-                    /// <returns></returns>
+                    /****
+                    * @author Lovelylavender4
+                    * @since 编写此代码的时间或版本
+                    * @brief 描述
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     static std::uint8_t wideChar2hex(wchar_t wch) {
                         if (wch >= L'0' && wch <= L'9') {
                             return wch - L'0';
@@ -898,11 +1804,34 @@ namespace i {
                         }
                     }
 
-                    /// <summary>
-                    /// 
-                    /// </summary>
-                    /// <param name="hex"></param>
-                    /// <returns></returns>
+                    /****
+                    * @author Lovelylavender4
+                    * @since 编写此代码的时间或版本
+                    * @brief 描述
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     static char hex2char(uint8_t hex) {
                         if (hex <= 9) {
                             return '0' + hex;
@@ -912,11 +1841,34 @@ namespace i {
                         }
                     }
 
-                    /// <summary>
-                    /// 
-                    /// </summary>
-                    /// <param name="wch"></param>
-                    /// <returns></returns>
+                    /****
+                    * @author Lovelylavender4
+                    * @since 编写此代码的时间或版本
+                    * @brief 描述
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     static std::string wideChar2UCS2(wchar_t wch) {
                         auto wch_value = static_cast<uint16_t>(wch);
                         std::string ucs2;
@@ -929,11 +1881,34 @@ namespace i {
                         return ucs2;
                     }
 
-                    /// <summary>
-                    /// 
-                    /// </summary>
-                    /// <param name="hex"></param>
-                    /// <returns></returns>
+                    /****
+                    * @author Lovelylavender4
+                    * @since 编写此代码的时间或版本
+                    * @brief 描述
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     static char hex2wideChar(uint8_t hex) {
                         if (hex <= 9) {
                             return L'0' + hex;
@@ -943,11 +1918,34 @@ namespace i {
                         }
                     }
 
-                    /// <summary>
-                    /// 
-                    /// </summary>
-                    /// <param name="wch"></param>
-                    /// <returns></returns>
+                    /****
+                    * @author Lovelylavender4
+                    * @since 编写此代码的时间或版本
+                    * @brief 描述
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     static std::wstring wideChar2wideCharUCS2(wchar_t wch) {
                         auto wch_value = static_cast<uint16_t>(wch);
                         std::wstring ucs2;
@@ -960,70 +1958,196 @@ namespace i {
                         return ucs2;
                     }
 
-                    /// <summary>
-                    /// Convert a UTF8 encoded string to a wide string
-                    /// </summary>
-                    /// <param name="utf8"></param>
-                    /// <returns>The converted wide string</returns>
+                    /****
+                    * @author Lovelylavender4
+                    * @since 编写此代码的时间或版本
+                    * @brief Convert a UTF8 encoded string to a wide string
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval The converted wide string
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     static std::wstring UTF82wideChar(const std::string& utf8) {
                         return toWideChar(CP_UTF8, utf8);
                     }
 
-                    /// <summary>
-                    /// Convert wide strings to UTF8-encoded strings
-                    /// </summary>
-                    /// <param name="wstr"></param>
-                    /// <returns>The converted UTF8 encoded string</returns>
+
+                    /****
+                    * @author Lovelylavender4
+                    * @since 编写此代码的时间或版本
+                    * @brief Convert wide strings to UTF8-encoded strings
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval The converted UTF8 encoded string
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     static std::string wideChar2UTF8(const std::wstring& wstr) {
                         return fromWideChar(CP_UTF8, wstr);
                     }
 
-                    /// <summary>
-                    /// Convert ANSI-encoded strings to wide strings
-                    /// </summary>
-                    /// <param name="ansi">ANSI-encoded string to be converted</param>
-                    /// <warning></warning>
-                    /// <include></include>
-                    /// <bug></bug>
-                    /// <returns>The converted wide string</returns>
+                    /****
+                    * @author Lovelylavender4
+                    * @since 编写此代码的时间或版本
+                    * @brief Convert ANSI-encoded strings to wide strings
+                    *
+                    * @param ansi ANSI-encoded string to be converted
+                    * @future 未来要做的事情
+                    * @retval The converted wide string
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     static std::wstring ANSI2wideChar(const std::string& ansi) {
                         return toWideChar(CP_ACP, ansi);
                     }
 
-                    /// <summary>
-                    /// Convert wide strings to ANSI-encoded strings
-                    /// </summary>
-                    /// <param name="wstr">The wide string to be converted into an encoding</param>
-                    /// <warning></warning>
-                    /// <include></include>
-                    /// <bug></bug>
-                    /// <returns>Converted ANSI-encoded string</returns>
+                    /****
+                    * @author Lovelylavender4
+                    * @since 编写此代码的时间或版本
+                    * @brief Convert wide strings to ANSI-encoded strings
+                    *
+                    * @param wstr The wide string to be converted into an encoding
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval Converted ANSI-encoded string
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     static std::string wideChar2ANSI(const std::wstring& wstr) {
                         return fromWideChar(CP_ACP, wstr);
                     }
 
-                    /// <summary>
-                    /// Convert ANSI-encoded mixed UCS2 encoded strings to wide strings
-                    /// </summary>
-                    /// <param name="ansi_with_ucs2">ANSI-encoded mixed UCS2 encoded strings to be converted</param>
-                    /// <param name="not_unescape_wide_chars">Wide character set without inverse escaping</param>
-                    /// <warning></warning>
-                    /// <include></include>
-                    /// <bug></bug>
-                    /// <returns>The converted wide string</returns>
+                    /****
+                    * @author Lovelylavender4
+                    * @since 编写此代码的时间或版本
+                    * @brief Convert ANSI-encoded mixed UCS2 encoded strings to wide strings
+                    *
+                    * @param ansi_with_ucs2 ANSI-encoded mixed UCS2 encoded strings to be converted
+                    * @param not_unescape_wide_chars Wide character set without inverse escaping
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval The converted wide string
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     static std::wstring ANSIWithUCS22WideChar(const std::string& ansi_with_ucs2, const std::wstring& not_unescape_wide_chars) {
                         return unescapeWideChar(ANSI2wideChar(ansi_with_ucs2), not_unescape_wide_chars);
                     }
 
-                    /// <summary>
-                    /// Convert wide strings to ANSI-encoded mixed UCS2 encoded strings
-                    /// </summary>
-                    /// <param name="wstr">Wide string of codes to be converted</param>
-                    /// <param name="force_escape_wide_chars">Wide set of characters to be forcibly escaped</param>
-                    /// <warning></warning>
-                    /// <include></include>
-                    /// <bug></bug>
-                    /// <returns>Converted ANSI-encoded mixed UCS2 encoded strings</returns>
+
+                    /****
+                    * @author Lovelylavender4
+                    * @since 编写此代码的时间或版本
+                    * @brief 描述
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     static std::string wideChar2ANSIWithUCS2(const std::wstring& wstr, const std::wstring& force_escape_wide_chars) {
                         if (wstr.empty()) {
                             return "";
@@ -1099,17 +2223,34 @@ namespace i {
                         }
                     }
 
-                    /// <summary>
-                    /// Escape wide strings
-                    /// </summary>
-                    /// <param name="wstr">Wide string containing the wide characters to be escaped</param>
-                    /// <param name="escape_wide_chars">Wide set of characters to be escaped</param>
-                    /// <warning>null</warning>
-                    /// <include>
-                    /// string
-                    /// </include>
-                    /// <bug>null</bug>
-                    /// <returns>The escaped wide string</returns>
+                    /****
+                    * @author Lovelylavender4
+                    * @since 编写此代码的时间或版本
+                    * @brief 描述
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     static std::wstring escapeWideChar(const std::wstring& wstr, const std::wstring& escape_wide_chars) {
                         if (wstr.empty()) {
                             return L"";
@@ -1129,17 +2270,34 @@ namespace i {
                         return wstr_with_ucs2;
                     }
 
-                    /// <summary>
-                    /// Inverse Escape Wide String
-                    /// </summary>
-                    /// <param name="wstr_with_ucs2">Wide strings to be inverse-translated</param>
-                    /// <param name="not_unescape_wide_chars">Wide character set without inverse escaping</param>
-                    /// <warning>null</warning>
-                    /// <include>
-                    /// string
-                    /// </include>
-                    /// <bug>null</bug>
-                    /// <returns>Wide string after inverse escape</returns>
+                    /****
+                    * @author Lovelylavender4
+                    * @since 编写此代码的时间或版本
+                    * @brief 描述
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     static std::wstring unescapeWideChar(const std::wstring& wstr_with_ucs2, const std::wstring& not_unescape_wide_chars) {
                         if (wstr_with_ucs2.empty()) {
                             return L"";
@@ -1186,40 +2344,98 @@ namespace i {
                         return wstr;
                     }
 
-                    /// <summary>
-                    /// Escape UTF8-encoded strings
-                    /// </summary>
-                    /// <param name="utf8">String containing the UTF8 encoding to be escaped</param>
-                    /// <param name="escape_utf8_chars">The character set of the UTF8 encoding to be escaped</param>
-                    /// <warning></warning>
-                    /// <include></include>
-                    /// <bug></bug>
-                    /// <returns>The escaped UTF8 encoded string</returns>
+                    /****
+                    * @author Lovelylavender4
+                    * @since 编写此代码的时间或版本
+                    * @brief 描述
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     static std::string escapeUTF8(const std::string& utf8, const std::string& escape_utf8_chars) {
                         return wideChar2UTF8(escapeWideChar(UTF82wideChar(utf8), UTF82wideChar(escape_utf8_chars)));
                     }
 
-                    /// <summary>
-                    /// Inverted UTF8-encoded strings
-                    /// </summary>
-                    /// <param name="utf8_with_ucs2">UTF8 encoded string to be escaped</param>
-                    /// <param name="not_unescape_utf8_chars">UTF8 encoded character set without escaping</param>
-                    /// <warning></warning>
-                    /// <include></include>
-                    /// <bug></bug>
-                    /// <returns>Reverse-escaped UTF8-encoded string</returns>
+                    /****
+                    * @author Lovelylavender4
+                    * @since 编写此代码的时间或版本
+                    * @brief 描述
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     static std::string unescapeUTF8(const std::string& utf8_with_ucs2, const std::string& not_unescape_utf8_chars) {
                         return wideChar2UTF8(unescapeWideChar(UTF82wideChar(utf8_with_ucs2), UTF82wideChar(not_unescape_utf8_chars)));
                     }
 
-                    /// <summary>
-                    /// UCS22WideChar
-                    /// </summary>
-                    /// <param name="ucs2">ucs2 value</param>
-                    /// <warning></warning>
-                    /// <include></include>
-                    /// <bug></bug>
-                    /// <returns>wchar_t</returns>
+                    /****
+                    * @author Lovelylavender4
+                    * @since 编写此代码的时间或版本
+                    * @brief 描述
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     static wchar_t UCS22WideChar(const std::wstring& ucs2) {
                         auto it = ucs2.cbegin();
                         it += 2; // L'\\u'
@@ -1233,13 +2449,34 @@ namespace i {
                         return wch;
                     }
 
-                    /// <summary>
-                    /// 
-                    /// </summary>
-                    /// <param name="str"></param>
-                    /// <param name="oldStr"></param>
-                    /// <param name="newStr"></param>
-                    /// <returns></returns>
+                    /****
+                    * @author Lovelylavender4
+                    * @since 编写此代码的时间或版本
+                    * @brief 描述
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     static bool replaceString(
                         basic_istring& str,
                         const basic_istring& oldStr,
@@ -1256,13 +2493,34 @@ namespace i {
                     }
 
 
-                    /// <summary>
-                    /// 
-                    /// </summary>
-                    /// <param name="delimiters"></param>
-                    /// <param name="pushEmpty"></param>
-                    /// <param name="vInversion"></param>
-                    /// <returns></returns>
+                    /****
+                    * @author Lovelylavender4
+                    * @since 编写此代码的时间或版本
+                    * @brief 描述
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     static std::list<Type> istringSplit2List(
                         const basic_istring& str,
                         const basic_istring& delimiters,
@@ -1294,12 +2552,34 @@ namespace i {
                         return arr;
                     }
 
-                    /// <summary>
-                    /// 
-                    /// </summary>
-                    /// <param name="delimiters"></param>
-                    /// <param name="pushEmpty"></param>
-                    /// <returns></returns>
+                    /****
+                    * @author Lovelylavender4
+                    * @since 编写此代码的时间或版本
+                    * @brief 描述
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     static std::vector<Type> istringSplit2Vector(
                         const basic_istring& str,
                         const basic_istring& delimiters,
@@ -1324,12 +2604,34 @@ namespace i {
                         return arr;
                     }
 
-                    /// <summary>
-                    /// 
-                    /// </summary>
-                    /// <param name="delimiters"></param>
-                    /// <param name="pushEmpty"></param>
-                    /// <returns></returns>
+                    /****
+                    * @author Lovelylavender4
+                    * @since 编写此代码的时间或版本
+                    * @brief 描述
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     static std::set<Type> istringSplit2Set(
                         const basic_istring& str,
                         const basic_istring& delimiters,
@@ -1353,15 +2655,184 @@ namespace i {
                         return arr;
                     }
 
+                    /****
+                    * @author Lovelylavender4
+                    * @since 编写此代码的时间或版本
+                    * @brief 描述
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
+                    static std::wstring str2wstr(const std::string& str) {
+                        return str2wstr(str, CP_UTF8);
+                    }
+
+                    /****
+                    * @author Lovelylavender4
+                    * @since 编写此代码的时间或版本
+                    * @brief 描述
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
+                    static std::wstring str2wstr(const std::string& str, UINT codePage)
+                    {
+                        auto len = MultiByteToWideChar(codePage, 0, str.c_str(), -1, nullptr, 0);
+                        auto* buffer = new wchar_t[len + 1];
+                        MultiByteToWideChar(codePage, 0, str.c_str(), -1, buffer, len + 1);
+                        buffer[len] = L'\0';
+
+                        std::wstring result = std::wstring(buffer);
+                        delete[] buffer;
+                        return result;
+                    }
+
+                    /****
+                    * @author Lovelylavender4
+                    * @since 编写此代码的时间或版本
+                    * @brief 描述
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
+                    static std::string wstr2str(const std::wstring& wstr) {
+                        return wstr2str(wstr, CP_UTF8);
+                    }
+
+
+                    /****
+                    * @author Lovelylavender4
+                    * @since 编写此代码的时间或版本
+                    * @brief 描述
+                    *
+                    * @param wstr 待转换的宽字符串
+                    * @param codePage codePage
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
+                    static std::string wstr2str(
+                        const std::wstring& wstr,
+                        uint codePage
+                    ){
+                        auto len = WideCharToMultiByte(codePage, 0, wstr.c_str(), -1, nullptr, 0, nullptr, nullptr);
+                        char* buffer = new char[len + 1];
+                        WideCharToMultiByte(codePage, 0, wstr.c_str(), -1, buffer, len + 1, nullptr, nullptr);
+                        buffer[len] = '\0';
+
+                        std::string result = std::string(buffer);
+                        delete[] buffer;
+                        return result;
+                    }
+
                 public:
 
-                    /// <summary>
-                    /// 
-                    /// </summary>
-                    /// <param name="delimiters"></param>
-                    /// <param name="pushEmpty"></param>
-                    /// <param name="vInversion"></param>
-                    /// <returns></returns>
+                    /****
+                    * @author Lovelylavender4
+                    * @since 编写此代码的时间或版本
+                    * @brief 描述
+                    *
+                    * @param delimiters 注释
+                    * @param pushEmpty = false 注释
+                    * @param vInversion = false 注释
+                    * @future 未来要做的事情
+                    * @retval std::list<Type>
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     std::list<Type> split2List(
                         const basic_istring& delimiters,
                         bool pushEmpty = false,
@@ -1392,6 +2863,7 @@ namespace i {
                         return arr;
                     }
                     
+<<<<<<< HEAD:include/icore/type/basic/basic_istring.hpp
                     /// <summary>
                     /// 
                     /// </summary>
@@ -1401,14 +2873,87 @@ namespace i {
                     std::vector<Type> split2Vector(char split_char)
                     {
                         
+=======
+                    /****
+                    * @author Lovelylavender4
+                    * @since 编写此代码的时间或版本
+                    * @brief 描述
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
+                    std::vector<Type> split2Vector(
+                        const basic_istring& delimiters,
+                        bool pushEmpty = false) {
+                        std::vector<Type> arr;
+                        if (!(this->_data).empty()) {
+                            size_type start = 0;
+                            size_type end = (this->_data).find_first_of(delimiters.data(), start);
+                            while (end != npos) {
+                                Type token = (this->_data).substr(start, end - start);
+                                if (!token.empty() || (token.empty() && pushEmpty)) {
+                                    arr.emplace_back(token);
+                                }
+                                start = end + 1;
+                                end = (this->_data).find_first_of(delimiters.data(), start);
+                            }
+                            Type token = (this->_data).substr(start);
+                            if (!token.empty() || (token.empty() && pushEmpty)) {
+                                arr.emplace_back(token);
+                            }
+                        }
+                        return arr;
+>>>>>>> 3763e3863391af183f7a848b6160c34ff3762012:include/icore/type/basic/istring.hpp
                     }
                     
-                    /// <summary>
-                    /// 
-                    /// </summary>
-                    /// <param name="delimiters"></param>
-                    /// <param name="pushEmpty"></param>
-                    /// <returns></returns>
+                    /****
+                    * @author Lovelylavender4
+                    * @since 编写此代码的时间或版本
+                    * @brief 描述
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     std::set<Type> split2Set(
                         const basic_istring& delimiters,
                         bool pushEmpty = false) {
@@ -1432,21 +2977,106 @@ namespace i {
                     }
                     
 
+
+                    /**
+                    * @brief Integer to hex string.
+                    *
+                    * @tparam T      The integer type
+                    * @param  value  The integer value
+                    * @param  upper  Whether to use upper case (0x1A or 0x1a)
+                    * @param  no0x   Whether to omit 0x prefix
+                    * @param  noLeadingZero  Whether to omit leading zero
+                    * @return std::string    The hex string
+                    *
+                    * @par Example
+                    * @code
+                    * IntToHexStr(15); // "F"
+                    * IntToHexStr(16, true, true, false); // "0000000F"
+                    * @endcode
+                    */
+                    template <typename T>
+                    std::string IntToHexStr(const T& value, bool upper = true, bool no0x = true,
+                        bool noLeadingZero = true)
+                    {
+                        std::string result;
+                        if (value < 0) result += '-';
+                        if (!no0x) result += "0x";
+                        auto hexStr = upper ? "0123456789ABCDEF" : "0123456789abcdef";
+                        bool leadingZero = true;
+                        for (int i = sizeof(T) * 2; i > 0; --i)
+                        {
+                            auto hex = (value >> (i - 1) * 4) & 0xF;
+                            if (noLeadingZero && leadingZero && hex == 0) continue;
+                            leadingZero = false;
+                            result += hexStr[hex];
+                        }
+                        return result;
+                    }
                 public:
-                    /// <summary>
-                    /// 
-                    /// </summary>
-                    /// <returns></returns>
+                    
+
+                    /****
+                    * @author Lovelylavender4
+                    * @since 编写此代码的时间或版本
+                    * @brief 描述
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     std::string toHexStdString(){
                         std::ostringstream os;
                         os << std::hex << this->_data;
                         return os.str();
                     }
 
-                    /// <summary>
-                    /// 
-                    /// </summary>
-                    /// <returns></returns>
+                    /****
+                    * @author Lovelylavender4
+                    * @since 编写此代码的时间或版本
+                    * @brief 描述
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     std::string toDecStr(){
                         std::ostringstream os;
                         os << std::dec << this->_data;
@@ -1454,9 +3084,35 @@ namespace i {
                     }
 
                 public:
-                    /// <summary>
-                    /// basic_istring assignment operator
-                    /// </summary>
+
+                    /****
+                    * @author ticks
+                    * @since 编写此代码的时间或版本
+                    * @brief basic_istring assignment operator
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     basic_istring& operator = (const basic_istring& str)
                     {
                         if (*this == str) {
@@ -1492,12 +3148,34 @@ namespace i {
                         return *this;
                     }
 
-                    /// <summary>
-                    /// get basic_istring char at pos
-                    /// </summary>
-                    /// <warning>
-                    /// if pos >= size(), the behavior is undefined
-                    /// </warning>
+                    /****
+                    * @author ticks
+                    * @since 编写此代码的时间或版本
+                    * @brief get basic_istring char at pos
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning if pos >= size(), the behavior is undefined
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     reference operator [] (size_type pos)
                     {
                         return this->_data[pos];
@@ -1508,9 +3186,34 @@ namespace i {
                         return this->_data[pos];
                     }
 
-                    /// <summary>
-                    /// basic_istring += operator
-                    /// </summary>
+                    /****
+                    * @author ticks
+                    * @since 编写此代码的时间或版本
+                    * @brief basic_istring += operator
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     basic_istring& operator += (const basic_istring& str)
                     {
                         this->_data += str._data;
@@ -1612,9 +3315,34 @@ namespace i {
                         return is;
                     }
 
-                    /// <summary>
-                    /// stream input str or ch or number to basic_istring
-                    /// </summary>
+                    /****
+                    * @author ticks
+                    * @since 编写此代码的时间或版本
+                    * @brief stream input str or ch or number to basic_istring
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     basic_istring& operator << (const basic_istring& str)
                     {
                         return this->append(str);
@@ -1680,9 +3408,34 @@ namespace i {
                         return this->append(ilist);
                     }
 
-                    /// <summary>
-                    /// append ls and rs to a new basic_istring
-                    /// </summary>
+                    /****
+                    * @author ticks
+                    * @since 编写此代码的时间或版本
+                    * @brief append ls and rs to a new basic_istring
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     friend basic_istring operator + (const basic_istring& ls, const basic_istring& rs)
                     {
                         basic_istring str(ls);
@@ -1784,9 +3537,34 @@ namespace i {
                     }
 
                 public:
-                    /// <summary>
-                    /// to_string / to_wstring
-                    /// </summary>
+                    /****
+                    * @author ticks
+                    * @since 编写此代码的时间或版本
+                    * @brief to_string / to_wstring
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     template <typename T>
                     static basic_istring valueOf(T&& value)
                     {
@@ -1803,15 +3581,68 @@ namespace i {
 #endif
                     }
 
-                    /// <summary>
-                    /// check str start with sub
-                    /// </summary>
+#if __LINUX__ && __GCC__ 
+
+                    /****
+                    * @author ticks
+                    * @since 编写此代码的时间或版本
+                    * @brief check str start with sub
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     static bool startsWith(const basic_istring& sub, const basic_istring& str);
 
-                    /// <summary>
-                    /// check str end with sub
-                    /// </summary>
+                    /****
+                    * @author ticks
+                    * @since 编写此代码的时间或版本
+                    * @brief check str end with sub
+                    *
+                    * @param 参数名 注释
+                    * @tparam 模板参数名 注释
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
                     static bool endsWith(const basic_istring& sub, const basic_istring& str);
+<<<<<<< HEAD:include/icore/type/basic/basic_istring.hpp
 
                     //return a vector with split string as default
                     std::vector<Type> split(char split_char)
@@ -1821,6 +3652,9 @@ namespace i {
                     }
 
 
+=======
+#endif
+>>>>>>> 3763e3863391af183f7a848b6160c34ff3762012:include/icore/type/basic/istring.hpp
                 protected:
 
                 private:
@@ -1837,7 +3671,7 @@ namespace i {
                     Type _data;
                 };
 
-                /*
+#if __LINUX__ && __GCC__ 
 #ifdef __CPP_20__
                 template <typename Type> requires type::type_traits::is_std_string_v<Type>
                 bool basic_istring<Type>::startsWith(const basic_istring& sub, const basic_istring& str)
@@ -1884,10 +3718,11 @@ namespace i {
                     }
                     return true;
                 }
-                */
+#endif//__LINUX__
 
             }//namespace basic
         }//namespace type
+
     }//namespace core
 }//namespace i
 

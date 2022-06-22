@@ -1,5 +1,4 @@
-#include "process.h"
-#include "process.h"
+#include "../../../include/icore/lib/libProcess/process.h"
 
 i::core::libProcess::Process::Process()
 {

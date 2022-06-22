@@ -1,9 +1,2 @@
-#include "../../../include/icore/lib/libIO/IO.h"
+#include "../../../include/icore/lib/libIO/io.h"
 
-i::core::libIO::libIO::libIO()
-{
-}
-
-i::core::libIO::libIO::~libIO()
-{
-}

@@ -15,7 +15,7 @@
 #ifndef ___MIRACLEFOREST_I_EXCEPTION___
 #define ___MIRACLEFOREST_I_EXCEPTION___
 
-#include <exception>
+#include "../../cppstd/exception"
 
 namespace i {
     namespace core {
