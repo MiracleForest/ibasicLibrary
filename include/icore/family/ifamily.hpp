@@ -20,44 +20,52 @@
 
 #include "../exception/error.hpp"
 
+namespace i {
+	SPACE(core) {
+		struct _p_start {
+			int argc;
+			char** argv;
+			char** envp;
+		};
 
-class Main {
-public:
-	Main() {}
-	~Main() {}
-public:
-	/****
-	* @author Lovelylavender4
-	* @since 编写此代码的时间或版本
-	* @brief 描述
-	*
-	* @param 参数名 注释
-	* @tparam 模板参数名 注释
-	* @future 未来要做的事情
-	* @retval 返回值注释
-	* @throws 抛出的异常
-	*
-	* @note
-	* 注意事项
-	* @endnote
-	* @pre 使用此函数的前提条件
-	* @par Example
-	* @code
-	* 代码示例
-	* @endcode
-	*
-	* @warning 警告
-	* @bug 存在的漏洞
-	* @include 需要包含的头文件
-	* @details
-	* 详细描述
-	* @enddetails
-	* @other 其他
-	****/
-	i::core::iexception::error start(int argc, char** argv, char** envp);
+		class Main {
+		public:
+			Main() {}
+			~Main() {}
+		public:
+			/****
+			* @author Lovelylavender4
+			* @since 编写此代码的时间或版本
+			* @brief 描述
+			*
+			* @param 参数名 注释
+			* @tparam 模板参数名 注释
+			* @future 未来要做的事情
+			* @retval 返回值注释
+			* @throws 抛出的异常
+			*
+			* @note
+			* 注意事项
+			* @endnote
+			* @pre 使用此函数的前提条件
+			* @par Example
+			* @code
+			* 代码示例
+			* @endcode
+			*
+			* @warning 警告
+			* @bug 存在的漏洞
+			* @include 需要包含的头文件
+			* @details
+			* 详细描述
+			* @enddetails
+			* @other 其他
+			****/
+			IERROR start(_p_start& p_start);
 
-};
-
+		};
+	}
+}
 /****
 * @author Lovelylavender4
 * @since 编写此代码的时间或版本
@@ -88,8 +96,14 @@ public:
 ****/
 int main(int argc, char** argv, char** envp) {
 	try {
-		Main appMain;
-		auto rt = appMain.start(argc, argv, envp);
+		N_ISTD _p_start p_start;
+		p_start.argc = argc;
+		p_start.argv = argv;
+		p_start.envp = envp;
+
+		N_ISTD Main appMain;
+		IERROR rt = appMain.start(p_start);
+
 		if (rt.isNoError()) {
 			return 0;
 		}

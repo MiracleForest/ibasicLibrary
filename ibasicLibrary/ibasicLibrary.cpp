@@ -13,27 +13,9 @@
 #endif
 
 
-#if __WINDOWS__
-long long useTime(std::function<void()> func) {
-    _LARGE_INTEGER timeSt;
-    _LARGE_INTEGER timeOv;
-    double dpFr;
-    LARGE_INTEGER f;
-    QueryPerformanceFrequency(&f);
-    dpFr = (double)f.QuadPart;
-    QueryPerformanceCounter(&timeSt);
 
-    func();
+IERROR i::core:: Main::start(N_ISTD _p_start& p_start) {
 
-    QueryPerformanceCounter(&timeOv);
-    return (timeOv.QuadPart - timeSt.QuadPart);
-}
-
-#endif
-
-i::core::iexception::error Main::start(int argc, char** argv, char** envp) {
-
-    long long t = useTime([]() {
         {
             i::core::type::istring str = "菲,露,露~";
             std::cout << str.split2List(",").front() << std::endl;
@@ -70,9 +52,6 @@ i::core::iexception::error Main::start(int argc, char** argv, char** envp) {
             i::core::type::istring str = "菲,露,露~";
             std::cout << *(i::core::type::istring::istringSplit2Set(str, ",").begin()) << std::endl;
         }
-        });
-
-    std::cout << "-->" << t << "<--" << std::endl;
 
 
     system("pause");

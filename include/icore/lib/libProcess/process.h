@@ -31,7 +31,7 @@ namespace i {
                 ~Process();
             public:
 
-            public STATIC:
+            public C_STATIC:
 
             protected:
             private:

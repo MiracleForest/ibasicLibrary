@@ -28,24 +28,23 @@ namespace i {
 				/****
 				* @author Lovelylavender4
 				* @since 2022.6.21.13:41
-				* @brief This function is used to ensure that a floating point number is not a NaN or infinity.
+				* @brief 这个函数用来确保一个浮点数不是NaN或无穷大。
 				*
-				* @param x -
+				* @param f 浮点数
 				* @retval 真或假
 				*
-				* @par Example
+				* @par 模板
 				* @code
-				* 代码示例
+				* floatIsValid(aFloatNumber);
 				* @endcode
 				*
 				* @details
-				* 详细描述
+				* 这个函数用来确保一个浮点数不是NaN或无穷大。
 				* @enddetails
 				****/
-				IAPI inline bool floatIsValid(float x);
+				IAPI inline bool floatIsValid(float f);
 
 				
-
 				template <typename T> 
 				inline T round(const T& v) {
 					return (T)(std::round((double)v));

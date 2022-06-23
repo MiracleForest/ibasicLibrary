@@ -754,6 +754,15 @@
     <ClInclude Include="resource.h">
       <Filter>resource</Filter>
     </ClInclude>
+    <ClInclude Include="A:\360data\重要数据\桌面\LiteLoaderBDS\LiteLoader\Header\Utils\ShellLinkFile.h">
+      <Filter>build</Filter>
+    </ClInclude>
+    <ClInclude Include="A:\360data\重要数据\桌面\LiteLoaderBDS\LiteLoader\Header\Utils\SRWLock.h">
+      <Filter>build</Filter>
+    </ClInclude>
+    <ClInclude Include="A:\360data\重要数据\桌面\LiteLoaderBDS\LiteLoader\Header\Utils\STLHelper.h">
+      <Filter>build</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\include\cppstd\format">
@@ -1457,6 +1466,15 @@
     </None>
     <None Include="..\include\cppstd\experimental\vector">
       <Filter>include\cppstd\experimental</Filter>
+    </None>
+    <None Include="A:\360data\重要数据\桌面\LiteLoaderBDS\LiteLoader\Kernel\Utils\ShellLinkFile.cpp">
+      <Filter>build</Filter>
+    </None>
+    <None Include="A:\360data\重要数据\桌面\LiteLoaderBDS\LiteLoader\Kernel\Utils\SRWLock.cpp">
+      <Filter>build</Filter>
+    </None>
+    <None Include="A:\360data\重要数据\桌面\LiteLoaderBDS\LiteLoader\Kernel\Utils\STLHelper.cpp">
+      <Filter>build</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

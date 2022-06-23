@@ -60,7 +60,7 @@
 #endif
 
 
-/*------------------------Compiler judgment------------------------*/
+/*------------------------编译器判断------------------------*/
 #if defined(__ICC) || defined(__INTEL_COMPILER)
 #define __ICC__ __INTEL_COMPILER
 #elif defined(__clang__)
@@ -83,7 +83,7 @@
 #endif
 
 
-/*------------------------C++ standard judgment------------------------*/
+/*------------------------C++标准判断------------------------*/
 #if !defined(__CPP_23__) &&\
     !defined(__CPP_20__) &&\
     !defined(__CPP_17__) &&\
@@ -108,7 +108,7 @@
 #endif
 
 
-/*------------------------Platform Judgment------------------------*/
+/*------------------------平台的判断------------------------*/
 
 #ifdef _WIN32
 #define __WIN32__ 1
@@ -123,7 +123,7 @@
 #define __UNK__ 1
 #endif
 
-/*------------------------About decimals------------------------*/
+/*------------------------小数------------------------*/
 
 #define IS_FLOAT_DIFFERENT(a,b) (fabsf((a) - (b)) > FLT_EPSILON)
 #define IS_FLOAT_EQUAL(a,b) (fabsf((a) - (b)) < FLT_EPSILON)
@@ -131,7 +131,7 @@
 #define IS_DOUBLE_EQUAL(a,b) (fabs((a) - (b)) < DBL_EPSILON)
 
 
-/*------------------------About dll------------------------*/
+/*------------------------关于 dll------------------------*/
 #ifdef ___ILIBRARYEXPORT___
 #define IAPI _declspec(dllexport)
 #else
@@ -139,15 +139,32 @@
 #endif
 
 
-#define STATIC
+/*------------------------类------------------------*/
+#define C_STATIC
+
+
+/*------------------------快捷------------------------*/
+#define CATCH(x) catch(...){printf(x);}
+#define IERROR i::core::iexception::error
+#define SPACE(x) namespace x
+
+/*------------------------命名空间------------------------*/
+#define N_STD ::std::
+#define N_ITYPE ::i::core::type::
+#define N_IBASIC ::i::core::type::basic::
+#define N_ISTD ::i::core::
 
 
 namespace i {
     namespace core {
+
+
         using ushort = unsigned short;
         using uint = unsigned int;
         using ulong = unsigned long;
         using u = unsigned;
+
+        using __unk_type__ = void*;
 
 #ifdef __WINDOWS__
         typedef __int64   int64;
@@ -166,6 +183,7 @@ namespace i {
 
         template<typename Type>
         using CPtr = const Type*;
+
     }
 }
 

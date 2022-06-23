@@ -3658,11 +3658,10 @@ namespace i {
                     }
                     return true;
                 }
-#endif//__LINUX__
+#endif// __LINUX__ && __GCC__ 
 
             }//namespace basic
         }//namespace type
-
     }//namespace core
 }//namespace i
 
