@@ -16,6 +16,7 @@
 #ifndef ___MIRACLEFOREST_I_BASIC_ISTRING___
 #define ___MIRACLEFOREST_I_BASIC_ISTRING___
 
+#include <sstream>
 #include "../../family/imacrofamily.h"
 #include "../type/type_traits.hpp"
 
@@ -100,15 +101,17 @@ namespace i {
 
                     /****
                     * @author ticks
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
+                    * @since 22-6-23 ä¸Šåˆ11:59
                     * @brief basic_istring assign as stdString assign
                     *
-                    * @param count ×¢ÊÍ
-                    * @param ch ×¢ÊÍ
-                    * @retval basic_istring&
+                    * @param count: è¦æ›¿æ¢çš„ä¸‹æ ‡(0å¼€å§‹)
+                    * @param ch: è¦æ›¿æ¢çš„æ–°å­—ç¬¦
+                    * @retval basic_istring& basic_istringå¼•ç”¨
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * istring str = "Hello istring";
+                    * str.assign(0, 'h');
+                    * str ==> "hello istring"
                     * @endcode
                     *
                     * @include <string>
@@ -119,7 +122,26 @@ namespace i {
                         return *this;
                     }
 
-                    
+                    /**
+                    * @author ticks
+                    * @since 22-6-23 ä¸‹åˆ12:05
+                    *
+                    * @brief ç”¨æ–°æ›¿æ¢åŸå­—ç¬¦ä¸²
+                    *
+                    * @param str: æ–°å­—ç¬¦ä¸²
+                    * @retval basic_istring&: basic_istringå¼•ç”¨
+                    *
+                    * @par Example
+                    * @code
+                    * istring str = "Hello istring";
+                    * istring str1 = "hello";
+                    * str.assign(str1);
+                    * str ==> "hello"
+                    * @endcode
+                    *
+                    * @include <string>
+                    *
+                    **/
                     basic_istring& assign(const basic_istring& str)
                     {
                         if (*this == str) {
@@ -173,31 +195,22 @@ namespace i {
 
                     /****
                     * @author ticks
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
-                    * @brief get the stdString allocator
+                    * @since 22-6-23 ä¸‹åˆ12:13 
+                    * @brief è·å– basic_istring åº•å±‚å†…å­˜åˆ†é…å™¨
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @retval allocator_type: åº•å±‚å†…å­˜åˆ†é…å™¨
                     *
-                    * @note
-                    * ×¢ÒâÊÂÏî
-                    * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * istring str = "";
+                    * auto allocator = str.getAllocator();
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @include <string>
                     * @details
-                    * get the stdString allocator
+                    * è·å– basic_istring åº•å±‚å†…å­˜åˆ†é…å™¨
                     * @enddetails
-                    * @other ÆäËû
+                    *
                     ****/
                     allocator_type getAllocator() const
                     {
@@ -206,31 +219,26 @@ namespace i {
 
                     /****
                     * @author ticks
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
-                    * @brief get the basic_istring char at pos
+                    * @since 22-6-23 ä¸‹åˆ12:21
+                    * @brief è·å– basic_istringæŒ‡å®šä¸‹æ ‡çš„å­—ç¬¦
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws std::out_of_range : when pos >= length()
+                    * @param pos: ä¸‹æ ‡(0å¼€å§‹)
+                    * @retval reference: å­—ç¬¦å¼•ç”¨
+                    * @throws std::out_of_range : å½“ pos > length() æ—¶æŠ›å‡º
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * pos åº”å°äºå­—ç¬¦ä¸²é•¿åº¦
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    *
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @include string
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è·å– basic_istringæŒ‡å®šä¸‹æ ‡çš„å­—ç¬¦
                     * @enddetails
-                    * @other ÆäËû
+                    *
                     ****/
                     reference charAt(size_type pos)
                     {
@@ -244,31 +252,29 @@ namespace i {
 
                     /****
                     * @author ticks
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
-                    * @brief get basic_istring first char
+                    * @since 22-6-23 ä¸‹åˆ12:42
+                    * @brief è·å–å­—ç¬¦ä¸²ç¬¬ä¸€ä¸ªå­—ç¬¦
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @retval reference: å­—ç¬¦ä¸²ç¬¬ä¸€ä¸ªå­—ç¬¦å¼•ç”¨
+                    * @throws
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * å­—ç¬¦ä¸²é•¿åº¦ä¸º0æ—¶ä¸è¦ä½¿ç”¨è¯¥å‡½æ•°
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre length() > 0
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * istring str = "hello";
+                    * str.front() = 'H';
+                    * str ==> "Hello"
                     * @endcode
                     *
-                    * @warning if basic_istring length() == 0, the behavior is undefined
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning å¦‚æœå­—ç¬¦ä¸²é•¿åº¦ä¸º0ï¼Œè¡Œä¸ºæœªå®šä¹‰ã€‚
+                    * @include string
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è·å–å­—ç¬¦ä¸²ç¬¬ä¸€ä¸ªå­—ç¬¦
                     * @enddetails
-                    * @other ÆäËû
+                    *
                     ****/
                     reference front()
                     {
@@ -282,31 +288,29 @@ namespace i {
 
                     /****
                     * @author ticks
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
-                    * @brief get basic_istring last char
+                    * @since 22-6-23 ä¸‹åˆ12:46
+                    * @brief è·å–å­—ç¬¦ä¸²æœ€åä¸€ä¸ªå­—ç¬¦
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @retval reference: å­—ç¬¦ä¸²æœ€åä¸€ä¸ªå­—ç¬¦å¼•ç”¨
+                    * @throws
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * å­—ç¬¦ä¸²é•¿åº¦ä¸º0æ—¶ä¸è¦ä½¿ç”¨
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre length() > 0
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * istring str = "hello";
+                    * str.back() = 'O';
+                    * str ==> "HellO"
                     * @endcode
                     *
-                    * @warning if basic_istring length() == 0, the behavior is undefined
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning å¦‚æœå­—ç¬¦ä¸²é•¿åº¦ä¸º0,è¡Œä¸ºæœªå®šä¹‰
+                    * @include string
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è·å–å­—ç¬¦ä¸²æœ€åä¸€ä¸ªå­—ç¬¦
                     * @enddetails
-                    * @other ÆäËû
+                    *
                     ****/
                     reference back()
                     {
@@ -320,63 +324,51 @@ namespace i {
 
                     /****
                     * @author ticks
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
-                    * @brief get basic_istring string pointer
+                    * @since 22-6-23 ä¸‹åˆ12:48
+                    * @brief è·å–å­—ç¬¦ä¸²æŒ‡é’ˆ
                     *
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
+                    * @retval const_pointer: const æŒ‡é’ˆç±»å‹
                     *
-                    * @note
-                    * ×¢ÒâÊÂÏî
-                    * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * istring str = "Hello"
+                    * auto strs = str.data();
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @include string
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è·å–å­—ç¬¦ä¸²æŒ‡é’ˆ
                     * @enddetails
-                    * @other ÆäËû
+                    *
                     ****/
-                    Type data() const noexcept
+                    const_pointer data() const noexcept
                     {
-                        return this->_data;
+                        return this->_data.data();
                     }
 
-                    Type& data() noexcept
+                    pointer data() noexcept
                     {
-                        return this->_data;
+                        return this->_data.data();
                     }
 
                     /****
                     * @author ticks
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
-                    * @brief get basic_istring c style string
+                    * @since 22-6-23 ä¸‹åˆ12:54
+                    * @brief è·å–å­—ç¬¦ä¸²çš„cé£æ ¼è¡¨ç¤º
                     *
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
+                    * @retval const value_type* : å­—ç¬¦ä¸²æŒ‡é’ˆ
                     *
-                    * @note
-                    * ×¢ÒâÊÂÏî
-                    * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * istring str = "Hello";
+                    * auto* str1 = str.cStr();
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @include string
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è·å–å­—ç¬¦ä¸²çš„cé£æ ¼è¡¨ç¤º
                     * @enddetails
-                    * @other ÆäËû
+                    *
                     ****/
                     const value_type* cStr() const noexcept
                     {
@@ -385,29 +377,28 @@ namespace i {
 
                     /****
                     * @author ticks
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
-                    * @brief get basic_istring first  iterator
+                    * @since 22-6-23 ä¸‹åˆ12:59
+                    * @brief è·å–å­—ç¬¦ä¸²å¼€å§‹è¿­ä»£å™¨
                     *
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws 
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
                     * get basic_istring first  iterator
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     iterator begin() noexcept
                     {
@@ -426,31 +417,31 @@ namespace i {
 
                     /****
                     * @author ticks
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
+                    * @since 22-6-23 ä¸‹åˆ1:01
                     * @brief get basic_istring last iterator
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
                     * get basic_istring last iterator
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     iterator end() noexcept
                     {
@@ -469,31 +460,31 @@ namespace i {
 
                     /****
                     * @author ticks
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
                     * @brief get basic_istring first reverse iterator
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
                     * get basic_istring first reverse iterator
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     reverse_iterator rbegin() noexcept
                     {
@@ -512,31 +503,31 @@ namespace i {
 
                     /****
                     * @author ticks
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
                     * @brief  get basic_istring last reverse iterator
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
                     *  get basic_istring last reverse iterator
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     reverse_iterator rend() noexcept
                     {
@@ -555,31 +546,31 @@ namespace i {
 
                     /****
                     * @author ticks
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
                     * @brief check basic_istring length() == 0
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
                     * check basic_istring length() == 0
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     bool empty() const noexcept
                     {
@@ -588,31 +579,31 @@ namespace i {
 
                     /****
                     * @author ticks
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
                     * @brief get basic_istring length
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
                     * get basic_istring length
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     size_type length() const noexcept
                     {
@@ -626,31 +617,31 @@ namespace i {
 
                     /****
                     * @author ticks
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
                     * @brief get basic_istring max contain
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
                     * get basic_istring max contain
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     size_type maxSize() const noexcept
                     {
@@ -659,31 +650,31 @@ namespace i {
 
                     /****
                     * @author ticks
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
                     * @brief set basic_istring alloc size
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è¯¦ç»†æè¿°
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     void reserve(size_type new_cap = static_cast<size_type>(0))
                     {
@@ -692,31 +683,31 @@ namespace i {
 
                     /****
                     * @author ticks
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
                     * @brief get basic_istring alloc current size
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è¯¦ç»†æè¿°
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     size_type capacity() const noexcept
                     {
@@ -725,31 +716,31 @@ namespace i {
 
                     /****
                     * @author ticks
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
                     * @brief fit current alloc size to current string size
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
                     * fit current alloc size to current string size
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     void fitAllocSize()
                     {
@@ -758,31 +749,31 @@ namespace i {
 
                     /****
                     * @author ticks
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
                     * @brief clear basic_istring
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è¯¦ç»†æè¿°
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     void clear() noexcept
                     {
@@ -791,31 +782,31 @@ namespace i {
 
                     /****
                     * @author ticks
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
                     * @brief insert ch or string to basic_istring
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
                     * insert ch or string to basic_istring
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     basic_istring& insert(size_type pos, size_type count, value_type ch)
                     {
@@ -875,31 +866,31 @@ namespace i {
 
                     /****
                     * @author Lovelylavender4
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
                     * @brief erase the char or str in basic_istring
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
                     * erase the char or str in basic_istring
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     basic_istring& erase(size_type pos = 0, size_type count = basic_istring::npos)
                     {
@@ -919,31 +910,31 @@ namespace i {
 
                     /****
                     * @author ticks
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
                     * @brief add a char in basic_istring end
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è¯¦ç»†æè¿°
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     void pushBack(value_type ch)
                     {
@@ -952,31 +943,31 @@ namespace i {
 
                     /****
                     * @author ticks
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
                     * @brief remove basic_istring last char
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
                     * @warning if basic_istring length() == 0 , the behavior is undefined
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è¯¦ç»†æè¿°
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     void popBack()
                     {
@@ -985,31 +976,31 @@ namespace i {
 
                     /****
                     * @author ticks
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
                     * @brief append char or string in basic_istring
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è¯¦ç»†æè¿°
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     basic_istring& append(size_type count, value_type ch)
                     {
@@ -1078,31 +1069,31 @@ namespace i {
 
                     /****
                     * @author ticks
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
                     * @brief append number in basic_istring
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è¯¦ç»†æè¿°
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     basic_istring& append(int i)
                     {
@@ -1146,31 +1137,31 @@ namespace i {
 
                     /****
                     * @author ticks
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
                     * @brief replace some str in basic_istring
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è¯¦ç»†æè¿°
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     basic_istring& replace(size_type pos, size_type count, const basic_istring& str)
                     {
@@ -1242,31 +1233,31 @@ namespace i {
 
                     /****
                     * @author ticks
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
                     * @brief get basic_istring sub string in [pos, pos + count)
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è¯¦ç»†æè¿°
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     basic_istring substr(size_type pos = 0, size_type count = basic_istring::npos) const
                     {
@@ -1276,31 +1267,31 @@ namespace i {
 
                     /****
                     * @author ticks
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
                     * @brief copy basic_istring [pos, count) str to dest
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
                     * @throws std::out_of_range :  if pos > length()
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è¯¦ç»†æè¿°
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     size_type copy(value_type* dest, size_type count, size_type pos = 0) const
                     {
@@ -1309,31 +1300,31 @@ namespace i {
 
                     /****
                     * @author ticks
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
                     * @brief set basic_istring ch count to count
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è¯¦ç»†æè¿°
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     void resize(size_type count)
                     {
@@ -1355,31 +1346,31 @@ namespace i {
 
                     /****
                     * @author ticks
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
                     * @brief find the str or ch in basic_istring
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è¯¦ç»†æè¿°
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     size_type find(const basic_istring& str, size_type pos = 0) const
                     {
@@ -1423,31 +1414,31 @@ namespace i {
 
                     /****
                     * @author ticks
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
                     * @brief check basic_istring start with str
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è¯¦ç»†æè¿°
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     bool startsWith(const basic_istring& str)
                     {
@@ -1460,31 +1451,31 @@ namespace i {
 
                     /****
                     * @author ticks
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
                     * @brief check basic_istring end with str
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è¯¦ç»†æè¿°
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     bool endsWith(const basic_istring& str)
                     {
@@ -1497,31 +1488,31 @@ namespace i {
 
                     /****
                     * @author ticks
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
                     * @brief split basic_istring with  char
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è¯¦ç»†æè¿°
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     std::vector<basic_istring> split(value_type ch)
                     {
@@ -1535,36 +1526,36 @@ namespace i {
                         if (start < this->length()) {
                             strs.push_back(this->substr(start));
                         }
-                        return std::move(strs);
+                        return strs;
                     }
 
                     /****
                     * @author ticks
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
                     * @brief match the basic_istring with regex
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è¯¦ç»†æè¿°
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     bool match(const std::basic_regex<value_type>& regex, bool search = false)
                     {
@@ -1587,8 +1578,8 @@ namespace i {
                     }
                 public:
 
-                    template<typename Type>
-                    static std::string toStdString(Type value) {
+                    template<typename Type1>
+                    static std::string toStdString(Type1 value) {
                         return std::to_string(value);
                     }
 
@@ -1614,36 +1605,37 @@ namespace i {
 
                     /****
                     * @author Lovelylavender4
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
-                    * @brief ×ªµ½¿í×Ö·û´®
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
+                    * @brief è½¬åˆ°å®½å­—ç¬¦ä¸²
                     *
-                    * @param code_page ×¢ÊÍ
-                    * @param src_str ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param code_page æ³¨é‡Š
+                    * @param src_str æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è¯¦ç»†æè¿°
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     static std::wstring toWideChar(std::uint32_t code_page, const std::string& src_str) {
                         if (src_str.empty()) {
                             return L"";
                         }
+#ifdef __WINDOWS__
                         auto len = MultiByteToWideChar(code_page, 0, src_str.c_str(), -1, nullptr, 0);
                         if (!len) {
                             return L"";
@@ -1657,40 +1649,44 @@ namespace i {
                         std::wstring wstr(wstr_c);
                         delete[] wstr_c;
                         return wstr;
+#endif
+                        // TODO 22-6-23 : Linuxå®ç°å¾…å®š
+                        return L"";
                     }
 
                     /****
                     * @author Lovelylavender4
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
-                    * @brief ÃèÊö
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
+                    * @brief æè¿°
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è¯¦ç»†æè¿°
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     static std::string fromWideChar(std::uint32_t code_page, const std::wstring& src_wstr) {
                         if (src_wstr.empty()) {
                             return "";
                         }
+#ifdef __WINDOWS__
                         auto len = WideCharToMultiByte(code_page, 0, src_wstr.c_str(), -1, nullptr, 0, nullptr, nullptr);
                         if (!len) {
                             return "";
@@ -1704,35 +1700,38 @@ namespace i {
                         std::string str(str_c);
                         delete[] str_c;
                         return str;
+#endif
+                        // TODO 22-6-23 : Linuxå®ç°å¾…å®š
+                        return "";
                     }
 
                     /****
                     * @author Lovelylavender4
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
-                    * @brief ÃèÊö
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
+                    * @brief æè¿°
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è¯¦ç»†æè¿°
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     static bool isWideCharHex(wchar_t wch) {
                         return (wch >= L'0' && wch <= L'9') || (wch >= L'a' && wch <= L'f') || (wch >= L'A' && wch <= L'F');
@@ -1740,31 +1739,31 @@ namespace i {
 
                     /****
                     * @author Lovelylavender4
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
-                    * @brief ÃèÊö
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
+                    * @brief æè¿°
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è¯¦ç»†æè¿°
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     static std::uint8_t wideChar2hex(wchar_t wch) {
                         if (wch >= L'0' && wch <= L'9') {
@@ -1780,31 +1779,31 @@ namespace i {
 
                     /****
                     * @author Lovelylavender4
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
-                    * @brief ÃèÊö
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
+                    * @brief æè¿°
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è¯¦ç»†æè¿°
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     static char hex2char(uint8_t hex) {
                         if (hex <= 9) {
@@ -1817,31 +1816,31 @@ namespace i {
 
                     /****
                     * @author Lovelylavender4
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
-                    * @brief ÃèÊö
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
+                    * @brief æè¿°
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è¯¦ç»†æè¿°
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     static std::string wideChar2UCS2(wchar_t wch) {
                         auto wch_value = static_cast<uint16_t>(wch);
@@ -1857,31 +1856,31 @@ namespace i {
 
                     /****
                     * @author Lovelylavender4
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
-                    * @brief ÃèÊö
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
+                    * @brief æè¿°
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è¯¦ç»†æè¿°
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     static char hex2wideChar(uint8_t hex) {
                         if (hex <= 9) {
@@ -1894,31 +1893,31 @@ namespace i {
 
                     /****
                     * @author Lovelylavender4
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
-                    * @brief ÃèÊö
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
+                    * @brief æè¿°
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è¯¦ç»†æè¿°
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     static std::wstring wideChar2wideCharUCS2(wchar_t wch) {
                         auto wch_value = static_cast<uint16_t>(wch);
@@ -1934,160 +1933,176 @@ namespace i {
 
                     /****
                     * @author Lovelylavender4
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
                     * @brief Convert a UTF8 encoded string to a wide string
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
                     * @retval The converted wide string
-                    * @throws Å×³öµÄÒì³£
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è¯¦ç»†æè¿°
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     static std::wstring UTF82wideChar(const std::string& utf8) {
+#ifdef __WINDOWS__
                         return toWideChar(CP_UTF8, utf8);
+#endif
+                        // TODO 22-6-23 : Linuxå®ç°å¾…å®š
+                        return L"";
                     }
 
 
                     /****
                     * @author Lovelylavender4
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
                     * @brief Convert wide strings to UTF8-encoded strings
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
                     * @retval The converted UTF8 encoded string
-                    * @throws Å×³öµÄÒì³£
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è¯¦ç»†æè¿°
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     static std::string wideChar2UTF8(const std::wstring& wstr) {
+#ifdef __WINDOWS__
                         return fromWideChar(CP_UTF8, wstr);
+#endif
+                        // TODO 22-6-23 : Linuxå®ç°å¾…å®š
+                        return "";
                     }
 
                     /****
                     * @author Lovelylavender4
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
                     * @brief Convert ANSI-encoded strings to wide strings
                     *
                     * @param ansi ANSI-encoded string to be converted
-                    * @future Î´À´Òª×öµÄÊÂÇé
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
                     * @retval The converted wide string
-                    * @throws Å×³öµÄÒì³£
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è¯¦ç»†æè¿°
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     static std::wstring ANSI2wideChar(const std::string& ansi) {
+#ifdef __WINDOWS__
                         return toWideChar(CP_ACP, ansi);
+#endif
+                        // TODO 22-6-23 : Linuxå®ç°å¾…å®š
+                        return L"";
                     }
 
                     /****
                     * @author Lovelylavender4
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
                     * @brief Convert wide strings to ANSI-encoded strings
                     *
                     * @param wstr The wide string to be converted into an encoding
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
                     * @retval Converted ANSI-encoded string
-                    * @throws Å×³öµÄÒì³£
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è¯¦ç»†æè¿°
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     static std::string wideChar2ANSI(const std::wstring& wstr) {
+#ifdef __WINDOWS__
                         return fromWideChar(CP_ACP, wstr);
+#endif
+                        // TODO 22-6-23 : Linuxå®ç°å¾…å®š
+                        return "";
                     }
 
                     /****
                     * @author Lovelylavender4
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
                     * @brief Convert ANSI-encoded mixed UCS2 encoded strings to wide strings
                     *
                     * @param ansi_with_ucs2 ANSI-encoded mixed UCS2 encoded strings to be converted
                     * @param not_unescape_wide_chars Wide character set without inverse escaping
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
                     * @retval The converted wide string
-                    * @throws Å×³öµÄÒì³£
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è¯¦ç»†æè¿°
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     static std::wstring ANSIWithUCS22WideChar(const std::string& ansi_with_ucs2, const std::wstring& not_unescape_wide_chars) {
                         return unescapeWideChar(ANSI2wideChar(ansi_with_ucs2), not_unescape_wide_chars);
@@ -2096,36 +2111,37 @@ namespace i {
 
                     /****
                     * @author Lovelylavender4
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
-                    * @brief ÃèÊö
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
+                    * @brief æè¿°
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è¯¦ç»†æè¿°
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     static std::string wideChar2ANSIWithUCS2(const std::wstring& wstr, const std::wstring& force_escape_wide_chars) {
                         if (wstr.empty()) {
                             return "";
                         }
+#ifdef __WINDOWS__
                         BOOL need_escape = FALSE;
                         if (!force_escape_wide_chars.empty()) {
                             for (auto wch : wstr) {
@@ -2195,35 +2211,38 @@ namespace i {
                             delete[] ansi_c_tmp;
                             return ansi_with_ucs2;
                         }
+#endif
+                        // TODO 22-6-23 : Linuxå®ç°å¾…å®š
+                        return "";
                     }
 
                     /****
                     * @author Lovelylavender4
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
-                    * @brief ÃèÊö
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
+                    * @brief æè¿°
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è¯¦ç»†æè¿°
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     static std::wstring escapeWideChar(const std::wstring& wstr, const std::wstring& escape_wide_chars) {
                         if (wstr.empty()) {
@@ -2246,31 +2265,31 @@ namespace i {
 
                     /****
                     * @author Lovelylavender4
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
-                    * @brief ÃèÊö
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
+                    * @brief æè¿°
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è¯¦ç»†æè¿°
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     static std::wstring unescapeWideChar(const std::wstring& wstr_with_ucs2, const std::wstring& not_unescape_wide_chars) {
                         if (wstr_with_ucs2.empty()) {
@@ -2320,31 +2339,31 @@ namespace i {
 
                     /****
                     * @author Lovelylavender4
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
-                    * @brief ÃèÊö
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
+                    * @brief æè¿°
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è¯¦ç»†æè¿°
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     static std::string escapeUTF8(const std::string& utf8, const std::string& escape_utf8_chars) {
                         return wideChar2UTF8(escapeWideChar(UTF82wideChar(utf8), UTF82wideChar(escape_utf8_chars)));
@@ -2352,31 +2371,31 @@ namespace i {
 
                     /****
                     * @author Lovelylavender4
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
-                    * @brief ÃèÊö
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
+                    * @brief æè¿°
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è¯¦ç»†æè¿°
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     static std::string unescapeUTF8(const std::string& utf8_with_ucs2, const std::string& not_unescape_utf8_chars) {
                         return wideChar2UTF8(unescapeWideChar(UTF82wideChar(utf8_with_ucs2), UTF82wideChar(not_unescape_utf8_chars)));
@@ -2384,31 +2403,31 @@ namespace i {
 
                     /****
                     * @author Lovelylavender4
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
-                    * @brief ÃèÊö
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
+                    * @brief æè¿°
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è¯¦ç»†æè¿°
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     static wchar_t UCS22WideChar(const std::wstring& ucs2) {
                         auto it = ucs2.cbegin();
@@ -2425,31 +2444,31 @@ namespace i {
 
                     /****
                     * @author Lovelylavender4
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
-                    * @brief ÃèÊö
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
+                    * @brief æè¿°
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è¯¦ç»†æè¿°
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     static bool replaceString(
                         basic_istring& str,
@@ -2469,31 +2488,31 @@ namespace i {
 
                     /****
                     * @author Lovelylavender4
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
-                    * @brief ÃèÊö
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
+                    * @brief æè¿°
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è¯¦ç»†æè¿°
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     static std::list<Type> istringSplit2List(
                         const basic_istring& str,
@@ -2528,31 +2547,31 @@ namespace i {
 
                     /****
                     * @author Lovelylavender4
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
-                    * @brief ÃèÊö
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
+                    * @brief æè¿°
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è¯¦ç»†æè¿°
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     static std::vector<Type> istringSplit2Vector(
                         const basic_istring& str,
@@ -2580,31 +2599,31 @@ namespace i {
 
                     /****
                     * @author Lovelylavender4
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
-                    * @brief ÃèÊö
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
+                    * @brief æè¿°
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è¯¦ç»†æè¿°
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     static std::set<Type> istringSplit2Set(
                         const basic_istring& str,
@@ -2631,66 +2650,71 @@ namespace i {
 
                     /****
                     * @author Lovelylavender4
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
-                    * @brief ÃèÊö
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
+                    * @brief æè¿°
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è¯¦ç»†æè¿°
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     static std::wstring str2wstr(const std::string& str) {
+#ifdef __WINDOWS__
                         return str2wstr(str, CP_UTF8);
+#endif
+                        // TODO 22-6-23 : Linuxå®ç°å¾…å®š
+                        return L"";
                     }
 
                     /****
                     * @author Lovelylavender4
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
-                    * @brief ÃèÊö
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
+                    * @brief æè¿°
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è¯¦ç»†æè¿°
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
-                    static std::wstring str2wstr(const std::string& str, UINT codePage)
+                    static std::wstring str2wstr(const std::string& str, i::core::uint codePage)
                     {
+#ifdef __WINDOWS__
                         auto len = MultiByteToWideChar(codePage, 0, str.c_str(), -1, nullptr, 0);
                         auto* buffer = new wchar_t[len + 1];
                         MultiByteToWideChar(codePage, 0, str.c_str(), -1, buffer, len + 1);
@@ -2699,73 +2723,78 @@ namespace i {
                         std::wstring result = std::wstring(buffer);
                         delete[] buffer;
                         return result;
+#endif
+                        // TODO 22-6-23 : Linuxå®ç°å¾…å®š
+                        return L"";
                     }
 
                     /****
                     * @author Lovelylavender4
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
-                    * @brief ÃèÊö
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
+                    * @brief æè¿°
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è¯¦ç»†æè¿°
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     static std::string wstr2str(const std::wstring& wstr) {
+#ifdef __WINDOWS__
                         return wstr2str(wstr, CP_UTF8);
+#endif
+                        // TODO 22-6-23 : Linuxå®ç°å¾…å®š
+                        return "";
                     }
 
 
                     /****
                     * @author Lovelylavender4
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
-                    * @brief ÃèÊö
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
+                    * @brief æè¿°
                     *
-                    * @param wstr ´ı×ª»»µÄ¿í×Ö·û´®
+                    * @param wstr å¾…è½¬æ¢çš„å®½å­—ç¬¦ä¸²
                     * @param codePage codePage
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è¯¦ç»†æè¿°
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
-                    static std::string wstr2str(
-                        const std::wstring& wstr,
-                        uint codePage
-                    ){
+                    static std::string wstr2str(const std::wstring& wstr,uint codePage){
+#ifdef __WINDOWS__
                         auto len = WideCharToMultiByte(codePage, 0, wstr.c_str(), -1, nullptr, 0, nullptr, nullptr);
                         char* buffer = new char[len + 1];
                         WideCharToMultiByte(codePage, 0, wstr.c_str(), -1, buffer, len + 1, nullptr, nullptr);
@@ -2774,38 +2803,41 @@ namespace i {
                         std::string result = std::string(buffer);
                         delete[] buffer;
                         return result;
+#endif
+                        // TODO 22-6-23 : Linuxå®ç°å¾…å®š
+                        return "";
                     }
 
                 public:
 
                     /****
                     * @author Lovelylavender4
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
-                    * @brief ÃèÊö
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
+                    * @brief æè¿°
                     *
-                    * @param delimiters ×¢ÊÍ
-                    * @param pushEmpty = false ×¢ÊÍ
-                    * @param vInversion = false ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
+                    * @param delimiters æ³¨é‡Š
+                    * @param pushEmpty = false æ³¨é‡Š
+                    * @param vInversion = false æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
                     * @retval std::list<Type>
-                    * @throws Å×³öµÄÒì³£
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è¯¦ç»†æè¿°
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     std::list<Type> split2List(
                         const basic_istring& delimiters,
@@ -2839,31 +2871,31 @@ namespace i {
                     
                     /****
                     * @author Lovelylavender4
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
-                    * @brief ÃèÊö
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
+                    * @brief æè¿°
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è¯¦ç»†æè¿°
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     std::vector<Type> split2Vector(
                         const basic_istring& delimiters,
@@ -2890,31 +2922,31 @@ namespace i {
                     
                     /****
                     * @author Lovelylavender4
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
-                    * @brief ÃèÊö
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
+                    * @brief æè¿°
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è¯¦ç»†æè¿°
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     std::set<Type> split2Set(
                         const basic_istring& delimiters,
@@ -2979,31 +3011,31 @@ namespace i {
 
                     /****
                     * @author Lovelylavender4
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
-                    * @brief ÃèÊö
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
+                    * @brief æè¿°
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è¯¦ç»†æè¿°
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     std::string toHexStdString(){
                         std::ostringstream os;
@@ -3013,31 +3045,31 @@ namespace i {
 
                     /****
                     * @author Lovelylavender4
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
-                    * @brief ÃèÊö
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
+                    * @brief æè¿°
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è¯¦ç»†æè¿°
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     std::string toDecStr(){
                         std::ostringstream os;
@@ -3049,31 +3081,31 @@ namespace i {
 
                     /****
                     * @author ticks
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
                     * @brief basic_istring assignment operator
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è¯¦ç»†æè¿°
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     basic_istring& operator = (const basic_istring& str)
                     {
@@ -3112,31 +3144,31 @@ namespace i {
 
                     /****
                     * @author ticks
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
                     * @brief get basic_istring char at pos
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
                     * @warning if pos >= size(), the behavior is undefined
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è¯¦ç»†æè¿°
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     reference operator [] (size_type pos)
                     {
@@ -3150,31 +3182,31 @@ namespace i {
 
                     /****
                     * @author ticks
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
                     * @brief basic_istring += operator
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è¯¦ç»†æè¿°
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     basic_istring& operator += (const basic_istring& str)
                     {
@@ -3279,31 +3311,31 @@ namespace i {
 
                     /****
                     * @author ticks
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
                     * @brief stream input str or ch or number to basic_istring
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è¯¦ç»†æè¿°
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     basic_istring& operator << (const basic_istring& str)
                     {
@@ -3372,31 +3404,31 @@ namespace i {
 
                     /****
                     * @author ticks
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
                     * @brief append ls and rs to a new basic_istring
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è¯¦ç»†æè¿°
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     friend basic_istring operator + (const basic_istring& ls, const basic_istring& rs)
                     {
@@ -3501,31 +3533,31 @@ namespace i {
                 public:
                     /****
                     * @author ticks
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
                     * @brief to_string / to_wstring
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è¯¦ç»†æè¿°
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     template <typename T>
                     static basic_istring valueOf(T&& value)
@@ -3547,61 +3579,61 @@ namespace i {
 
                     /****
                     * @author ticks
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
                     * @brief check str start with sub
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è¯¦ç»†æè¿°
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     static bool startsWith(const basic_istring& sub, const basic_istring& str);
 
                     /****
                     * @author ticks
-                    * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
+                    * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
                     * @brief check str end with sub
                     *
-                    * @param ²ÎÊıÃû ×¢ÊÍ
-                    * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                    * @future Î´À´Òª×öµÄÊÂÇé
-                    * @retval ·µ»ØÖµ×¢ÊÍ
-                    * @throws Å×³öµÄÒì³£
+                    * @param å‚æ•°å æ³¨é‡Š
+                    * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                    * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                    * @retval è¿”å›å€¼æ³¨é‡Š
+                    * @throws æŠ›å‡ºçš„å¼‚å¸¸
                     *
                     * @note
-                    * ×¢ÒâÊÂÏî
+                    * æ³¨æ„äº‹é¡¹
                     * @endnote
-                    * @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+                    * @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
                     * @par Example
                     * @code
-                    * ´úÂëÊ¾Àı
+                    * ä»£ç ç¤ºä¾‹
                     * @endcode
                     *
-                    * @warning ¾¯¸æ
-                    * @bug ´æÔÚµÄÂ©¶´
-                    * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                    * @warning è­¦å‘Š
+                    * @bug å­˜åœ¨çš„æ¼æ´
+                    * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                     * @details
-                    * ÏêÏ¸ÃèÊö
+                    * è¯¦ç»†æè¿°
                     * @enddetails
-                    * @other ÆäËû
+                    * @other å…¶ä»–
                     ****/
                     static bool endsWith(const basic_istring& sub, const basic_istring& str);
 #endif
