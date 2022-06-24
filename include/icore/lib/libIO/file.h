@@ -33,23 +33,23 @@
 #include <io.h>
 #endif
 
-namespace i {
-    namespace core {
-        namespace libIO {
+SPACE(i) {
+    SPACE(core) {
+        SPACE(libIO) {
 
             struct iFileInfo {
-                type::istring name;//ÎÄ¼şÃû
-                type::istring fname;//ÎÄ¼şÃû£¨º¬À©Õ¹Ãû£©
-                type::istring path;//ÎÄ¼şÂ·¾¶
-                type::istring extensionName;//À©Õ¹Ãû
-                size_t size;//ÎÄ¼ş´óĞ¡
-                int lineCount;//ÎÄ¼şĞĞÊı
-                __unk_type__ createTime;//´´½¨Ê±¼ä
-                __unk_type__ modifyTime;//ĞŞ¸ÄÊ±¼ä
+                type::istring name;//æ–‡ä»¶å
+                type::istring fname;//æ–‡ä»¶åï¼ˆå«æ‰©å±•åï¼‰
+                type::istring path;//æ–‡ä»¶è·¯å¾„
+                type::istring extensionName;//æ‰©å±•å
+                size_t size;//æ–‡ä»¶å¤§å°
+                int lineCount;//æ–‡ä»¶è¡Œæ•°
+                __unk_type__ createTime;//åˆ›å»ºæ—¶é—´
+                __unk_type__ modifyTime;//ä¿®æ”¹æ—¶é—´
                 __unk_type__ md5;//md5
-                __unk_type__ authority;//È¨ÏŞ
-                __unk_type__ lastVisitTime;//×îºó·ÃÎÊÊ±¼ä
-                HICON icon;//Í¼±ê
+                __unk_type__ authority;//æƒé™
+                __unk_type__ lastVisitTime;//æœ€åè®¿é—®æ—¶é—´
+                HICON icon;//å›¾æ ‡
             };
 
             class IAPI File {
@@ -60,11 +60,11 @@ namespace i {
 
             public C_STATIC :
 
-                /****
+            /****
                 * @author Lovelylavender4
                 * @brief NULL
-                * @param filePath ÎÄ¼şÂ·¾¶
-                * @param isBinary = false ÊÇ·ñÊÇ¶ş½øÖÆ
+                * @param filePath æ–‡ä»¶è·¯å¾„
+                * @param isBinary = false æ˜¯å¦æ˜¯äºŒè¿›åˆ¶
                 * @future NULL
                 * @retval std::optional<std::string>
                 * @throws NULL
@@ -77,7 +77,7 @@ namespace i {
                 * @bug NULL
                 * @include <optional>,<fstream>,<filesystem>,istring,
                 ****/
-                static std::optional<type::istring> readAllFile(const type::istring& filePath, bool isBinary = false) {
+            static std::optional<type::istring> readAllFile(const type::istring& filePath, bool isBinary = false) {
                     std::ifstream fRead;
 
                     std::ios_base::openmode mode = std::ios_base::in;
@@ -95,13 +95,13 @@ namespace i {
                     fRead.close();
                     return data;
                 }
-
-                /****
+            
+            /****
                 * @author Lovelylavender4
                 * @brief NULL
-                * @param filePath ÎÄ¼şÂ·¾¶
-                * @param content ÄÚÈİ
-                * @param isBinary = false ÊÇ·ñÊÇ¶ş½øÖÆ
+                * @param filePath æ–‡ä»¶è·¯å¾„
+                * @param content å†…å®¹
+                * @param isBinary = false æ˜¯å¦æ˜¯äºŒè¿›åˆ¶
                 * @future NULL
                 * @retval bool
                 * @throws NULL
@@ -114,64 +114,37 @@ namespace i {
                 * @bug NULL
                 * @include NULL
                 ****/
-                static bool writeAllFile(const std::string& filePath, const std::string& content, bool isBinary = false) {
-                    std::ofstream fWrite;
-
-                    std::ios_base::openmode mode = std::ios_base::out;
-                    if (isBinary)
-                        mode |= std::ios_base::binary;
-
-                    fWrite.open(type::istring::str2wstr(filePath), mode);
-                    if (!fWrite.is_open()) {
-                        return false;
-                    }
-                    fWrite << content;
-                    fWrite.close();
-                    return true;
-                }
+            static bool writeAllFile(const std::string& filePath, const std::string& content, bool isBinary = false);
 
 #if __CPP_17__
                 /****
                 * @author Lovelylavender4
-                * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
-                * @brief ÃèÊö
+                * @since 2022.6.24.12:30
+                * @brief è·å–ç›®æ ‡ç›®å½•ä¸‹æ–‡ä»¶ååˆ—è¡¨
                 *
-                * @param dir Ä¿±êÄ¿Â¼
-                * @future Î´À´Òª×öµÄÊÂÇé
-                * @retval ÎÄ¼şÃûÁĞ±í
-                * @throws Å×³öµÄÒì³£
+                * @param dir ç›®æ ‡ç›®å½•
+                * @future å®ç°åœ¨C++17ä»¥ä¸‹å¯ä½¿ç”¨
+                * @retval æ–‡ä»¶ååˆ—è¡¨
+                * @throws æŠ›å‡ºçš„å¼‚å¸¸
                 *
                 * @note
-                * ×¢ÒâÊÂÏî
+                * æ³¨æ„äº‹é¡¹
                 * @endnote
-                * @pre ´úÂëÊ¹ÓÃµÄÇ°ÌáÌõ¼ş
+                * @pre ä»£ç ä½¿ç”¨çš„å‰ææ¡ä»¶
                 * @par Example
                 * @code
-                * ´úÂëÊ¾Àı
+                * ä»£ç ç¤ºä¾‹
                 * @endcode
                 *
-                * @warning ¾¯¸æ
-                * @bug ´æÔÚµÄÂ©¶´
-                * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                * @warning è­¦å‘Š
+                * @bug å­˜åœ¨çš„æ¼æ´
+                * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                 * @details
-                * ÏêÏ¸ÃèÊö
+                * è¯¦ç»†æè¿°
                 * @enddetails
-                * @other ÆäËû
+                * @other å…¶ä»–
                 ****/
-                static std::vector<std::string> getFileNameList(const std::string& dir)
-                {
-                    std::filesystem::directory_entry d(dir);
-                    if (!d.is_directory())
-                        return {};
-
-                    std::vector<std::string> list;
-                    std::filesystem::directory_iterator deps(d);
-                    for (auto& i : deps)
-                    {
-                        list.push_back(i.path().filename().string());
-                    }
-                    return list;
-                }
+            static std::vector<std::string> getFileNameList(const std::string& dir);
 
                 /****
                 * @author Lovelylavender4
@@ -190,16 +163,18 @@ namespace i {
                 * @bug NULL
                 * @include NULL
                 ****/
-                static bool createDirs(const std::string path)
-                {
-                    std::error_code ec;
-                    return std::filesystem::create_directories(std::filesystem::path(type::istring::str2wstr(path)).remove_filename(), ec);
-                }
+            static bool createDirs(const std::string path);
+
 #endif//__CPP_17__
+
             protected:
             private:
 
             };
+
+            SPACE(_function) {
+            
+            }
 
         }//namespace libIO
     }//namespace core

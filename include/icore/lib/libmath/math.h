@@ -28,18 +28,18 @@ namespace i {
 				/****
 				* @author Lovelylavender4
 				* @since 2022.6.21.13:41
-				* @brief Õâ¸öº¯ÊıÓÃÀ´È·±£Ò»¸ö¸¡µãÊı²»ÊÇNaN»òÎŞÇî´ó¡£
+				* @brief è¿™ä¸ªå‡½æ•°ç”¨æ¥ç¡®ä¿ä¸€ä¸ªæµ®ç‚¹æ•°ä¸æ˜¯NaNæˆ–æ— ç©·å¤§ã€‚
 				*
-				* @param f ¸¡µãÊı
-				* @retval Õæ»ò¼Ù
+				* @param f æµ®ç‚¹æ•°
+				* @retval çœŸæˆ–å‡
 				*
-				* @par Ä£°å
+				* @par æ¨¡æ¿
 				* @code
 				* floatIsValid(aFloatNumber);
 				* @endcode
 				*
 				* @details
-				* Õâ¸öº¯ÊıÓÃÀ´È·±£Ò»¸ö¸¡µãÊı²»ÊÇNaN»òÎŞÇî´ó¡£
+				* è¿™ä¸ªå‡½æ•°ç”¨æ¥ç¡®ä¿ä¸€ä¸ªæµ®ç‚¹æ•°ä¸æ˜¯NaNæˆ–æ— ç©·å¤§ã€‚
 				* @enddetails
 				****/
 				IAPI inline bool floatIsValid(float f);

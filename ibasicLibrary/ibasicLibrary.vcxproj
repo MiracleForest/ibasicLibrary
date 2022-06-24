@@ -351,9 +351,6 @@
     <None Include="..\include\cppstd\syncstream" />
     <None Include="..\include\cppstd\system_error" />
     <None Include="..\include\cppstd\thread" />
-    <None Include="A:\360data\重要数据\桌面\LiteLoaderBDS\LiteLoader\Kernel\Utils\ShellLinkFile.cpp" />
-    <None Include="A:\360data\重要数据\桌面\LiteLoaderBDS\LiteLoader\Kernel\Utils\SRWLock.cpp" />
-    <None Include="A:\360data\重要数据\桌面\LiteLoaderBDS\LiteLoader\Kernel\Utils\STLHelper.cpp" />
     <ClCompile Include="ibasicLibrary.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -493,6 +490,7 @@
     <ClInclude Include="..\include\icore\lib\libIO\console.h" />
     <ClInclude Include="..\include\icore\lib\libIO\file.h" />
     <ClInclude Include="..\include\icore\lib\libIO\io.h" />
+    <ClInclude Include="..\include\icore\lib\libIO\shelllinkfile.h" />
     <ClInclude Include="..\include\icore\lib\libmath\math.h" />
     <ClInclude Include="..\include\icore\lib\libmath\rect.hpp" />
     <ClInclude Include="..\include\icore\lib\libmath\vec2.hpp" />
@@ -552,9 +550,6 @@
     <ClInclude Include="..\third-party\nlohmann\json.hpp" />
     <ClInclude Include="..\third-party\nlohmann\json_fwd.hpp" />
     <ClInclude Include="..\third-party\nlohmann\ordered_map.hpp" />
-    <ClInclude Include="A:\360data\重要数据\桌面\LiteLoaderBDS\LiteLoader\Header\Utils\ShellLinkFile.h" />
-    <ClInclude Include="A:\360data\重要数据\桌面\LiteLoaderBDS\LiteLoader\Header\Utils\SRWLock.h" />
-    <ClInclude Include="A:\360data\重要数据\桌面\LiteLoaderBDS\LiteLoader\Header\Utils\STLHelper.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>

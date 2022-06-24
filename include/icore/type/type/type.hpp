@@ -1,4 +1,4 @@
-/*
+ï»¿/*
 *
 * Copyright(C) 2022 MiracleForest Studio. All Rights Reserved.
 *
@@ -63,18 +63,18 @@ namespace i {
 			/****
 			* @author Lovelylavender4
 			* @since 2022.6.21.13:25
-			* @brief »ñÈ¡ÀàĞÍÃ¶¾Ù
+			* @brief è·å–ç±»å‹æšä¸¾
 			*
-			* @retval »ñÈ¡µ½µÄÀàĞÍÃ¶¾Ù
+			* @retval è·å–åˆ°çš„ç±»å‹æšä¸¾
 			*
 			* @par Example
 			* @code
-			* ´úÂëÊ¾Àı
+			* ä»£ç ç¤ºä¾‹
 			* @endcode
 			*
 			* @include -
 			* @details
-			* »ñÈ¡ÀàĞÍÃ¶¾Ù
+			* è·å–ç±»å‹æšä¸¾
 			* @enddetails
 			****/
 			itype getType()const {
@@ -86,18 +86,18 @@ namespace i {
 			/****
 			* @author Lovelylavender4
 			* @since 2022.6.21.13:28
-			* @brief ÉèÖÃmTypeµÄÖµ
+			* @brief è®¾ç½®mTypeçš„å€¼
 			*
-			* @param t mTypeµÄĞÂÖµ
+			* @param t mTypeçš„æ–°å€¼
 			*
 			* @par Example
 			* @code
-			* ´úÂëÊ¾Àı
+			* ä»£ç ç¤ºä¾‹
 			* @endcode
 			*
 			* @include -
 			* @details
-			* ÉèÖÃmTypeµÄÖµ
+			* è®¾ç½®mTypeçš„å€¼
 			* @enddetails
 			****/
 			void setdata(iType t) { mType = t; }
@@ -113,18 +113,18 @@ namespace i {
 			/****
 			* @author Lovelylavender4
 			* @since 2022.6.21.13:30
-			* @brief »ñÈ¡ÀàĞÍÃ¶¾ÙµÄ×Ö·û´®Ãû³Æ
+			* @brief è·å–ç±»å‹æšä¸¾çš„å­—ç¬¦ä¸²åç§°
 			*
-			* @param t ÀàĞÍÃ¶¾Ù
-			* @retval ÀàĞÍÃ¶¾ÙµÄ×Ö·û´®Ãû³Æ
+			* @param t ç±»å‹æšä¸¾
+			* @retval ç±»å‹æšä¸¾çš„å­—ç¬¦ä¸²åç§°
 			*
 			* @par Example
 			* @code
-			* ´úÂëÊ¾Àı
+			* ä»£ç ç¤ºä¾‹
 			* @endcode
 			*
 			* @details
-			* »ñÈ¡ÀàĞÍÃ¶¾ÙµÄ×Ö·û´®Ãû³Æ
+			* è·å–ç±»å‹æšä¸¾çš„å­—ç¬¦ä¸²åç§°
 			* @enddetails
 			****/
 			static const char* getString(iType t) {
@@ -159,19 +159,19 @@ namespace i {
 			/****
 			* @author Lovelylavender4
 			* @since 2022.6.21.13:34
-			* @brief »ñÈ¡ÀàĞÍµÄ×Ö·û´®Ãû³Æ
+			* @brief è·å–ç±»å‹çš„å­—ç¬¦ä¸²åç§°
 			*
-			* @tparam Type ÀàĞÍ
-			* @retval ÀàĞÍµÄ×Ö·û´®Ãû³Æ
+			* @tparam Type ç±»å‹
+			* @retval ç±»å‹çš„å­—ç¬¦ä¸²åç§°
 			*
 			* @par Example
 			* @code
-			* ´úÂëÊ¾Àı
+			* ä»£ç ç¤ºä¾‹
 			* @endcode
 			*
-			* @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+			* @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
 			* @details
-			* »ñÈ¡ÀàĞÍµÄ×Ö·û´®Ãû³Æ
+			* è·å–ç±»å‹çš„å­—ç¬¦ä¸²åç§°
 			* @enddetails
 			****/
 			template<typename Type>
@@ -182,19 +182,19 @@ namespace i {
 			/****
 			* @author Lovelylavender4
 			* @since 2022.6.21.13:35
-			* @brief »ñÈ¡ÀàĞÍµÄ×Ö·û´®Ãû³Æ
+			* @brief è·å–ç±»å‹çš„å­—ç¬¦ä¸²åç§°
 			*
 			* @param t -
-			* @retval ÀàĞÍµÄ×Ö·û´®Ãû³Æ
+			* @retval ç±»å‹çš„å­—ç¬¦ä¸²åç§°
 			*
 			* @par Example
 			* @code
-			* ´úÂëÊ¾Àı
+			* ä»£ç ç¤ºä¾‹
 			* @endcode
 			*
 			* @include -
 			* @details
-			* »ñÈ¡ÀàĞÍµÄ×Ö·û´®Ãû³Æ
+			* è·å–ç±»å‹çš„å­—ç¬¦ä¸²åç§°
 			* @enddetails
 			****/
 			template<typename Type>

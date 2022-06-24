@@ -1,7 +1,11 @@
 ﻿#include "pch.h"
-#define ___ILIBRARYEXPORT___ 1
+
 
 #include "../../include/icore/lib/libIO/IO.h"
+#include "../../include/icore/lib/libIO/file.h"
+#include "../../include/icore/lib/libIO/console.h"
+#include "../../include/icore/lib/libIO/shelllinkfile.h"
+
 
 BOOL APIENTRY DllMain( HMODULE hModule,
                        DWORD  ul_reason_for_call,
