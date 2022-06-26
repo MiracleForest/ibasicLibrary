@@ -16,17 +16,18 @@
 #ifndef ___MIRACLEFOREST_I__LIBIO_SHELLLINKFILE___
 #define ___MIRACLEFOREST_I__LIBIO_SHELLLINKFILE___
 
-#include <ShlObj.h>
+
 #include "../../type/istring.hpp"
 #include "../../../cppstd/exception"
 
-
+#if __WINDOWS__
+#include <ShlObj.h>
 
 namespace i {
     namespace core {
         namespace libIO {
 
-
+#if 0
             class IAPI ShellLinkFile {
 
                 IShellLinkW* shellLink = nullptr;
@@ -301,8 +302,12 @@ namespace i {
                 ShellLinkFile& setHotKey(const HotKey& hotKey);
 
             };
+#endif//0
 
         }
     }
 }
+
+#endif//__WINDOWS__
+
 #endif //!___MIRACLEFOREST_I__LIBIO_SHELLLINKFILE___

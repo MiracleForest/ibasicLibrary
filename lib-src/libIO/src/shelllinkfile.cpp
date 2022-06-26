@@ -1,5 +1,6 @@
 #include "../../../include/icore/lib/libIO/shelllinkfile.h"
 
+#if 0
 
 
 void i::core::libIO::ShellLinkFile::_Init()
@@ -413,3 +414,5 @@ i::core::libIO::ShellLinkFile& i::core::libIO::ShellLinkFile::setHotKey(const Ho
     }
     return *this;
 }
+
+#endif//0
