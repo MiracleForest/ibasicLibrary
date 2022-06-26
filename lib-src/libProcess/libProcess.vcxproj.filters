@@ -31,7 +31,7 @@
       <Filter>resource</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\icore\lib\libProcess\process.h">
-      <Filter>include</Filter>
+      <Filter>other</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

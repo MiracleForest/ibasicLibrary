@@ -2608,31 +2608,21 @@ namespace i {
                     * @retval 返回值注释
                     * @throws 抛出的异常
                     *
-                    * @note
-                    * 注意事项
-                    * @endnote
-                    * @pre 使用此函数的前提条件
-                    * @par Example
-                    * @code
-                    * 代码示例
-                    * @endcode
-                    *
                     * @warning 警告
-                    * @bug 存在的漏洞
-                    * @include 需要包含的头文件
+                    * @bug C2228->[<1>]
+                    * @include <set>
                     * @details
                     * 详细描述
                     * @enddetails
-                    * @other 其他
                     ****/
                     static std::set<Type> istringSplit2Set(
                         const basic_istring& str,
                         const basic_istring& delimiters,
-                        bool pushEmpty = false) {
+                        bool pushEmpty = false) = delete;/* {
                         std::set<Type> arr;
                         if (!str.empty()) {
                             size_type start = 0;
-                            size_type end = str.data().find_first_of(delimiters.data(), start);
+                        <1> size_type end = str.data().find_first_of(delimiters.data(), start);
                             while (end != npos) {
                                 Type token = str.data().substr(start, end - start);
                                 if (!token.empty() || (token.empty() && pushEmpty))
@@ -2646,7 +2636,7 @@ namespace i {
                             }
                         }
                         return arr;
-                    }
+                    }*/
 
                     /****
                     * @author Lovelylavender4
