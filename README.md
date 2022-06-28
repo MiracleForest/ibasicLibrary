@@ -2,7 +2,7 @@
 
 [![status](https://img.shields.io/github/workflow/status/LiteLDev/LiteLoader/Build%20LiteLoader?style=for-the-badge)](https://github.com/MiracleForest/ibasicLibrary/actions)
 
-----  QQ群: [1015969097](https://jq.qq.com/?_wv=1027&k=lagwtrfh)  ----
+----  QQ群: [1015969097](README_qq.md)  ----
 
 ##### ----  简体中文 | [English](README_en.md)  ----
 <br />
