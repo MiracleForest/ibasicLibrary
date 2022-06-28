@@ -148,6 +148,7 @@
 #define IERROR i::core::iexception::error
 #define SPACE(x) namespace x
 
+
 /*------------------------命名空间------------------------*/
 #define N_STD ::std::
 #define N_ITYPE ::i::core::type::
