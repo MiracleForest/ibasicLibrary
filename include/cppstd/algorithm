@@ -6,9 +6,9 @@
 #pragma once
 #ifndef _ALGORITHM_
 #define _ALGORITHM_
-#include <yvals_core.h>
+#include "yvals_core.h"
 #if _STL_COMPILER_PREPROCESSOR
-#include <xmemory>
+#include "xmemory"
 
 #pragma pack(push, _CRT_PACKING)
 #pragma warning(push, _STL_WARNING_LEVEL)
@@ -296,7 +296,7 @@ namespace ranges {
             return {_STD move(_First), _STD move(_UResult.fun)};
         }
 
-    private:
+    public:
         template <class _It, class _Se, class _Pj, class _Fn>
         _NODISCARD static constexpr for_each_result<_It, _Fn> _For_each_unchecked(
             _It _First, const _Se _Last, _Fn _Func, _Pj _Proj) {
@@ -431,7 +431,7 @@ namespace ranges {
             return _Rewrap_iterator(_Range, _STD move(_UResult));
         }
 
-    private:
+    public:
         template <class _It, class _Se, class _Pj, class _Pr>
         _NODISCARD static constexpr _It _Adjacent_find_unchecked(_It _First, const _Se _Last, _Pr _Pred, _Pj _Proj) {
             // find first satisfying _Pred with successor
@@ -477,7 +477,7 @@ namespace ranges {
             return _Count_unchecked(_Ubegin(_Range), _Uend(_Range), _Val, _Pass_fn(_Proj));
         }
         // clang-format on
-    private:
+    public:
         template <class _It, class _Se, class _Ty, class _Pj>
         _NODISCARD static constexpr iter_difference_t<_It> _Count_unchecked(
             _It _First, const _Se _Last, const _Ty& _Val, _Pj _Proj) {
@@ -542,7 +542,7 @@ namespace ranges {
             return _Count_if_unchecked(_Ubegin(_Range), _Uend(_Range), _Pass_fn(_Pred), _Pass_fn(_Proj));
         }
 
-    private:
+    public:
         template <class _It, class _Se, class _Pj, class _Pr>
         _NODISCARD static constexpr iter_difference_t<_It> _Count_if_unchecked(
             _It _First, const _Se _Last, _Pr _Pred, _Pj _Proj) {
@@ -685,7 +685,7 @@ namespace ranges {
     }
 
     class _Equal_fn : private _Not_quite_object {
-    private:
+    public:
         template <class _It1, class _Se1, class _It2, class _Se2, class _Pr, class _Pj1, class _Pj2>
         _NODISCARD static constexpr bool _Equal_4(
             _It1 _First1, _Se1 _Last1, _It2 _First2, _Se2 _Last2, _Pr _Pred, _Pj1 _Proj1, _Pj2 _Proj2) {
@@ -920,7 +920,7 @@ namespace ranges {
             }
         }
 
-    private:
+    public:
         template <class _It1, class _Se1, class _It2, class _Se2, class _Pr, class _Pj1, class _Pj2>
         _NODISCARD static constexpr bool _Is_permutation_sized(_It1 _First1, _Se1 _Last1, _It2 _First2, _Se2 _Last2,
             iter_difference_t<_It1> _Count, _Pr _Pred, _Pj1 _Proj1, _Pj2 _Proj2) {
@@ -1183,7 +1183,7 @@ namespace ranges {
             return _All_of_unchecked(_Ubegin(_Range), _Uend(_Range), _Pass_fn(_Pred), _Pass_fn(_Proj));
         }
 
-    private:
+    public:
         template <class _It, class _Se, class _Pj, class _Pr>
         _NODISCARD static constexpr bool _All_of_unchecked(_It _First, const _Se _Last, _Pr _Pred, _Pj _Proj) {
             _STL_INTERNAL_STATIC_ASSERT(input_iterator<_It>);
@@ -1245,7 +1245,7 @@ namespace ranges {
             return _Any_of_unchecked(_Ubegin(_Range), _Uend(_Range), _Pass_fn(_Pred), _Pass_fn(_Proj));
         }
 
-    private:
+    public:
         template <class _It, class _Se, class _Pj, class _Pr>
         _NODISCARD static constexpr bool _Any_of_unchecked(_It _First, const _Se _Last, _Pr _Pred, _Pj _Proj) {
             _STL_INTERNAL_STATIC_ASSERT(input_iterator<_It>);
@@ -1307,7 +1307,7 @@ namespace ranges {
             return _None_of_unchecked(_Ubegin(_Range), _Uend(_Range), _Pass_fn(_Pred), _Pass_fn(_Proj));
         }
 
-    private:
+    public:
         template <class _It, class _Se, class _Pj, class _Pr>
         _NODISCARD static constexpr bool _None_of_unchecked(_It _First, const _Se _Last, _Pr _Pred, _Pj _Proj) {
             _STL_INTERNAL_STATIC_ASSERT(input_iterator<_It>);
@@ -1455,7 +1455,7 @@ namespace ranges {
         }
         // clang-format on
 
-    private:
+    public:
         template <class _It, class _Se, class _Out, class _Pj, class _Pr>
         _NODISCARD static constexpr copy_if_result<_It, _Out> _Copy_if_unchecked(
             _It _First, const _Se _Last, _Out _Result, _Pr _Pred, _Pj _Proj) {
@@ -1661,7 +1661,7 @@ namespace ranges {
             return {_STD move(_First), _STD move(_Dest_true), _STD move(_Dest_false)};
         }
         // clang-format on
-    private:
+    public:
         template <class _It, class _Se, class _Out1, class _Out2, class _Pr, class _Pj>
         _NODISCARD static constexpr partition_copy_result<_It, _Out1, _Out2> _Partition_copy_unchecked(
             _It _First, const _Se _Last, _Out1 _Dest_true, _Out2 _Dest_false, _Pr _Pred, _Pj _Proj) {
@@ -1742,7 +1742,7 @@ namespace ranges {
             return _Is_partitioned_unchecked(_Ubegin(_Range), _Uend(_Range), _Pass_fn(_Pred), _Pass_fn(_Proj));
         }
 
-    private:
+    public:
         template <class _It, class _Se, class _Pr, class _Pj>
         _NODISCARD static constexpr bool _Is_partitioned_unchecked(_It _First, const _Se _Last, _Pr _Pred, _Pj _Proj) {
             // test if [_First, _Last) is partitioned with respect to _Pred and _Proj
@@ -1835,7 +1835,7 @@ namespace ranges {
             }
         }
 
-    private:
+    public:
         template <class _It, class _Pr, class _Pj>
         _NODISCARD static constexpr _It _Partition_point_n_unchecked(
             _It _First, iter_difference_t<_It> _Length, _Pr _Pred, _Pj _Proj) {
@@ -2138,7 +2138,7 @@ namespace ranges {
         }
         // clang-format on
 
-    private:
+    public:
         template <class _It, class _Ty, class _Pr, class _Pj>
         _NODISCARD static constexpr subrange<_It> _Search_n_sized(_It _First, iter_difference_t<_It> _Dist,
             const _Ty& _Val, const iter_difference_t<_It> _Count, _Pr _Pred, _Pj _Proj) {
@@ -2350,7 +2350,7 @@ namespace ranges {
                 _Pass_fn(_Pred), _Pass_fn(_Proj1), _Pass_fn(_Proj2));
         }
 
-    private:
+    public:
         struct _Not_a_difference {};
 
         template <class _It, class _Se>
@@ -2641,7 +2641,7 @@ _NODISCARD _FwdIt1 find_end(_ExPo&& _Exec, _FwdIt1 _First1, _FwdIt1 _Last1, _Fwd
 #ifdef __cpp_lib_concepts
 namespace ranges {
     class _Find_end_fn : private _Not_quite_object {
-    private:
+    public:
         template <class _It1, class _It2, class _Pr, class _Pj1, class _Pj2>
         _NODISCARD static constexpr subrange<_It1> _Random_access_sized_ranges(_It1 _First1,
             const iter_difference_t<_It1> _Count1, _It2 _First2, const iter_difference_t<_It2> _Count2, _Pr _Pred,
@@ -2881,7 +2881,7 @@ namespace ranges {
             return _First1;
         }
         // clang-format on
-    private:
+    public:
         template <class _It1, class _Se1, class _It2, class _Se2, class _Pr, class _Pj1, class _Pj2>
         _NODISCARD static constexpr _It1 _Find_first_of_unchecked(_It1 _First1, const _Se1 _Last1, const _It2 _First2,
             const _Se2 _Last2, _Pr _Pred, _Pj1 _Proj1, _Pj2 _Proj2) {
@@ -2944,7 +2944,7 @@ namespace ranges {
             return {_STD move(_First1), _STD move(_First2)};
         }
         // clang-format on
-    private:
+    public:
         template <class _It1, class _Se1, class _It2, class _Se2>
         _NODISCARD static constexpr swap_ranges_result<_It1, _It2> _Swap_ranges_unchecked(
             _It1 _First1, const _Se1 _Last1, _It2 _First2, const _Se2 _Last2) {
@@ -3138,7 +3138,7 @@ namespace ranges {
         }
         // clang-format on
 
-    private:
+    public:
         template <class _It, class _Se, class _Out, class _Fn, class _Pj>
         _NODISCARD static constexpr unary_transform_result<_It, _Out> _Transform_unary_unchecked(
             _It _First, const _Se _Last, _Out _Result, _Fn _Func, _Pj _Proj) {
@@ -3228,7 +3228,7 @@ namespace ranges {
             return _First;
         }
         // clang-format on
-    private:
+    public:
         template <class _It, class _Se, class _Ty1, class _Ty2, class _Pj>
         _NODISCARD static constexpr _It _Replace_unchecked(
             _It _First, const _Se _Last, const _Ty1& _Oldval, const _Ty2& _Newval, _Pj _Proj) {
@@ -3302,7 +3302,7 @@ namespace ranges {
             return _First;
         }
         // clang-format on
-    private:
+    public:
         template <class _It, class _Se, class _Ty, class _Pj, class _Pr>
         _NODISCARD static constexpr _It _Replace_if_unchecked(
             _It _First, const _Se _Last, _Pr _Pred, const _Ty& _Newval, _Pj _Proj) {
@@ -3394,7 +3394,7 @@ namespace ranges {
             return {_STD move(_First), _STD move(_UResult.out)};
         }
         // clang-format on
-    private:
+    public:
         template <class _It, class _Se, class _Ty1, class _Ty2, class _Out, class _Pj>
         _NODISCARD static constexpr replace_copy_result<_It, _Out> _Replace_copy_unchecked(
             _It _First, const _Se _Last, _Out _Result, const _Ty1& _Oldval, const _Ty2& _Newval, _Pj _Proj) {
@@ -3488,7 +3488,7 @@ namespace ranges {
             return {_STD move(_First), _STD move(_UResult.out)};
         }
         // clang-format on
-    private:
+    public:
         template <class _It, class _Se, class _Ty, class _Out, class _Pj, class _Pr>
         _NODISCARD static constexpr replace_copy_if_result<_It, _Out> _Replace_copy_if_unchecked(
             _It _First, const _Se _Last, _Out _Result, _Pr _Pred, const _Ty& _Newval, _Pj _Proj) {
@@ -3581,7 +3581,7 @@ namespace ranges {
             return _First;
         }
         // clang-format on
-    private:
+    public:
         template <class _Out, class _Se, class _Fn>
         _NODISCARD static constexpr _Out _Generate_unchecked(_Out _First, const _Se _Last, _Fn _Gen) {
             _STL_INTERNAL_STATIC_ASSERT(input_or_output_iterator<_Out>);
@@ -3767,7 +3767,7 @@ namespace ranges {
             return _Rewrap_subrange<borrowed_subrange_t<_Rng>>(_Range, _STD move(_UResult));
         }
         // clang-format on
-    private:
+    public:
         template <class _It, class _Se, class _Ty, class _Pj>
         _NODISCARD static constexpr subrange<_It> _Remove_unchecked(
             _It _First, const _Se _Last, const _Ty& _Val, _Pj _Proj) {
@@ -3819,7 +3819,7 @@ namespace ranges {
             return _Rewrap_subrange<borrowed_subrange_t<_Rng>>(_Range, _STD move(_UResult));
         }
         // clang-format on
-    private:
+    public:
         template <class _It, class _Se, class _Pr, class _Pj>
         _NODISCARD static constexpr subrange<_It> _Remove_if_unchecked(
             _It _First, const _Se _Last, _Pr _Pred, _Pj _Proj) {
@@ -3883,7 +3883,7 @@ namespace ranges {
             return {_STD move(_First), _STD move(_Result)};
         }
         // clang-format on
-    private:
+    public:
         template <class _It, class _Se, class _Out, class _Ty, class _Pj>
         _NODISCARD static constexpr remove_copy_result<_It, _Out> _Remove_copy_unchecked(
             _It _First, const _Se _Last, _Out _Result, const _Ty& _Val, _Pj _Proj) {
@@ -3944,7 +3944,7 @@ namespace ranges {
             return {_STD move(_First), _STD move(_Result)};
         }
         // clang-format on
-    private:
+    public:
         template <class _It, class _Se, class _Out, class _Pr, class _Pj>
         _NODISCARD static constexpr remove_copy_if_result<_It, _Out> _Remove_copy_if_unchecked(
             _It _First, const _Se _Last, _Out _Result, _Pr _Pred, _Pj _Proj) {
@@ -4042,7 +4042,7 @@ namespace ranges {
             return _Rewrap_subrange<borrowed_subrange_t<_Rng>>(_Range, _STD move(_UResult));
         }
         // clang-format on
-    private:
+    public:
         template <class _It, class _Se, class _Pj, class _Pr>
         _NODISCARD static constexpr subrange<_It> _Unique_unchecked(_It _First, const _Se _Last, _Pr _Pred, _Pj _Proj) {
             // Remove adjacent elements from [_First, _Last) whose projections satisfy _Pred
@@ -4218,7 +4218,7 @@ namespace ranges {
             return {_STD move(_First), _STD move(_Result)};
         }
         // clang-format on
-    private:
+    public:
         template <class _It, class _Se, class _Out, class _Pj, class _Pr>
         _NODISCARD static constexpr unique_copy_result<_It, _Out> _Unique_copy_unchecked(
             _It _First, const _Se _Last, _Out _Result, _Pr _Pred, _Pj _Proj) {
@@ -4440,7 +4440,7 @@ namespace ranges {
             }
         }
 
-    private:
+    public:
         template <class _It, class _Out>
         _NODISCARD static constexpr _Out _Reverse_copy_common(const _It _First, _It _Last, _Out _Result) {
             _STL_INTERNAL_STATIC_ASSERT(bidirectional_iterator<_It>);
@@ -4661,7 +4661,7 @@ namespace ranges {
             return {_Rewrap_iterator(_Range, _STD move(_UResult.in)), _STD move(_UResult.out)};
         }
 
-    private:
+    public:
         template <class _It, class _Se, class _Out>
         _NODISCARD static constexpr rotate_copy_result<_It, _Out> _Rotate_copy_unchecked(
             _It _First, _It _Mid, _Se _Last, _Out _Result) {
@@ -4823,7 +4823,7 @@ namespace ranges {
             }
         }
         // clang-format on
-    private:
+    public:
         template <class _It, class _Out, class _Rng>
         _NODISCARD static _Out _Sample_selection_unchecked(
             _It _First, iter_difference_t<_It> _Pop_size, _Out _Result, iter_difference_t<_It> _Count, _Rng& _RngFunc) {
@@ -4939,7 +4939,7 @@ namespace ranges {
             return _Rewrap_iterator(_Range, _Shuffle_unchecked(_Ubegin(_Range), _Uend(_Range), _RngFunc));
         }
         // clang-format on
-    private:
+    public:
         template <class _It, class _Se, class _Rng>
         _NODISCARD static _It _Shuffle_unchecked(_It _First, const _Se _Last, _Rng& _Func) {
             // shuffle [_First, _Last) using random function _Func
@@ -5206,7 +5206,7 @@ namespace ranges {
             return _Rewrap_subrange<borrowed_subrange_t<_Rng>>(_Range, _STD move(_UResult));
         }
         // clang-format on
-    private:
+    public:
         template <class _It, class _Se, class _Pr, class _Pj>
         _NODISCARD static constexpr subrange<_It> _Partition_unchecked(_It _First, _Se _Last, _Pr _Pred, _Pj _Proj) {
             _STL_INTERNAL_STATIC_ASSERT(permutable<_It>);
@@ -5502,7 +5502,7 @@ namespace ranges {
             return _Rewrap_subrange<borrowed_subrange_t<_Rng>>(_Range, _STD move(_UResult));
         }
 
-    private:
+    public:
         template <class _It, class _Pr, class _Pj>
         _NODISCARD static subrange<_It> _Stable_partition_common(_It _First, _It _Last, _Pr _Pred, _Pj _Proj) {
             _STL_INTERNAL_STATIC_ASSERT(bidirectional_iterator<_It>);
@@ -5727,7 +5727,7 @@ namespace ranges {
             }
         }
         // clang-format on
-    private:
+    public:
         template <class _It, class _Pr, class _Pj>
         static constexpr void _Push_heap_unchecked(_It _First, _It _Last, _Pr _Pred, _Pj _Proj) {
             _STL_INTERNAL_STATIC_ASSERT(random_access_iterator<_It>);
@@ -6434,7 +6434,7 @@ namespace ranges {
             return _Rewrap_subrange<borrowed_subrange_t<_Rng>>(_Result, _STD move(_UResult));
         }
 
-    private:
+    public:
         template <class _It, class _Ty, class _Pr, class _Pj>
         _NODISCARD static constexpr subrange<_It> _Equal_range_unchecked(
             _It _First, iter_difference_t<_It> _Count, const _Ty& _Val, _Pr _Pred, _Pj _Proj) {
@@ -6651,7 +6651,7 @@ namespace ranges {
             return {_STD move(_First1), _STD move(_First2), _STD move(_UResult.out)};
         }
 
-    private:
+    public:
         template <class _It1, class _Se1, class _It2, class _Se2, class _Out, class _Pr, class _Pj1, class _Pj2>
         _NODISCARD static constexpr merge_result<_It1, _It2, _Out> _Merge_unchecked(_It1 _First1, const _Se1 _Last1,
             _It2 _First2, const _Se2 _Last2, _Out _Result, _Pr _Pred, _Pj1 _Proj1, _Pj2 _Proj2) {
@@ -7228,7 +7228,7 @@ namespace ranges {
             return _First;
         }
 
-    private:
+    public:
         template <class _It, class _Pr, class _Pj>
         static void _Inplace_merge_common(_It _First, _It _Mid, _It _Last, _Pr _Pred, _Pj _Proj) {
             _STL_INTERNAL_STATIC_ASSERT(bidirectional_iterator<_It>);
@@ -7659,7 +7659,7 @@ namespace ranges {
             return _Rewrap_iterator(_Range, _STD move(_ULast));
         }
 
-    private:
+    public:
         template <class _It, class _Pr, class _Pj>
         static constexpr void _Sort_common(_It _First, _It _Last, iter_difference_t<_It> _Ideal, _Pr _Pred, _Pj _Proj) {
             // sort [_First, _Last) with respect to _Pred and _Proj
@@ -7932,7 +7932,7 @@ namespace ranges {
             return _Rewrap_iterator(_Range, _STD move(_ULast));
         }
 
-    private:
+    public:
         template <class _It, class _Pr, class _Pj>
         static void _Stable_sort_common(
             _It _First, _It _Last, const iter_difference_t<_It> _Count, _Pr _Pred, _Pj _Proj) {
@@ -8251,7 +8251,7 @@ namespace ranges {
             }
         }
 
-    private:
+    public:
         template <class _It, class _Pr, class _Pj>
         static constexpr void _Partial_sort_common(_It _First, _It _Mid, const _It _Last, _Pr _Pred, _Pj _Proj) {
             _STL_INTERNAL_STATIC_ASSERT(random_access_iterator<_It>);
@@ -8384,7 +8384,7 @@ namespace ranges {
             return {_STD move(_First), _Rewrap_iterator(_Range2, _STD move(_UResult.out))};
         }
 
-    private:
+    public:
         template <class _It1, class _Se1, class _It2, class _Se2, class _Pr, class _Pj1, class _Pj2>
         _NODISCARD static constexpr partial_sort_copy_result<_It1, _It2> _Partial_sort_copy_unchecked(
             _It1 _First1, _Se1 _Last1, _It2 _First2, const _Se2 _Last2, _Pr _Pred, _Pj1 _Proj1, _Pj2 _Proj2) {
@@ -8522,7 +8522,7 @@ namespace ranges {
             return _Nth;
         }
         // clang-format on
-    private:
+    public:
         template <class _It, class _Pr, class _Pj>
         static constexpr void _Nth_element_common(_It _First, _It _Nth, _It _Last, _Pr _Pred, _Pj _Proj) {
             _STL_INTERNAL_STATIC_ASSERT(random_access_iterator<_It>);
@@ -8632,7 +8632,7 @@ namespace ranges {
                 _Pass_fn(_Pred), _Pass_fn(_Proj1), _Pass_fn(_Proj2));
         }
 
-    private:
+    public:
         template <class _It1, class _Se1, class _It2, class _Se2, class _Pr, class _Pj1, class _Pj2>
         _NODISCARD static constexpr bool _Includes_unchecked(
             _It1 _First1, const _Se1 _Last1, _It2 _First2, const _Se2 _Last2, _Pr _Pred, _Pj1 _Proj1, _Pj2 _Proj2) {
@@ -8780,7 +8780,7 @@ namespace ranges {
             return {_STD move(_First1), _STD move(_First2), _STD move(_Result)};
         }
         // clang-format on
-    private:
+    public:
         template <class _It1, class _Se1, class _It2, class _Se2, class _Out, class _Pr, class _Pj1, class _Pj2>
         _NODISCARD static constexpr set_union_result<_It1, _It2, _Out> _Set_union_unchecked(_It1 _First1,
             const _Se1 _Last1, _It2 _First2, const _Se2 _Last2, _Out _Result, _Pr _Pred, _Pj1 _Proj1, _Pj2 _Proj2) {
@@ -8906,7 +8906,7 @@ namespace ranges {
             return {_STD move(_First1), _STD move(_First2), _STD move(_Result)};
         }
         // clang-format on
-    private:
+    public:
         template <class _It1, class _Se1, class _It2, class _Se2, class _Out, class _Pr, class _Pj1, class _Pj2>
         _NODISCARD static constexpr set_intersection_result<_It1, _It2, _Out> _Set_intersection_unchecked(_It1 _First1,
             const _Se1 _Last1, _It2 _First2, const _Se2 _Last2, _Out _Result, _Pr _Pred, _Pj1 _Proj1, _Pj2 _Proj2) {
@@ -9036,7 +9036,7 @@ namespace ranges {
             return {_STD move(_First1), _STD move(_Result)};
         }
         // clang-format on
-    private:
+    public:
         template <class _It1, class _Se1, class _It2, class _Se2, class _Out, class _Pr, class _Pj1, class _Pj2>
         _NODISCARD static constexpr set_difference_result<_It1, _Out> _Set_difference_unchecked(_It1 _First1,
             const _Se1 _Last1, _It2 _First2, const _Se2 _Last2, _Out _Result, _Pr _Pred, _Pj1 _Proj1, _Pj2 _Proj2) {
@@ -9183,7 +9183,7 @@ namespace ranges {
             return {_STD move(_First1), _STD move(_First2), _STD move(_Result)};
         }
         // clang-format on
-    private:
+    public:
         template <class _It1, class _Se1, class _It2, class _Se2, class _Out, class _Pr, class _Pj1, class _Pj2>
         _NODISCARD static constexpr set_symmetric_difference_result<_It1, _It2, _Out>
             _Set_symmetric_difference_unchecked(_It1 _First1, const _Se1 _Last1, _It2 _First2, const _Se2 _Last2,
@@ -9917,7 +9917,7 @@ namespace ranges {
             return {_Rewrap_iterator(_Range, _STD move(_ULast)), _Found};
         }
 
-    private:
+    public:
         template <class _It, class _Pr, class _Pj>
         _NODISCARD static constexpr bool _Next_permutation_common(_It _First, _It _Last, _Pr _Pred, _Pj _Proj) {
             _STL_INTERNAL_STATIC_ASSERT(bidirectional_iterator<_It>);
@@ -10025,7 +10025,7 @@ namespace ranges {
             return {_Rewrap_iterator(_Range, _STD move(_ULast)), _Found};
         }
 
-    private:
+    public:
         template <class _It, class _Pr, class _Pj>
         _NODISCARD static constexpr bool _Prev_permutation_common(_It _First, _It _Last, _Pr _Pred, _Pj _Proj) {
             _STL_INTERNAL_STATIC_ASSERT(bidirectional_iterator<_It>);
@@ -10262,7 +10262,7 @@ namespace ranges {
                 _Uend(_Range2), _Pass_fn(_Pred), _Pass_fn(_Proj1), _Pass_fn(_Proj2));
         }
 
-    private:
+    public:
         template <class _It1, class _Se1, class _It2, class _Se2, class _Pr, class _Pj1, class _Pj2>
         _NODISCARD static constexpr bool _Lexicographical_compare_unchecked(
             _It1 _First1, _Se1 _Last1, _It2 _First2, _Se2 _Last2, _Pr _Pred, _Pj1 _Proj1, _Pj2 _Proj2) {

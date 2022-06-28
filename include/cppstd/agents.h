@@ -17,14 +17,14 @@
 
 #pragma once
 
-#include <crtdefs.h>
-#include <concrt.h>
-#include <stdexcept>
-#include <functional>
-#include <tuple>
-#include <type_traits>
-#include <vector>
-#include <concurrent_queue.h>
+#include "crtdefs.h"
+#include "concrt.h"
+#include "stdexcept"
+#include "functional"
+#include "tuple"
+#include "type_traits"
+#include "vector"
+#include "concurrent_queue.h"
 
 #define _AGENTS_H
 
@@ -42,7 +42,7 @@
 /**/
 namespace Concurrency
 {
-/// <summary>
+/// "[A-Z|a-z].*[$A-Z:a-z]"
 ///     Each message instance has an identity that follows it as it is
 ///     cloned and passed between messaging components. This cannot be the
 ///     address of the message object.
@@ -96,7 +96,7 @@ namespace details
             return _M_id;
         }
 
-    protected:
+    public:
         // The runtime object identity.
         ::Concurrency::runtime_object_identity _M_id;
     };
@@ -105,7 +105,7 @@ namespace details
     template<class _Message>
     class _Queue : public _AllocBase
     {
-    protected:
+    public:
         // A pointer to the head of the queue.
         _Message * _M_pHead;
 
@@ -378,7 +378,7 @@ namespace details
             }
         }
 
-    private:
+    public:
         //
         // Initialize the array
         //
@@ -567,7 +567,7 @@ public:
         return (_Tmp);
     }
 
-private:
+public:
 
     // Pointer to the underlying container (network link registry)
     _MyContainer * _M_pNetwork_link;
@@ -695,7 +695,7 @@ public:
     /**/
     virtual iterator begin() = 0;
 
-protected:
+public:
 
     /// <summary>
     ///     Skips empty slots and updates the index to the next
@@ -851,7 +851,7 @@ public:
         return (typename network_link_registry<_Block>::iterator(this, 0));
     }
 
-protected:
+public:
 
     /// <summary>
     ///     Skips empty slots and updates the index to the next
@@ -890,7 +890,7 @@ protected:
         return nullptr;
     }
 
-private:
+public:
 
     // A single pointer is used to hold the link
     typename network_link_registry<_Block>::_EType _M_connectedLink;
@@ -1044,7 +1044,7 @@ public:
         return (typename network_link_registry<_Block>::iterator(this, 0));
     }
 
-protected:
+public:
 
     /// <summary>
     ///     Skips empty slots and updates the index to the next
@@ -1089,7 +1089,7 @@ protected:
         return nullptr;
     }
 
-private:
+public:
 
     /// <summary>
     ///     Adds a link to the <c>multi_link_registry</c> object.
@@ -1371,7 +1371,7 @@ public:
         return (_Tmp);
     }
 
-private:
+public:
 
     // Get the element at the given offset.
     const_reference _Get(size_t _Pos) const
@@ -1702,7 +1702,7 @@ public:
         return (iterator(this, 0));
     }
 
-private:
+public:
 
     // Called by the iterator. This routine takes a snapshot of the links
     // in the registry and copies it to the array provided.
@@ -1901,7 +1901,7 @@ public:
     /**/
     typedef _Type type;
 
-private:
+public:
     // The intrusive next pointer used by blocks that need
     // to chain messages it's holding together
     message * _M_pNext;
@@ -1969,7 +1969,7 @@ public:
     /**/
     virtual void wait() = 0;
 
-protected:
+public:
 
     /// <summary>
     ///     When overridden in a derived class, performs the forward processing of
@@ -2229,7 +2229,7 @@ protected:
         // could be immediately deleted.
     }
 
- private:
+ public:
 
     void _Clear_queued_messages()
     {
@@ -2370,7 +2370,7 @@ protected:
         }
     }
 
- private:
+ public:
     /// <summary>
     ///     A queue of the messages
     /// </summary>
@@ -2917,7 +2917,7 @@ _Type _Receive_impl(ISource<_Type> * _Src, unsigned int _Timeout, typename ITarg
             return declined;
         }
 
-    private:
+    public:
 
         // Link a source block
         virtual void link_source(ISource<_Type> * _PSrc)
@@ -3317,7 +3317,7 @@ bool _Try_receive_impl(ISource<_Type> * _Src, _Type & _value, typename ITarget<_
             return declined;
         }
 
-    private:
+    public:
 
         // Add a source messaging block
         virtual void link_source(ISource<_Type> * _PSrc)
@@ -3611,7 +3611,7 @@ namespace details
             throw invalid_operation("release_ref is not supported on _AnonymousOriginator");
         }
 
-    private:
+    public:
         friend class _Originator;
 
         // Send the given value to the target
@@ -3860,7 +3860,7 @@ namespace details
             _InterlockedDecrement(&_M_referenceCount);
         }
 
-    private:
+    public:
 
         friend class _Originator;
 
@@ -4165,7 +4165,7 @@ namespace details
             _Release_ref();
         }
 
-    private:
+    public:
 
         friend class _Originator;
 
@@ -5490,7 +5490,7 @@ protected:
     /**/
     _MessageProcessorType _M_messageProcessor;
 
-private:
+public:
 
     /// Private methods
 
@@ -5917,7 +5917,7 @@ protected:
 template<class _Type>
 class unbounded_buffer : public propagator_block<multi_link_registry<ITarget<_Type>>, multi_link_registry<ISource<_Type>>>
 {
-private:
+public:
     typedef multi_link_registry<ITarget<_Type>> _TargetLinkRegistry;
     typedef multi_link_registry<ISource<_Type>> _SourceLinkRegistry;
 
@@ -6397,7 +6397,7 @@ protected:
         _Propagate_priority_order(_M_messageBuffer);
     }
 
-private:
+public:
 
     /// <summary>
     ///     Propagates messages in priority order.
@@ -6496,7 +6496,7 @@ private:
     /**/
     bool _M_fForceRepropagation;
 
-private:
+public:
     //
     // Hide assignment operator and copy constructor
     //
@@ -6526,7 +6526,7 @@ private:
 template<class _Type>
 class overwrite_buffer : public propagator_block<multi_link_registry<ITarget<_Type>>, multi_link_registry<ISource<_Type>>>
 {
-private:
+public:
     typedef multi_link_registry<ITarget<_Type>> _TargetLinkRegistry;
     typedef multi_link_registry<ISource<_Type>> _SourceLinkRegistry;
 
@@ -7032,7 +7032,7 @@ protected:
         }
     }
 
-private:
+public:
 
     /// <summary>
     ///     Deletes all messages currently stored in this message block.  Should be called
@@ -7079,7 +7079,7 @@ private:
     // The marker for whether the overwrite buffer has already been initialized
     volatile bool _M_fIsInitialized;
 
-private:
+public:
     //
     // Hide assignment operator and copy constructor
     //
@@ -7109,7 +7109,7 @@ private:
 template<class _Type, class _FunctorType = ::std::function<void(_Type const&)>>
 class call : public target_block<multi_link_registry<ISource<_Type>>>
 {
-private:
+public:
     /// <summary>
     ///     The function type that this block executes upon receiving a <c>message</c>.
     /// </summary>
@@ -7438,7 +7438,7 @@ protected:
         delete _PMessage;
     }
 
-private:
+public:
 
     //
     //  Private Data Members
@@ -7447,7 +7447,7 @@ private:
     // The call method called by this block
     _Call_method _M_pFunc;
 
-private:
+public:
     //
     // Hide assignment operator and copy constructor
     //
@@ -7478,7 +7478,7 @@ private:
 template<class _Input, class _Output>
 class transformer : public propagator_block<single_link_registry<ITarget<_Output>>, multi_link_registry<ISource<_Input>>>
 {
-private:
+public:
     typedef ::std::function<_Output(_Input const&)> _Transform_method;
     typedef single_link_registry<ITarget<_Output>> _TargetLinkRegistry;
     typedef multi_link_registry<ISource<_Input>> _SourceLinkRegistry;
@@ -7979,7 +7979,7 @@ protected:
         _Propagate_priority_order(_M_messageBuffer);
     }
 
-private:
+public:
 
     /// <summary>
     ///     Propagates messages in priority order.
@@ -8082,7 +8082,7 @@ private:
     /**/
     ::Concurrency::details::_Queue<message<_Output>> _M_messageBuffer;
 
-private:
+public:
     //
     // Hide assignment operator and copy constructor
     //
@@ -8108,12 +8108,12 @@ private:
 template<class _Type>
 class timer : public ::Concurrency::details::_Timer, public source_block<single_link_registry<ITarget<_Type>>>
 {
-private:
+public:
     typedef single_link_registry<ITarget<_Type>> _TargetLinkRegistry;
 public:
     using typename source_block<_TargetLinkRegistry>::target_iterator;
 
-private:
+public:
     /// <summary>
     ///     Tracks the state machine of the timer.
     /// </summary>
@@ -8456,7 +8456,7 @@ protected:
         }
     }
 
-private:
+public:
 
     // The timer message we contain
     message<_Type> *_M_pMessage;
@@ -8556,7 +8556,7 @@ private:
         }
     }
 
-private:
+public:
     //
     // Hide assignment operator and copy constructor
     //
@@ -8586,7 +8586,7 @@ private:
 template<class _Type>
 class single_assignment : public propagator_block<multi_link_registry<ITarget<_Type>>, multi_link_registry<ISource<_Type>>>
 {
-private:
+public:
     typedef multi_link_registry<ITarget<_Type>> _TargetLinkRegistry;
     typedef multi_link_registry<ISource<_Type>> _SourceLinkRegistry;
 
@@ -9067,7 +9067,7 @@ protected:
         }
     }
 
-private:
+public:
 
     /// <summary>
     ///     Deletes all messages currently stored in this message block.  Should be called
@@ -9099,7 +9099,7 @@ private:
     // The marker for whether the single_assignment has already been initialized
     volatile bool _M_fIsInitialized;
 
-private:
+public:
     //
     // Hide assignment operator and copy constructor
     //
@@ -9151,7 +9151,7 @@ enum join_type {
 template<class _Type, join_type _Jtype = non_greedy>
 class join : public propagator_block<single_link_registry<ITarget<::std::vector<_Type>>>, multi_link_registry<ISource<_Type>>>
 {
-private:
+public:
     typedef single_link_registry<ITarget<::std::vector<_Type>>> _TargetLinkRegistry;
     typedef multi_link_registry<ISource<_Type>> _SourceLinkRegistry;
 
@@ -9672,7 +9672,7 @@ protected:
         _Propagate_priority_order(_M_messageBuffer);
     }
 
-private:
+public:
 
     //
     //  Private Methods
@@ -10172,7 +10172,7 @@ protected:
     // The index of the _Order_node_base in the user's construct
     size_t _M_index;
 
-private:
+public:
     //
     // Hide assignment operator and copy constructor
     //
@@ -10193,7 +10193,7 @@ private:
 template<class _Type>
 class _Reserving_node: public _Order_node_base<_Type>
 {
-private:
+public:
     typedef single_link_registry<ITarget<size_t>> _TargetLinkRegistry;
     typedef multi_link_registry<ISource<_Type>> _SourceLinkRegistry;
 
@@ -10511,7 +10511,7 @@ protected:
         }
     }
 
-private:
+public:
 
     /// <summary>
     ///     Propagate messages to the given target
@@ -10560,7 +10560,7 @@ private:
     // The marker that indicates that _Reserving_node has reserved a message
     volatile bool _M_fIsInitialized;
 
-private:
+public:
     //
     // Hide assignment operator and copy constructor
     //
@@ -10581,7 +10581,7 @@ private:
 template<class _Type>
 class _Greedy_node: public _Order_node_base<_Type>
 {
-private:
+public:
     typedef single_link_registry<ITarget<size_t>> _TargetLinkRegistry;
     typedef multi_link_registry<ISource<_Type>> _SourceLinkRegistry;
 
@@ -10935,7 +10935,7 @@ protected:
         }
     }
 
-private:
+public:
 
     //
     //  Private Data Members
@@ -10954,7 +10954,7 @@ private:
     // For non-greedy order nodes, the message ID of the message to reserve/consume
     runtime_object_identity _M_savedId;
 
-private:
+public:
     //
     // Hide assignment operator and copy constructor
     //
@@ -10975,7 +10975,7 @@ private:
 template<class _Type>
 class _Non_greedy_node: public _Order_node_base<_Type>
 {
-private:
+public:
     typedef single_link_registry<ITarget<size_t>> _TargetLinkRegistry;
     typedef multi_link_registry<ISource<_Type>> _SourceLinkRegistry;
 
@@ -11365,7 +11365,7 @@ protected:
         }
     }
 
-private:
+public:
 
     //
     //  Private Data Members
@@ -11386,7 +11386,7 @@ private:
     // The marker that indicates that _Non_greedy_node has reserved a message
     volatile bool _M_fIsInitialized;
 
-private:
+public:
     //
     // Hide assignment operator and copy constructor
     //
@@ -11765,7 +11765,7 @@ public:
         _M_pSingleAssignment->release_ref(_PTarget);
     }
 
-private:
+public:
     template<int _Index>
     using _Reserving_node_source_type = _Reserving_node<typename ::std::remove_pointer_t<::std::tuple_element_t<_Index, _Type>>::source_type>;
 
@@ -11844,7 +11844,7 @@ private:
     // The schedule group to propagate messages on
     ScheduleGroup * _M_pScheduleGroup;
 
-private:
+public:
     //
     // Hide assignment operator
     //
@@ -12004,7 +12004,7 @@ struct _Unwrap<::std::tuple<_Types...>>
 template<typename _Type, typename _Destination_type, join_type _Jtype>
 class _Join_node: public propagator_block<single_link_registry<ITarget<_Destination_type>>, multi_link_registry<ISource<size_t>>>
 {
-private:
+public:
     typedef single_link_registry<ITarget<_Destination_type>> _TargetLinkRegistry;
     typedef multi_link_registry<ISource<size_t>> _SourceLinkRegistry;
 
@@ -12268,7 +12268,7 @@ protected:
         _Propagate_priority_order(_M_messageBuffer);
     }
 
-private:
+public:
 
     /// <summary>
     ///     Tries to reserve from all sources.  If successful, it will consume all the messages
@@ -12547,7 +12547,7 @@ private:
     // Buffer to hold outgoing messages
     ::Concurrency::details::_Queue<message<_Destination_type>> _M_messageBuffer;
 
-private:
+public:
     //
     // Hide assignment operator and copy constructor
     //
@@ -12875,7 +12875,7 @@ public:
         _M_pJoinNode->release_ref(_PTarget);
     }
 
-private:
+public:
     template<int _Index>
     using _Source_type = typename ::std::remove_pointer_t<::std::tuple_element_t<_Index, _Type>>::source_type;
 
@@ -12982,7 +12982,7 @@ private:
     // The schedule group to propagate messages on
     ScheduleGroup * _M_pScheduleGroup;
 
-private:
+public:
     //
     // Hide assignment operator
     //
@@ -13488,7 +13488,7 @@ protected:
     /**/
     overwrite_buffer<agent_status> _M_status;
 
-private:
+public:
 
     // A flag to check of whether the agent can be started
     // This is initialized to TRUE and there is a race between Start() and Cancel() to set it
