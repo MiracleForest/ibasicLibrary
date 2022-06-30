@@ -7,7 +7,7 @@
 * @created by:Lovelylavender4
 * -----------------------------------------------------------------------------
 * Happy 520 to everyone!
-*
+* 
 * -----------------------------------------------------------------------------
 * If you have contact or find bugs,
 * you can go to Github or email (MiracleForest@Outlook.com) to give feedback.
@@ -20,9 +20,9 @@
 #include "istring.hpp"
 #include "basic/basic/position.hpp"
 
-namespace i {
-    namespace core {
-        namespace type {
+SPACE(i) {
+    SPACE(core) {
+        SPACE(type) {
 
             struct fPos{
 
@@ -40,14 +40,15 @@ namespace i {
                 int y;
             };
 
-            class FilePos :public position {
+
+            class FilePos :public position<int> 
+            {
             public:
                 FilePos() {}
                 FilePos(istring,int,int) {}
                 FilePos(fPos pos):_pos(pos) {}
-                ~FilePos(){}
+                ~FilePos() {}
             public:
-                
 
                 fPos data()const { return _pos; }
 
@@ -57,9 +58,9 @@ namespace i {
                 fPos _pos;
             };
 
-        }//namespace type
-    }//namespace core
-}//namespace i
+        }//SPACE(type)
+    }//SPACE(core)
+}//SPACE(i)
 
 
 #endif //!___MIRACLEFOREST_I_FILEPOS___

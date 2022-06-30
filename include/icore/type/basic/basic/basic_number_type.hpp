@@ -16,11 +16,12 @@
 #define ___MIRACLEFOREST_I_BASIC_NUMBER_TYPE___
 
 #include "../../../family/imacrofamily.h"
+#include "ibasic.hpp"
 
-namespace i {
-    namespace core {
-        namespace type {
-            namespace basic {
+SPACE(i) {
+    SPACE(core) {
+        SPACE(type) {
+            SPACE(basic) {
                 /// <summary>
                 /// 
                 /// </summary>
@@ -30,9 +31,9 @@ namespace i {
 
                 };//class basic_number_type
 
-            }//namespace basic
-        }//namespace type
-    }//namespace core
-}//namespace i::core::type::basic
+            }//SPACE(basic)
+        }//SPACE(type)
+    }//SPACE(core)
+}//SPACE(i)
 
 #endif //!___MIRACLEFOREST_I_BASIC_NUMBER_TYPE___

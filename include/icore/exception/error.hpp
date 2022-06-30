@@ -23,9 +23,9 @@
 #include "../type/filepos.hpp"
 #include "../type/level.hpp"
 
-namespace i {
-    namespace core {
-        namespace iexception {
+SPACE(i) {
+    SPACE(core) {
+        SPACE(iexception) {
 
             enum class ErrorCode;
 
@@ -220,9 +220,9 @@ namespace i {
                 bool _noError;
             };//class error
 
-        }//namespace iexception
-    }//namespace core
-}//namespace i
+        }//SPACE(iexception)
+    }//SPACE(core)
+}//SPACE(i)
 
 
 #endif //!___MIRACLEFOREST_I_ERROR___

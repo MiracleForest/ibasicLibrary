@@ -25,8 +25,8 @@
 
 #include "../../../cppstd/concepts"
 
-namespace i {
-    namespace core {
+SPACE(i) {
+    SPACE(core) {
 
         template <typename T>
         concept arithmetic = std::is_arithmetic<T>::value;
@@ -35,8 +35,8 @@ namespace i {
         template <typename T>
         concept stdString = i::core::type::type_traits::is_std_string_v<T>;
 
-    }
-}
+    }//SPACE(core)
+}//SPACE(i)
 #endif//!__CPP_20__
 
 #endif //!___MIRACLEFOREST_I_CONCEPTS___

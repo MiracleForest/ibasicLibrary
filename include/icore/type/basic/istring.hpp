@@ -19,6 +19,7 @@
 #include <sstream>
 #include "../../family/imacrofamily.h"
 #include "../type/type_traits.hpp"
+#include "basic/ibasic.hpp"
 
 #include "../../../cppstd/iostream"
 #include "../../../cppstd/string"
@@ -32,10 +33,11 @@
 #include <stringapiset.h>
 #endif
 
-namespace i {
-    namespace core {
-        namespace type {
-            namespace basic {
+SPACE(i) {
+    SPACE(core) {
+        SPACE(type) {
+            SPACE(basic) {
+
 #ifdef __CPP_20__
                 template <typename Type> requires type_traits::is_std_string_v<Type>
 #else
@@ -3682,10 +3684,10 @@ namespace i {
                 }
 #endif// __LINUX__ && __GCC__ 
 
-            }//namespace basic
-        }//namespace type
-    }//namespace core
-}//namespace i
+            }//SPACE(basic)
+        }//SPACE(type)
+    }//SPACE(core)
+}//SPACE(i)
 
 
 #endif //!___MIRACLEFOREST_I_BASIC_ISTRING___

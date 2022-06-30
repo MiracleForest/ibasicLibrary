@@ -20,6 +20,7 @@
 #include "../../family/imacrofamily.h"
 #include "../type/type_traits.hpp"
 #include "../type/concepts.hpp"
+#include "basic/ibasic.hpp"
 
 #include "../../../cppstd/type_traits"
 #include "../../../cppstd/concepts"
@@ -27,15 +28,15 @@
 #include "../../../cppstd/ostream"
 #include "../../../cppstd/string"
 
-namespace i{
-	namespace core {
-		namespace type {
-			namespace basic {
+SPACE(i) {
+	SPACE(core) {
+		SPACE(type) {
+			SPACE(basic) {
 
 
 				// Class number, a wrapper for arithmetic type
 				template <arithmetic Type>
-				class number
+				class number :public N_ISTD basic::ibasic_data_type<Type>
 				{
 				public:
 
@@ -201,34 +202,34 @@ namespace i{
 				}; /// end class number
 
 				template <arithmetic T, arithmetic U>
-				static auto operator<=>(const number<T>& first, const number<U>& last)
+				static auto operator<=>(const number<T>&first, const number<U>&last)
 				{
 					return first._value <=> last._value;
 				}
 
 				template <typename T, typename U>
-				auto operator+(const number<T>& first, const number<U>& last)
+				auto operator+(const number<T>&first, const number<U>&last)
 					-> number<std::common_type_t<T, U>>
 				{
 					return first._value + last._value;
 				}
 
 				template <typename T, typename U>
-				auto operator-(const number<T>& first, const number<U>& last)
+				auto operator-(const number<T>&first, const number<U>&last)
 					-> number<std::common_type_t<T, U>>
 				{
 					return first._value - last._value;
 				}
 
 				template <typename T, typename U>
-				auto operator*(const number<T>& first, const number<U>& last)
+				auto operator*(const number<T>&first, const number<U>&last)
 					-> number<std::common_type_t<T, U>>
 				{
 					return first._value * last._value;
 				}
 
 				template <arithmetic T, arithmetic U>
-				auto operator/(const number<T>& first, const number<U>& last)
+				auto operator/(const number<T>&first, const number<U>&last)
 					-> number<std::common_type_t<T, U>>
 				{
 					return first._value / last._value;
@@ -250,9 +251,9 @@ namespace i{
 				}
 				*/
 
-			} // namespace basic
-		} // namespace type
-	}// namespace core
-} // namespace i
+			} //SPACE(basic)
+		} //SPACE(type)
+	}//SPACE(core)
+} //SPACE(i)
 
 #endif // !___MIRACLEFOREST_I_NUMBER___

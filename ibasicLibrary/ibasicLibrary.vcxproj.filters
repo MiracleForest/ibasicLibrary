@@ -169,9 +169,6 @@
     <ClInclude Include="..\include\icore\type\basic\numberArray.hpp">
       <Filter>include\icore\type\basic</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\icore\type\basic\basic\basic_number_type.hpp">
-      <Filter>include\icore\type\basic\basic</Filter>
-    </ClInclude>
     <ClInclude Include="..\include\icore\type\basic\basic\ibasic.hpp">
       <Filter>include\icore\type\basic\basic</Filter>
     </ClInclude>
@@ -753,6 +750,9 @@
     </ClInclude>
     <ClInclude Include="..\include\icore\lib\libIO\shelllinkfile.h">
       <Filter>include\icore\lib\libIO</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\icore\type\time.hpp">
+      <Filter>include\icore\type</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -20,7 +20,7 @@
 
 #include "../exception/error.hpp"
 
-namespace i {
+SPACE(i) {
 	SPACE(core) {
 		struct _p_start {
 			int argc;
@@ -64,8 +64,9 @@ namespace i {
 			IERROR start(_p_start& p_start);
 
 		};
-	}
-}
+	}//SPACE(core)
+}//SPACE(i)
+
 /****
 * @author Lovelylavender4
 * @since 编写此代码的时间或版本

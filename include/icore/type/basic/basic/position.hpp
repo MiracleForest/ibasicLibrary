@@ -17,15 +17,18 @@
 #define ___MIRACLEFOREST_I_POSITION___
 
 #include "../../../family/imacrofamily.h"
+#include "ibasic.hpp"
 
-namespace i {
-    namespace core {
+SPACE(i) {
+    SPACE(core) {
 
+        template<typename Type>
         class position {
+        public:
 
         };//class position
 
-    }//namespace core
-}//namespace i
+    }//SPACE(core)
+}//SPACE(core)
 
 #endif //!___MIRACLEFOREST_I_POSITION___
