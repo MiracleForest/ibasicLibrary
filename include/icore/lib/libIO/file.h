@@ -46,8 +46,8 @@ namespace i {
                 /****
                 * @author Lovelylavender4
                 * @brief NULL
-                * @param filePath ÎÄ¼şÂ·¾¶
-                * @param isBinary = false ÊÇ·ñÊÇ¶ş½øÖÆ
+                * @param filePath æ–‡ä»¶è·¯å¾„
+                * @param isBinary = false æ˜¯å¦æ˜¯äºŒè¿›åˆ¶
                 * @future NULL
                 * @retval std::optional<std::string>
                 * @throws NULL
@@ -82,9 +82,9 @@ namespace i {
                 /****
                 * @author Lovelylavender4
                 * @brief NULL
-                * @param filePath ÎÄ¼şÂ·¾¶
-                * @param content ÄÚÈİ
-                * @param isBinary = false ÊÇ·ñÊÇ¶ş½øÖÆ
+                * @param filePath æ–‡ä»¶è·¯å¾„
+                * @param content å†…å®¹
+                * @param isBinary = false æ˜¯å¦æ˜¯äºŒè¿›åˆ¶
                 * @future NULL
                 * @retval bool
                 * @throws NULL
@@ -115,30 +115,30 @@ namespace i {
 
                 /****
                 * @author Lovelylavender4
-                * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
-                * @brief ÃèÊö
+                * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
+                * @brief æè¿°
                 *
-                * @param dir Ä¿±êÄ¿Â¼
-                * @future Î´À´Òª×öµÄÊÂÇé
-                * @retval ÎÄ¼şÃûÁĞ±í
-                * @throws Å×³öµÄÒì³£
+                * @param dir ç›®æ ‡ç›®å½•
+                * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                * @retval æ–‡ä»¶ååˆ—è¡¨
+                * @throws æŠ›å‡ºçš„å¼‚å¸¸
                 *
                 * @note
-                * ×¢ÒâÊÂÏî
+                * æ³¨æ„äº‹é¡¹
                 * @endnote
-                * @pre ´úÂëÊ¹ÓÃµÄÇ°ÌáÌõ¼ş
+                * @pre ä»£ç ä½¿ç”¨çš„å‰ææ¡ä»¶
                 * @par Example
                 * @code
-                * ´úÂëÊ¾Àı
+                * ä»£ç ç¤ºä¾‹
                 * @endcode
                 *
-                * @warning ¾¯¸æ
-                * @bug ´æÔÚµÄÂ©¶´
-                * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                * @warning è­¦å‘Š
+                * @bug å­˜åœ¨çš„æ¼æ´
+                * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                 * @details
-                * ÏêÏ¸ÃèÊö
+                * è¯¦ç»†æè¿°
                 * @enddetails
-                * @other ÆäËû
+                * @other å…¶ä»–
                 ****/
                 static std::vector<std::string> GetFileNameList(const std::string& dir)
                 {
