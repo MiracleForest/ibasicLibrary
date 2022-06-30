@@ -88,21 +88,6 @@
     <Filter Include="include\cppstd">
       <UniqueIdentifier>{4071ab6c-51df-4508-aa5b-9cd682bf1c16}</UniqueIdentifier>
     </Filter>
-    <Filter Include="include\icore\lib">
-      <UniqueIdentifier>{6ea9162e-02ce-4f0c-9ffb-e5a34e13d188}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="include\icore\lib\libIO">
-      <UniqueIdentifier>{448151e4-939f-4279-a792-b25b64b345e6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="include\icore\lib\libmath">
-      <UniqueIdentifier>{4f1c6938-e106-4234-8b8d-2fd1deb5e9a9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="include\icore\lib\libMessageBox">
-      <UniqueIdentifier>{38c9d0e5-eacb-476e-995f-0f2a5b851a22}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="include\icore\lib\libProcess">
-      <UniqueIdentifier>{80fb0bb3-5b5e-46d7-ad6b-af2187fb8ac9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="include\cppstd\cliext">
       <UniqueIdentifier>{ba3dbb15-5597-49b9-97a2-05e385c60855}</UniqueIdentifier>
     </Filter>
@@ -121,8 +106,20 @@
     <Filter Include="include\cppstd\msclr\com">
       <UniqueIdentifier>{b7b3a90b-e48e-4ced-8c8f-c097fd15b5fb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="include\icore\lib\libTime">
-      <UniqueIdentifier>{7b31138c-921a-4d41-8d9b-0799e0e2b7fb}</UniqueIdentifier>
+    <Filter Include="include\icore\lib">
+      <UniqueIdentifier>{6ea9162e-02ce-4f0c-9ffb-e5a34e13d188}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\icore\lib\libIO">
+      <UniqueIdentifier>{448151e4-939f-4279-a792-b25b64b345e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\icore\lib\libmath">
+      <UniqueIdentifier>{4f1c6938-e106-4234-8b8d-2fd1deb5e9a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\icore\lib\libMessageBox">
+      <UniqueIdentifier>{38c9d0e5-eacb-476e-995f-0f2a5b851a22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\icore\lib\libProcess">
+      <UniqueIdentifier>{80fb0bb3-5b5e-46d7-ad6b-af2187fb8ac9}</UniqueIdentifier>
     </Filter>
     <Filter Include="include\icore\lib\linDbg">
       <UniqueIdentifier>{48310852-3ff2-4ab7-8736-0388712e5fee}</UniqueIdentifier>
@@ -753,6 +750,9 @@
     </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\icore\lib\libIO\shelllinkfile.h">
+      <Filter>include\icore\lib\libIO</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

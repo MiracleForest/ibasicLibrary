@@ -23,7 +23,9 @@
 #include "../../../cppstd/vector"
 #include "../../../cppstd/map"
 #include "../../../cppstd/memory"
+#if __CPP_17__
 #include "../../../cppstd/filesystem"
+#endif//__CPP_17_
 #include "../../../cppstd/fstream"
 #include "../../../cppstd/optional"
 
@@ -31,9 +33,24 @@
 #include <io.h>
 #endif
 
-namespace i {
-    namespace core {
-        namespace libIO {
+SPACE(i) {
+    SPACE(core) {
+        SPACE(libIO) {
+
+            struct iFileInfo {
+                type::istring name;//文件名
+                type::istring fname;//文件名（含扩展名）
+                type::istring path;//文件路径
+                type::istring extensionName;//扩展名
+                size_t size;//文件大小
+                int lineCount;//文件行数
+                __unk_type__ createTime;//创建时间
+                __unk_type__ modifyTime;//修改时间
+                __unk_type__ md5;//md5
+                __unk_type__ authority;//权限
+                __unk_type__ lastVisitTime;//最后访问时间
+                HICON icon;//图标
+            };
 
             class IAPI File {
             public:
@@ -41,26 +58,26 @@ namespace i {
                 ~File();
             public:
 
-                public STATIC :
+                public C_STATIC :
 
-                /****
-                * @author Lovelylavender4
-                * @brief NULL
-                * @param filePath 文件路径
-                * @param isBinary = false 是否是二进制
-                * @future NULL
-                * @retval std::optional<std::string>
-                * @throws NULL
-                * @note
-                * @par Example
-                * @code
-                * NULL
-                * @endcode
-                * @warning NULL
-                * @bug NULL
-                * @include <optional>,<fstream>,<filesystem>,istring,
-                ****/
-                static std::optional<type::istring> ReadAllFile(const type::istring& filePath, bool isBinary = false) {
+                    /****
+                        * @author Lovelylavender4
+                        * @brief NULL
+                        * @param filePath 文件路径
+                        * @param isBinary = false 是否是二进制
+                        * @future NULL
+                        * @retval std::optional<std::string>
+                        * @throws NULL
+                        * @note
+                        * @par Example
+                        * @code
+                        * NULL
+                        * @endcode
+                        * @warning NULL
+                        * @bug NULL
+                        * @include <optional>,<fstream>,<filesystem>,istring,
+                        ****/
+                    static std::optional<type::istring> readAllFile(const type::istring& filePath, bool isBinary = false) {
                     std::ifstream fRead;
 
                     std::ios_base::openmode mode = std::ios_base::in;
@@ -80,31 +97,31 @@ namespace i {
                 }
 
                 /****
-                * @author Lovelylavender4
-                * @brief NULL
-                * @param filePath 文件路径
-                * @param content 内容
-                * @param isBinary = false 是否是二进制
-                * @future NULL
-                * @retval bool
-                * @throws NULL
-                * @note NULL
-                * @par Example
-                * @code
-                * NULL
-                * @endcode
-                * @warning NULL
-                * @bug NULL
-                * @include NULL
-                ****/
-                static bool WriteAllFile(const std::string& filePath, const std::string& content, bool isBinary = false) {
+                    * @author Lovelylavender4
+                    * @brief NULL
+                    * @param filePath 文件路径
+                    * @param content 内容
+                    * @param isBinary = false 是否是二进制
+                    * @future NULL
+                    * @retval bool
+                    * @throws NULL
+                    * @note NULL
+                    * @par Example
+                    * @code
+                    * NULL
+                    * @endcode
+                    * @warning NULL
+                    * @bug NULL
+                    * @include NULL
+                    ****/
+                static bool writeAllFile(const std::string& filePath, const std::string& content, bool isBinary = false) {
                     std::ofstream fWrite;
 
                     std::ios_base::openmode mode = std::ios_base::out;
                     if (isBinary)
                         mode |= std::ios_base::binary;
 
-                    fWrite.open(type::istring::str2wstr(filePath), mode);
+                    fWrite.open(i::core::type::istring::str2wstr(filePath), mode);
                     if (!fWrite.is_open()) {
                         return false;
                     }
@@ -113,13 +130,14 @@ namespace i {
                     return true;
                 }
 
+#if __CPP_17__
                 /****
                 * @author Lovelylavender4
-                * @since 编写此代码的时间或版本
-                * @brief 描述
+                * @since 2022.6.24.12:30
+                * @brief 获取目标目录下文件名列表
                 *
                 * @param dir 目标目录
-                * @future 未来要做的事情
+                * @future 实现在C++17以下可使用
                 * @retval 文件名列表
                 * @throws 抛出的异常
                 *
@@ -140,7 +158,7 @@ namespace i {
                 * @enddetails
                 * @other 其他
                 ****/
-                static std::vector<std::string> GetFileNameList(const std::string& dir)
+                static std::vector<std::string> getFileNameList(const std::string& dir)
                 {
                     std::filesystem::directory_entry d(dir);
                     if (!d.is_directory())
@@ -172,16 +190,22 @@ namespace i {
                 * @bug NULL
                 * @include NULL
                 ****/
-                static bool CreateDirs(const std::string path)
+                static bool createDirs(const std::string path)
                 {
                     std::error_code ec;
-                    return std::filesystem::create_directories(std::filesystem::path(type::istring::str2wstr(path)).remove_filename(), ec);
+                    return std::filesystem::create_directories(std::filesystem::path(i::core::type::istring::str2wstr(path)).remove_filename(), ec);
                 }
+
+#endif//__CPP_17__
 
             protected:
             private:
 
             };
+
+            SPACE(_function) {
+
+            }
 
         }//namespace libIO
     }//namespace core

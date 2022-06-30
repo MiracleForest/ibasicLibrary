@@ -30,7 +30,7 @@ namespace i {
                 ~Consloe();
             public:
 
-            public STATIC :
+            public C_STATIC :
 
             protected:
             private:

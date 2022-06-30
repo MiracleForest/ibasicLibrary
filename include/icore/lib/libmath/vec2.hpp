@@ -201,7 +201,7 @@ namespace i {
 
 				T normalize() {
 					T _length = length();
-					if (_length < (T)1e-5) { return (T)0.0 };
+					if (_length < (T)1e-5) { return (T)0.0; }
 					T _invLength = (T)1.0 / _length;
 					x *= _invLength;
 					y *= _invLength;

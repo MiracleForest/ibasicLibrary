@@ -32,11 +32,11 @@ namespace i {
             struct ErrorInfo {
                 ErrorCode _code;
                 int _icode;
-                std::string _dscription;//ÃèÊö
-                std::string _suggestion;//½¨Òé
-                type::FilePos _position;//Î»ÖÃ
-                type::level _level;//µÈ¼¶
-                bool _canBeIgnored;//ÊÇ·ñ¿ÉÒÔºöÂÔ
+                std::string _dscription;//æè¿°
+                std::string _suggestion;//å»ºè®®
+                type::FilePos _position;//ä½ç½®
+                type::level _level;//ç­‰çº§
+                bool _canBeIgnored;//æ˜¯å¦å¯ä»¥å¿½ç•¥
             };
 
 
@@ -57,24 +57,24 @@ namespace i {
 
                 /****
                 * @author Lovelylavender4
-                * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
-                * @brief ´Ë´íÎóÊÇ·ñ¿ÉÒÔºöÂÔ
+                * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
+                * @brief æ­¤é”™è¯¯æ˜¯å¦å¯ä»¥å¿½ç•¥
                 *
-                * @future Î´À´Òª×öµÄÊÂÇé
-                * @retval ´Ë´íÎóÊÇ·ñ¿ÉÒÔºöÂÔ
+                * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                * @retval æ­¤é”™è¯¯æ˜¯å¦å¯ä»¥å¿½ç•¥
                 *
                 * @par Example
                 * @code
-                * ´úÂëÊ¾Àı
+                * ä»£ç ç¤ºä¾‹
                 * @endcode
                 * ...
                 * if(!xxx.isCanBeIgnored){
                 * ...
                 * }
                 * ...
-                * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                 * @details
-                * ´Ë´íÎóÊÇ·ñ¿ÉÒÔºöÂÔ
+                * æ­¤é”™è¯¯æ˜¯å¦å¯ä»¥å¿½ç•¥
                 * @enddetails
                 ****/
                 bool isCanBeIgnored() const{
@@ -83,31 +83,31 @@ namespace i {
 
                 /****
                 * @author Lovelylavender4
-                * @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
-                * @brief ÃèÊö
+                * @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
+                * @brief æè¿°
                 *
-                * @param ²ÎÊıÃû ×¢ÊÍ
-                * @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-                * @future Î´À´Òª×öµÄÊÂÇé
-                * @retval ·µ»ØÖµ×¢ÊÍ
-                * @throws Å×³öµÄÒì³£
+                * @param å‚æ•°å æ³¨é‡Š
+                * @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+                * @future æœªæ¥è¦åšçš„äº‹æƒ…
+                * @retval è¿”å›å€¼æ³¨é‡Š
+                * @throws æŠ›å‡ºçš„å¼‚å¸¸
                 *
                 * @note
-                * ×¢ÒâÊÂÏî
+                * æ³¨æ„äº‹é¡¹
                 * @endnote
-                * @pre ´úÂëÊ¹ÓÃµÄÇ°ÌáÌõ¼ş
+                * @pre ä»£ç ä½¿ç”¨çš„å‰ææ¡ä»¶
                 * @par Example
                 * @code
-                * ´úÂëÊ¾Àı
+                * ä»£ç ç¤ºä¾‹
                 * @endcode
                 *
-                * @warning ¾¯¸æ
-                * @bug ´æÔÚµÄÂ©¶´
-                * @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+                * @warning è­¦å‘Š
+                * @bug å­˜åœ¨çš„æ¼æ´
+                * @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
                 * @details
-                * ÏêÏ¸ÃèÊö
+                * è¯¦ç»†æè¿°
                 * @enddetails
-                * @other ÆäËû
+                * @other å…¶ä»–
                 ****/
                 bool isNoError() {
                     return _noError;
@@ -117,15 +117,15 @@ namespace i {
                 
                 /****
                 * @author Lovelylavender4
-                * @brief ´´½¨Ò»¸ö×Ô¶¨ÒåµÄ´íÎó
-                * @param _code ´íÚÀ´úÂë
-                * @param _dscription = "" ÃèÊö
-                * @param _suggestion = "" ½¨Òé
-                * @param _position = type::fPos::makeDefault() Î»ÖÃ
-                * @param _level = 0 µÈ¼¶
-                * @param _canBeIgnored = false ÊÇ·ñ¿ÉÒÔºöÂÔ
-                * @retval ´íÎó¶ÔÏó
-                * @note ´íÚÀ´úÂë
+                * @brief åˆ›å»ºä¸€ä¸ªè‡ªå®šä¹‰çš„é”™è¯¯
+                * @param _code é”™è¯¶ä»£ç 
+                * @param _dscription = "" æè¿°
+                * @param _suggestion = "" å»ºè®®
+                * @param _position = type::fPos::makeDefault() ä½ç½®
+                * @param _level = 0 ç­‰çº§
+                * @param _canBeIgnored = false æ˜¯å¦å¯ä»¥å¿½ç•¥
+                * @retval é”™è¯¯å¯¹è±¡
+                * @note é”™è¯¶ä»£ç 
                 * @par Example
                 * @code
                 * NULL
@@ -156,10 +156,10 @@ namespace i {
 
                 /****
                 * @author Lovelylavender4
-                * @brief ´´½¨Ò»¸ö´íÎó
-                * @param _code ´úÂë
+                * @brief åˆ›å»ºä¸€ä¸ªé”™è¯¯
+                * @param _code ä»£ç 
                 * @future NULL
-                * @retval error¶ÔÏó
+                * @retval errorå¯¹è±¡
                 * @throws NULL
                 * @note NULL
                 * @par Example
@@ -178,8 +178,8 @@ namespace i {
 
                 /****
                 * @author Lovelylavender4
-                * @brief ÎŞ´íÎó
-                * @retval ´íÎó¶ÔÏó
+                * @brief æ— é”™è¯¯
+                * @retval é”™è¯¯å¯¹è±¡
                 * @par Example
                 * 
                 * @code
@@ -200,7 +200,7 @@ namespace i {
                 /****
                 * @author Lovelylavender4
                 * @brief get ErrorInfo
-                * @retval ErrorInfo ´íÎóĞÅÏ¢
+                * @retval ErrorInfo é”™è¯¯ä¿¡æ¯
                 * @throws NULL
                 * @note NULL
                 * @par Example

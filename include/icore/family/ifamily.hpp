@@ -20,76 +20,90 @@
 
 #include "../exception/error.hpp"
 
+namespace i {
+	SPACE(core) {
+		struct _p_start {
+			int argc;
+			char** argv;
+			char** envp;
+		};
 
-class Main {
-public:
-	Main() {}
-	~Main() {}
-public:
-	/****
-	* @author Lovelylavender4
-	* @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
-	* @brief ÃèÊö
-	*
-	* @param ²ÎÊıÃû ×¢ÊÍ
-	* @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-	* @future Î´À´Òª×öµÄÊÂÇé
-	* @retval ·µ»ØÖµ×¢ÊÍ
-	* @throws Å×³öµÄÒì³£
-	*
-	* @note
-	* ×¢ÒâÊÂÏî
-	* @endnote
-	* @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
-	* @par Example
-	* @code
-	* ´úÂëÊ¾Àı
-	* @endcode
-	*
-	* @warning ¾¯¸æ
-	* @bug ´æÔÚµÄÂ©¶´
-	* @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
-	* @details
-	* ÏêÏ¸ÃèÊö
-	* @enddetails
-	* @other ÆäËû
-	****/
-	i::core::iexception::error start(int argc, char** argv, char** envp);
+		class Main {
+		public:
+			Main() {}
+			~Main() {}
+		public:
+			/****
+			* @author Lovelylavender4
+			* @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
+			* @brief æè¿°
+			*
+			* @param å‚æ•°å æ³¨é‡Š
+			* @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+			* @future æœªæ¥è¦åšçš„äº‹æƒ…
+			* @retval è¿”å›å€¼æ³¨é‡Š
+			* @throws æŠ›å‡ºçš„å¼‚å¸¸
+			*
+			* @note
+			* æ³¨æ„äº‹é¡¹
+			* @endnote
+			* @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
+			* @par Example
+			* @code
+			* ä»£ç ç¤ºä¾‹
+			* @endcode
+			*
+			* @warning è­¦å‘Š
+			* @bug å­˜åœ¨çš„æ¼æ´
+			* @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
+			* @details
+			* è¯¦ç»†æè¿°
+			* @enddetails
+			* @other å…¶ä»–
+			****/
+			IERROR start(_p_start& p_start);
 
-};
-
+		};
+	}
+}
 /****
 * @author Lovelylavender4
-* @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
-* @brief ÃèÊö
+* @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
+* @brief æè¿°
 *
-* @param ²ÎÊıÃû ×¢ÊÍ
-* @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-* @future Î´À´Òª×öµÄÊÂÇé
-* @retval ·µ»ØÖµ×¢ÊÍ
-* @throws Å×³öµÄÒì³£
+* @param å‚æ•°å æ³¨é‡Š
+* @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+* @future æœªæ¥è¦åšçš„äº‹æƒ…
+* @retval è¿”å›å€¼æ³¨é‡Š
+* @throws æŠ›å‡ºçš„å¼‚å¸¸
 *
 * @note
-* ×¢ÒâÊÂÏî
+* æ³¨æ„äº‹é¡¹
 * @endnote
-* @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
+* @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
 * @par Example
 * @code
-* ´úÂëÊ¾Àı
+* ä»£ç ç¤ºä¾‹
 * @endcode
 *
-* @warning ¾¯¸æ
-* @bug ´æÔÚµÄÂ©¶´
-* @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
+* @warning è­¦å‘Š
+* @bug å­˜åœ¨çš„æ¼æ´
+* @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
 * @details
-* ÏêÏ¸ÃèÊö
+* è¯¦ç»†æè¿°
 * @enddetails
-* @other ÆäËû
+* @other å…¶ä»–
 ****/
 int main(int argc, char** argv, char** envp) {
 	try {
-		Main appMain;
-		auto rt = appMain.start(argc, argv, envp);
+		N_ISTD _p_start p_start;
+		p_start.argc = argc;
+		p_start.argv = argv;
+		p_start.envp = envp;
+
+		N_ISTD Main appMain;
+		IERROR rt = appMain.start(p_start);
+
 		if (rt.isNoError()) {
 			return 0;
 		}

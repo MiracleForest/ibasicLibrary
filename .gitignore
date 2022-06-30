@@ -365,3 +365,5 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/build/README.md
+/build/README_zh-cn.md
