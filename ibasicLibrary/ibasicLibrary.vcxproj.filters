@@ -1458,6 +1458,7 @@
     <None Include="..\include\cppstd\experimental\vector">
       <Filter>include\cppstd\experimental</Filter>
     </None>
+    <None Include="cpp.hint" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\third-party\detours\lib\detours.lib">

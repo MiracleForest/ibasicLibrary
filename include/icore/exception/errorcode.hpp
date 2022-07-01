@@ -23,7 +23,8 @@ SPACE(i) {
         SPACE(iexception) {
 
             enum class ErrorCode {
-                unkError = -1
+                unkError = -1,
+                errorError = -2
             };
 
         }//SPACE(iexception)

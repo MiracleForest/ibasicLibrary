@@ -1,17 +1,17 @@
-/*
+/****
 *
 * Copyright(C) 2022 MiracleForest Studio. All Rights Reserved.
 *
-* @filename:error.hpp
-* @creation time:2022.5.19.13:09
-* @created by:Lovelylavender4
+* @文件名:error.hpp
+* @创建时间:2022.5.19.13:09
+* @创建者:Lovelylavender4
 * -----------------------------------------------------------------------------
-* Contains the error class, and related content
+* 包含错误类，错误枚举类型
 * -----------------------------------------------------------------------------
-* If you have contact or find bugs,
-* you can go to Github or email (MiracleForest@Outlook.com) to give feedback.
-* We will try to do our best!
-*/
+* 如果你发现了bug，你可以去Github或邮箱(MiracleForest@Outlook.com)反馈给我们！
+* 我们一定会努力做得更好的！
+* 
+****/
 #ifndef ___MIRACLEFOREST_I_ERROR___
 #define ___MIRACLEFOREST_I_ERROR___
 
@@ -27,16 +27,28 @@ SPACE(i) {
     SPACE(core) {
         SPACE(iexception) {
 
-            enum class ErrorCode;
-
             struct ErrorInfo {
                 ErrorCode _code;
                 int _icode;
                 std::string _dscription;//描述
+                std::string _dscription2;//详细描述
                 std::string _suggestion;//建议
                 type::FilePos _position;//位置
                 type::level _level;//等级
                 bool _canBeIgnored;//是否可以忽略
+
+                ErrorInfo makeDefault() {
+                    ErrorInfo e;
+                    e._code = ErrorCode::unkError;
+                    e._icode = -1;
+                    e._dscription = "";
+                    e._dscription2 = "";
+                    e._suggestion = "";
+                    e._position = type::fPos::makeDefault();
+                    e._level = -1;
+                    e._canBeIgnored = false;
+                    return e;
+                }
             };
 
 
@@ -50,8 +62,8 @@ SPACE(i) {
                     :_errorinfo(errorinfo),
                     _noError(0) {}            
 
-            public:
                 ~error() {}
+            public:
             public:
                 
 
@@ -113,7 +125,7 @@ SPACE(i) {
                     return _noError;
                 }
 
-            public:                
+            public C_STATIC:                
                 
                 /****
                 * @author Lovelylavender4
@@ -135,6 +147,7 @@ SPACE(i) {
                 static error make(
                     int _code,
                     std::string _dscription = "",
+                    std::string _dscription2 = "",
                     std::string _suggestion = "",
                     type::FilePos _position = type::fPos::makeDefault(),
                     type::level _level = 0,
@@ -146,6 +159,7 @@ SPACE(i) {
                     errorinfo._code = ErrorCode::unkError;
                     errorinfo._icode = _code;
                     errorinfo._dscription = _dscription;
+                    errorinfo._dscription2 = _dscription2;
                     errorinfo._suggestion = _suggestion;
                     errorinfo._position = _position;
                     errorinfo._level = _level;
@@ -171,9 +185,32 @@ SPACE(i) {
                 * @include NULL
                 ****/
                 static error make(
-                    ErrorCode _code
+                    ErrorCode _code,
+                    type::FilePos _position = type::fPos::makeDefault()
                 ) {
-                    
+                    ErrorInfo errorinfo;
+                    if (_code == ErrorCode::unkError) {
+                        errorinfo._code = ErrorCode::unkError;
+                        errorinfo._icode = -1;
+                        errorinfo._dscription = "未知的错误！";
+                        errorinfo._dscription2 = "此错误未被记载！是未知的错误！";
+                        errorinfo._suggestion = "仔细检查代码，或向i官方反馈并提交此错误！";
+                        errorinfo._position = _position;
+                        errorinfo._level = -1;
+                        errorinfo._canBeIgnored = false;
+                        return errorinfo;
+                    }
+                    else {
+                        errorinfo._code = ErrorCode::errorError;
+                        errorinfo._icode = -2;
+                        errorinfo._dscription = "在构建错误时发生了严重的错误！";
+                        errorinfo._dscription2 = "在构建错误时发生了严重的错误！此错误不可忽略！";
+                        errorinfo._suggestion = "仔细检查代码中引发此错误的地方，确定参数_code是有效！";
+                        errorinfo._position = _position;
+                        errorinfo._level = -1;
+                        errorinfo._canBeIgnored = false;
+                        return errorinfo;
+                    }
                 }
 
                 /****
@@ -192,6 +229,10 @@ SPACE(i) {
                 * @bug NULL
                 ****/
                 static error noError() {
+                    return error();
+                }
+
+                static error errorError() {
                     return error();
                 }
 

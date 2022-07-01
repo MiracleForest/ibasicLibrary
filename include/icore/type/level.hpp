@@ -18,24 +18,151 @@
 
 #include "../family/imacrofamily.h"
 
+#undef FALSE
+#undef TRUE
 
-namespace i {
-    namespace core {
-        namespace type {
+SPACE(i) {
+    SPACE(core) {
+        SPACE(type) {
 
             class level {
             public:
+                enum class Level {
+                    φ,
+                    A,
+                    B,
+                    C,
+                    D,
+                    E,
+                    F,
+                    G,
+                    H,
+                    I,
+                    J,
+                    K,
+                    L,
+                    M,
+                    N,
+                    O,
+                    P,
+                    Q,
+                    R,
+                    S,
+                    T,
+                    U,
+                    V,
+                    W,
+                    X,
+                    Y,
+                    Z,
+                    FALSE
+                };
+            public:
+
                 level(int lv = 0) :_lv(lv) {}
                 ~level() {}
+
             public:
-            public:
+
+                int data()const {
+                    return _lv;
+                }
+
+                int getlv()const {
+                    return _lv;
+                }
+
+                int getLevel()const {
+                    return _lv;
+                }
+
+                void setLevel(int _level) {
+                    _lv = _level;
+                }
+
+            public C_OPERATOR:
+
+                level& operator=(int lv) {
+                    _lv = lv;
+                    return *this;
+                }
+
+                level& operator=(const level& lv) {
+                    _lv = lv.data();
+                    return *this;
+                }
+
+                level& operator+(int lv) {
+                    _lv + lv;
+                    return *this;
+                }
+
+                level& operator-(int lv) {
+                    _lv - lv;
+                    return *this;
+                }
+
+                level& operator*(int lv) {
+                    _lv *= lv;
+                    return *this;
+                }
+
+                level& operator*=(int lv) {
+                    _lv *= lv;
+                    return *this;
+                }
+
+                level& operator/(int lv) {
+                    _lv /= lv;
+                    return *this;
+                }
+
+                level& operator/=(int lv) {
+                    _lv /= lv;
+                    return *this;
+                }
+
+                level& operator+=(int lv) {
+                    _lv += lv;
+                    return *this;
+                }
+
+                level& operator-=(int lv) {
+                    _lv -= lv;
+                    return *this;
+                }
+
+                bool operator==(int lv) {
+                    return _lv == lv;
+                }
+
+                bool operator>(int lv) {
+                    return _lv > lv;
+                }
+
+                bool operator<(int lv) {
+                    return _lv < lv;
+                }
+
+                bool operator>=(int lv) {
+                    return _lv >= lv;
+                }
+
+                bool operator<=(int lv) {
+                    return _lv <= lv;
+                }
+
+                bool operator!=(int lv) {
+                    return _lv != lv;
+                }
+
             protected:
             private:
                 int _lv;
             };//class level
 
-        }//namespace type
-    }//namespace core
-}//namespace i
+        }//SPACE(type)
+    }//SPACE(core)
+}//SPACE(i)
 
 #endif //!___MIRACLEFOREST_I_LEVEL___

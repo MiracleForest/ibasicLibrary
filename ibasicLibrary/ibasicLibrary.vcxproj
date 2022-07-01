@@ -352,6 +352,7 @@
     <None Include="..\include\cppstd\system_error" />
     <None Include="..\include\cppstd\thread" />
     <ClCompile Include="ibasicLibrary.cpp" />
+    <None Include="cpp.hint" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\cppstd\agents.h" />

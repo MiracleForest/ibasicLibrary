@@ -2,16 +2,14 @@
 *
 * Copyright(C) 2022 MiracleForest Studio. All Rights Reserved.
 *
-* @filename:ifamily.hpp
-* @creation time:2022.5.26.13:13
-* @created by:Lovelylavender4
+* @文件名:ifamily.hpp
+* @创建时间:2022.5.26.13:13
+* @创建者:Lovelylavender4
 * -----------------------------------------------------------------------------
-*
-*
+* mian函数所在地,i程序的入口点
 * -----------------------------------------------------------------------------
-* If you have contact or find bugs,
-* you can go to Github or email (MiracleForest@Outlook.com) to give feedback.
-* We will try to do our best!
+* 如果你发现了bug，你可以去Github或邮箱(MiracleForest@Outlook.com)反馈给我们！
+* 我们一定会努力做得更好的！
 */
 #ifndef ___MIRACLEFOREST_I_IFAMILY___
 #define ___MIRACLEFOREST_I_IFAMILY___

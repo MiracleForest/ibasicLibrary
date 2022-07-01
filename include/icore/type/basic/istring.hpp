@@ -2964,7 +2964,7 @@ SPACE(i) {
                     
 
 
-                    /**
+                    /****
                     * @brief Integer to hex string.
                     *
                     * @tparam T      The integer type
@@ -2979,7 +2979,7 @@ SPACE(i) {
                     * IntToHexStr(15); // "F"
                     * IntToHexStr(16, true, true, false); // "0000000F"
                     * @endcode
-                    */
+                    ****/
                     template <typename T>
                     std::string IntToHexStr(const T& value, bool upper = true, bool no0x = true,
                         bool noLeadingZero = true)
@@ -3545,11 +3545,10 @@ SPACE(i) {
                     *
                     * @warning 警告
                     * @bug 存在的漏洞
-                    * @include 需要包含的头文件
+                    * @include <string>
                     * @details
-                    * 详细描述
+                    *  
                     * @enddetails
-                    * @other 其他
                     ****/
                     template <typename T>
                     static basic_istring valueOf(T&& value)
