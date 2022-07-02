@@ -65,6 +65,8 @@ SPACE(i) {
 					}
 					*/
 
+				public:
+
 					Type data() const
 					{
 						return _value;
@@ -107,6 +109,8 @@ SPACE(i) {
 					{
 						_value = static_cast<Type>(0);
 					}
+
+				public C_OPERATOR:
 
 					auto operator<=>(const number&) const = delete;
 

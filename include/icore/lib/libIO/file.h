@@ -18,6 +18,7 @@
 
 #include "../../family/imacrofamily.h"
 #include "../../type/istring.hpp"
+#include "../../type/time.hpp"
 
 #include "../../../cppstd/format"
 #include "../../../cppstd/vector"
@@ -44,12 +45,11 @@ SPACE(i) {
                 type::istring extensionName;//扩展名
                 size_t size;//文件大小
                 int lineCount;//文件行数
-                __unk_type__ createTime;//创建时间
-                __unk_type__ modifyTime;//修改时间
+                type::time createTime;//创建时间
+                type::time modifyTime;//修改时间
                 __unk_type__ md5;//md5
                 __unk_type__ authority;//权限
-                __unk_type__ lastVisitTime;//最后访问时间
-                HICON icon;//图标
+                type::time lastVisitTime;//最后访问时间
             };
 
             class IAPI File {

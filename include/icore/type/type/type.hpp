@@ -53,13 +53,6 @@ SPACE(i) {
 			~itype() {}
 		public:
 
-			/// <summary>
-			/// get type
-			/// </summary>
-			/// <warning></warning>
-			/// <include></include>
-			/// <bug></bug>
-			/// <returns>type enum</returns>
 			/****
 			* @author Lovelylavender4
 			* @since 2022.6.21.13:25
@@ -102,14 +95,8 @@ SPACE(i) {
 			****/
 			void setdata(iType t) { mType = t; }
 
-			/// <summary>
-			/// 
-			/// </summary>
-			/// <param name="t">type enum</param>
-			/// <warning></warning>
-			/// <include></include>
-			/// <bug></bug>
-			/// <returns>Type Name</returns>
+		public C_STATIC:
+			 
 			/****
 			* @author Lovelylavender4
 			* @since 2022.6.21.13:30
