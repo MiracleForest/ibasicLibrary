@@ -28,6 +28,8 @@
 #include "../../../cppstd/set"
 #include "../../../cppstd/list"
 #include "../../../cppstd/map"
+
+
 #ifdef __WINDOWS__
 #include <windows.h>
 #include <stringapiset.h>
@@ -41,7 +43,7 @@ SPACE(i) {
 #ifdef __CPP_20__
                 template <typename Type> requires type_traits::is_std_string_v<Type>
 #else
-                template <typename Type, std::enable_if_t<type_traits::is_std_string_v<Type>, Type> = 0>
+                template <typename Type, typename std::enable_if_t<type_traits::is_std_string_v<Type>, int> = 0>
 #endif
                 class basic_istring final {
                 public:

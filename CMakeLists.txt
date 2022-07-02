@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.10)
 project(ibasicLibrary)
 
 # set cpp standard = cpp 20
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 14)
 
 
 # library root include directory
@@ -13,6 +13,8 @@ include_directories(include)
 # set the include file suffix
 list(APPEND CPP_INCLUDE_SUFFIX "*.hpp" "*.h" "*.inl")
 # search the include files
+#include cppstd
+file(GLOB_RECURSE INCLUDE_STDCPP ${PROJECT_SOURCE_DIR}/include/cppstd ${CPP_INCLUDE_SUFFIX})
 # include icore/algorithm
 file(GLOB_RECURSE INCLUDE_CORE_ALGORITHM ${PROJECT_SOURCE_DIR}/include/icore/algorithm ${CPP_INCLUDE_SUFFIX})
 # include icore/exception
@@ -31,6 +33,7 @@ file(GLOB_RECURSE INCLUDE_CORE_TYPE      ${PROJECT_SOURCE_DIR}/include/icore/typ
 
 # add executable
 add_executable(ibasicLibrary
+        ${INCLUDE_STDCPP}
         ${INCLUDE_CORE_ALGORITHM}
         ${INCLUDE_CORE_EXCEPTION}
         ${INCLUDE_CORE_FAMILY}
