@@ -16,6 +16,9 @@
 #ifndef ___MIRACLEFOREST_I_TIME___
 #define ___MIRACLEFOREST_I_TIME___
 
+#pragma warning(disable:4996)
+#pragma warning(disable:4819)
+
 #include "../family/imacrofamily.h"
 #include "istring.hpp"
 

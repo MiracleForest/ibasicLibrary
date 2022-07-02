@@ -24,7 +24,7 @@ SPACE(i) {
 
             enum class ErrorCode {
                 unkError = -1,
-                errorError = -2
+                /*1*/createErrorFailed = -2
             };
 
         }//SPACE(iexception)

@@ -15,6 +15,9 @@
 #ifndef ___MIRACLEFOREST_I_ERROR___
 #define ___MIRACLEFOREST_I_ERROR___
 
+#pragma warning(disable:4996)
+#pragma warning(disable:4819)
+
 #include "../../cppstd/string"
 #include "../../cppstd/source_location"
 #include "exception.hpp"
@@ -23,11 +26,14 @@
 #include "../type/filepos.hpp"
 #include "../type/level.hpp"
 
-#ifndef ___MIRACLEFOREST_I_ERROR_MAP___
+#ifndef ___ERROR_MAP
 // ErrorCode, icode, description, description2, suggestion, level, canIgnore
-#define ___MIRACLEFOREST_I_ERROR_MAP___(XX) \
-    XX(errorError, -2, "错误描述", "详细描述", "建议", -2, false)
-#endif
+#define ___ERROR_MAP( XX ) \
+    XX (unkError, -1, "未知的错误！", "此错误未被记载！是未知的错误！", "仔细检查代码，或向i官方反馈并提交此错误！", -1, false)\
+    XX (createErrorFailed, -2, "创建错误失败！", "创建错误失败！在构建错误时发生了严重的错误！此错误不可忽略！", "仔细检查代码中引发此错误的地方，例如确定参数code是有效！", -1, false)
+#else
+
+#endif//!___ERROR_MAP
 
 SPACE(i) {
     SPACE(core) {
@@ -76,9 +82,9 @@ SPACE(i) {
                 error(ErrorInfo errorinfo)
                     :_errorinfo(errorinfo),
                     _noError(0) {}
+            public:
 
                 ~error() {}
-            public:
 
 
                 /****
@@ -93,15 +99,15 @@ SPACE(i) {
                 * auto e=fun();//IERROR fun();
                 * if(!e.isNoError()){
                 *     if(e.isCanBeIgnored()){
-                * 
+                *
                 *     }
                 *     else{
-                * 
+                *
                 *     }
                 * }
                 * @endcode
                 *
-                * 
+                *
                 * @include -
                 * @details
                 * 此错误是否可以忽略
@@ -122,7 +128,7 @@ SPACE(i) {
                 * @code
                 * auto e=fun();//IERROR fun();
                 * if(!e.isNoError()){
-                * 
+                *
                 * }
                 * @endcode
                 *
@@ -140,7 +146,7 @@ SPACE(i) {
                 /****
                 * @author Lovelylavender4
                 * @since 2022.7.2.9:55
-                * 
+                *
                 * @brief 创建一个自定义的错误
                 * @param _code 错诶代码
                 * @param _dscription = "" 描述
@@ -189,7 +195,7 @@ SPACE(i) {
                 *
                 * @param _code 错误代码
                 * @param _position = type::fPos::makeDefault() 错误位置
-                * @future 根据参数_code找到此错误的ErrorInfo，并构造error
+                * @future 根据参数_code找到此错误的ErrorInfo，并创建error
                 * @retval 创建完毕的错误
                 *
                 * @note
@@ -203,48 +209,32 @@ SPACE(i) {
                 * }
                 * @endcode
                 *
-                * @warning 若_code无效，会抛出errorCreationFailure异常
+                * @warning 若_code无效，会抛出createErrorFailed异常
                 * @include errorcode.hpp,filepos.hpp
                 * @details
                 * 创建一个已有的错误
                 * @enddetails
                 ****/
                 static error make(
-                    ErrorCode _code,
-                    type::FilePos _position = type::fPos::makeDefault()
+                    ErrorCode code,
+                    type::FilePos position = type::fPos::makeDefault()
                 ) {
-                    /*
                     ErrorInfo errorinfo;
-                    if (_code == ErrorCode::unkError) {
-                        errorinfo._code = ErrorCode::unkError;
-                        errorinfo._icode = -1;
-                        errorinfo._dscription = "未知的错误！";
-                        errorinfo._dscription2 = "此错误未被记载！是未知的错误！";
-                        errorinfo._suggestion = "仔细检查代码，或向i官方反馈并提交此错误！";
-                        errorinfo._position = _position;
-                        errorinfo._level = -1;
-                        errorinfo._canBeIgnored = false;
-                        return errorinfo;
+                    try {
+                        errorinfo = getErrorInfoFrom(EMT::errorCode_enum, code);
+                        errorinfo._position = position;
                     }
-                    else {
-                        errorinfo._code = ErrorCode::errorError;
-                        errorinfo._icode = -2;
-                        errorinfo._dscription = "在构建错误时发生了严重的错误！";
-                        errorinfo._dscription2 = "在构建错误时发生了严重的错误！此错误不可忽略！";
-                        errorinfo._suggestion = "仔细检查代码中引发此错误的地方，确定参数_code是有效！";
-                        errorinfo._position = _position;
-                        errorinfo._level = -1;
-                        errorinfo._canBeIgnored = false;
-                        return errorinfo;
+                    catch (...) {
+                        throw createErrorFailed("错误！参数code是无效的！");
                     }
-                    */
+                    return errorinfo;
                 }
 
                 /****
                 * @author Lovelylavender4
                 * @brief 无错误
                 * @retval 错误对象
-                * 
+                *
                 * @par 示例
                 * @code
                 * i::core::iexception::error testFunction(){
@@ -256,58 +246,63 @@ SPACE(i) {
                     return error();
                 }
 
+
                 template<class emsg_t>
                 static ErrorInfo getErrorInfoFrom(EMT emt, emsg_t emsg) {
-                    auto hash_ = [](const std::string& str) -> size_t{
+                    auto hash_ = [](const std::string& str) -> size_t {
                         return std::hash<std::string>{}(str);
                     };
                     if (emt == EMT::errorCode_enum) {
                         switch (emsg) {
 #define XX(Error, icode, des, des2, sug, level, ignore) case ErrorCode:: Error: \
             return ErrorInfo{ErrorCode:: Error, icode, des, des2, sug, type::fPos::makeDefault(), level, ignore};
-                            ___MIRACLEFOREST_I_ERROR_MAP___(XX)
+                            ___ERROR_MAP(XX)
 #undef XX
                         }
-                    }else if (emt == EMT::errorCode_int){
+                    }
+                    else if (emt == EMT::errorCode_int) {
                         switch (emsg) {
 #define XX(Error, icode, des, des2, sug, level, ignore) case icode: \
             return ErrorInfo{ErrorCode:: Error, icode, des, des2, sug, type::fPos::makeDefault(), level, ignore};
-                            ___MIRACLEFOREST_I_ERROR_MAP___(XX)
+                            ___ERROR_MAP(XX)
 #undef XX
                         }
-                    }else if (emt == EMT::dscription){
+                    }
+                    else if (emt == EMT::dscription) {
                         switch (hash_(emsg)) {
 #define XX(Error, icode, des, des2, sug, level, ignore) case hash_(des): \
             return ErrorInfo{ErrorCode:: Error, icode, des, des2, sug, type::fPos::makeDefault(), level, ignore};
-                            ___MIRACLEFOREST_I_ERROR_MAP___(XX)
+                            ___ERROR_MAP(XX)
 #undef XX
                         }
-                    }else if (emt == EMT::dscription2){
+                    }
+                    else if (emt == EMT::dscription2) {
                         switch (hash_(emsg)) {
 #define XX(Error, icode, des, des2, sug, level, ignore) case hash_(des2): \
             return ErrorInfo{ErrorCode:: Error, icode, des, des2, sug, type::fPos::makeDefault(), level, ignore};
-                            ___MIRACLEFOREST_I_ERROR_MAP___(XX)
+                            ___ERROR_MAP(XX)
 #undef XX
                         }
-                    }else if (emt == EMT::suggestion){
+                    }
+                    else if (emt == EMT::suggestion) {
                         switch (hash_(emsg)) {
 #define XX(Error, icode, des, des2, sug, level, ignore) case hash_(sug): \
             return ErrorInfo{ErrorCode:: Error, icode, des, des2, sug, type::fPos::makeDefault(), level, ignore};
-                            ___MIRACLEFOREST_I_ERROR_MAP___(XX)
+                            ___ERROR_MAP(XX)
 #undef XX
                         }
-                    }else if (emt == EMT::level){
+                    }
+                    else if (emt == EMT::level) {
                         switch (emsg) {
 #define XX(Error, icode, des, des2, sug, level, ignore) case level: \
             return ErrorInfo{ErrorCode:: Error, icode, des, des2, sug, type::fPos::makeDefault(), level, ignore};
-                            ___MIRACLEFOREST_I_ERROR_MAP___(XX)
+                            ___ERROR_MAP(XX)
 #undef XX
                         }
-                    } else{
-                        return ErrorInfo{};
                     }
+                    throw -1;
                 }
-                
+
             public:
 
                 /****
@@ -341,5 +336,7 @@ SPACE(i) {
     }//SPACE(core)
 }//SPACE(i)
 
+
+#undef ___ERROR_MAP
 
 #endif //!___MIRACLEFOREST_I_ERROR___

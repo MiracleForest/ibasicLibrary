@@ -22,9 +22,42 @@
 #include <Windows.h>
 #endif
 
-
+IERROR fun() {
+    return IERROR ::make(i::core::iexception::ErrorCode::unkError, {"ibasicLibrary.cpp",1,__LINE__});
+}
 
 IERROR i::core::Main::start(N_ISTD _p_start& p_start) {
+    try {
+        auto rtet = fun();
+        if (!rtet.isNoError()) {
+            if (rtet.isCanBeIgnored()) {
+                std::cout << "错误可忽略" << std::endl;
+            }
+            else {
+                std::cout << "错误不可忽略" << std::endl;
+            }
+            auto ei = rtet.getErrorInfo();
+            std::cout << "_icode->" <<ei._icode << std::endl;
+            std::cout << "_dscription->" << ei._dscription << std::endl;
+            std::cout << "_dscription2->" << ei._dscription2 << std::endl;
+            std::cout << "_suggestion->" << ei._suggestion << std::endl;
+            std::cout 
+                << "_position->fileName->" << ei._position.getFileName() << std::endl
+                << "_position->x->" << ei._position.getX() << std::endl 
+                << "_position->y->" << ei._position.getY() << std::endl;
+            std::cout << "_level->" << ei._level.getLevel() << std::endl;
+            std::cout << "_canBeIgnored->" << ei._canBeIgnored << std::endl;
+        }
+        else {
+            std::cout << "无错误" << std::endl;
+        }
+    }
+    catch (const ::i::core::iexception::createErrorFailed& e) {
+        std::cout << "异常！" << e.what() << std::endl;
+    }
+    catch (...) {
+        std::cout << "未知的异常！"  << std::endl;
+    }
     type::time t;
     t.getTimeNow();
     auto r = t.data();
