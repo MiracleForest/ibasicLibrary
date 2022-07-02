@@ -18,12 +18,15 @@
 
 #include "../../family/imacrofamily.h"
 #include "../../type/istring.hpp"
-#include "ifilesystem.h"
+#include "../../type/time.hpp"
 
 #include "../../../cppstd/format"
 #include "../../../cppstd/vector"
 #include "../../../cppstd/map"
 #include "../../../cppstd/memory"
+#if __CPP_17__
+#include "../../../cppstd/filesystem"
+#endif//__CPP_17_
 #include "../../../cppstd/fstream"
 #include "../../../cppstd/optional"
 
@@ -42,11 +45,11 @@ SPACE(i) {
                 type::istring extensionName;//扩展名
                 size_t size;//文件大小
                 int lineCount;//文件行数
-                __unk_type__ createTime;//创建时间
-                __unk_type__ modifyTime;//修改时间
+                type::time createTime;//创建时间
+                type::time modifyTime;//修改时间
                 __unk_type__ md5;//md5
                 __unk_type__ authority;//权限
-                __unk_type__ lastVisitTime;//最后访问时间
+                type::time lastVisitTime;//最后访问时间
             };
 
             class IAPI File {
@@ -74,26 +77,24 @@ SPACE(i) {
                         * @bug NULL
                         * @include <optional>,<fstream>,<filesystem>,istring,
                         ****/
-                    static std::optional<type::istring>
-                    readAllFile(const type::istring& filePath, bool isBinary = false)
-                    {
-                        std::ifstream fRead;
+                    static std::optional<type::istring> readAllFile(const type::istring& filePath, bool isBinary = false) {
+                    std::ifstream fRead;
 
-                        std::ios_base::openmode mode = std::ios_base::in;
-                        if (isBinary) {
-                            mode |= std::ios_base::binary;
-                        }
-                        fRead.open(type::istring::str2wstr(filePath.data()), mode);
-                        if (!fRead.is_open()) {
-                            return std::nullopt;
-                        }
-                        type::istring data(
-                            (std::istreambuf_iterator<char>(fRead)),
-                            std::istreambuf_iterator<char>()
-                        );
-                        fRead.close();
-                        return data;
+                    std::ios_base::openmode mode = std::ios_base::in;
+                    if (isBinary) {
+                        mode |= std::ios_base::binary;
                     }
+                    fRead.open(type::istring::str2wstr(filePath.data()), mode);
+                    if (!fRead.is_open()) {
+                        return std::nullopt;
+                    }
+                    type::istring data(
+                        (std::istreambuf_iterator<char>(fRead)),
+                        std::istreambuf_iterator<char>()
+                    );
+                    fRead.close();
+                    return data;
+                }
 
                 /****
                     * @author Lovelylavender4
@@ -113,8 +114,7 @@ SPACE(i) {
                     * @bug NULL
                     * @include NULL
                     ****/
-                static bool writeAllFile(const std::string& filePath, const std::string& content, bool isBinary = false)
-                {
+                static bool writeAllFile(const std::string& filePath, const std::string& content, bool isBinary = false) {
                     std::ofstream fWrite;
 
                     std::ios_base::openmode mode = std::ios_base::out;
@@ -126,7 +126,6 @@ SPACE(i) {
                         return false;
                     }
                     fWrite << content;
-                    fWrite.flush();
                     fWrite.close();
                     return true;
                 }

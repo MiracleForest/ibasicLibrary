@@ -1578,7 +1578,7 @@ SPACE(i) {
                         }
                         return result;
                     }
-                public:
+                public C_STATIC:
 
                     template<typename Type1>
                     static std::string toStdString(Type1 value) {
@@ -2144,18 +2144,18 @@ SPACE(i) {
                             return "";
                         }
 #ifdef __WINDOWS__
-                        BOOL need_escape = FALSE;
+                        int need_escape = 0;
                         if (!force_escape_wide_chars.empty()) {
                             for (auto wch : wstr) {
                                 if (force_escape_wide_chars.find(wch) != std::wstring::npos) {
-                                    need_escape = TRUE;
+                                    need_escape = 1;
                                     break;
                                 }
                             }
                         }
                         int len;
-                        if (need_escape == FALSE) {
-                            need_escape = FALSE;
+                        if (need_escape == 0) {
+                            need_escape = 0;
                             len = WideCharToMultiByte(CP_ACP, 0, wstr.c_str(), -1, nullptr, 0, nullptr, &need_escape);
                             if (!len) {
                                 return "";
@@ -2191,7 +2191,7 @@ SPACE(i) {
                                         continue;
                                     }
                                     else if ((uint16_t)(it) >> 11 != 0b11011) {
-                                        need_escape = FALSE;
+                                        need_escape = 0;
                                         wstr_c_tmp[0] = it;
                                         auto len = WideCharToMultiByte(CP_ACP, 0, wstr_c_tmp, -1, nullptr, 0, nullptr, &need_escape);
                                         if (!len) {
@@ -2963,6 +2963,7 @@ SPACE(i) {
                     }
                     
 
+                public C_STATIC:
 
                     /****
                     * @brief Integer to hex string.
@@ -2981,7 +2982,7 @@ SPACE(i) {
                     * @endcode
                     ****/
                     template <typename T>
-                    std::string IntToHexStr(const T& value, bool upper = true, bool no0x = true,
+                    static std::string IntToHexStr(const T& value, bool upper = true, bool no0x = true,
                         bool noLeadingZero = true)
                     {
                         std::string result;
@@ -2997,9 +2998,9 @@ SPACE(i) {
                             result += hexStr[hex];
                         }
                         return result;
-                    }
+                    }                    
+                
                 public:
-                    
 
                     /****
                     * @author Lovelylavender4
@@ -3033,7 +3034,7 @@ SPACE(i) {
                         std::ostringstream os;
                         os << std::hex << this->_data;
                         return os.str();
-                    }
+                    } 
 
                     /****
                     * @author Lovelylavender4
@@ -3069,7 +3070,7 @@ SPACE(i) {
                         return os.str();
                     }
 
-                public:
+                public C_OPERATOR:
 
                     /****
                     * @author ticks
