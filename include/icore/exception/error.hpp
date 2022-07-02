@@ -256,6 +256,36 @@ SPACE(i) {
                     return error();
                 }
 
+                /**
+                * @author Ticks
+                * @since 22-7-2 下午1:32
+                *
+                * @brief 通过错误代码、错误信息描述、错误级别等获取错误信息(ErrorInfo)
+                *
+                * @param emt EMT枚举类型 emsg 枚举对应类型
+                * @tparam emsg_t 通过emsg_t类型获取
+                * @retval ErrorInfo 错误信息结构体
+                * 
+                * @note
+                * emsg类型需要与emt枚举中类型对应，否则会发生未定义错误
+                * @endnote
+                * @pre 示例
+                * @code
+                * ErrorInfo info = getErrorInfo(EMT::errorCode_int, -1);
+                * std::cout << "错误描述: " << info.dscription << std::endl;
+                * @endcode
+                * 
+                * @include error.hpp
+                * @details
+                * 详细描述
+                * @enddetails
+                * 
+                * @warning  
+                * @bug 
+                * 
+                * @other 
+                *
+                **/
                 template<class emsg_t>
                 static ErrorInfo getErrorInfoFrom(EMT emt, emsg_t emsg) {
                     auto hash_ = [](const std::string& str) -> size_t{
