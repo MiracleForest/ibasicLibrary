@@ -23,6 +23,11 @@
 #include "../type/filepos.hpp"
 #include "../type/level.hpp"
 
+#ifndef ___MIRACLEFOREST_I_ERROR_MAP___
+// ErrorCode, icode, description, description2, suggestion, level, canIgnore
+#define ___MIRACLEFOREST_I_ERROR_MAP___(XX) \
+    XX(errorError, -2, "错误描述", "详细描述", "建议", -2, false)
+#endif
 
 SPACE(i) {
     SPACE(core) {
@@ -62,8 +67,7 @@ SPACE(i) {
                     dscription,
                     dscription2,
                     suggestion,
-                    level,
-                    canBeIgnored
+                    level
                 };
             private:
 
@@ -254,7 +258,54 @@ SPACE(i) {
 
                 template<class emsg_t>
                 static ErrorInfo getErrorInfoFrom(EMT emt, emsg_t emsg) {
-                    
+                    auto hash_ = [](const std::string& str) -> size_t{
+                        return std::hash<std::string>{}(str);
+                    };
+                    if (emt == EMT::errorCode_enum) {
+                        switch (emsg) {
+#define XX(Error, icode, des, des2, sug, level, ignore) case ErrorCode:: Error: \
+            return ErrorInfo{ErrorCode:: Error, icode, des, des2, sug, type::fPos::makeDefault(), level, ignore};
+                            ___MIRACLEFOREST_I_ERROR_MAP___(XX)
+#undef XX
+                        }
+                    }else if (emt == EMT::errorCode_int){
+                        switch (emsg) {
+#define XX(Error, icode, des, des2, sug, level, ignore) case icode: \
+            return ErrorInfo{ErrorCode:: Error, icode, des, des2, sug, type::fPos::makeDefault(), level, ignore};
+                            ___MIRACLEFOREST_I_ERROR_MAP___(XX)
+#undef XX
+                        }
+                    }else if (emt == EMT::dscription){
+                        switch (hash_(emsg)) {
+#define XX(Error, icode, des, des2, sug, level, ignore) case hash_(des): \
+            return ErrorInfo{ErrorCode:: Error, icode, des, des2, sug, type::fPos::makeDefault(), level, ignore};
+                            ___MIRACLEFOREST_I_ERROR_MAP___(XX)
+#undef XX
+                        }
+                    }else if (emt == EMT::dscription2){
+                        switch (hash_(emsg)) {
+#define XX(Error, icode, des, des2, sug, level, ignore) case hash_(des2): \
+            return ErrorInfo{ErrorCode:: Error, icode, des, des2, sug, type::fPos::makeDefault(), level, ignore};
+                            ___MIRACLEFOREST_I_ERROR_MAP___(XX)
+#undef XX
+                        }
+                    }else if (emt == EMT::suggestion){
+                        switch (hash_(emsg)) {
+#define XX(Error, icode, des, des2, sug, level, ignore) case hash_(sug): \
+            return ErrorInfo{ErrorCode:: Error, icode, des, des2, sug, type::fPos::makeDefault(), level, ignore};
+                            ___MIRACLEFOREST_I_ERROR_MAP___(XX)
+#undef XX
+                        }
+                    }else if (emt == EMT::level){
+                        switch (emsg) {
+#define XX(Error, icode, des, des2, sug, level, ignore) case level: \
+            return ErrorInfo{ErrorCode:: Error, icode, des, des2, sug, type::fPos::makeDefault(), level, ignore};
+                            ___MIRACLEFOREST_I_ERROR_MAP___(XX)
+#undef XX
+                        }
+                    } else{
+                        return ErrorInfo{};
+                    }
                 }
                 
             public:

@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.10)
 project(ibasicLibrary)
 
 # set cpp standard = cpp 20
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 17)
 
 
 # library root include directory
@@ -21,8 +21,10 @@ file(GLOB_RECURSE INCLUDE_CORE_EXCEPTION ${PROJECT_SOURCE_DIR}/include/icore/exc
 file(GLOB_RECURSE INCLUDE_CORE_FAMILY    ${PROJECT_SOURCE_DIR}/include/icore/family ${CPP_INCLUDE_SUFFIX})
 # include icore/libcolor
 file(GLOB_RECURSE INCLUDE_CORE_LIBCOLOR  ${PROJECT_SOURCE_DIR}/include/icore/libcolor ${CPP_INCLUDE_SUFFIX})
+#include icore/libio
+file(GLOB_RECURSE INCLUDE_CORE_LIBIO   ${PROJECT_SOURCE_DIR}/include/icore/lib/libIO ${CPP_INCLUDE_SUFFIX})
 # include icore/libmath
-file(GLOB_RECURSE INCLUDE_CORE_LIBMATH   ${PROJECT_SOURCE_DIR}/include/icore/libmath ${CPP_INCLUDE_SUFFIX})
+file(GLOB_RECURSE INCLUDE_CORE_LIBMATH   ${PROJECT_SOURCE_DIR}/include/icore/lib/libmath ${CPP_INCLUDE_SUFFIX})
 # include icore/type
 file(GLOB_RECURSE INCLUDE_CORE_TYPE      ${PROJECT_SOURCE_DIR}/include/icore/type ${CPP_INCLUDE_SUFFIX})
 
@@ -33,6 +35,7 @@ add_executable(ibasicLibrary
         ${INCLUDE_CORE_EXCEPTION}
         ${INCLUDE_CORE_FAMILY}
         ${INCLUDE_CORE_LIBCOLOR}
+        ${INCLUDE_CORE_LIBIO}
         ${INCLUDE_CORE_LIBMATH}
         ${INCLUDE_CORE_TYPE}
         ibasicLibrary/ibasicLibrary.cpp)

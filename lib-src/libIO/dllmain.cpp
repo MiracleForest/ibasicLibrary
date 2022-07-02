@@ -1,7 +1,7 @@
 ﻿#include "pch.h"
 
 
-#include "../../include/icore/lib/libIO/IO.h"
+#include "../../include/icore/lib/libIO/io.h"
 #include "../../include/icore/lib/libIO/file.h"
 #include "../../include/icore/lib/libIO/console.h"
 #include "../../include/icore/lib/libIO/shelllinkfile.h"

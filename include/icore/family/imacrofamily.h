@@ -133,9 +133,17 @@
 
 /*------------------------关于 dll------------------------*/
 #ifdef ___ILIBRARYEXPORT___
+
+#ifdef __MSVC__
 #define IAPI _declspec(dllexport)
 #else
 #define IAPI _declspec(dllimport)
+#endif
+
+#elif defined(__LINUX__)
+#define IAPI __attribute__((visibility("default")))
+#else
+#define IAPI
 #endif
 
 #define IAPI_EXPORT _declspec(dllexport)
@@ -177,7 +185,7 @@ SPACE(i) {
 #else
         typedef long long int64;
         typedef unsigned long long uint64;
-#endif//__WINDOWS__
+#endif //__WINDOWS__
 
 
         using VA = uint64;
