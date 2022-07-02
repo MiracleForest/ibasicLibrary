@@ -18,17 +18,18 @@
 
 #include "../family/imacrofamily.h"
 
-namespace i {
-    namespace core {
-        namespace iexception {
+SPACE(i) {
+    SPACE(core) {
+        SPACE(iexception) {
 
             enum class ErrorCode {
-                unkError = -1
+                unkError = -1,
+                errorError = -2
             };
 
-        }//namespace iexception
-    }//namespace core
-}//namespace i
+        }//SPACE(iexception)
+    }//SPACE(core)
+}//SPACE(i)
 
 
 #endif //!___MIRACLEFOREST_I_ERRORCODE___

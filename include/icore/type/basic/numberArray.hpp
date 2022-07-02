@@ -23,6 +23,8 @@
 #include <initializer_list>
 #include <exception>
 
+#if 0
+
 namespace i::core::type::basic
 {
 <<<<<<< HEAD
@@ -475,6 +477,7 @@ namespace std
     template <typename T>
     numberArray_iterator<T> cend(const basic_number<T>& obj) { return obj.cend(); };
 >>>>>>> bd413e8ebdf10e7751207d68a7610c4d4302ddee
-
 }
+#endif//0
+
 #endif//!___MIRACLEFOREST_I_NUMBERARRAY___

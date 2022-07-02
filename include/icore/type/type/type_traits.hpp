@@ -22,10 +22,10 @@
 #include "../../../cppstd/string"
 #include "../../../cppstd/concepts"
 
-namespace i {
-	namespace core{
-		namespace type {
-			namespace type_traits {
+SPACE(i) {
+	SPACE(core) {
+		SPACE(type) {
+			SPACE(type_traits) {
 
 				template <typename Type>
 				struct is_std_string : std::false_type {};
@@ -51,9 +51,9 @@ namespace i {
 				template <typename Type>
 				constexpr bool is_std_string_v = is_std_string<Type>::value;
 
-			}
-		}
-	}
-}
+			}//SPACE(type_traits)
+		}//SPACE(type)
+	}//SPACE(core)
+}//SPACE(i)
 
 #endif //!___MIRACLEFOREST_I_TYPE_TRAITS___

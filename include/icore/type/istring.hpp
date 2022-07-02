@@ -19,9 +19,9 @@
 #include "../family/imacrofamily.h"
 #include "basic/istring.hpp"
 
-namespace i {
-    namespace core {
-        namespace type {
+SPACE(i) {
+    SPACE(core) {
+        SPACE(type) {
                 using istring = basic::basic_istring<std::string>;
                 using iwstring = basic::basic_istring<std::wstring>;
 #ifdef __cpp_lib_char8_t
@@ -29,9 +29,9 @@ namespace i {
 #endif // __cpp_lib_char8_t
                 using iu16string = basic::basic_istring<std::u16string>;
                 using iu32string = basic::basic_istring<std::u32string>;
-        }//namespace type
-    }//namespace core
-}//namespace i
+        }//SPACE(type)
+    }//SPACE(core)
+}//SPACE(i)
 
 
 #endif //!___MIRACLEFOREST_I_ISTRING___

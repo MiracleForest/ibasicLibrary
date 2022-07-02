@@ -19,52 +19,55 @@
 #include "../../../family/imacrofamily.h"
 #include "../../type/type.hpp"
 
-namespace i{
-    namespace core {
-        
+SPACE(i) {
+	SPACE(core) {
+		SPACE(basic) {
 
-        template<typename Type>
-        class ibasic {
+			template<typename Type>
+			class ibasic {
 
-        };//class ibasic
+			};//class ibasic
 
-        
 
-        template<typename Type>
-        class ibasic_data_type : public ibasic<Type> {
-            
-			/****
-			* @author Lovelylavender4
-			* @since ±àĞ´´Ë´úÂëµÄÊ±¼ä»ò°æ±¾
-			* @brief ÃèÊö
-			*
-			* @param ²ÎÊıÃû ×¢ÊÍ
-			* @tparam Ä£°å²ÎÊıÃû ×¢ÊÍ
-			* @future Î´À´Òª×öµÄÊÂÇé
-			* @retval ·µ»ØÖµ×¢ÊÍ
-			* @throws Å×³öµÄÒì³£
-			*
-			* @note
-			* ×¢ÒâÊÂÏî
-			* @endnote
-			* @pre Ê¹ÓÃ´Ëº¯ÊıµÄÇ°ÌáÌõ¼ş
-			* @par Example
-			* @code
-			* ´úÂëÊ¾Àı
-			* @endcode
-			*
-			* @warning ¾¯¸æ
-			* @bug ´æÔÚµÄÂ©¶´
-			* @include ĞèÒª°üº¬µÄÍ·ÎÄ¼ş
-			* @details
-			* ÏêÏ¸ÃèÊö
-			* @enddetails
-			* @other ÆäËû
-			****/
-            virtual Type data() = 0;
 
-        };//class ibasic_data_type : public ibasic<Type>
-    }//namespace core
-}//namespace i
+			template<typename Type>
+			class ibasic_data_type : public ibasic<Type> {
+
+				/****
+				* @author Lovelylavender4
+				* @since ç¼–å†™æ­¤ä»£ç çš„æ—¶é—´æˆ–ç‰ˆæœ¬
+				* @brief æè¿°
+				*
+				* @param å‚æ•°å æ³¨é‡Š
+				* @tparam æ¨¡æ¿å‚æ•°å æ³¨é‡Š
+				* @future æœªæ¥è¦åšçš„äº‹æƒ…
+				* @retval è¿”å›å€¼æ³¨é‡Š
+				* @throws æŠ›å‡ºçš„å¼‚å¸¸
+				*
+				* @note
+				* æ³¨æ„äº‹é¡¹
+				* @endnote
+				* @pre ä½¿ç”¨æ­¤å‡½æ•°çš„å‰ææ¡ä»¶
+				* @par Example
+				* @code
+				* ä»£ç ç¤ºä¾‹
+				* @endcode
+				*
+				* @warning è­¦å‘Š
+				* @bug å­˜åœ¨çš„æ¼æ´
+				* @include éœ€è¦åŒ…å«çš„å¤´æ–‡ä»¶
+				* @details
+				* è¯¦ç»†æè¿°
+				* @enddetails
+				* @other å…¶ä»–
+				****/
+				virtual Type data() = 0;
+
+			};//class ibasic_data_type : public ibasic<Type>
+
+
+		}//SPACE(basic)
+    }//SPACE(core)
+}//SPACE(i)
 
 #endif //!___MIRACLEFOREST_I_INASIC___

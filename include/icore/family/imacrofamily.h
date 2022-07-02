@@ -138,15 +138,20 @@
 #define IAPI _declspec(dllimport)
 #endif
 
+#define IAPI_EXPORT _declspec(dllexport)
+#define IAPI_IMPORT _declspec(dllimport)
+
 
 /*------------------------类------------------------*/
 #define C_STATIC
+#define C_OPERATOR
 
 
 /*------------------------快捷------------------------*/
 #define CATCH(x) catch(...){printf(x);}
 #define IERROR i::core::iexception::error
 #define SPACE(x) namespace x
+#define SPACE_ namespace
 
 
 /*------------------------命名空间------------------------*/
@@ -156,8 +161,8 @@
 #define N_ISTD ::i::core::
 
 
-namespace i {
-    namespace core {
+SPACE(i) {
+    SPACE(core) {
 
         using ushort = unsigned short;
         using uint = unsigned int;
@@ -184,7 +189,7 @@ namespace i {
         template<typename Type>
         using CPtr = const Type*;
 
-    }
-}
+    }//SPACE(core)
+}//SPACE(i)
 
 #endif //!___MIRACLEFOREST_I_IMACROFAMILY___

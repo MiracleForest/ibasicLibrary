@@ -19,6 +19,7 @@
 #include <sstream>
 #include "../../family/imacrofamily.h"
 #include "../type/type_traits.hpp"
+#include "basic/ibasic.hpp"
 
 #include "../../../cppstd/iostream"
 #include "../../../cppstd/string"
@@ -32,10 +33,11 @@
 #include <stringapiset.h>
 #endif
 
-namespace i {
-    namespace core {
-        namespace type {
-            namespace basic {
+SPACE(i) {
+    SPACE(core) {
+        SPACE(type) {
+            SPACE(basic) {
+
 #ifdef __CPP_20__
                 template <typename Type> requires type_traits::is_std_string_v<Type>
 #else
@@ -2962,7 +2964,7 @@ namespace i {
                     
 
 
-                    /**
+                    /****
                     * @brief Integer to hex string.
                     *
                     * @tparam T      The integer type
@@ -2977,7 +2979,7 @@ namespace i {
                     * IntToHexStr(15); // "F"
                     * IntToHexStr(16, true, true, false); // "0000000F"
                     * @endcode
-                    */
+                    ****/
                     template <typename T>
                     std::string IntToHexStr(const T& value, bool upper = true, bool no0x = true,
                         bool noLeadingZero = true)
@@ -3543,11 +3545,10 @@ namespace i {
                     *
                     * @warning 警告
                     * @bug 存在的漏洞
-                    * @include 需要包含的头文件
+                    * @include <string>
                     * @details
-                    * 详细描述
+                    *  
                     * @enddetails
-                    * @other 其他
                     ****/
                     template <typename T>
                     static basic_istring valueOf(T&& value)
@@ -3682,10 +3683,10 @@ namespace i {
                 }
 #endif// __LINUX__ && __GCC__ 
 
-            }//namespace basic
-        }//namespace type
-    }//namespace core
-}//namespace i
+            }//SPACE(basic)
+        }//SPACE(type)
+    }//SPACE(core)
+}//SPACE(i)
 
 
 #endif //!___MIRACLEFOREST_I_BASIC_ISTRING___

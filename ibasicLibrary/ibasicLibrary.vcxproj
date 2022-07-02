@@ -352,6 +352,7 @@
     <None Include="..\include\cppstd\system_error" />
     <None Include="..\include\cppstd\thread" />
     <ClCompile Include="ibasicLibrary.cpp" />
+    <None Include="cpp.hint" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\cppstd\agents.h" />
@@ -497,7 +498,6 @@
     <ClInclude Include="..\include\icore\lib\libmath\vec3.hpp" />
     <ClInclude Include="..\include\icore\lib\libmath\vec4.hpp" />
     <ClInclude Include="..\include\icore\lib\libProcess\process.h" />
-    <ClInclude Include="..\include\icore\type\basic\basic\basic_number_type.hpp" />
     <ClInclude Include="..\include\icore\type\basic\basic\ibasic.hpp" />
     <ClInclude Include="..\include\icore\type\basic\basic\position.hpp" />
     <ClInclude Include="..\include\icore\type\basic\istring.hpp" />
@@ -505,6 +505,7 @@
     <ClInclude Include="..\include\icore\type\filepos.hpp" />
     <ClInclude Include="..\include\icore\type\istring.hpp" />
     <ClInclude Include="..\include\icore\type\level.hpp" />
+    <ClInclude Include="..\include\icore\type\time.hpp" />
     <ClInclude Include="..\include\icore\type\type\concepts.hpp" />
     <ClInclude Include="..\include\icore\type\type\type.hpp" />
     <ClInclude Include="..\include\icore\type\type\type_traits.hpp" />

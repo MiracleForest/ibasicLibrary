@@ -24,8 +24,8 @@
 #include "../../../cppstd/string"
 
 
-namespace i {
-	namespace core {
+SPACE(i) {
+	SPACE(core) {
 
 		enum class typeList {
 			unkType,
@@ -210,8 +210,8 @@ namespace i {
 		};
 
 
-	}//namespace icore
-}//namespace i
+	}//SPACE(core)
+}//SPACE(i)
 
 
 

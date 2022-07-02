@@ -17,11 +17,11 @@
 
 #include "../../cppstd/exception"
 
-namespace i {
-    namespace core {
+SPACE(i) {
+    SPACE(core) {
 
 
-    }//namespace core
-}//namespace i
+    }//SPACE(core)
+}//SPACE(i)
 
 #endif //!___MIRACLEFOREST_I_EXCEPTION___

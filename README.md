@@ -1,12 +1,24 @@
 # ibasicLibrary - i基础库
 
-[![status](https://img.shields.io/github/workflow/status/LiteLDev/LiteLoader/Build%20LiteLoader?style=for-the-badge)](https://github.com/MiracleForest/ibasicLibrary/actions)
+#### >
 
 ----  QQ群: [1015969097](README_qq.md)  ----
 
 ##### ----  简体中文 | [English](README_en.md)  ----
 <br />
 
-`i语言`最初被构想为[i创新](README_i_innovation.md)与[i语言](README_i_il.md)两个部分，而`i基础库`将作为`i创新`的底层C++库
+## 🎁 简介
+>`“i”`目前被构想为[i创新](README_i_innovation.md)与[i语言](README_i_il.md)两个部分，而`i基础库`将作为[i创新](README_i_innovation.md)的底层C++库。`i基础库`也将作为[i创新](README_i_innovation.md)以及相关工具所生成的代码/程序所使用的标准库。
+- 我们的目标是将`i基础库`打造为跨平台，功能完善，效率高，涵盖面广，全C++标准的C++库。
+- - 想更多信息可以联系我们！
+- - 邮箱：`MiracleForest@Outlook.com`
+
+## 加入我们！
+邮箱：`MiracleForest@Outlook.com`
+通过邮箱联系我们吧~
+
+<br />
+
+
 
 未完待续...
