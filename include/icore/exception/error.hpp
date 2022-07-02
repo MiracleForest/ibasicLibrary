@@ -10,7 +10,7 @@
 * -----------------------------------------------------------------------------
 * 如果你发现了bug，你可以去Github或邮箱(MiracleForest@Outlook.com)反馈给我们！
 * 我们一定会努力做得更好的！
-* 
+*
 ****/
 #ifndef ___MIRACLEFOREST_I_ERROR___
 #define ___MIRACLEFOREST_I_ERROR___
@@ -22,6 +22,7 @@
 #include "../family/imacrofamily.h"
 #include "../type/filepos.hpp"
 #include "../type/level.hpp"
+
 
 SPACE(i) {
     SPACE(core) {
@@ -54,81 +55,88 @@ SPACE(i) {
 
 
             class error {
+            public:
+                enum class EMT {//error message type
+                    errorCode_enum,
+                    errorCode_int,
+                    dscription,
+                    dscription2,
+                    suggestion,
+                    level,
+                    canBeIgnored
+                };
             private:
 
-                error():_noError(1) {}
+                error() :_noError(1) {}
 
                 error(ErrorInfo errorinfo)
                     :_errorinfo(errorinfo),
-                    _noError(0) {}            
+                    _noError(0) {}
 
                 ~error() {}
             public:
-            public:
-                
+
 
                 /****
                 * @author Lovelylavender4
-                * @since 编写此代码的时间或版本
+                * @since 2022.7.2.9:52
                 * @brief 此错误是否可以忽略
                 *
-                * @future 未来要做的事情
                 * @retval 此错误是否可以忽略
                 *
                 * @par Example
                 * @code
-                * 代码示例
-                * @endcode
-                * ...
-                * if(!xxx.isCanBeIgnored){
-                * ...
+                * auto e=fun();//IERROR fun();
+                * if(!e.isNoError()){
+                *     if(e.isCanBeIgnored()){
+                * 
+                *     }
+                *     else{
+                * 
+                *     }
                 * }
-                * ...
-                * @include 需要包含的头文件
+                * @endcode
+                *
+                * 
+                * @include -
                 * @details
                 * 此错误是否可以忽略
                 * @enddetails
                 ****/
-                bool isCanBeIgnored() const{
+                bool isCanBeIgnored() const {
                     return _errorinfo._canBeIgnored;
                 }
 
                 /****
                 * @author Lovelylavender4
-                * @since 编写此代码的时间或版本
-                * @brief 描述
+                * @since 2022.7.2.9:55
+                * @brief 是否没有错误
                 *
-                * @param 参数名 注释
-                * @tparam 模板参数名 注释
-                * @future 未来要做的事情
-                * @retval 返回值注释
-                * @throws 抛出的异常
+                * @retval 是否没有错误
                 *
-                * @note
-                * 注意事项
-                * @endnote
-                * @pre 代码使用的前提条件
                 * @par Example
                 * @code
-                * 代码示例
+                * auto e=fun();//IERROR fun();
+                * if(!e.isNoError()){
+                * 
+                * }
                 * @endcode
                 *
-                * @warning 警告
-                * @bug 存在的漏洞
-                * @include 需要包含的头文件
+                * @include -
                 * @details
-                * 详细描述
+                * 是否没有错误
                 * @enddetails
-                * @other 其他
                 ****/
                 bool isNoError() {
                     return _noError;
                 }
 
-            public C_STATIC:                
-                
+                public C_STATIC:
+
                 /****
                 * @author Lovelylavender4
+                * @since 2022.7.2.9:55
+                * 
                 * @brief 创建一个自定义的错误
                 * @param _code 错诶代码
                 * @param _dscription = "" 描述
@@ -140,7 +148,9 @@ SPACE(i) {
                 * @note 错诶代码
                 * @par Example
                 * @code
-                * NULL
+                * IERROR fun(){
+                *     return error::make(-123,"...","...","...",{"...",1,1},10,false);
+                * }
                 * @endcode
                 * @include <string>,filepos.hpp,level.hpp
                 ****/
@@ -170,24 +180,36 @@ SPACE(i) {
 
                 /****
                 * @author Lovelylavender4
-                * @brief 创建一个错误
-                * @param _code 代码
-                * @future NULL
-                * @retval error对象
-                * @throws NULL
-                * @note NULL
-                * @par Example
+                * @since 2022.7.2.10:05
+                * @brief 创建一个已有的错误
+                *
+                * @param _code 错误代码
+                * @param _position = type::fPos::makeDefault() 错误位置
+                * @future 根据参数_code找到此错误的ErrorInfo，并构造error
+                * @retval 创建完毕的错误
+                *
+                * @note
+                * _code必须是有效的错误代码
+                * @endnote
+                * @pre 检测到代码发生了错误
+                * @par 示例
                 * @code
-                * NULL
+                * IERROR fun(){
+                *     return error::make(ErrorCode::xxx,{"...",1,1});
+                * }
                 * @endcode
-                * @warning NULL
-                * @bug NULL
-                * @include NULL
+                *
+                * @warning 若_code无效，会抛出errorCreationFailure异常
+                * @include errorcode.hpp,filepos.hpp
+                * @details
+                * 创建一个已有的错误
+                * @enddetails
                 ****/
                 static error make(
                     ErrorCode _code,
                     type::FilePos _position = type::fPos::makeDefault()
                 ) {
+                    /*
                     ErrorInfo errorinfo;
                     if (_code == ErrorCode::unkError) {
                         errorinfo._code = ErrorCode::unkError;
@@ -211,36 +233,35 @@ SPACE(i) {
                         errorinfo._canBeIgnored = false;
                         return errorinfo;
                     }
+                    */
                 }
 
                 /****
                 * @author Lovelylavender4
                 * @brief 无错误
                 * @retval 错误对象
-                * @par Example
                 * 
+                * @par 示例
                 * @code
                 * i::core::iexception::error testFunction(){
                 * return i::core::iexception::error::noError();
                 * }
                 * @endcode
-                * 
-                * @warning NULL
-                * @bug NULL
                 ****/
                 static error noError() {
                     return error();
                 }
 
-                static error errorError() {
-                    return error();
+                template<class emsg_t>
+                static ErrorInfo getErrorInfoFrom(EMT emt, emsg_t emsg) {
+                    
                 }
-
-            public:
                 
+            public:
+
                 /****
                 * @author Lovelylavender4
-                * @brief get ErrorInfo
+                * @brief 获取错误信息
                 * @retval ErrorInfo 错误信息
                 * @throws NULL
                 * @note NULL
@@ -253,6 +274,10 @@ SPACE(i) {
                 * @include NULL
                 ****/
                 ErrorInfo data()const {
+                    return _errorinfo;
+                }
+
+                ErrorInfo getErrorInfo()const {
                     return _errorinfo;
                 }
 
