@@ -25,6 +25,14 @@
 #define _STL_LANG 0L
 #endif // ^^^ no C++ support ^^^
 
+#ifndef _HAS_CXX14
+#if _STL_LANG > 201108L
+#define _HAS_CXX14 1
+#else
+#define _HAS_CXX14 0
+#endif
+#endif // _HAS_CXX14
+
 #ifndef _HAS_CXX17
 #if _STL_LANG > 201402L
 #define _HAS_CXX17 1
@@ -94,17 +102,22 @@
 #define __CPP_20__ 1
 #define __CPP_17__ 1
 #define __CPP_14__ 1
+#define __CPP_11__ 1
 #elif _HAS_CXX20
 #define __CPP_20__ 1
 #define __CPP_17__ 1
 #define __CPP_14__ 1
+#define __CPP_11__ 1
 #elif _HAS_CXX17
 #define __CPP_17__ 1
 #define __CPP_14__ 1
-#else
-#define __CPP_14__ 1
-#endif
 #define __CPP_11__ 1
+#elif _HAS_CXX14
+#define __CPP_14__ 1
+#define __CPP_11__ 1
+#else
+#define __CPP_11__ 1
+#endif
 #endif
 
 
