@@ -197,7 +197,7 @@ SPACE(i) {
 #ifdef __WINDOWS__
         typedef __int64   int64;
         typedef unsigned __int64   uint64;
-#else
+#else//!__WINDOWS__
         typedef long long int64;
         typedef unsigned long long uint64;
 #endif //__WINDOWS__
@@ -221,4 +221,4 @@ SPACE(i) {
     }//SPACE(core)
 }//SPACE(i)
 
-#endif //!___MIRACLEFOREST_I_IMACROFAMILY___
+#endif //___MIRACLEFOREST_I_IMACROFAMILY___
