@@ -28,7 +28,7 @@
 
 #ifndef ___ERROR_MAP
 // ErrorCode, icode, description, description2, suggestion, level, canIgnore
-#define ___ERROR_MAP( XX ) \
+#define ___ERROR_MAP(XX) \
     XX (unkError, -1, "未知的错误！", "此错误未被记载！是未知的错误！", "仔细检查代码，或向i官方反馈并提交此错误！", -1, false)\
     XX (createErrorFailed, -2, "创建错误失败！", "创建错误失败！在构建错误时发生了严重的错误！此错误不可忽略！", "仔细检查代码中引发此错误的地方，例如确定参数code是有效！", -1, false)
 #else
@@ -277,55 +277,94 @@ SPACE(i) {
                 **/
                 template<class emsg_t>
                 static ErrorInfo getErrorInfoFrom(EMT emt, emsg_t emsg) {
-                    auto hash_ = [](const std::string& str) -> size_t {
-                        return std::hash<std::string>{}(str);
-                    };
                     if (emt == EMT::errorCode_enum) {
-                        switch (emsg) {
-#define XX(Error, icode, des, des2, sug, level, ignore) case ErrorCode:: Error: \
-            return ErrorInfo{ErrorCode:: Error, icode, des, des2, sug, type::fPos::makeDefault(), level, ignore};
-                            ___ERROR_MAP(XX)
+                        if (emsg == ErrorCode::unkError){
+                            return ErrorInfo{ErrorCode::unkError, -1, "未知的错误",
+                                             "此错误未被记载！是未知的错误！",
+                                             "仔细检查代码，或向i官方反馈并提交此错误！",
+                                             type::fPos::makeDefault(), -1, false};
+                        }
+#define XX(error, icode, des, des2, sug, level, ignore) else if (emsg == ErrorCode:: error){ \
+            return ErrorInfo{ErrorCode:: error, icode, des, des2, sug, type::fPos::makeDefault(), level, ignore};}
+                        ___ERROR_MAP(XX)
 #undef XX
+                        else{
+                            throw -1;
                         }
                     }
                     else if (emt == EMT::errorCode_int) {
-                        switch (emsg) {
-#define XX(Error, icode, des, des2, sug, level, ignore) case icode: \
-            return ErrorInfo{ErrorCode:: Error, icode, des, des2, sug, type::fPos::makeDefault(), level, ignore};
-                            ___ERROR_MAP(XX)
+                        if (emsg == static_cast<emsg_t>(-1)){
+                            return ErrorInfo{ErrorCode::unkError, -1, "未知的错误",
+                                             "此错误未被记载！是未知的错误！",
+                                             "仔细检查代码，或向i官方反馈并提交此错误！",
+                                             type::fPos::makeDefault(), -1, false};
+                        }
+#define XX(error, icode, des, des2, sug, level, ignore) else if (emsg == static_cast<emsg_t>(icode)){ \
+            return ErrorInfo{ErrorCode:: error, icode, des, des2, sug, type::fPos::makeDefault(), level, ignore};}
+                        ___ERROR_MAP(XX)
 #undef XX
+                        else{
+                            throw -1;
                         }
                     }
                     else if (emt == EMT::dscription) {
-                        switch (hash_(emsg)) {
-#define XX(Error, icode, des, des2, sug, level, ignore) case hash_(des): \
-            return ErrorInfo{ErrorCode:: Error, icode, des, des2, sug, type::fPos::makeDefault(), level, ignore};
-                            ___ERROR_MAP(XX)
+                        if (emsg == ("未知的错误")){
+                            return ErrorInfo{ErrorCode::unkError, -1, "未知的错误",
+                                             "此错误未被记载！是未知的错误！",
+                                             "仔细检查代码，或向i官方反馈并提交此错误！",
+                                             type::fPos::makeDefault(), -1, false};
+                        }
+#define XX(error, icode, des, des2, sug, level, ignore) else if (emsg == des){ \
+            return ErrorInfo{ErrorCode:: error, icode, des, des2, sug, type::fPos::makeDefault(), level, ignore};}
+                        ___ERROR_MAP(XX)
 #undef XX
+                        else{
+                            throw -1;
                         }
                     }
                     else if (emt == EMT::dscription2) {
-                        switch (hash_(emsg)) {
-#define XX(Error, icode, des, des2, sug, level, ignore) case hash_(des2): \
-            return ErrorInfo{ErrorCode:: Error, icode, des, des2, sug, type::fPos::makeDefault(), level, ignore};
-                            ___ERROR_MAP(XX)
+                        if (emsg == ("此错误未被记载！是未知的错误！")){
+                            return ErrorInfo{ErrorCode::unkError, -1, "未知的错误",
+                                             "此错误未被记载！是未知的错误！",
+                                             "仔细检查代码，或向i官方反馈并提交此错误！",
+                                             type::fPos::makeDefault(), -1, false};
+                        }
+#define XX(error, icode, des, des2, sug, level, ignore) else if (emsg == des2){ \
+            return ErrorInfo{ErrorCode:: error, icode, des, des2, sug, type::fPos::makeDefault(), level, ignore};}
+                        ___ERROR_MAP(XX)
 #undef XX
+                        else{
+                            throw -1;
                         }
                     }
                     else if (emt == EMT::suggestion) {
-                        switch (hash_(emsg)) {
-#define XX(Error, icode, des, des2, sug, level, ignore) case hash_(sug): \
-            return ErrorInfo{ErrorCode:: Error, icode, des, des2, sug, type::fPos::makeDefault(), level, ignore};
-                            ___ERROR_MAP(XX)
+                        if (emsg == ("仔细检查代码，或向i官方反馈并提交此错误！")){
+                            return ErrorInfo{ErrorCode::unkError, -1, "未知的错误",
+                                             "此错误未被记载！是未知的错误！",
+                                             "仔细检查代码，或向i官方反馈并提交此错误！",
+                                             type::fPos::makeDefault(), -1, false};
+                        }
+#define XX(error, icode, des, des2, sug, level, ignore) else if (emsg == sug){ \
+            return ErrorInfo{ErrorCode:: error, icode, des, des2, sug, type::fPos::makeDefault(), level, ignore};}
+                        ___ERROR_MAP(XX)
 #undef XX
+                        else{
+                            throw -1;
                         }
                     }
                     else if (emt == EMT::level) {
-                        switch (emsg) {
-#define XX(Error, icode, des, des2, sug, level, ignore) case level: \
-            return ErrorInfo{ErrorCode:: Error, icode, des, des2, sug, type::fPos::makeDefault(), level, ignore};
-                            ___ERROR_MAP(XX)
+                        if (emsg == -1){
+                            return ErrorInfo{ErrorCode::unkError, -1, "未知的错误",
+                                             "此错误未被记载！是未知的错误！",
+                                             "仔细检查代码，或向i官方反馈并提交此错误！",
+                                             type::fPos::makeDefault(), -1, false};
+                        }
+#define XX(error, icode, des, des2, sug, level, ignore) else if (emsg == level){ \
+            return ErrorInfo{ErrorCode:: error, icode, des, des2, sug, type::fPos::makeDefault(), level, ignore};}
+                        ___ERROR_MAP(XX)
 #undef XX
+                        else{
+                            throw -1;
                         }
                     }
                     throw -1;
