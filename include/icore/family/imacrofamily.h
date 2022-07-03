@@ -145,22 +145,24 @@
 
 
 /*------------------------关于 dll------------------------*/
-#ifdef ___ILIBRARYEXPORT___
+#ifdef ___STATICLIB___
+#define IAPI
+#elif defined(__MSVC__)
 
-#ifdef __MSVC__
+#ifdef ___ILIBRARYEXPORT___
 #define IAPI _declspec(dllexport)
 #else
 #define IAPI _declspec(dllimport)
 #endif
 
-#elif defined(__LINUX__)
-#define IAPI __attribute__((visibility("default")))
+#define IAPI_EXPORT _declspec(dllexport)
+#define IAPI_IMPORT _declspec(dllimport)
+
+#elif defined(__GCC__)
+#define IAPI __attribute__​((visibility(​"​default​"​)))
 #else
 #define IAPI
 #endif
-
-#define IAPI_EXPORT _declspec(dllexport)
-#define IAPI_IMPORT _declspec(dllimport)
 
 
 /*------------------------类------------------------*/
@@ -206,9 +208,15 @@ SPACE(i) {
 
         template<typename Type>
         using Ptr = Type*;
-
+        
         template<typename Type>
         using CPtr = const Type*;
+
+        template<typename Type>
+        using CRef = const Type&;
+
+        template<typename Type>
+        using Ref = Type&;
 
     }//SPACE(core)
 }//SPACE(i)

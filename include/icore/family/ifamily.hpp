@@ -33,31 +33,20 @@ SPACE(i) {
 		public:
 			/****
 			* @author Lovelylavender4
-			* @since 编写此代码的时间或版本
-			* @brief 描述
+			* @since 2022.7.2.21:03
+			* @brief i程序的入口点
 			*
-			* @param 参数名 注释
-			* @tparam 模板参数名 注释
-			* @future 未来要做的事情
-			* @retval 返回值注释
-			* @throws 抛出的异常
+			* @param p_start main参数包
+
+			* @future 被用户实现
+			* @retval IERROR 发生的错误
 			*
-			* @note
-			* 注意事项
-			* @endnote
-			* @pre 使用此函数的前提条件
-			* @par Example
-			* @code
-			* 代码示例
-			* @endcode
+			* @pre 被用户实现
 			*
-			* @warning 警告
-			* @bug 存在的漏洞
-			* @include 需要包含的头文件
+			* @include "error.h"
 			* @details
-			* 详细描述
+			* i程序的入口点，ic++程序从此处开始执行
 			* @enddetails
-			* @other 其他
 			****/
 			IERROR start(_p_start& p_start);
 
@@ -67,31 +56,21 @@ SPACE(i) {
 
 /****
 * @author Lovelylavender4
-* @since 编写此代码的时间或版本
-* @brief 描述
+* @since 2022.7.2.20:39
+* @brief C++程序的入口点
 *
-* @param 参数名 注释
-* @tparam 模板参数名 注释
-* @future 未来要做的事情
-* @retval 返回值注释
-* @throws 抛出的异常
-*
-* @note
-* 注意事项
-* @endnote
-* @pre 使用此函数的前提条件
-* @par Example
-* @code
-* 代码示例
-* @endcode
-*
-* @warning 警告
-* @bug 存在的漏洞
-* @include 需要包含的头文件
+* @param argc argv中元素的个数
+* @param argv 命令行参数
+* @param envp 环境变量
+* @future 完善main 
+* @retval 结束代码
+* 
+* @warning 此函数不提供给用户调用，若想调用，请谨慎调用！
+* 
+* @include "error.hpp"
 * @details
-* 详细描述
+* C++程序的入口点，程序从此处开始执行
 * @enddetails
-* @other 其他
 ****/
 int main(int argc, char** argv, char** envp) {
 	try {
@@ -109,6 +88,9 @@ int main(int argc, char** argv, char** envp) {
 		if (rt.isCanBeIgnored()) {
 			return 1;
 		}
+	}
+	catch (const ::i::core::iexception::createErrorFailed& e) {
+		return -3;
 	}
 	catch (...) {
 		return -2;

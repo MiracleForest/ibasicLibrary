@@ -252,7 +252,8 @@ SPACE(i) {
                 *
                 * @brief 通过错误代码、错误信息描述、错误级别等获取错误信息(ErrorInfo)
                 *
-                * @param emt EMT枚举类型 emsg 枚举对应类型
+                * @param emt EMT枚举类型
+                * @param emsg 枚举对应类型
                 * @tparam emsg_t 通过emsg_t类型获取
                 * @retval ErrorInfo 错误信息结构体
                 * 
@@ -273,8 +274,6 @@ SPACE(i) {
                 * @warning  
                 * @bug 
                 * 
-                * @other 
-                *
                 **/
                 template<class emsg_t>
                 static ErrorInfo getErrorInfoFrom(EMT emt, emsg_t emsg) {
