@@ -1,19 +1,18 @@
-/*
+/****
 *
 * Copyright(C) 2022 MiracleForest Studio. All Rights Reserved.
 *
-* @filename : number.hpp
-* @creation time : 2022.4.25 21:25
-* @created by : WitherVictor
-* @project:iBasicLibrary-BasicType
+* @文件名：number.hpp
+* @创建时间：2022.4.25 21:25
+* @创建者：WitherVictor
 * -----------------------------------------------------------------------------
 * Contains definition of class number
+*
 * -----------------------------------------------------------------------------
-* If you have contact or find bugs,
-* you can go to Github or email (MiracleForest@Outlook.com) to give feedback.
-* We will try to do our best!
-*/
-
+* 如果你发现了bug，你可以去Github或邮箱(MiracleForest@Outlook.com)反馈给我们！
+* 我们一定会努力做得更好的！
+*
+****/
 #ifndef ___MIRACLEFOREST_I_NUMBER___
 #define ___MIRACLEFOREST_I_NUMBER___
 
@@ -22,11 +21,11 @@
 #include "../type/concepts.hpp"
 #include "basic/ibasic.hpp"
 
-#include "../../../cppstd/type_traits"
-#include "../../../cppstd/concepts"
-#include "../../../cppstd/compare"
-#include "../../../cppstd/ostream"
-#include "../../../cppstd/string"
+#include <type_traits>
+#include <concepts>
+#include <compare>
+#include <ostream>
+#include <string>
 
 SPACE(i) {
 	SPACE(core) {
@@ -47,13 +46,13 @@ SPACE(i) {
 						: _value(val) {}
 
 					/*
-					number(const number& other)
+					number(CRef<number> other)
 						: _value(other._value) {}
 
 					number(Type&& val)
 						: _value(val) {}
 
-					number& operator=(const number& other)
+					number& operator=(CRef<number> other)
 					{
 						_value = other._value;
 						return *this;
@@ -112,7 +111,7 @@ SPACE(i) {
 
 				public C_OPERATOR:
 
-					auto operator<=>(const number&) const = delete;
+					auto operator<=>(CRef<number>) const = delete;
 
 					template <typename T>
 					operator T()
@@ -121,81 +120,81 @@ SPACE(i) {
 					}
 
 					template <typename T, typename U>
-					friend auto operator<=>(const number<T>& first, const number<U>& last);
+					friend auto operator<=>(CRef<number<T>> first, CRef<number<U>> last);
 
-					friend std::ostream& operator<<(std::ostream& os, const number& value)
+					friend Ref<std::ostream> operator<<(Ref<std::ostream> os, CRef<number> value)
 					{
 						os << value._value;
 						return os;
 					}
 
 					template <typename T, typename U>
-					friend auto operator+(const number<T>& first, const number<U>& last)
+					friend auto operator+(CRef<number<T>> first, CRef<number<U>> last)
 						->number<std::common_type_t<T, U>>;
 
 					template <typename T, typename U>
-					friend auto operator-(const number<T>& first, const number<U>& last)
+					friend auto operator-(CRef<number<T>> first, CRef<number<U>> last)
 						->number<std::common_type_t<T, U>>;
 
 					template <typename T, typename U>
-					friend auto operator*(const number<T>& first, const number<U>& last)
+					friend auto operator*(CRef<number<T>> first, CRef<number<U>> last)
 						->number<std::common_type_t<T, U>>;
 
 					template <typename T, typename U>
-					friend auto operator/(const number<T>& first, const number<U>& last)
+					friend auto operator/(CRef<number<T>> first, CRef<number<U>> last)
 						->number<std::common_type_t<T, U>>;
 
 					template <arithmetic U>
-					friend auto operator+(const number& num, U value)
+					friend auto operator+(CRef<number> num, U value)
 						->number<std::common_type_t<Type, U>>
 					{
 						return { num.data() + value };
 					}
 
 					template <arithmetic U>
-					friend auto operator+(U value, const number& num)
+					friend auto operator+(U value, CRef<number> num)
 						->number<std::common_type_t<Type, U>>
 					{
 						return { num.data() + value };
 					}
 
 					template <arithmetic U>
-					friend auto operator-(const number& num, U value)
+					friend auto operator-(CRef<number> num, U value)
 						->number<std::common_type_t<Type, U>>
 					{
 						return { num.data() - value };
 					}
 
 					template <arithmetic U>
-					friend auto operator-(U value, const number& num)
+					friend auto operator-(U value, CRef<number> num)
 						->number<std::common_type_t<Type, U>>
 					{
 						return { num.data() - value };
 					}
 
 					template <arithmetic U>
-					friend auto operator*(const number& num, U value)
+					friend auto operator*(CRef<number> num, U value)
 						->number<std::common_type_t<Type, U>>
 					{
 						return { num.data() * value };
 					}
 
 					template <arithmetic U>
-					friend auto operator*(U value, const number& num)
+					friend auto operator*(U value, CRef<number> num)
 						->number<std::common_type_t<Type, U>>
 					{
 						return { num.data() * value };
 					}
 
 					template <arithmetic U>
-					friend auto operator/(const number& num, U value)
+					friend auto operator/(CRef<number> num, U value)
 						->number<std::common_type_t<Type, U>>
 					{
 						return { num.data() / value };
 					}
 
 					template <arithmetic U>
-					friend auto operator/(U value, const number& num)
+					friend auto operator/(U value, CRef<number> num)
 						->number<std::common_type_t<Type, U>>
 					{
 						return { num.data() / value };
@@ -206,34 +205,34 @@ SPACE(i) {
 				}; /// end class number
 
 				template <arithmetic T, arithmetic U>
-				static auto operator<=>(const number<T>&first, const number<U>&last)
+				static auto operator<=>(CRef<number<T>>first, CRef<number<U>>last)
 				{
 					return first._value <=> last._value;
 				}
 
 				template <typename T, typename U>
-				auto operator+(const number<T>&first, const number<U>&last)
+				auto operator+(CRef<number<T>>first, CRef<number<U>>last)
 					-> number<std::common_type_t<T, U>>
 				{
 					return first._value + last._value;
 				}
 
 				template <typename T, typename U>
-				auto operator-(const number<T>&first, const number<U>&last)
+				auto operator-(CRef<number<T>>first, CRef<number<U>>last)
 					-> number<std::common_type_t<T, U>>
 				{
 					return first._value - last._value;
 				}
 
 				template <typename T, typename U>
-				auto operator*(const number<T>&first, const number<U>&last)
+				auto operator*(CRef<number<T>>first, CRef<number<U>>last)
 					-> number<std::common_type_t<T, U>>
 				{
 					return first._value * last._value;
 				}
 
 				template <arithmetic T, arithmetic U>
-				auto operator/(const number<T>&first, const number<U>&last)
+				auto operator/(CRef<number<T>>first, CRef<number<U>>last)
 					-> number<std::common_type_t<T, U>>
 				{
 					return first._value / last._value;
@@ -241,14 +240,14 @@ SPACE(i) {
 
 				/*
 				template<arithmetic T, arithmetic U = T>
-				auto operator+(const number<T>& num, U value)
+				auto operator+(CRef<number<T>> num, U value)
 					->number<std::common_type_t<T, U>>
 				{
 					return { num.data() + value };
 				}
 
 				template<arithmetic T, arithmetic U = T>
-				auto operator+(U value, const number<T>& num)
+				auto operator+(U value, CRef<number<T>> num)
 					->number<std::common_type_t<T, U>>
 				{
 					return { num.data() + value };

@@ -26,7 +26,7 @@ IERROR fun() {
     return IERROR ::make(i::core::iexception::ErrorCode::unkError, {"ibasicLibrary.cpp",1,__LINE__});
 }
 
-IERROR i::core::Main::start(N_ISTD _p_start& p_start) {
+IERROR i::core::Main::start(::i::core::Ref< N_ISTD _p_start> p_start) {
     try {
         auto rtet = fun();
         if (!rtet.isNoError()) {
@@ -52,7 +52,7 @@ IERROR i::core::Main::start(N_ISTD _p_start& p_start) {
             std::cout << "无错误" << std::endl;
         }
     }
-    catch (const ::i::core::iexception::createErrorFailed& e) {
+    catch (::i::core::CRef<::i::core::iexception::createErrorFailed> e) {
         std::cout << "异常！" << e.what() << std::endl;
     }
     catch (...) {

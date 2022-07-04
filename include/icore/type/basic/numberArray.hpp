@@ -1,18 +1,18 @@
-/*
+/****
 *
 * Copyright(C) 2022 MiracleForest Studio. All Rights Reserved.
 *
-* @filename : numberArray.hpp
-* @creation time : 2022.4.27 22:28
-* @created by : WitherVictor
-* @project:iBasicLibrary-BasicType
+* @文件名：numberArray.hpp
+* @创建时间：2022.4.27 22:28
+* @创建者：WitherVictor
 * -----------------------------------------------------------------------------
 * Contains definition of class number
+*
 * -----------------------------------------------------------------------------
-* If you have contact or find bugs,
-* you can go to Github or email (MiracleForest@Outlook.com) to give feedback.
-* We will try to do our best!
-*/
+* 如果你发现了bug，你可以去Github或邮箱(MiracleForest@Outlook.com)反馈给我们！
+* 我们一定会努力做得更好的！
+*
+****/
 #ifndef ___MIRACLEFOREST_I_NUMBERARRAY___
 #define ___MIRACLEFOREST_I_NUMBERARRAY___
 

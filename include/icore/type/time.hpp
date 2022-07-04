@@ -1,18 +1,18 @@
-/*
+/****
 *
 * Copyright(C) 2022 MiracleForest Studio. All Rights Reserved.
 *
-* @filename:time.hpp
-* @creation time:2022.6.28.21:26
-* @created by:Lovelylavender4
+* @文件名：time.hpp
+* @创建时间：2022.6.28.21:26
+* @创建者：Lovelylavender4
 * -----------------------------------------------------------------------------
 *
 *
 * -----------------------------------------------------------------------------
-* If you have contact or find bugs,
-* you can go to Github or email (MiracleForest@Outlook.com) to give feedback.
-* We will try to do our best!
-*/
+* 如果你发现了bug，你可以去Github或邮箱(MiracleForest@Outlook.com)反馈给我们！
+* 我们一定会努力做得更好的！
+*
+****/
 #ifndef ___MIRACLEFOREST_I_TIME___
 #define ___MIRACLEFOREST_I_TIME___
 
@@ -76,7 +76,7 @@ SPACE(i) {
                     std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
 
                     std::time_t now_time_t = std::chrono::system_clock::to_time_t(now);
-                    std::tm* now_tm = std::localtime(&now_time_t);
+                    Ptr<std::tm> now_tm = std::localtime(&now_time_t);
                     __stime.years = now_tm->tm_year + 1900;
                     __stime.months = now_tm->tm_mon + 1;
                     __stime.days = now_tm->tm_mday;

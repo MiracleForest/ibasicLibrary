@@ -1,34 +1,32 @@
-/*
+/****
 *
 * Copyright(C) 2022 MiracleForest Studio. All Rights Reserved.
 *
-* @filename:file.h
-* @creation time:2022.6.12.12:44
-* @created by:Lovelylavender4
+* @文件名：file.h
+* @创建时间：2022.6.12.12:44
+* @创建者：Lovelylavender4
 * -----------------------------------------------------------------------------
 *
 *
 * -----------------------------------------------------------------------------
-* If you have contact or find bugs,
-* you can go to Github or email (MiracleForest@Outlook.com) to give feedback.
-* We will try to do our best!
-*/
+* 如果你发现了bug，你可以去Github或邮箱(MiracleForest@Outlook.com)反馈给我们！
+* 我们一定会努力做得更好的！
+*
+****/
 #ifndef ___MIRACLEFOREST_I__LIBIO_FILE___
 #define ___MIRACLEFOREST_I__LIBIO_FILE___
 
 #include "../../family/imacrofamily.h"
 #include "../../type/istring.hpp"
 #include "../../type/time.hpp"
+#include "ifilesystem.h"
 
-#include "../../../cppstd/format"
-#include "../../../cppstd/vector"
-#include "../../../cppstd/map"
-#include "../../../cppstd/memory"
-#if __CPP_17__
-#include "../../../cppstd/filesystem"
-#endif//__CPP_17_
-#include "../../../cppstd/fstream"
-#include "../../../cppstd/optional"
+#include <format>
+#include <vector>
+#include <map>
+#include <memory>
+#include <fstream>
+#include <optional>
 
 #if __WINDOWS__
 #include <io.h>
@@ -58,7 +56,7 @@ SPACE(i) {
                 ~File();
             public:
 
-                public C_STATIC :
+                public C_STATIC : 
 
                     /****
                         * @author Lovelylavender4
@@ -77,7 +75,7 @@ SPACE(i) {
                         * @bug NULL
                         * @include <optional>,<fstream>,<filesystem>,istring,
                         ****/
-                    static std::optional<type::istring> readAllFile(const type::istring& filePath, bool isBinary = false) {
+                    static std::optional<type::istring> readAllFile(CRef<type::istring> filePath, bool isBinary = false) {
                     std::ifstream fRead;
 
                     std::ios_base::openmode mode = std::ios_base::in;
@@ -114,7 +112,7 @@ SPACE(i) {
                     * @bug NULL
                     * @include NULL
                     ****/
-                static bool writeAllFile(const std::string& filePath, const std::string& content, bool isBinary = false) {
+                static bool writeAllFile(CRef<std::string> filePath, CRef<std::string> content, bool isBinary = false) {
                     std::ofstream fWrite;
 
                     std::ios_base::openmode mode = std::ios_base::out;
@@ -126,6 +124,7 @@ SPACE(i) {
                         return false;
                     }
                     fWrite << content;
+                    fWrite.flush();
                     fWrite.close();
                     return true;
                 }
@@ -158,8 +157,7 @@ SPACE(i) {
                 * @enddetails
                 * @other 其他
                 ****/
-                static std::vector<std::string> getFileNameList(const std::string& dir)
-                {
+                static std::vector<std::string> getFileNameList(CRef<std::string> dir) {
                     std::filesystem::directory_entry d(dir);
                     if (!d.is_directory())
                         return {};
@@ -190,8 +188,7 @@ SPACE(i) {
                 * @bug NULL
                 * @include NULL
                 ****/
-                static bool createDirs(const std::string path)
-                {
+                static bool createDirs(CRef<std::string> path) {
                     std::error_code ec;
                     return std::filesystem::create_directories(std::filesystem::path(i::core::type::istring::str2wstr(path)).remove_filename(), ec);
                 }
@@ -207,8 +204,8 @@ SPACE(i) {
 
             }
 
-        }//namespace libIO
-    }//namespace core
-}//namespace i
+        }//SPACE(libIO)
+    }//SPACE(core)
+}//SPACE(i)
 
 #endif //!___MIRACLEFOREST_I__LIBIO_FILE___

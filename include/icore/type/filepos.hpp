@@ -1,18 +1,18 @@
-﻿/*
+﻿/****
 *
 * Copyright(C) 2022 MiracleForest Studio. All Rights Reserved.
 *
-* @filename:filepos.hpp
-* @creation time:2022.5.20.12:59
-* @created by:Lovelylavender4
+* @文件名：filepos.hpp
+* @创建时间：2022.5.20.12:59
+* @创建者：Lovelylavender4
 * -----------------------------------------------------------------------------
-* Happy 520 to everyone!
+* 祝大家520快乐！
+* 文件坐标
+* -----------------------------------------------------------------------------
+* 如果你发现了bug，你可以去Github或邮箱(MiracleForest@Outlook.com)反馈给我们！
+* 我们一定会努力做得更好的！
 *
-* -----------------------------------------------------------------------------
-* If you have contact or find bugs,
-* you can go to Github or email (MiracleForest@Outlook.com) to give feedback.
-* We will try to do our best!
-*/
+****/
 #ifndef ___MIRACLEFOREST_I_FILEPOS___
 #define ___MIRACLEFOREST_I_FILEPOS___
 
@@ -25,7 +25,6 @@ SPACE(i) {
         SPACE(type) {
 
             struct fPos {
-
 
                 static fPos makeDefault() {
                     fPos p;

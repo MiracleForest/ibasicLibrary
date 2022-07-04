@@ -1,17 +1,18 @@
-﻿/*
+﻿/****
 *
 * Copyright(C) 2022 MiracleForest Studio. All Rights Reserved.
 *
-* @filename:type.hpp
-* @creation time:2022.4.30.12:06
-* @created by:Lovelylavender4
+* @文件名：type.hpp
+* @创建时间：2022.4.30.12:06
+* @创建者：Lovelylavender4
 * -----------------------------------------------------------------------------
-* type
+*
+*
 * -----------------------------------------------------------------------------
-* If you have contact or find bugs,
-* you can go to Github or email (MiracleForest@Outlook.com) to give feedback.
-* We will try to do our best!
-*/
+* 如果你发现了bug，你可以去Github或邮箱(MiracleForest@Outlook.com)反馈给我们！
+* 我们一定会努力做得更好的！
+*
+****/
 #ifndef ___MIRACLEFOREST_I_TYPE___
 #define ___MIRACLEFOREST_I_TYPE___
 
@@ -21,7 +22,7 @@
 #include <stringapiset.h>
 #include <atlstr.h>
 #endif
-#include "../../../cppstd/string"
+#include <string>
 
 
 SPACE(i) {
@@ -46,9 +47,9 @@ SPACE(i) {
 
 			itype(iType t) :mType(t) { }
 
-			itype(const itype&) = delete;
+			itype(CRef<itype>) = delete;
 
-			void operator=(const itype&) = delete;
+			void operator=(CRef<itype>) = delete;
 
 			~itype() {}
 		public:
@@ -114,7 +115,7 @@ SPACE(i) {
 			* 获取类型枚举的字符串名称
 			* @enddetails
 			****/
-			static const char* getString(iType t) {
+			static CPtr<char> getString(iType t) {
 				switch (t) {
 				case iType::unkType: {
 					return "unkType";
@@ -162,7 +163,7 @@ SPACE(i) {
 			* @enddetails
 			****/
 			template<typename Type>
-			static const char* getTypeString() {
+			static CPtr<char> getTypeString() {
 				return typeid(Type).name();
 			}
 
@@ -185,7 +186,7 @@ SPACE(i) {
 			* @enddetails
 			****/
 			template<typename Type>
-			static const char* getTypeString(Type t) {
+			static CPtr<char> getTypeString(Type t) {
 				return typeid(t).name();
 			}
 

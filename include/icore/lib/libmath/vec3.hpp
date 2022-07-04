@@ -1,32 +1,32 @@
-/*
+/****
 *
 * Copyright(C) 2022 MiracleForest Studio. All Rights Reserved.
 *
-* @filename:Vec3.hpp
-* @creation time:2022.5.20.13:14
-* @created by:Lovelylavender4
+* @文件名：vec3.hpp
+* @创建时间：2022.5.20.13:14
+* @创建者：Lovelylavender4
 * -----------------------------------------------------------------------------
-* Happy 520 to everyone!
+* 祝大家520快乐！
+* Vec3
+* -----------------------------------------------------------------------------
+* 如果你发现了bug，你可以去Github或邮箱(MiracleForest@Outlook.com)反馈给我们！
+* 我们一定会努力做得更好的！
 *
-* -----------------------------------------------------------------------------
-* If you have contact or find bugs,
-* you can go to Github or email (MiracleForest@Outlook.com) to give feedback.
-* We will try to do our best!
-*/
+****/
 #ifndef ___MIRACLEFOREST_I_VEC3___
 #define ___MIRACLEFOREST_I_VEC3___
 
 #include "../../family/imacrofamily.h"
-#include "math.h"
-#include "../../../cppstd/cmath"
 #include "../../type/istring.hpp"
-
+#include "math.h"
 #include "vec2.hpp"
 
+#include <cmath>
 
-namespace i {
-	namespace core {
-		namespace libmath {
+
+SPACE(i) {
+	SPACE(core) {
+		SPACE(libmath) {
 
 			template <typename T>
 			class Vec3{
@@ -560,8 +560,8 @@ namespace i {
 			}
 
 
-		}//namespace libmath
-	}//namespace core
-}//namespace i
+		}//SPACE(libmath)
+	}//SPACE(core)
+}//SPACE(i)
 
 #endif //!___MIRACLEFOREST_I_VEC3___

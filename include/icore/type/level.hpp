@@ -1,18 +1,18 @@
-﻿/*
+﻿/****
 *
 * Copyright(C) 2022 MiracleForest Studio. All Rights Reserved.
 *
-* @filename:level.hpp
-* @creation time:2022.5.20.13:00
-* @created by:Lovelylavender4
+* @文件名：level.hpp
+* @创建时间：2022.5.20.13:00
+* @创建者：Lovelylavender4
 * -----------------------------------------------------------------------------
-* Happy 520 to everyone!
+* 祝大家520快乐！ 
+* 等级
+* -----------------------------------------------------------------------------
+* 如果你发现了bug，你可以去Github或邮箱(MiracleForest@Outlook.com)反馈给我们！
+* 我们一定会努力做得更好的！
 *
-* -----------------------------------------------------------------------------
-* If you have contact or find bugs,
-* you can go to Github or email (MiracleForest@Outlook.com) to give feedback.
-* We will try to do our best!
-*/
+****/
 #ifndef ___MIRACLEFOREST_I_LEVEL___
 #define ___MIRACLEFOREST_I_LEVEL___
 
@@ -29,6 +29,8 @@ SPACE(i) {
             public:
                 enum class Level {
                     φ,
+                    V,
+                    S,
                     A,
                     B,
                     C,
@@ -47,14 +49,6 @@ SPACE(i) {
                     P,
                     Q,
                     R,
-                    S,
-                    T,
-                    U,
-                    V,
-                    W,
-                    X,
-                    Y,
-                    Z,
                     FALSE
                 };
             public:
@@ -82,52 +76,52 @@ SPACE(i) {
 
             public C_OPERATOR:
 
-                level& operator=(int lv) {
+                Ref<level> operator=(int lv) {
                     _lv = lv;
                     return *this;
                 }
 
-                level& operator=(const level& lv) {
+                Ref<level> operator=(const Ref<level> lv) {
                     _lv = lv.data();
                     return *this;
                 }
 
-                level& operator+(int lv) {
+                Ref<level> operator+(int lv) {
                     _lv + lv;
                     return *this;
                 }
 
-                level& operator-(int lv) {
+                Ref<level> operator-(int lv) {
                     _lv - lv;
                     return *this;
                 }
 
-                level& operator*(int lv) {
+                Ref<level> operator*(int lv) {
                     _lv *= lv;
                     return *this;
                 }
 
-                level& operator*=(int lv) {
+                Ref<level> operator*=(int lv) {
                     _lv *= lv;
                     return *this;
                 }
 
-                level& operator/(int lv) {
+                Ref<level> operator/(int lv) {
                     _lv /= lv;
                     return *this;
                 }
 
-                level& operator/=(int lv) {
+                Ref<level> operator/=(int lv) {
                     _lv /= lv;
                     return *this;
                 }
 
-                level& operator+=(int lv) {
+                Ref<level> operator+=(int lv) {
                     _lv += lv;
                     return *this;
                 }
 
-                level& operator-=(int lv) {
+                Ref<level> operator-=(int lv) {
                     _lv -= lv;
                     return *this;
                 }

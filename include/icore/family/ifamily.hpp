@@ -22,8 +22,8 @@ SPACE(i) {
 	SPACE(core) {
 		struct _p_start {
 			int argc;
-			char** argv;
-			char** envp;
+			Ptr<Ptr<char>> argv;
+			Ptr<Ptr<char>> envp;
 		};
 
 		class Main {
@@ -48,7 +48,7 @@ SPACE(i) {
 			* i程序的入口点，ic++程序从此处开始执行
 			* @enddetails
 			****/
-			IERROR start(_p_start& p_start);
+			IERROR start(Ref<_p_start> p_start);
 
 		};
 	}//SPACE(core)
@@ -72,13 +72,13 @@ SPACE(i) {
 * C++程序的入口点，程序从此处开始执行
 * @enddetails
 ****/
-int main(int argc, char** argv, char** envp) {
+int main(int argc, N_ISTD Ptr<N_ISTD Ptr<char>> argv, N_ISTD Ptr<N_ISTD Ptr<char>> envp) {
 	try {
 		N_ISTD _p_start p_start;
 		p_start.argc = argc;
 		p_start.argv = argv;
 		p_start.envp = envp;
-
+		 
 		N_ISTD Main appMain;
 		IERROR rt = appMain.start(p_start);
 
@@ -89,7 +89,7 @@ int main(int argc, char** argv, char** envp) {
 			return 1;
 		}
 	}
-	catch (const ::i::core::iexception::createErrorFailed& e) {
+	catch (N_ISTD CRef<::i::core::iexception::createErrorFailed> e) {
 		return -3;
 	}
 	catch (...) {

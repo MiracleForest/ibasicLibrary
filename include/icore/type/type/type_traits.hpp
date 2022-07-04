@@ -1,26 +1,26 @@
-/*
+/****
 *
 * Copyright(C) 2022 MiracleForest Studio. All Rights Reserved.
 *
-* @filename:type_traits.hpp
-* @creation time:2022.4.26.13:00
-* @created by:Lovelylavender4
-* @project:iBasicLibrary-Type-Type_traits
+* @文件名：type_traits.hpp
+* @创建时间：2022.4.26.13:00
+* @创建者：Lovelylavender4
 * -----------------------------------------------------------------------------
 * type traits
+*
 * -----------------------------------------------------------------------------
-* If you have contact or find bugs,
-* you can go to Github or email (MiracleForest@Outlook.com) to give feedback.
-* We will try to do our best!
-*/
+* 如果你发现了bug，你可以去Github或邮箱(MiracleForest@Outlook.com)反馈给我们！
+* 我们一定会努力做得更好的！
+*
+****/
 #ifndef ___MIRACLEFOREST_I_TYPE_TRAITS___
 #define ___MIRACLEFOREST_I_TYPE_TRAITS___
 
 #include "../../family/imacrofamily.h"
 
-#include "../../../cppstd/type_traits"
-#include "../../../cppstd/string"
-#include "../../../cppstd/concepts"
+#include <type_traits>
+#include <string>
+#include <concepts>
 
 SPACE(i) {
 	SPACE(core) {
