@@ -352,6 +352,9 @@
     <ClInclude Include="..\include\icore\lib\libmath\matrix.hpp">
       <Filter>include\icore\lib\libmath</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\icore\lib\libIO\ifilesystem.h">
+      <Filter>include\icore\lib\libIO</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />

@@ -156,6 +156,7 @@
     <ClInclude Include="..\include\icore\family\ifamily.hpp" />
     <ClInclude Include="..\include\icore\lib\libIO\console.h" />
     <ClInclude Include="..\include\icore\lib\libIO\file.h" />
+    <ClInclude Include="..\include\icore\lib\libIO\ifilesystem.h" />
     <ClInclude Include="..\include\icore\lib\libIO\io.h" />
     <ClInclude Include="..\include\icore\lib\libIO\shelllinkfile.h" />
     <ClInclude Include="..\include\icore\lib\libmath\math.h" />

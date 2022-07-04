@@ -1,31 +1,29 @@
-/*
+/****
 *
 * Copyright(C) 2022 MiracleForest Studio. All Rights Reserved.
 *
-* @filename:ifilesystem.h
-* @creation time:2022.06.30 13:56
-* @created by: Ticks
+* @文件名：ifilesystem.h
+* @创建时间：2022.06.30 13:56
+* @创建者：Ticks
 * -----------------------------------------------------------------------------
-*
 * i filesystem for c++ < 17
+*
 * -----------------------------------------------------------------------------
-* If you have contact or find bugs,
-* you can go to Github or email (MiracleForest@Outlook.com) to give feedback.
-* We will try to do our best!
-*/
-
+* 如果你发现了bug，你可以去Github或邮箱(MiracleForest@Outlook.com)反馈给我们！
+* 我们一定会努力做得更好的！
+*
+****/
 #ifndef ___MIRACLEFOREST_I__LIBIO_FILESYSTEM___
 #define ___MIRACLEFOREST_I__LIBIO_FILESYSTEM___
 
 #include "../../family/imacrofamily.h"
 
 #ifdef __CPP_17__
-#include "../../../cppstd/filesystem"
+#include <filesystem>
 #else
 
 
+#endif//!__CPP_17__
 
-#endif
 
-
-#endif //___MIRACLEFOREST_I__LIBIO_FILESYSTEM___
+#endif //!___MIRACLEFOREST_I__LIBIO_FILESYSTEM___
