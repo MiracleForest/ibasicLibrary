@@ -61,6 +61,18 @@ SPACE(i) {
                     e._canBeIgnored = false;
                     return e;
                 }
+
+                void operator=(CRef<ErrorInfo> errorinfo) {
+                    _code = errorinfo._code;
+                    _icode = errorinfo._icode;
+                    _dscription = errorinfo._dscription;
+                    _dscription2 = errorinfo._dscription2;
+                    _suggestion = errorinfo._suggestion;
+                    _position = errorinfo._position;
+                    _level = errorinfo._level;
+                    _position = errorinfo._position;
+                    _canBeIgnored = errorinfo._canBeIgnored;
+                }
             };
 
 
@@ -173,7 +185,6 @@ SPACE(i) {
                     type::level _level = 0,
                     bool _canBeIgnored = false
                 ) {
-
                     ErrorInfo errorinfo;
 
                     errorinfo._code = ErrorCode::unkError;
@@ -197,7 +208,7 @@ SPACE(i) {
                 * @param _position = type::fPos::makeDefault() 错误位置
                 * @future 根据参数_code找到此错误的ErrorInfo，并创建error
                 * @retval 创建完毕的错误
-                *
+                * 
                 * @note
                 * _code必须是有效的错误代码
                 * @endnote

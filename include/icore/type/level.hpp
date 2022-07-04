@@ -81,33 +81,14 @@ SPACE(i) {
                     return *this;
                 }
 
-                Ref<level> operator=(const Ref<level> lv) {
+                Ref<level> operator=(CRef<level> lv) {
                     _lv = lv.data();
                     return *this;
                 }
 
-                Ref<level> operator+(int lv) {
-                    _lv + lv;
-                    return *this;
-                }
-
-                Ref<level> operator-(int lv) {
-                    _lv - lv;
-                    return *this;
-                }
-
-                Ref<level> operator*(int lv) {
-                    _lv *= lv;
-                    return *this;
-                }
 
                 Ref<level> operator*=(int lv) {
                     _lv *= lv;
-                    return *this;
-                }
-
-                Ref<level> operator/(int lv) {
-                    _lv /= lv;
                     return *this;
                 }
 

@@ -23,8 +23,9 @@
 #endif
 
 IERROR fun() {
-    return IERROR ::make(i::core::iexception::ErrorCode::unkError, {"ibasicLibrary.cpp",1,__LINE__});
+    return IERROR::make(i::core::iexception::ErrorCode::unkError, { "ibasicLibrary.cpp",1,__LINE__ });
 }
+
 
 IERROR i::core::Main::start(::i::core::Ref< N_ISTD _p_start> p_start) {
     try {
