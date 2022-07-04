@@ -1,18 +1,17 @@
-/*
+/****
 *
 * Copyright(C) 2022 MiracleForest Studio. All Rights Reserved.
 *
-* @filename:rect.hpp
-* @creation time:2022.5.23.13:07
-* @created by:Lovelylavender4
+* @文件名：rect.hpp
+* @创建时间：2022.5.23.13:07
+* @创建者：Lovelylavender4
 * -----------------------------------------------------------------------------
-*
-*
+* 矩形
 * -----------------------------------------------------------------------------
-* If you have contact or find bugs,
-* you can go to Github or email (MiracleForest@Outlook.com) to give feedback.
-* We will try to do our best!
-*/
+* 如果你发现了bug，你可以去Github或邮箱(MiracleForest@Outlook.com)反馈给我们！
+* 我们一定会努力做得更好的！
+*
+****/
 #ifndef ___MIRACLEFOREST_I__LIBMATH_RECT___
 #define ___MIRACLEFOREST_I__LIBMATH_RECT___
 
@@ -20,9 +19,9 @@
 #include "vec4.hpp"
 #include "math.h"
 
-namespace i {
-	namespace core {
-		namespace libmath {
+SPACE(i) {
+	SPACE(core) {
+		SPACE(libmath) {
 
 			// bottom left to top right
 			template <typename T>
@@ -36,69 +35,111 @@ namespace i {
 			public:
 
 
-
-				void setRect(Vec2<T> xy, Vec2<T> zw) { setRect(xy.x, xy.y, zw.x, zw.y); }
-
-
-
-				void setRect(T vX, T vY, T vW, T vH) { x = vX; y = vY; w = vW; h = vH; left = vX; right = vX + vW; top = vY + vH; bottom = vY; }
+				void setRect(Vec2<T> xy, Vec2<T> zw) {
+					setRect(xy.x, xy.y, zw.x, zw.y);
+				}
 
 
-
-				Vec2<T> rightBottom() const { return Vec2<T>(right, bottom); }
-
-
-
-				Vec2<T> rightTop() const { return Vec2<T>(right, top); }
-
-
-
-				Vec2<T> leftBottom() const { return Vec2<T>(left, bottom); }
-
-
-
-				Vec2<T> leftTop() const { return Vec2<T>(left, top); }
+				void setRect(T vX, T vY, T vW, T vH) {
+					x = vX;
+					y = vY;
+					w = vW;
+					h = vH;
+					left = vX;
+					right = vX + vW;
+					top = vY + vH;
+					bottom = vY;
+				}
 
 
-
-				Vec2<T> center() const { return Vec2<T>((left + right) / (T)2, (top + bottom) / (T)2); }
-
-
-
-				Vec2<T>* vertices() { Vec2<T>* buf = new Vec2<T>[4]; buf[0] = leftBottom(); buf[1] = leftTop(); buf[2] = rightTop(); buf[3] = rightBottom(); return buf; }
+				Vec2<T> rightBottom() const {
+					return Vec2<T>(right, bottom);
+				}
 
 
-
-				Vec2<T>* texCoords(T scaleX, T scaleY) { Vec2<T>* buf = new Vec2<T>[4]; buf[0] = Vec2<T>((T)0, (T)0); buf[1] = Vec2<T>((T)scaleX, (T)0); buf[2] = Vec2<T>(scaleX, scaleY); buf[3] = Vec2<T>((T)0, scaleY); return buf; }
-
-
-
-				void setWidth(T vw) { w = vw; }
+				Vec2<T> rightTop() const {
+					return Vec2<T>(right, top);
+				}
 
 
-
-				void setHeight(T vh) { h = vh; }
-
-
-
-				void snackLeft(T vleft) { x = vleft; w -= vleft;	left = x; }
+				Vec2<T> leftBottom() const {
+					return Vec2<T>(left, bottom);
+				}
 
 
-
-				void snackRight(T vright) { w -= vright; right = w + x; }
-
-
-
-				void snackTop(T vtop) { h -= vtop; top = h + y; }
+				Vec2<T> leftTop() const {
+					return Vec2<T>(left, top);
+				}
 
 
+				Vec2<T> center() const {
+					return Vec2<T>((left + right) / (T)2, (top + bottom) / (T)2);
+				}
 
-				void snackBottom(T vbottom) { y = vbottom; h -= vbottom; bottom = y; }
+
+				Ptr<Vec2<T>> vertices() {
+					Ptr <Vec2<T>> buf = new Vec2<T>[4];
+					buf[0] = leftBottom();
+					buf[1] = leftTop();
+					buf[2] = rightTop();
+					buf[3] = rightBottom();
+					return buf;
+				}
 
 
+				Ptr<Vec2<T>> texCoords(T scaleX, T scaleY) {
+					Ptr<Vec2<T>> buf = new Vec2<T>[4];
+					buf[0] = Vec2<T>((T)0, (T)0);
+					buf[1] = Vec2<T>((T)scaleX, (T)0);
+					buf[2] = Vec2<T>(scaleX, scaleY);
+					buf[3] = Vec2<T>((T)0, scaleY);
+					return buf;
+				}
 
-				bool isContainPoint(Vec2<T> pt) { if (pt.x > left)if (pt.x < right)if (pt.y > bottom)if (pt.y < top)return true; return false; }
 
+				void setWidth(T vw) {
+					w = vw;
+				}
+
+
+				void setHeight(T vh) {
+					h = vh;
+				}
+
+
+				void snackLeft(T vleft) {
+					x = vleft;
+					w -= vleft;
+					left = x;
+				}
+
+
+				void snackRight(T vright) {
+					w -= vright;
+					right = w + x;
+				}
+
+
+				void snackTop(T vtop) {
+					h -= vtop;
+					top = h + y;
+				}
+
+
+				void snackBottom(T vbottom) {
+					y = vbottom;
+					h -= vbottom;
+					bottom = y;
+				}
+
+
+				bool isContainPoint(Vec2<T> pt) {
+					if (pt.x > left)
+						if (pt.x < right)
+							if (pt.y > bottom)
+								if (pt.y < top)return true;
+					return false;
+				}
 
 
 				bool isIntersectedByLine(Vec2<T> v0, Vec2<T> v1) {
@@ -150,7 +191,7 @@ namespace i {
 
 
 			template <typename T>
-			inline rect<T> floor(const rect<T>& a) {
+			inline rect<T> floor(CRef<rect<T>> a) {
 				return rect<T>(
 					_function::floor<T>(a.x),
 					_function::floor<T>(a.y),
@@ -161,7 +202,7 @@ namespace i {
 
 
 			template <typename T>
-			inline rect<T> ceil(const rect<T>& a) {
+			inline rect<T> ceil(CRef<rect<T>> a) {
 				return rect<T>(
 					_function::ceil<T>(a.x),
 					_function::ceil<T>(a.y),
@@ -190,8 +231,8 @@ namespace i {
 			}
 
 
-		}//namespace libmath
-	}//namespace core
-}//namespace i
+		}//SPACE(libmath)
+	}//SPACE(core)
+}//SPACE(i)
 
 #endif //!___MIRACLEFOREST_I__LIBMATH_RECT___

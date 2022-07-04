@@ -1,18 +1,18 @@
-/*
+/****
 *
 * Copyright(C) 2022 MiracleForest Studio. All Rights Reserved.
 *
-* @filename:process.h
-* @creation time:2022.6.12.12:52
-* @created by:Lovelylavender4
+* @文件名：process.h
+* @创建时间：2022.6.12.12:52
+* @创建者：Lovelylavender4
 * -----------------------------------------------------------------------------
 *
 *
 * -----------------------------------------------------------------------------
-* If you have contact or find bugs,
-* you can go to Github or email (MiracleForest@Outlook.com) to give feedback.
-* We will try to do our best!
-*/
+* 如果你发现了bug，你可以去Github或邮箱(MiracleForest@Outlook.com)反馈给我们！
+* 我们一定会努力做得更好的！
+*
+****/
 #ifndef ___MIRACLEFOREST_I__LIBPROCESS_LIBPROCESS___
 #define ___MIRACLEFOREST_I__LIBPROCESS_LIBPROCESS___
 
@@ -21,9 +21,9 @@
 
 #include "../../type/istring.hpp"
 
-namespace i {
-    namespace core {
-        namespace libProcess {
+SPACE(i) {
+    SPACE(core) {
+        SPACE(libProcess) {
 
             class IAPI Process {
             public:
@@ -38,9 +38,9 @@ namespace i {
 
             };//class Process
 
-        }//namespace libProcess
-    }//namespace core
-}//namespace i
+        }//SPACE(libProcess)
+    }//SPACE(core)
+}//SPACE(i)
 
 
 #endif //!___MIRACLEFOREST_I__LIBPROCESS_LIBPROCESS___

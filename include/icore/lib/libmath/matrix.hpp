@@ -1,30 +1,32 @@
-/*
+/****
 *
 * Copyright(C) 2022 MiracleForest Studio. All Rights Reserved.
 *
-* @filename:matrix.hpp
-* @creation time:2022.6.23.16:32
-* @created by:ChenMiaoi
+* @文件名：matrix.hpp
+* @创建时间：2022.6.23.16:32
+* @创建者：ChenMiaoi
 * -----------------------------------------------------------------------------
 *
 *
 * -----------------------------------------------------------------------------
-* If you have contact or find bugs,
-* you can go to Github or email (MiracleForest@Outlook.com) to give feedback.
-* We will try to do our best!
-*/
+* 如果你发现了bug，你可以去Github或邮箱(MiracleForest@Outlook.com)反馈给我们！
+* 我们一定会努力做得更好的！
+*
+****/
 #ifndef ___MIRACLEFOREST_I__LIBMATH_MATRIX___
 #define ___MIRACLEFOREST_I__LIBMATH_MATRIX___
 
 #include "../../family/imacrofamily.h"
 #include "math.h"
 #include "../../type/istring.hpp"
-#include "../../../cppstd/vector"
-#include "../../../cppstd/initializer_list"
+#include <vector>
+#include <initializer_list>
 
-namespace i{
-    namespace core{
-        namespace libmath{
+SPACE(i){
+    SPACE(core){
+        SPACE(libmath){
+
+
             template <typename T>
             class Matrix{
             public:
@@ -88,9 +90,10 @@ namespace i{
                 MATRIX_NUM _size;
                 std::vector< std::vector<T> > _matrix;
             };
-        }
-    }
-}
+
+        }//SPACE(libmath)
+    }//SPACE(core)
+}//SPACE(i)
 
 
-#endif // !___MIRACLEFOREST_I__LIBMATH_MATRIX___
+#endif //!___MIRACLEFOREST_I__LIBMATH_MATRIX___

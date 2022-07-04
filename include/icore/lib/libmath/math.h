@@ -18,12 +18,13 @@
 
 #include "../../family/imacrofamily.h"
 #include "../../type/basic/istring.hpp"
-#include "../../../cppstd/cmath"
+#include <vector>
+#include <cmath>
 
-namespace i {
-    namespace core {
-        namespace libmath {
-            namespace _function{
+SPACE(i) {
+	SPACE(core) {
+		SPACE(libmath) {
+			SPACE(_function){
 				
 				/****
 				* @author Lovelylavender4
@@ -46,158 +47,158 @@ namespace i {
 
 				
 				template <typename T> 
-				inline T round(const T& v) {
+				inline T round(CRef<T> v) {
 					return (T)(std::round((double)v));
 				}
 				
 				 
 				template <typename T> 
-				inline T floor(const T& v) {
+				inline T floor(CRef<T> v) {
 					return (T)(std::floor((double)v));
 				}
 				
 				 
 				template <typename T> 
-				inline T ceil(const T& v) {
+				inline T ceil(CRef<T> v) {
 					return (T)(std::ceil((double)v));
 				}
 				
 				 
 				template <typename T> 
-				inline T fract(const T& v) {
+				inline T fract(CRef<T> v) {
 					return v - floor<T>(v);
 				}
 				
 				 
 				template <typename T> 
-				inline T cos(const T& v) {
+				inline T cos(CRef<T> v) {
 					return std::cos(v);
 				}
 
 				 
 				template <typename T>
-				inline T acos(const T& v) {
+				inline T acos(CRef<T> v) {
 					return std::acos(v);
 				}
 
 				 
 				template <typename T> 
-				inline T sin(const T& v) {
+				inline T sin(CRef<T> v) {
 					return std::sin(v);
 				}
 
 				 
 				template <typename T> 
-				inline T asin(const T& v) {
+				inline T asin(CRef<T> v) {
 					return std::asin(v);
 				}
 
 				 
 				template <typename T> 
-				inline T tan(const T& v) {
+				inline T tan(CRef<T> v) {
 					return std::tan(v);
 				}
 
 				 
 				template <typename T> 
-				inline T atan(const T& v) {
+				inline T atan(CRef<T> v) {
 					return std::atan(v);
 				}
 
 				 
 				template <typename T> 
-				inline T mini(const T& a, const T& b) {
+				inline T mini(CRef<T> a, CRef<T> b) {
 					return a < b ? a : b;
 				}
 
 				 
 				template <typename T> 
-				inline T maxi(const T& a, const T& b) {
+				inline T maxi(CRef<T> a, CRef<T> b) {
 					return a > b ? a : b;
 				}
 
 				 
 				template <typename T> 
-				inline T internalMini(const T& a, const T& b) {
+				inline T internalMini(CRef<T> a, CRef<T> b) {
 					return a < b ? a : b;
 				}
 				
 				 
 				template <typename T> 
-				inline T internalMaxi(const T& a, const T& b) {
+				inline T internalMaxi(CRef<T> a, CRef<T> b) {
 					return a > b ? a : b;
 				}
 
 				 
 				template <typename T> 
-				inline T clamp(const T& n) {
+				inline T clamp(CRef<T> n) {
 					return n >= T(0) && n <= T(1) ? n : T(n > T(0));
 				} 
 				
 				 
 				template <typename T> 
-				inline T clamp(const T& n, const T& b) {
+				inline T clamp(CRef<T> n, CRef<T> b) {
 					return n >= T(0) && n <= b ? n : T(n > T(0)) * b;
 				}
 				
 				 
 				template <typename T> 
-				inline T clamp(const T& n, const T& a, const T& b) {
+				inline T clamp(CRef<T> n, CRef<T> a, CRef<T> b) {
 					return n >= a && n <= b ? n : n < a ? a : b;
 				}
 
 				 
 				template <typename T> 
-				inline T abs(const T& a) {
+				inline T abs(CRef<T> a) {
 					return a < 0 ? a * (T)-1 : a;
 				}
 				
 				 
 				template <typename T> 
-				inline T sign(const T& a) {
+				inline T sign(CRef<T> a) {
 					return a < 0 ? (T)-1 : (T)1;
 				}
 				
 				 
 				template <typename T> 
-				inline T step(const T& a, const T& b) {
+				inline T step(CRef<T> a, CRef<T> b) {
 					return b < a ? (T)0 : (T)1;
 				}
 				
 				 
 				template <typename T> 
-				inline T mod(const T& v, const T& l) {
+				inline T mod(CRef<T> v, CRef<T> l) {
 					return std::modf(v, l);
 				}
 				
 				 
 				template <typename T> 
-				inline T invMix(const T& i, const T& s, const T& r) {
+				inline T invMix(CRef<T> i, CRef<T> s, CRef<T> r) {
 					return (r - i) / (s - i);
 				}
 
 				 
 				template <typename T> 
-				inline T lerp(const T& a, const T& b, const T& t) {
+				inline T lerp(CRef<T> a, CRef<T> b, CRef<T> t) {
 					return a * (1.0f - t) + b * t;
 				}
 				
 				 
 				template <typename T> 
-				inline T eerp(const T& a, const T& b, const T& t) {
+				inline T eerp(CRef<T> a, CRef<T> b, CRef<T> t) {
 					if (a == (T)0) return T(0);
 					return pow(a * (b / a), t);
 				}
 
 				 
 				template <typename T> 
-				inline T mix(const T& a, const T& b, const T& t) {
+				inline T mix(CRef<T> a, CRef<T> b, CRef<T> t) {
 					return lerp(a, b, t);
 				}
 
 				 
 				template <typename T>
-				T StringToNumber(const std::string& text){
+				T StringToNumber(CRef<std::string> text){
 					T value = (T)0;
 					std::stringstream ss(text);
 					ss >> value;
@@ -206,7 +207,7 @@ namespace i {
 
 				 
 				template <typename T> 
-				std::vector<T> StringToNumberVector(const std::string& text, char delimiter){
+				std::vector<T> StringToNumberVector(CRef<std::string> text, char delimiter){
 					std::vector<T> arr;
 					std::string::size_type start = 0;
 					std::string::size_type end = text.find(delimiter, start);
@@ -223,10 +224,10 @@ namespace i {
 
 
 
-            }//namespace _function
-        }//namespace libmath
-    }//namespace core
-}//namespace i 
+            }//SPACE(_function)
+        }//SPACE(libmath)
+    }//SPACE(core)
+}//SPACE(i)
 
 
 #endif //!___MIRACLEFOREST_I__LIBMATH_MATH___

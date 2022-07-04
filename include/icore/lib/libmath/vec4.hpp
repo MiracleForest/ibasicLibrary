@@ -1,18 +1,17 @@
-/*
+/****
 *
 * Copyright(C) 2022 MiracleForest Studio. All Rights Reserved.
 *
-* @filename:Vec4.hpp
-* @creation time:2022.5.22.12:17
-* @created by:Lovelylavender4
+* @文件名：vec4.hpp
+* @创建时间：2022.5.22.12:17
+* @创建者：Lovelylavender4
 * -----------------------------------------------------------------------------
-*
-*
+* Vec4
 * -----------------------------------------------------------------------------
-* If you have contact or find bugs,
-* you can go to Github or email (MiracleForest@Outlook.com) to give feedback.
-* We will try to do our best!
-*/
+* 如果你发现了bug，你可以去Github或邮箱(MiracleForest@Outlook.com)反馈给我们！
+* 我们一定会努力做得更好的！
+*
+****/
 #ifndef ___MIRACLEFOREST_I__LIBMATH_VEC4___
 #define ___MIRACLEFOREST_I__LIBMATH_VEC4___
 
@@ -21,9 +20,9 @@
 #include "vec3.hpp"
 
 
-namespace i {
-	namespace core {
-		namespace libmath {
+SPACE(i) {
+	SPACE(core) {
+		SPACE(libmath) {
 
 			template <typename T>
 			class Vec4{
@@ -47,7 +46,7 @@ namespace i {
 				
 				Vec4(T x, T y, T z, T w) : x(x), y(y), z(z), w(w) {}
 				
-				Vec4(type::istring vec, char c = ';', Vec4<T>* def = nullptr){
+				Vec4(type::istring vec, char c = ';', Ptr<Vec4<T>> def = nullptr){
 					if (def){
 						x = def->x;
 						y = def->y;
@@ -62,7 +61,7 @@ namespace i {
 					if (s > 3) w = result[3];
 				}
 				
-				Vec4(type::istring vec, char c = ';', int n = 4, Vec4<T>* def = nullptr){
+				Vec4(type::istring vec, char c = ';', int n = 4, Ptr<Vec4<T>> def = nullptr){
 					if (def){
 						x = def->x;
 						y = def->y;
@@ -100,17 +99,17 @@ namespace i {
 				}
 				
 
-				T& operator [] (const size_t& i) {
+				T& operator [] (CRef<size_t> i) {
 					return (&x)[i];
 				}
 				
 
-				Vec4<T> offset(const T& vX, const T& vY, const T& vZ, const T& vW) const {
+				Vec4<T> offset(CRef<T> vX, CRef<T> vY, CRef<T> vZ, CRef<T> vW) const {
 					return Vec4<T>(x + vX, y + vY, z + vZ, w + vW); 
 				}
 				
 
-				void set(const T& vX, const T& vY, const T& vZ, const T& vW) {
+				void set(CRef<T> vX, CRef<T> vY, CRef<T> vZ, CRef<T> vW) {
 					x = vX; y = vY; z = vZ; w = vW;
 				}
 				
@@ -140,7 +139,7 @@ namespace i {
 				}
 
 				
-				Vec4<T>& operator ++ () {
+				Ref<Vec4<T>> operator ++ () {
 					++x;
 					++y;
 					++z;
@@ -149,7 +148,7 @@ namespace i {
 				} 
 				
 				
-				Vec4<T>& operator -- () {
+				Ref<Vec4<T>> operator -- () {
 					--x;
 					--y;
 					--z;
@@ -172,7 +171,7 @@ namespace i {
 				}
 				
 			
-				void operator += (const T& a) {
+				void operator += (CRef<T> a) {
 					x += a;
 					y += a;
 					z += a;
@@ -180,7 +179,7 @@ namespace i {
 				}
 				
 				
-				void operator += (const Vec4<T>& v) {
+				void operator += (Ref<Vec4<T>> v) {
 					x += v.x;
 					y += v.y;
 					z += v.z;
@@ -188,7 +187,7 @@ namespace i {
 				}
 				
 				 
-				void operator -= (const T& a) {
+				void operator -= (CRef<T> a) {
 					x -= a;
 					y -= a;
 					z -= a;
@@ -196,7 +195,7 @@ namespace i {
 				}
 				
 				 
-				void operator -= (const Vec4<T>& v) {
+				void operator -= (Ref<Vec4<T>> v) {
 					x -= v.x;
 					y -= v.y;
 					z -= v.z;
@@ -204,12 +203,12 @@ namespace i {
 				}
 				
 				 
-				bool operator == (const T& a) {
+				bool operator == (CRef<T> a) {
 					return (x == a) && (y == a) && (z == a) && (w == a);
 				}
 				
 				 
-				bool operator == (const Vec4<T>& v) {
+				bool operator == (Ref<Vec4<T>> v) {
 					return (x == v.x) &&
 						(y == v.y) &&
 						(z == v.z) &&
@@ -217,17 +216,17 @@ namespace i {
 				}
 				
 				 
-				bool operator != (const T& a) {
+				bool operator != (CRef<T> a) {
 					return (x != a) || (y != a) || (z != a) || (w != a);
 				}
 				
 				 
-				bool operator != (const Vec4<T>& v) {
+				bool operator != (Ref<Vec4<T>> v) {
 					return (x != v.x) || (y != v.y) || (z != v.z) || (w != v.w);
 				}
 				
 				 
-				void operator *= (const T& a) {
+				void operator *= (CRef<T> a) {
 					x *= a;
 					y *= a;
 					z *= a;
@@ -235,7 +234,7 @@ namespace i {
 				}
 				
 				 
-				void operator *= (const Vec4<T>& v) {
+				void operator *= (Ref<Vec4<T>> v) {
 					x *= v.x;
 					y *= v.y;
 					z *= v.z;
@@ -243,7 +242,7 @@ namespace i {
 				}
 				
 				 
-				void operator /= (const T& a) {
+				void operator /= (CRef<T> a) {
 					x /= a;
 					y /= a;
 					z /= a;
@@ -251,7 +250,7 @@ namespace i {
 				}
 				
 				 
-				void operator /= (const Vec4<T>& v) {
+				void operator /= (Ref<Vec4<T>> v) {
 					x /= v.x;
 					y /= v.y;
 					z /= v.z;
@@ -366,21 +365,21 @@ namespace i {
 
 
 			template <typename T>
-			inline Vec4<T>& operator ++ (Vec4<T>& v) {
+			inline Ref<Vec4<T>> operator ++ (Ref<Vec4<T>> v) {
 				++v;
 				return v;
 			} 
 
 
 			template <typename T>
-			inline Vec4<T>& operator -- (Vec4<T>& v) {
+			inline Ref<Vec4<T>> operator -- (Ref<Vec4<T>> v) {
 				--v;
 				return v;
 			} 
 
 
 			template <typename T>
-			inline Vec4<T> operator ++ (Vec4<T>& v, int){ 
+			inline Vec4<T> operator ++ (Ref<Vec4<T>> v, int){ 
 				Vec4<T> a = v;
 				++a;
 				return a;
@@ -388,7 +387,7 @@ namespace i {
 
 
 			template <typename T>
-			inline Vec4<T> operator -- (Vec4<T>& v, int) {
+			inline Vec4<T> operator -- (Ref<Vec4<T>> v, int) {
 				Vec4<T> a = v;
 				--a;
 				return a;
@@ -683,7 +682,7 @@ namespace i {
 
 			
 
-			inline bool valid(const fVec4& a) {
+			inline bool valid(CRef<fVec4> a) {
 				return _function::floatIsValid(a.x) &&
 					_function::floatIsValid(a.y) &&
 					_function::floatIsValid(a.z) &&
@@ -691,7 +690,7 @@ namespace i {
 			}
 			
 			
-			inline bool operator == (const fVec4& v, const fVec4& f) {
+			inline bool operator == (CRef<fVec4> v, CRef<fVec4> f) {
 				return IS_FLOAT_EQUAL(f.x, v.x) &&
 					IS_FLOAT_EQUAL(f.y, v.y) &&
 					IS_FLOAT_EQUAL(f.z, v.z) &&
@@ -699,15 +698,15 @@ namespace i {
 			}
 			
 			
-			inline bool operator != (const fVec4& v, const fVec4& f) {
+			inline bool operator != (CRef<fVec4> v, CRef<fVec4> f) {
 				return IS_FLOAT_DIFFERENT(f.x, v.x) ||
 					IS_FLOAT_DIFFERENT(f.y, v.y) ||
 					IS_FLOAT_DIFFERENT(f.z, v.z) ||
 					IS_FLOAT_DIFFERENT(f.w, v.w);
 			}
 
-		}//namespace libmath
-	}//namespace core
-}//namespace i
+		}//SPACE(libmath)
+	}//SPACE(core)
+}//SPACE(i)
 
 #endif //!___MIRACLEFOREST_I__LIBMATH_VEC4___

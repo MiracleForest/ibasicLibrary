@@ -15,7 +15,7 @@
 #ifndef ___MIRACLEFOREST_I_EXCEPTION___
 #define ___MIRACLEFOREST_I_EXCEPTION___
 
-#include "../../cppstd/exception"
+#include <exception>
 #include "../../icore/type/istring.hpp"
 
 SPACE(i) {

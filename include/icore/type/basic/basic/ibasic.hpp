@@ -1,18 +1,17 @@
-/*
+/****
 *
 * Copyright(C) 2022 MiracleForest Studio. All Rights Reserved.
 *
-* @filename ibasic.hpp
-* @creation time:2022.4.30.11:53
-* @created by:Lovelylavender4
+* @文件名：ibasic.hpp
+* @创建时间：2022.4.30.11:53
+* @创建者：Lovelylavender4
 * -----------------------------------------------------------------------------
-* Base pure virtual class for all i classes
+* 所有i类的根基类
 * -----------------------------------------------------------------------------
-* If you have contact or find bugs,
-* you can go to Github or email (MiracleForest@Outlook.com) to give feedback.
-* We will try to do our best!
-*/
-
+* 如果你发现了bug，你可以去Github或邮箱(MiracleForest@Outlook.com)反馈给我们！
+* 我们一定会努力做得更好的！
+*
+****/
 #ifndef ___MIRACLEFOREST_I_INASIC___
 #define ___MIRACLEFOREST_I_INASIC___
 

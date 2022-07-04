@@ -1,23 +1,23 @@
-/*
+/****
 *
 * Copyright(C) 2022 MiracleForest Studio. All Rights Reserved.
 *
-* @filename:console.h
-* @creation time:2022.6.18.10:21
-* @created by:Lovelylavender4
+* @文件名：console.h
+* @创建时间：2022.6.18.10:21
+* @创建者：Lovelylavender4
 * -----------------------------------------------------------------------------
 *
 *
 * -----------------------------------------------------------------------------
-* If you have contact or find bugs,
-* you can go to Github or email (MiracleForest@Outlook.com) to give feedback.
-* We will try to do our best!
-*/
+* 如果你发现了bug，你可以去Github或邮箱(MiracleForest@Outlook.com)反馈给我们！
+* 我们一定会努力做得更好的！
+*
+****/
 #ifndef ___MIRACLEFOREST_I__LIBIO_CONSOLE___
 #define ___MIRACLEFOREST_I__LIBIO_CONSOLE___
 
 #include "../../family/imacrofamily.h"
-#include "../../../cppstd/format"
+#include <format>
 #include "../../type/istring.hpp"
 
 namespace i {

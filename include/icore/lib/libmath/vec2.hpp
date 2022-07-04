@@ -1,33 +1,33 @@
-/*
+/****
 *
 * Copyright(C) 2022 MiracleForest Studio. All Rights Reserved.
 *
-* @filename:vec2.hpp
-* @creation time:2022.5.20.21:52
-* @created by:Lovelylavender4
+* @文件名：vec2.hpp
+* @创建时间：2022.5.20.21:52
+* @创建者：Lovelylavender4
 * -----------------------------------------------------------------------------
-* Happy 520 to everyone!
+* 祝大家520快乐！
+* Vec2
+* -----------------------------------------------------------------------------
+* 如果你发现了bug，你可以去Github或邮箱(MiracleForest@Outlook.com)反馈给我们！
+* 我们一定会努力做得更好的！
 *
-* -----------------------------------------------------------------------------
-* If you have contact or find bugs,
-* you can go to Github or email (MiracleForest@Outlook.com) to give feedback.
-* We will try to do our best!
-*/
+****/
 #ifndef ___MIRACLEFOREST_I__LIBMATH_VEC2___
 #define ___MIRACLEFOREST_I__LIBMATH_VEC2___
 
 #include "../../family/imacrofamily.h"
 #include "math.h"
 #include "../../type/istring.hpp"
-#include "../../../cppstd/thread"
+#include "../../../mcppstd/thread"
 
 #ifdef __WINDOWS__
 #include <Windows.h>
-#endif
+#endif//__WINDOWS__
 
-namespace i {
-	namespace core {
-		namespace libmath {
+SPACE(i) {
+	SPACE(core) {
+		SPACE(libmath) {
 
 			
 
@@ -41,22 +41,22 @@ namespace i {
 				}
 
 				template <typename U>
-				Vec2<T>(const Vec2<U>& a) {
+				Vec2<T>(CRef<Vec2<U>> a) {
 					x = (T)a.x;
 					y = (T)a.y;
 				}
 
-				Vec2<T>(const T& a) {
+				Vec2<T>(CRef<T> a) {
 					x = a;
 					y = a; 
 				}
 
-				Vec2<T>(const T& a, const T& b) {
+				Vec2<T>(CRef<T> a, CRef<T> b) {
 					x = a;
 					y = b;
 				}
 
-				Vec2<T>(const type::istring& Vec, const char& c = ';', Vec2<T>* def = nullptr) {
+				Vec2<T>(CRef<type::istring> Vec, CRef<char> c = ';', Ptr<Vec2<T>> def = nullptr) {
 					if (def) {
 						x = def->x;
 						y = def->y;
@@ -68,17 +68,17 @@ namespace i {
 				}
 				
 
-				T& operator [] (const size_t& i) {
+				T& operator [] (CRef<size_t> i) {
 					return (&x)[i];
 				}
 				
 
-				Vec2<T> offset(const T& vX, const T& vY) const {
+				Vec2<T> offset(CRef<T> vX, CRef<T> vY) const {
 					return Vec2<T>(x + vX, y + vY);
 				}
 
 
-				void set(const T& vX, const T& vY) {
+				void set(CRef<T> vX, CRef<T> vY) {
 					x = vX;
 					y = vY;
 				}
@@ -95,13 +95,13 @@ namespace i {
 
 				
 
-				Vec2<T>& operator ++ () {
+				Ref<Vec2<T>> operator ++ () {
 					++x; ++y; return *this;
 				}
 
 				
 
-				Vec2<T>& operator -- () {
+				Ref<Vec2<T>> operator -- () {
 					--x; --y; return *this;
 				}
 
@@ -122,68 +122,68 @@ namespace i {
 
 				
 
-				void operator += (const T& a) {
+				void operator += (CRef<T> a) {
 					x += a; y += a; 
 				}
 
 
-				void operator += (const Vec2<T>& v) {
+				void operator += (CRef<Vec2<T>> v) {
 					x += v.x;
 					y += v.y;
 				}
 
 
-				void operator -= (const T& a) {
+				void operator -= (CRef<T> a) {
 					x -= a;
 					y -= a;
 				}
 				
 
-				void operator -= (const Vec2<T>& v) {
+				void operator -= (CRef<Vec2<T>> v) {
 					x -= v.x;
 					y -= v.y; 
 				}
 
 
-				bool operator == (const T& a) {
+				bool operator == (CRef<T> a) {
 					return (x == a) && (y == a);
 				}
 				
 
-				bool operator == (const Vec2<T>& v) {
+				bool operator == (CRef<Vec2<T>> v) {
 					return (x == v.x) && (y == v.y);
 				}
 
 
-				bool operator != (const T& a) {
+				bool operator != (CRef<T> a) {
 					return (x != a) || (y != a);
 				}
 
 
-				bool operator != (const Vec2<T>& v) {
+				bool operator != (CRef<Vec2<T>> v) {
 					return (x != v.x) || (y != v.y); 
 				}
 
 
-				void operator *= (const T& a) {
+				void operator *= (CRef<T> a) {
 					x *= a;
 					y *= a; 
 				}
 
 
-				void operator *= (const Vec2<T>& v) {
+				void operator *= (CRef<Vec2<T>> v) {
 					x *= v.x;
 					y *= v.y; 
 				}
 
 
-				void operator /= (const T& a) { 
+				void operator /= (CRef<T> a) { 
 					x /= a;
 					y /= a;
 				}
 
 
-				void operator /= (const Vec2<T>& v) { 
+				void operator /= (CRef<Vec2<T>> v) { 
 					x /= v.x; 
 					y /= v.y; 
 				}
@@ -236,7 +236,7 @@ namespace i {
 				}
 
 
-				type::istring string(const char& c = ';') const {
+				type::istring string(CRef<char> c = ';') const {
 					return (std::to_string(x) + c + std::to_string(y));
 				}
 				
@@ -269,21 +269,21 @@ namespace i {
 			};
 
 			template <typename T>
-			inline Vec2<T>& operator ++ (Vec2<T>& v) {
+			inline Ref<Vec2<T>> operator ++ (Ref<Vec2<T>> v) {
 				++v;
 				return v;
 			}
 
 
 			template <typename T>
-			inline Vec2<T>& operator -- (Vec2<T>& v) {
+			inline Ref<Vec2<T>> operator -- (Ref<Vec2<T>> v) {
 				--v;
 				return v;
 			}
 
 
 			template <typename T>
-			inline Vec2<T> operator ++ (Vec2<T>& v, int) {
+			inline Vec2<T> operator ++ (Ref<Vec2<T>> v, int) {
 				Vec2<T> a = v;
 					++a;
 					return a;
@@ -291,7 +291,7 @@ namespace i {
 
 
 			template <typename T>
-			inline Vec2<T> operator -- (Vec2<T>& v, int) {
+			inline Vec2<T> operator -- (Ref<Vec2<T>> v, int) {
 				Vec2<T> a = v;
 				--a;
 				return a;
@@ -545,7 +545,7 @@ namespace i {
 			using u64vec2 = Vec2<uint64_t>;
 
 
-			inline fvec2 convert(const ivec2& v) {
+			inline fvec2 convert(CRef<ivec2> v) {
 				return fvec2(
 					(float)v.x,
 					(float)v.y
@@ -553,25 +553,25 @@ namespace i {
 			}
 
 
-			inline ivec2 convert(const fvec2& v) {
+			inline ivec2 convert(CRef<fvec2> v) {
 				return ivec2(
 					(int)v.x,
 					(int)v.y);
 			}
 
 
-			inline bool valid(const fvec2& a) {
+			inline bool valid(CRef<fvec2> a) {
 				return _function::floatIsValid(a.x) &&
 					_function::floatIsValid(a.y);
 			}
 
 
-			inline bool operator == (const fvec2& v, const fvec2& f) {
+			inline bool operator == (CRef<fvec2> v, CRef<fvec2> f) {
 				return (IS_FLOAT_EQUAL(f.x, v.x) &&
 					IS_FLOAT_EQUAL(f.y, v.y));
 			}
 
-			inline bool operator != (const fvec2& v, const fvec2& f) {
+			inline bool operator != (CRef<fvec2> v, CRef<fvec2> f) {
 				return (
 					IS_FLOAT_DIFFERENT(f.x, v.x) ||
 					IS_FLOAT_DIFFERENT(f.y, v.y)
@@ -587,16 +587,16 @@ namespace i {
 				return angle;
 			}
 
-			inline float radAngleFromVec2(const fvec2& vec) {
+			inline float radAngleFromVec2(CRef<fvec2> vec) {
 				return prototypeRadAngleFromVec2(vec);
 			}
 
-			inline double radAngleFromVec2(const dvec2& vec) {
+			inline double radAngleFromVec2(CRef<dvec2> vec) {
 				return prototypeRadAngleFromVec2(vec);
 			}
 
-		}
-	}
-}
+		}//SPACE(libmath)
+	}//SPACE(core) 
+}//SPACE(i)
 
 #endif //!___MIRACLEFOREST_I__LIBMATH_VEC2___

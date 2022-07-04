@@ -1,33 +1,33 @@
-/**
+/****
 *
 * Copyright(C) 2022 MiracleForest Studio. All Rights Reserved.
 *
-* @filename:istring.hpp
-* @creation time:2022.5.4 12:50
-* @created by: ticks-tan
+* @文件名：istring.hpp
+* @创建时间：2022.5.4 12:50
+* @创建者：ticks-tan
 * -----------------------------------------------------------------------------
 * Extension to standard string
+*
 * -----------------------------------------------------------------------------
-* If you have contact or find bugs,
-* you can go to Github or email (MiracleForest@Outlook.com) to give feedback.
-* We will try to do our best!
-*/
-
+* 如果你发现了bug，你可以去Github或邮箱(MiracleForest@Outlook.com)反馈给我们！
+* 我们一定会努力做得更好的！
+*
+****/
 #ifndef ___MIRACLEFOREST_I_BASIC_ISTRING___
 #define ___MIRACLEFOREST_I_BASIC_ISTRING___
 
-#include <sstream>
 #include "../../family/imacrofamily.h"
 #include "../type/type_traits.hpp"
 #include "basic/ibasic.hpp"
 
-#include "../../../cppstd/iostream"
-#include "../../../cppstd/string"
-#include "../../../cppstd/vector"
-#include "../../../cppstd/regex"
-#include "../../../cppstd/set"
-#include "../../../cppstd/list"
-#include "../../../cppstd/map"
+#include <sstream>
+#include <iostream>
+#include <string>
+#include <vector>
+#include <regex>
+#include <set>
+#include <list>
+#include <map>
 
 
 #ifdef __WINDOWS__
@@ -68,31 +68,31 @@ SPACE(i) {
                     explicit basic_istring()
                         : _data() {}
 
-                    explicit basic_istring(const Type& str)
+                    explicit basic_istring(CRef<Type> str)
                         : _data(str) {}
 
-                    explicit basic_istring(Type&& str) noexcept
+                    explicit basic_istring(Ref<Ref<Type>> str) noexcept
                         : _data(str) {}
 
                     basic_istring(size_type count, value_type ch)
                         : _data(count, ch) {}
 
-                    basic_istring(const basic_istring& other, size_type pos, size_t count)
+                    basic_istring(CRef<basic_istring> other, size_type pos, size_t count)
                         : _data(other, pos, count) {}
 
-                    basic_istring(const basic_istring& other, size_type pos)
+                    basic_istring(CRef<basic_istring> other, size_type pos)
                         : _data(other, pos) {}
 
-                    basic_istring(const value_type* s, size_type count)
+                    basic_istring(CPtr<value_type> s, size_type count)
                         : _data(s, count) {}
 
-                    basic_istring(const value_type* s)
+                    basic_istring(CPtr<value_type> s)
                         : _data(s) {}
 
-                    basic_istring(const basic_istring& other)
+                    basic_istring(CRef<basic_istring> other)
                         : _data(other._data) {}
 
-                    basic_istring(basic_istring&& other) noexcept
+                    basic_istring(Ref<Ref<basic_istring>> other) noexcept
                         : _data(std::move(other._data)) {}
 
                     basic_istring(std::initializer_list<value_type> ilist)
@@ -110,7 +110,7 @@ SPACE(i) {
                     *
                     * @param count: 要替换的下标(0开始)
                     * @param ch: 要替换的新字符
-                    * @retval basic_istring& basic_istring引用
+                    * @retval Ref<basic_istring> basic_istring引用
                     * @par Example
                     * @code
                     * istring str = "Hello istring";
@@ -120,7 +120,7 @@ SPACE(i) {
                     *
                     * @include <string>
                     ****/
-                    basic_istring& assign(size_type count, value_type ch)
+                    Ref<basic_istring> assign(size_type count, value_type ch)
                     {
                         this->_data.assign(count, ch);
                         return *this;
@@ -133,7 +133,7 @@ SPACE(i) {
                     * @brief 用新替换原字符串
                     *
                     * @param str: 新字符串
-                    * @retval basic_istring&: basic_istring引用
+                    * @retval Ref<basic_istring>: basic_istring引用
                     *
                     * @par Example
                     * @code
@@ -146,7 +146,7 @@ SPACE(i) {
                     * @include <string>
                     *
                     **/
-                    basic_istring& assign(const basic_istring& str)
+                    Ref<basic_istring> assign(CRef<basic_istring> str)
                     {
                         if (*this == str) {
                             return *this;
@@ -155,43 +155,43 @@ SPACE(i) {
                         return *this;
                     }
 
-                    basic_istring& assign(const basic_istring& str, size_type pos, size_type count)
+                    Ref<basic_istring> assign(CRef<basic_istring> str, size_type pos, size_type count)
                     {
                         this->_data.assign(str._data, pos, count);
                         return *this;
                     }
 
-                    basic_istring& assign(const basic_istring& str, size_type pos)
+                    Ref<basic_istring> assign(CRef<basic_istring> str, size_type pos)
                     {
                         this->_data.assign(str._data, pos);
                         return *this;
                     }
 
-                    basic_istring& assign(basic_istring&& str) noexcept
+                    Ref<basic_istring> assign(Ref<Ref<basic_istring>> str) noexcept
                     {
                         this->_data.assign(std::move(str._data));
                         return this;
                     }
 
-                    basic_istring& assign(const value_type* s, size_type count)
+                    Ref<basic_istring> assign(CPtr<value_type> s, size_type count)
                     {
                         this->_data.assign(s, count);
                         return *this;
                     }
 
-                    basic_istring& assign(const value_type* s)
+                    Ref<basic_istring> assign(CPtr<value_type> s)
                     {
                         this->_data.assign(s);
                         return *this;
                     }
 
-                    basic_istring& assign(std::initializer_list<value_type> ilist)
+                    Ref<basic_istring> assign(std::initializer_list<value_type> ilist)
                     {
                         this->_data.assign(ilist);
                         return *this;
                     }
 
-                    template<class InputIt> basic_istring& assign(InputIt first, InputIt last)
+                    template<class InputIt> Ref<basic_istring> assign(InputIt first, InputIt last)
                     {
                         this->_data.assign(first, last);
                         return *this;
@@ -360,7 +360,7 @@ SPACE(i) {
                     * @since 22-6-23 下午12:54
                     * @brief 获取字符串的c风格表示
                     *
-                    * @retval const value_type* : 字符串指针
+                    * @retval CPtr<value_type> : 字符串指针
                     *
                     * @par Example
                     * @code
@@ -374,7 +374,7 @@ SPACE(i) {
                     * @enddetails
                     *
                     ****/
-                    const value_type* cStr() const noexcept
+                    CPtr<value_type> cStr() const noexcept
                     {
                         return this->_data.data();
                     }
@@ -812,37 +812,37 @@ SPACE(i) {
                     * @enddetails
                     * @other 其他
                     ****/
-                    basic_istring& insert(size_type pos, size_type count, value_type ch)
+                    Ref<basic_istring> insert(size_type pos, size_type count, value_type ch)
                     {
                         this->_data.insert(pos, count, ch);
                         return *this;
                     }
 
-                    basic_istring& insert(size_type pos, const value_type* s, size_type count)
+                    Ref<basic_istring> insert(size_type pos, CPtr<value_type> s, size_type count)
                     {
                         this->_data.insert(pos, s, count);
                         return *this;
                     }
 
-                    basic_istring& insert(size_type pos, const value_type* s)
+                    Ref<basic_istring> insert(size_type pos, CPtr<value_type> s)
                     {
                         this->_data.insert(pos, s);
                         return *this;
                     }
 
-                    basic_istring& insert(size_type pos, const basic_istring& str)
+                    Ref<basic_istring> insert(size_type pos, CRef<basic_istring> str)
                     {
                         this->_data.insert(pos, str);
                         return *this;
                     }
 
-                    basic_istring& insert(size_type pos, const basic_istring& str, size_type str_pos, size_type str_count)
+                    Ref<basic_istring> insert(size_type pos, CRef<basic_istring> str, size_type str_pos, size_type str_count)
                     {
                         this->_data.insert(pos, str, str_pos, str_count);
                         return *this;
                     }
 
-                    basic_istring& insert(size_type pos, const basic_istring& str, size_type str_pos)
+                    Ref<basic_istring> insert(size_type pos, CRef<basic_istring> str, size_type str_pos)
                     {
                         this->_data.insert(pos, str, str_pos);
                         return *this;
@@ -896,7 +896,7 @@ SPACE(i) {
                     * @enddetails
                     * @other 其他
                     ****/
-                    basic_istring& erase(size_type pos = 0, size_type count = basic_istring::npos)
+                    Ref<basic_istring> erase(size_type pos = 0, size_type count = basic_istring::npos)
                     {
                         this->_data.erase(pos, count);
                         return *this;
@@ -1006,66 +1006,66 @@ SPACE(i) {
                     * @enddetails
                     * @other 其他
                     ****/
-                    basic_istring& append(size_type count, value_type ch)
+                    Ref<basic_istring> append(size_type count, value_type ch)
                     {
                         this->_data.append(count, ch);
                         return *this;
                     }
 
-                    basic_istring& append(const basic_istring& str)
+                    Ref<basic_istring> append(CRef<basic_istring> str)
                     {
                         this->_data.append(str._data);
                         return *this;
                     }
 
-                    basic_istring& append(basic_istring&& str)
+                    Ref<basic_istring> append(Ref<Ref<basic_istring>> str)
                     {
                         this->_data.append(std::move(str._data));
                     }
 
-                    basic_istring& append(const Type& str)
+                    Ref<basic_istring> append(CRef<Type> str)
                     {
                         this->_data.append(str);
                         return *this;
                     }
 
-                    basic_istring& append(const basic_istring& str, size_type pos, size_type count)
+                    Ref<basic_istring> append(CRef<basic_istring> str, size_type pos, size_type count)
                     {
                         this->_data.append(str._data, pos, count);
                         return *this;
                     }
 
-                    basic_istring& append(const basic_istring& str, size_type pos)
+                    Ref<basic_istring> append(CRef<basic_istring> str, size_type pos)
                     {
                         this->_data.append(str._data, pos);
                         return *this;
                     }
 
-                    basic_istring& append(const value_type* s, size_type count)
+                    Ref<basic_istring> append(CPtr<value_type> s, size_type count)
                     {
                         this->_data.append(s, count);
                         return *this;
                     }
 
-                    basic_istring& append(const value_type* s)
+                    Ref<basic_istring> append(CPtr<value_type> s)
                     {
                         this->_data.append(s);
                         return *this;
                     }
 
-                    basic_istring& append(std::initializer_list<value_type> ilist)
+                    Ref<basic_istring> append(std::initializer_list<value_type> ilist)
                     {
                         this->_data.append(ilist);
                         return *this;
                     }
 
-                    basic_istring& append(value_type ch)
+                    Ref<basic_istring> append(value_type ch)
                     {
                         this->_data.push_back(ch);
                         return *this;
                     }
 
-                    template <typename InputIt> basic_istring& append(InputIt first, InputIt last)
+                    template <typename InputIt> Ref<basic_istring> append(InputIt first, InputIt last)
                     {
                         this->_data.append(first, last);
                         return *this;
@@ -1099,42 +1099,42 @@ SPACE(i) {
                     * @enddetails
                     * @other 其他
                     ****/
-                    basic_istring& append(int i)
+                    Ref<basic_istring> append(int i)
                     {
                         return this->append(std::move(basic_istring::valueOf(i)));
                     }
 
-                    basic_istring& append(i::core::uint ui)
+                    Ref<basic_istring> append(i::core::uint ui)
                     {
                         return this->append(std::move(basic_istring::valueOf(ui)));
                     }
 
-                    basic_istring& append(long l)
+                    Ref<basic_istring> append(long l)
                     {
                         return this->append(std::move(basic_istring::valueOf(l)));
                     }
 
-                    basic_istring& append(i::core::ulong ul)
+                    Ref<basic_istring> append(i::core::ulong ul)
                     {
                         return this->append(std::move(basic_istring::valueOf(ul)));
                     }
 
-                    basic_istring& append(long long ll)
+                    Ref<basic_istring> append(long long ll)
                     {
                         return this->append(std::move(basic_istring::valueOf(ll)));
                     }
 
-                    basic_istring& append(i::core::uint64 ull)
+                    Ref<basic_istring> append(i::core::uint64 ull)
                     {
                         return this->append(std::move(basic_istring::valueOf(ull)));
                     }
 
-                    basic_istring& append(float f)
+                    Ref<basic_istring> append(float f)
                     {
                         return this->append(std::move(basic_istring::valueOf(f)));
                     }
 
-                    basic_istring& append(double d)
+                    Ref<basic_istring> append(double d)
                     {
                         return this->append(std::move(basic_istring::valueOf(d)));
                     }
@@ -1167,19 +1167,19 @@ SPACE(i) {
                     * @enddetails
                     * @other 其他
                     ****/
-                    basic_istring& replace(size_type pos, size_type count, const basic_istring& str)
+                    Ref<basic_istring> replace(size_type pos, size_type count, CRef<basic_istring> str)
                     {
                         this->_data.replace(pos, count, str._data);
                         return *this;
                     }
 
-                    basic_istring& replace(const_iterator first, const_iterator last, const basic_istring& str)
+                    Ref<basic_istring> replace(const_iterator first, const_iterator last, CRef<basic_istring> str)
                     {
                         this->_data.replace(first, last, str._data);
                         return *this;
                     }
 
-                    basic_istring& replace(size_type pos, size_type count, const basic_istring& str,
+                    Ref<basic_istring> replace(size_type pos, size_type count, CRef<basic_istring> str,
                         size_type str_pos, size_type str_count = basic_istring::npos)
                     {
                         this->_data.replace(pos, count, str._data, str_pos, str_count);
@@ -1187,49 +1187,49 @@ SPACE(i) {
                     }
 
                     template <typename InputIt>
-                    basic_istring& replace(const_iterator first, const_iterator last, InputIt first1, InputIt last1)
+                    Ref<basic_istring> replace(const_iterator first, const_iterator last, InputIt first1, InputIt last1)
                     {
                         this->_data.replace(first, last, first1, last1);
                         return *this;
                     }
 
-                    basic_istring& replace(size_type pos, size_type count, const value_type* s, size_type s_count)
+                    Ref<basic_istring> replace(size_type pos, size_type count, CPtr<value_type> s, size_type s_count)
                     {
                         this->_data.replace(pos, count, s, s_count);
                         return *this;
                     }
 
-                    basic_istring& replace(size_type pos, size_type count, const value_type* s)
+                    Ref<basic_istring> replace(size_type pos, size_type count, CPtr<value_type> s)
                     {
                         this->_data.replace(pos, count, s);
                         return *this;
                     }
 
-                    basic_istring& replace(const_iterator first, const_iterator last, const value_type* s)
+                    Ref<basic_istring> replace(const_iterator first, const_iterator last, CPtr<value_type> s)
                     {
                         this->_data.replace(first, last, s);
                         return *this;
                     }
 
-                    basic_istring& replace(size_type pos, size_type count, size_type ch_count, value_type ch)
+                    Ref<basic_istring> replace(size_type pos, size_type count, size_type ch_count, value_type ch)
                     {
                         this->_data.replace(pos, count, ch_count, ch);
                         return *this;
                     }
 
-                    basic_istring& replace(const_iterator first, const_iterator last, size_type count, value_type ch)
+                    Ref<basic_istring> replace(const_iterator first, const_iterator last, size_type count, value_type ch)
                     {
                         this->_data.replace(first, last, count, ch);
                         return *this;
                     }
 
-                    basic_istring& replace(const_iterator first, const_iterator last, std::initializer_list<value_type> ilist)
+                    Ref<basic_istring> replace(const_iterator first, const_iterator last, std::initializer_list<value_type> ilist)
                     {
                         this->_data.replace(first, last, ilist);
                         return *this;
                     }
 
-                    basic_istring& replace(size_type pos, size_type count, std::initializer_list<value_type> ilist)
+                    Ref<basic_istring> replace(size_type pos, size_type count, std::initializer_list<value_type> ilist)
                     {
                         this->_data.replace(this->_data.begin() + pos, this->_data.begin() + pos + count, ilist);
                         return *this;
@@ -1297,7 +1297,7 @@ SPACE(i) {
                     * @enddetails
                     * @other 其他
                     ****/
-                    size_type copy(value_type* dest, size_type count, size_type pos = 0) const
+                    size_type copy(Ptr<value_type> dest, size_type count, size_type pos = 0) const
                     {
                         return this->_data.copy(dest, count, pos);
                     }
@@ -1340,7 +1340,7 @@ SPACE(i) {
                         this->_data.resize(count, ch);
                     }
 
-                    void swap(basic_istring& other)
+                    void swap(Ref<basic_istring> other)
                     {
                         if (*this == other) {
                             return;
@@ -1376,17 +1376,17 @@ SPACE(i) {
                     * @enddetails
                     * @other 其他
                     ****/
-                    size_type find(const basic_istring& str, size_type pos = 0) const
+                    size_type find(CRef<basic_istring> str, size_type pos = 0) const
                     {
                         return this->_data.find(str._data, pos);
                     }
 
-                    size_type find(const value_type* s, size_type pos, size_type count) const
+                    size_type find(CPtr<value_type> s, size_type pos, size_type count) const
                     {
                         return this->_data.find(s, pos, count);
                     }
 
-                    size_type find(const value_type* s, size_type pos = 0) const
+                    size_type find(CPtr<value_type> s, size_type pos = 0) const
                     {
                         return this->_data.find(s, pos);
                     }
@@ -1396,17 +1396,17 @@ SPACE(i) {
                         return this->_data.rfind(ch, pos);
                     }
 
-                    size_type rfind(const basic_istring& str, size_type pos = basic_istring::npos) const
+                    size_type rfind(CRef<basic_istring> str, size_type pos = basic_istring::npos) const
                     {
                         return this->_data.rfind(str._data, pos);
                     }
 
-                    size_type rfind(const value_type* s, size_type pos, size_type count) const
+                    size_type rfind(CPtr<value_type> s, size_type pos, size_type count) const
                     {
                         return this->_data.rfind(s, pos, count);
                     }
 
-                    size_type rfind(const value_type* s, size_type pos = basic_istring::npos) const
+                    size_type rfind(CPtr<value_type> s, size_type pos = basic_istring::npos) const
                     {
                         return this->_data.rfind(s, pos);
                     }
@@ -1444,7 +1444,7 @@ SPACE(i) {
                     * @enddetails
                     * @other 其他
                     ****/
-                    bool startsWith(const basic_istring& str)
+                    bool startsWith(CRef<basic_istring> str)
                     {
 #ifdef __CPP_20__
                         return this->_data.starts_with(str._data);
@@ -1481,7 +1481,7 @@ SPACE(i) {
                     * @enddetails
                     * @other 其他
                     ****/
-                    bool endsWith(const basic_istring& str)
+                    bool endsWith(CRef<basic_istring> str)
                     {
 #ifdef __CPP_20__
                         return this->_data.ends_with(str._data);
@@ -1569,9 +1569,9 @@ SPACE(i) {
                         return std::regex_search(this->_data, regex);
                     }
 
-                    std::match_results<const value_type*> matchResult(const std::basic_regex<value_type>& regex, bool search)
+                    std::match_results<CPtr<value_type>> matchResult(const std::basic_regex<value_type>& regex, bool search)
                     {
-                        std::match_results<const value_type*> result;
+                        std::match_results<CPtr<value_type>> result;
                         if (!search) {
                             std::regex_match(this->_data, result, regex);
                         }
@@ -1587,7 +1587,7 @@ SPACE(i) {
                         return std::to_string(value);
                     }
 
-                    static std::string toStdString(const char* value) {
+                    static std::string toStdString(CPtr<char> value) {
                         return std::string(value);
                     }
 
@@ -1595,7 +1595,7 @@ SPACE(i) {
                         return std::string(1, value);
                     }
 
-                    static std::string toStdString(const std::string& value) {
+                    static std::string toStdString(CRef<std::string> value) {
                         return value;
                     }
 
@@ -1603,7 +1603,7 @@ SPACE(i) {
                         return wideChar2UTF8(std::wstring(1, value));
                     }
 
-                    static std::string toStdString(const wchar_t* value) {
+                    static std::string toStdString(CPtr<wchar_t> value) {
                         return wideChar2UTF8(value);
                     }
 
@@ -1635,7 +1635,7 @@ SPACE(i) {
                     * @enddetails
                     * @other 其他
                     ****/
-                    static std::wstring toWideChar(std::uint32_t code_page, const std::string& src_str) {
+                    static std::wstring toWideChar(std::uint32_t code_page, CRef<std::string> src_str) {
                         if (src_str.empty()) {
                             return L"";
                         }
@@ -1686,7 +1686,7 @@ SPACE(i) {
                     * @enddetails
                     * @other 其他
                     ****/
-                    static std::string fromWideChar(std::uint32_t code_page, const std::wstring& src_wstr) {
+                    static std::string fromWideChar(std::uint32_t code_page, CRef<std::wstring> src_wstr) {
                         if (src_wstr.empty()) {
                             return "";
                         }
@@ -1963,7 +1963,7 @@ SPACE(i) {
                     * @enddetails
                     * @other 其他
                     ****/
-                    static std::wstring UTF82wideChar(const std::string& utf8) {
+                    static std::wstring UTF82wideChar(CRef<std::string> utf8) {
 #ifdef __WINDOWS__
                         return toWideChar(CP_UTF8, utf8);
 #endif
@@ -2000,7 +2000,7 @@ SPACE(i) {
                     * @enddetails
                     * @other 其他
                     ****/
-                    static std::string wideChar2UTF8(const std::wstring& wstr) {
+                    static std::string wideChar2UTF8(CRef<std::wstring> wstr) {
 #ifdef __WINDOWS__
                         return fromWideChar(CP_UTF8, wstr);
 #endif
@@ -2035,7 +2035,7 @@ SPACE(i) {
                     * @enddetails
                     * @other 其他
                     ****/
-                    static std::wstring ANSI2wideChar(const std::string& ansi) {
+                    static std::wstring ANSI2wideChar(CRef<std::string> ansi) {
 #ifdef __WINDOWS__
                         return toWideChar(CP_ACP, ansi);
 #endif
@@ -2071,7 +2071,7 @@ SPACE(i) {
                     * @enddetails
                     * @other 其他
                     ****/
-                    static std::string wideChar2ANSI(const std::wstring& wstr) {
+                    static std::string wideChar2ANSI(CRef<std::wstring> wstr) {
 #ifdef __WINDOWS__
                         return fromWideChar(CP_ACP, wstr);
 #endif
@@ -2108,7 +2108,7 @@ SPACE(i) {
                     * @enddetails
                     * @other 其他
                     ****/
-                    static std::wstring ANSIWithUCS22WideChar(const std::string& ansi_with_ucs2, const std::wstring& not_unescape_wide_chars) {
+                    static std::wstring ANSIWithUCS22WideChar(CRef<std::string> ansi_with_ucs2, CRef<std::wstring> not_unescape_wide_chars) {
                         return unescapeWideChar(ANSI2wideChar(ansi_with_ucs2), not_unescape_wide_chars);
                     }
 
@@ -2141,7 +2141,7 @@ SPACE(i) {
                     * @enddetails
                     * @other 其他
                     ****/
-                    static std::string wideChar2ANSIWithUCS2(const std::wstring& wstr, const std::wstring& force_escape_wide_chars) {
+                    static std::string wideChar2ANSIWithUCS2(CRef<std::wstring> wstr, CRef<std::wstring> force_escape_wide_chars) {
                         if (wstr.empty()) {
                             return "";
                         }
@@ -2248,7 +2248,7 @@ SPACE(i) {
                     * @enddetails
                     * @other 其他
                     ****/
-                    static std::wstring escapeWideChar(const std::wstring& wstr, const std::wstring& escape_wide_chars) {
+                    static std::wstring escapeWideChar(CRef<std::wstring> wstr, CRef<std::wstring> escape_wide_chars) {
                         if (wstr.empty()) {
                             return L"";
                         }
@@ -2295,7 +2295,7 @@ SPACE(i) {
                     * @enddetails
                     * @other 其他
                     ****/
-                    static std::wstring unescapeWideChar(const std::wstring& wstr_with_ucs2, const std::wstring& not_unescape_wide_chars) {
+                    static std::wstring unescapeWideChar(CRef<std::wstring> wstr_with_ucs2, CRef<std::wstring> not_unescape_wide_chars) {
                         if (wstr_with_ucs2.empty()) {
                             return L"";
                         }
@@ -2369,7 +2369,7 @@ SPACE(i) {
                     * @enddetails
                     * @other 其他
                     ****/
-                    static std::string escapeUTF8(const std::string& utf8, const std::string& escape_utf8_chars) {
+                    static std::string escapeUTF8(CRef<std::string> utf8, CRef<std::string> escape_utf8_chars) {
                         return wideChar2UTF8(escapeWideChar(UTF82wideChar(utf8), UTF82wideChar(escape_utf8_chars)));
                     }
 
@@ -2401,7 +2401,7 @@ SPACE(i) {
                     * @enddetails
                     * @other 其他
                     ****/
-                    static std::string unescapeUTF8(const std::string& utf8_with_ucs2, const std::string& not_unescape_utf8_chars) {
+                    static std::string unescapeUTF8(CRef<std::string> utf8_with_ucs2, CRef<std::string> not_unescape_utf8_chars) {
                         return wideChar2UTF8(unescapeWideChar(UTF82wideChar(utf8_with_ucs2), UTF82wideChar(not_unescape_utf8_chars)));
                     }
 
@@ -2433,7 +2433,7 @@ SPACE(i) {
                     * @enddetails
                     * @other 其他
                     ****/
-                    static wchar_t UCS22WideChar(const std::wstring& ucs2) {
+                    static wchar_t UCS22WideChar(CRef<std::wstring> ucs2) {
                         auto it = ucs2.cbegin();
                         it += 2; // L'\\u'
                         uint16_t wch_value = 0;
@@ -2475,9 +2475,9 @@ SPACE(i) {
                     * @other 其他
                     ****/
                     static bool replaceString(
-                        basic_istring& str,
-                        const basic_istring& oldStr,
-                        const basic_istring& newStr
+                        Ref<basic_istring> str,
+                        CRef<basic_istring> oldStr,
+                        CRef<basic_istring> newStr
                     ) {
                         bool found = false;
                         size_t pos = 0;
@@ -2519,8 +2519,8 @@ SPACE(i) {
                     * @other 其他
                     ****/
                     static std::list<Type> istringSplit2List(
-                        const basic_istring& str,
-                        const basic_istring& delimiters,
+                        CRef<basic_istring> str,
+                        CRef<basic_istring> delimiters,
                         bool pushEmpty = false,
                         bool vInversion = false) {
                         std::list<Type> arr;
@@ -2578,8 +2578,8 @@ SPACE(i) {
                     * @other 其他
                     ****/
                     static std::vector<Type> istringSplit2Vector(
-                        const basic_istring& str,
-                        const basic_istring& delimiters,
+                        CRef<basic_istring> str,
+                        CRef<basic_istring> delimiters,
                         bool pushEmpty = false) {
                         std::vector<Type> arr;
                         if (!str.empty()) {
@@ -2620,8 +2620,8 @@ SPACE(i) {
                     * @enddetails
                     ****/
                     static std::set<Type> istringSplit2Set(
-                        const basic_istring& str,
-                        const basic_istring& delimiters,
+                        CRef<basic_istring> str,
+                        CRef<basic_istring> delimiters,
                         bool pushEmpty = false) = delete;/* {
                         std::set<Type> arr;
                         if (!str.empty()) {
@@ -2670,7 +2670,7 @@ SPACE(i) {
                     * @enddetails
                     * @other 其他
                     ****/
-                    static std::wstring str2wstr(const std::string& str) {
+                    static std::wstring str2wstr(CRef<std::string> str) {
 #ifdef __WINDOWS__
                         return str2wstr(str, CP_UTF8);
 #endif
@@ -2706,7 +2706,7 @@ SPACE(i) {
                     * @enddetails
                     * @other 其他
                     ****/
-                    static std::wstring str2wstr(const std::string& str, i::core::uint codePage)
+                    static std::wstring str2wstr(CRef<std::string> str, i::core::uint codePage)
                     {
 #ifdef __WINDOWS__
                         auto len = MultiByteToWideChar(codePage, 0, str.c_str(), -1, nullptr, 0);
@@ -2750,7 +2750,7 @@ SPACE(i) {
                     * @enddetails
                     * @other 其他
                     ****/
-                    static std::string wstr2str(const std::wstring& wstr) {
+                    static std::string wstr2str(CRef<std::wstring> wstr) {
 #ifdef __WINDOWS__
                         return wstr2str(wstr, CP_UTF8);
 #endif
@@ -2787,10 +2787,10 @@ SPACE(i) {
                     * @enddetails
                     * @other 其他
                     ****/
-                    static std::string wstr2str(const std::wstring& wstr,uint codePage){
+                    static std::string wstr2str(CRef<std::wstring> wstr,uint codePage){
 #ifdef __WINDOWS__
                         auto len = WideCharToMultiByte(codePage, 0, wstr.c_str(), -1, nullptr, 0, nullptr, nullptr);
-                        char* buffer = new char[len + 1];
+                        Ptr<char> buffer = new char[len + 1];
                         WideCharToMultiByte(codePage, 0, wstr.c_str(), -1, buffer, len + 1, nullptr, nullptr);
                         buffer[len] = '\0';
 
@@ -2834,7 +2834,7 @@ SPACE(i) {
                     * @other 其他
                     ****/
                     std::list<Type> split2List(
-                        const basic_istring& delimiters,
+                        CRef<basic_istring> delimiters,
                         bool pushEmpty = false,
                         bool vInversion = false){
                         std::list<Type> arr;
@@ -2892,7 +2892,7 @@ SPACE(i) {
                     * @other 其他
                     ****/
                     std::vector<Type> split2Vector(
-                        const basic_istring& delimiters,
+                        CRef<basic_istring> delimiters,
                         bool pushEmpty = false) {
                         std::vector<Type> arr;
                         if (!(this->_data).empty()) {
@@ -2943,7 +2943,7 @@ SPACE(i) {
                     * @other 其他
                     ****/
                     std::set<Type> split2Set(
-                        const basic_istring& delimiters,
+                        CRef<basic_istring> delimiters,
                         bool pushEmpty = false) {
                         std::set<Type> arr;
                         if (!(this->_data).empty()) {
@@ -2984,7 +2984,7 @@ SPACE(i) {
                     * @endcode
                     ****/
                     template <typename T>
-                    static std::string IntToHexStr(const T& value, bool upper = true, bool no0x = true,
+                    static std::string IntToHexStr(CRef<T> value, bool upper = true, bool no0x = true,
                         bool noLeadingZero = true)
                     {
                         std::string result;
@@ -3102,7 +3102,7 @@ SPACE(i) {
                     * @enddetails
                     * @other 其他
                     ****/
-                    basic_istring& operator = (const basic_istring& str)
+                    Ref<basic_istring> operator = (CRef<basic_istring> str)
                     {
                         if (*this == str) {
                             return *this;
@@ -3111,7 +3111,7 @@ SPACE(i) {
                         return *this;
                     }
 
-                    basic_istring& operator = (basic_istring&& str) noexcept
+                    Ref<basic_istring> operator = (Ref<Ref<basic_istring>> str) noexcept
                     {
                         if (*this == str) {
                             return *this;
@@ -3119,19 +3119,19 @@ SPACE(i) {
                         this->_data = std::move(str);
                     }
 
-                    basic_istring& operator = (const value_type* s)
+                    Ref<basic_istring> operator = (CPtr<value_type> s)
                     {
                         this->_data = s;
                         return *this;
                     }
 
-                    basic_istring& operator = (value_type ch)
+                    Ref<basic_istring> operator = (value_type ch)
                     {
                         this->_data = ch;
                         return *this;
                     }
 
-                    basic_istring& operator = (std::initializer_list<value_type> ilist)
+                    Ref<basic_istring> operator = (std::initializer_list<value_type> ilist)
                     {
                         this->_data = ilist;
                         return *this;
@@ -3203,102 +3203,102 @@ SPACE(i) {
                     * @enddetails
                     * @other 其他
                     ****/
-                    basic_istring& operator += (const basic_istring& str)
+                    Ref<basic_istring> operator += (CRef<basic_istring> str)
                     {
                         this->_data += str._data;
                         return *this;
                     }
 
-                    basic_istring& operator += (value_type ch)
+                    Ref<basic_istring> operator += (value_type ch)
                     {
                         this->_data += ch;
                         return *this;
                     }
 
-                    basic_istring& operator += (const value_type* s)
+                    Ref<basic_istring> operator += (CPtr<value_type> s)
                     {
                         this->_data += s;
                         return *this;
                     }
 
-                    basic_istring& operator += (std::initializer_list<value_type> ilist)
+                    Ref<basic_istring> operator += (std::initializer_list<value_type> ilist)
                     {
                         this->_data += ilist;
                         return *this;
                     }
 
-                    friend bool operator == (const basic_istring& ls, const basic_istring& rs) noexcept
+                    friend bool operator == (CRef<basic_istring> ls, CRef<basic_istring> rs) noexcept
                     {
                         return ls._data == rs._data;
                     }
 
-                    friend bool operator != (const basic_istring& ls, const basic_istring& rs) noexcept
+                    friend bool operator != (CRef<basic_istring> ls, CRef<basic_istring> rs) noexcept
                     {
                         return ls._data != rs._data;
                     }
 
-                    friend bool operator < (const basic_istring& ls, const basic_istring& rs) noexcept
+                    friend bool operator < (CRef<basic_istring> ls, CRef<basic_istring> rs) noexcept
                     {
                         return ls._data < rs._data;
                     }
 
-                    friend bool operator <= (const basic_istring& ls, const basic_istring& rs) noexcept
+                    friend bool operator <= (CRef<basic_istring> ls, CRef<basic_istring> rs) noexcept
                     {
                         return ls._data <= rs._data;
                     }
 
-                    friend bool operator > (const basic_istring& ls, const basic_istring& rs) noexcept
+                    friend bool operator > (CRef<basic_istring> ls, CRef<basic_istring> rs) noexcept
                     {
                         return ls._data > rs._data;
                     }
 
-                    friend bool operator >= (const basic_istring& ls, const basic_istring& rs) noexcept
+                    friend bool operator >= (CRef<basic_istring> ls, CRef<basic_istring> rs) noexcept
                     {
                         return ls._data >= rs._data;
                     }
 
-                    friend bool operator == (const value_type* s, const basic_istring& rs) noexcept
+                    friend bool operator == (CPtr<value_type> s, CRef<basic_istring> rs) noexcept
                     {
                         return s == rs;
                     }
 
-                    friend bool operator == (const basic_istring& ls, const value_type* s)
+                    friend bool operator == (CRef<basic_istring> ls, CPtr<value_type> s)
                     {
                         return ls == s;
                     }
 
-                    friend bool operator != (const basic_istring& ls, const value_type* s)
+                    friend bool operator != (CRef<basic_istring> ls, CPtr<value_type> s)
                     {
                         return ls != s;
                     }
 
-                    friend bool operator < (const basic_istring& ls, const value_type* s)
+                    friend bool operator < (CRef<basic_istring> ls, CPtr<value_type> s)
                     {
                         return ls < s;
                     }
 
-                    friend bool operator <= (const basic_istring& ls, const value_type* s)
+                    friend bool operator <= (CRef<basic_istring> ls, CPtr<value_type> s)
                     {
                         return ls <= s;
                     }
 
-                    friend bool operator > (const basic_istring& ls, const value_type* s)
+                    friend bool operator > (CRef<basic_istring> ls, CPtr<value_type> s)
                     {
                         return ls > s;
                     }
 
-                    friend bool operator >= (const basic_istring& ls, const value_type* s)
+                    friend bool operator >= (CRef<basic_istring> ls, CPtr<value_type> s)
                     {
                         return ls >= s;
                     }
 
-                    friend std::ostream& operator << (std::ostream& os, const basic_istring& str)
+                    friend Ref<std::ostream> operator << (Ref<std::ostream> os, CRef<basic_istring> str)
                     {
                         os << str._data;
                         return os;
                     }
 
-                    friend std::istream& operator >> (std::istream& is, const basic_istring& str)
+                    friend Ref<std::istream> operator >> (Ref<std::istream> is, CRef<basic_istring> str)
                     {
                         is >> str._data;
                         return is;
@@ -3332,67 +3332,67 @@ SPACE(i) {
                     * @enddetails
                     * @other 其他
                     ****/
-                    basic_istring& operator << (const basic_istring& str)
+                    Ref<basic_istring> operator << (CRef<basic_istring> str)
                     {
                         return this->append(str);
                     }
 
-                    basic_istring& operator << (const value_type* s)
+                    Ref<basic_istring> operator << (CPtr<value_type> s)
                     {
                         return this->append(s);
                     }
 
-                    basic_istring& operator << (const Type& str)
+                    Ref<basic_istring> operator << (CRef<Type> str)
                     {
                         return this->append(str);
                     }
 
-                    basic_istring& operator << (value_type ch)
+                    Ref<basic_istring> operator << (value_type ch)
                     {
                         return this->append(ch);
                     }
 
-                    basic_istring& operator << (int i)
+                    Ref<basic_istring> operator << (int i)
                     {
                         return this->append(i);
                     }
 
-                    basic_istring& operator << (i::core::uint ui)
+                    Ref<basic_istring> operator << (i::core::uint ui)
                     {
                         return this->append(ui);
                     }
 
-                    basic_istring& operator << (long l)
+                    Ref<basic_istring> operator << (long l)
                     {
                         return this->append(l);
                     }
 
-                    basic_istring& operator << (i::core::ulong ul)
+                    Ref<basic_istring> operator << (i::core::ulong ul)
                     {
                         return this->append(ul);
                     }
 
-                    basic_istring& operator << (long long ll)
+                    Ref<basic_istring> operator << (long long ll)
                     {
                         return this->append(ll);
                     }
 
-                    basic_istring& operator << (i::core::uint64 ull)
+                    Ref<basic_istring> operator << (i::core::uint64 ull)
                     {
                         return this->append(ull);
                     }
 
-                    basic_istring& operator << (float f)
+                    Ref<basic_istring> operator << (float f)
                     {
                         return this->append(f);
                     }
 
-                    basic_istring& operator << (double d)
+                    Ref<basic_istring> operator << (double d)
                     {
                         return this->append(d);
                     }
 
-                    basic_istring& operator << (std::initializer_list<value_type> ilist)
+                    Ref<basic_istring> operator << (std::initializer_list<value_type> ilist)
                     {
                         return this->append(ilist);
                     }
@@ -3425,100 +3425,100 @@ SPACE(i) {
                     * @enddetails
                     * @other 其他
                     ****/
-                    friend basic_istring operator + (const basic_istring& ls, const basic_istring& rs)
+                    friend basic_istring operator + (CRef<basic_istring> ls, CRef<basic_istring> rs)
                     {
                         basic_istring str(ls);
                         str.append(rs);
                         return std::move(str);
                     }
 
-                    friend basic_istring operator + (basic_istring&& ls, const basic_istring& rs)
+                    friend basic_istring operator + (Ref<Ref<basic_istring>> ls, CRef<basic_istring> rs)
                     {
                         ls.append(rs);
                         return ls;
                     }
 
-                    friend basic_istring operator + (basic_istring&& ls, basic_istring&& rs)
+                    friend basic_istring operator + (Ref<Ref<basic_istring>> ls, Ref<Ref<basic_istring>> rs)
                     {
                         ls.append(rs);
                         return ls;
                     }
 
-                    friend basic_istring operator + (const basic_istring& ls, const value_type* s)
+                    friend basic_istring operator + (CRef<basic_istring> ls, CPtr<value_type> s)
                     {
                         basic_istring str(ls);
                         str.append(s);
                         return std::move(str);
                     }
 
-                    friend basic_istring operator + (basic_istring&& ls, const value_type* s)
+                    friend basic_istring operator + (Ref<Ref<basic_istring>> ls, CPtr<value_type> s)
                     {
                         ls.append(s);
                         return ls;
                     }
 
-                    friend basic_istring operator + (const basic_istring& ls, value_type ch)
+                    friend basic_istring operator + (CRef<basic_istring> ls, value_type ch)
                     {
                         basic_istring str(ls);
                         str.pushBack(ch);
                         return std::move(str);
                     }
 
-                    friend basic_istring operator + (basic_istring&& ls, value_type ch)
+                    friend basic_istring operator + (Ref<Ref<basic_istring>> ls, value_type ch)
                     {
                         ls.pushBack(ch);
                         return ls;
                     }
 
-                    friend basic_istring operator + (const basic_istring& ls, std::initializer_list<value_type> ilist)
+                    friend basic_istring operator + (CRef<basic_istring> ls, std::initializer_list<value_type> ilist)
                     {
                         basic_istring str(ls);
                         str.append(ilist);
                         return std::move(str);
                     }
 
-                    friend basic_istring operator + (basic_istring&& ls, std::initializer_list<value_type> ilist)
+                    friend basic_istring operator + (Ref<Ref<basic_istring>> ls, std::initializer_list<value_type> ilist)
                     {
                         ls.append(ilist);
                         return ls;
                     }
 
-                    friend basic_istring operator + (value_type ch, const basic_istring& rs)
+                    friend basic_istring operator + (value_type ch, CRef<basic_istring> rs)
                     {
                         basic_istring str(1, ch);
                         str.append(rs);
                         return std::move(str);
                     }
 
-                    friend basic_istring operator + (value_type ch, basic_istring&& rs)
+                    friend basic_istring operator + (value_type ch, Ref<Ref<basic_istring>> rs)
                     {
                         basic_istring str(1, ch);
                         str.append(rs);
                         return std::move(str);
                     }
 
-                    friend basic_istring operator + (const value_type* s, const basic_istring& rs)
+                    friend basic_istring operator + (CPtr<value_type> s, CRef<basic_istring> rs)
                     {
                         basic_istring str(s);
                         str.append(rs);
                         return std::move(str);
                     }
 
-                    friend basic_istring operator + (const value_type* s, basic_istring&& rs)
+                    friend basic_istring operator + (CPtr<value_type> s, Ref<Ref<basic_istring>> rs)
                     {
                         basic_istring str(s);
                         str.append(rs);
                         return std::move(str);
                     }
 
-                    friend basic_istring operator + (std::initializer_list<value_type> ilist, const basic_istring& rs)
+                    friend basic_istring operator + (std::initializer_list<value_type> ilist, CRef<basic_istring> rs)
                     {
                         basic_istring str(ilist);
                         str.append(rs);
                         return std::move(str);
                     }
 
-                    friend basic_istring operator + (std::initializer_list<value_type> ilist, basic_istring&& rs)
+                    friend basic_istring operator + (std::initializer_list<value_type> ilist, Ref<Ref<basic_istring>> rs)
                     {
                         basic_istring str(ilist);
                         str.append(rs);
@@ -3554,7 +3554,7 @@ SPACE(i) {
                     * @enddetails
                     ****/
                     template <typename T>
-                    static basic_istring valueOf(T&& value)
+                    static basic_istring valueOf(Ref<Ref<T>> value)
                     {
 #ifdef __CPP_17__
                         if constexpr (std::is_same_v<Type, std::string>) {
@@ -3599,7 +3599,7 @@ SPACE(i) {
                     * @enddetails
                     * @other 其他
                     ****/
-                    static bool startsWith(const basic_istring& sub, const basic_istring& str);
+                    static bool startsWith(CRef<basic_istring> sub, CRef<basic_istring> str);
 
                     /****
                     * @author ticks
@@ -3629,7 +3629,7 @@ SPACE(i) {
                     * @enddetails
                     * @other 其他
                     ****/
-                    static bool endsWith(const basic_istring& sub, const basic_istring& str);
+                    static bool endsWith(CRef<basic_istring> sub, CRef<basic_istring> str);
 #endif
                 protected:
 
@@ -3640,10 +3640,10 @@ SPACE(i) {
 #if __LINUX__ && __GCC__ 
 #ifdef __CPP_20__
                 template <typename Type> requires type::type_traits::is_std_string_v<Type>
-                bool basic_istring<Type>::startsWith(const basic_istring& sub, const basic_istring& str)
+                bool basic_istring<Type>::startsWith(CRef<basic_istring> sub, CRef<basic_istring> str)
 #else
                 template <typename Type, std::enable_if_t <type_traits::is_std_string_v<Type>, Type> t>
-                bool basic_istring<Type, t>::startsWith(const basic_istring& sub, const basic_istring& str)
+                bool basic_istring<Type, t>::startsWith(CRef<basic_istring> sub, CRef<basic_istring> str)
 #endif
                 {
                     if (sub.length() > str.length()) {
@@ -3664,10 +3664,10 @@ SPACE(i) {
                 
 #ifdef __CPP_20__
                 template <typename Type> requires type::type_traits::is_std_string_v<Type>
-                bool basic_istring<Type>::endsWith(const basic_istring& sub, const basic_istring& str)
+                bool basic_istring<Type>::endsWith(CRef<basic_istring> sub, CRef<basic_istring> str)
 #else
                 template <typename Type, std::enable_if_t <type_traits::is_std_string_v<Type>, Type> t>
-                bool basic_istring<Type, t>::endsWith(const basic_istring& sub, const basic_istring& str)
+                bool basic_istring<Type, t>::endsWith(CRef<basic_istring> sub, CRef<basic_istring> str)
 #endif
                 {
                     if (sub.length() > str.length()) {

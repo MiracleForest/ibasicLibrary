@@ -6,16 +6,16 @@
 #pragma once
 #ifndef _THREAD_
 #define _THREAD_
-#include "yvals_core.h"
+#include <yvals_core.h>
 #if _STL_COMPILER_PREPROCESSOR
-#include "chrono"
-#include "memory"
-#include "process.h"
-#include "tuple"
-#include "xthreads.h"
+#include <chrono>
+#include <memory>
+#include <process.h>
+#include <tuple>
+#include <xthreads.h>
 #if _HAS_CXX20
-#include "compare"
-#include "stop_token"
+#include <compare>
+#include <stop_token>
 #endif // _HAS_CXX20
 
 #ifdef _M_CEE_PURE
