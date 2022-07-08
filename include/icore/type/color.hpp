@@ -1,11 +1,11 @@
 // Copyright(C) MiracleForest Studio. All Rights Reserved
-// Notes: all of the color value must be clamped to [0.0, 1.0]
+// Notes: all of the color value must be clamped to [0.0, 1.0], such as (0.2, 0.5, 0.8, 1.0)
 
 #pragma once
 #ifndef MIRACLEFOREST_IBASICLIBRARY_INCLUDE_ICORE_TYPE_COLOR_HPP_
 #define MIRACLEFOREST_IBASICLIBRARY_INCLUDE_ICORE_TYPE_COLOR_HPP_
 
-// temporary define to compatible formatter
+// temporary define to compatible IDE formatter settings
 #define _IBASICLIBRARY_BEGIN namespace i {
 #define _ICORE_BEGIN         namespace core {
 #define _TYPE_BEGIN          namespace type {
@@ -13,7 +13,7 @@
 #define _IBASICLIBRARY_END }
 #define _ICORE_END         }
 #define _TYPE_END          }
-// those macros can romaved by SPACE(x) after submit
+// those macros can romave after submit by SPACE(x)
 
 #include <cmath>
 #include <string>
