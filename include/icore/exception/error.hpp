@@ -42,12 +42,12 @@ SPACE(i) {
             struct ErrorInfo {
                 ErrorCode _code;
                 int _icode;
-                std::string _dscription;//描述
-                std::string _dscription2;//详细描述
-                std::string _suggestion;//建议
-                type::FilePos _position;//位置
-                type::level _level;//等级
-                bool _canBeIgnored;//是否可以忽略
+                std::string _dscription;  // 描述
+                std::string _dscription2; // 详细描述
+                std::string _suggestion;  // 建议
+                type::FilePos _position;  // 位置
+                type::level _level;       // 等级
+                bool _canBeIgnored;       // 是否可以忽略
 
                 ErrorInfo makeDefault() {
                     ErrorInfo e;
