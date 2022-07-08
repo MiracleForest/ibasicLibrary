@@ -2802,6 +2802,40 @@ SPACE(i) {
                         return "";
                     }
 
+                    /****
+                    * @author Lovelylavender4
+                    * @since 编写此代码的时间或版本
+                    * @brief 描述
+                    *
+                    * @param wstr 待转换的宽字符串
+                    * @param codePage codePage
+                    * @future 未来要做的事情
+                    * @retval 返回值注释
+                    * @throws 抛出的异常
+                    *
+                    * @note
+                    * 注意事项
+                    * @endnote
+                    * @pre 使用此函数的前提条件
+                    * @par Example
+                    * @code
+                    * 代码示例
+                    * @endcode
+                    *
+                    * @warning 警告
+                    * @bug 存在的漏洞
+                    * @include 需要包含的头文件
+                    * @details
+                    * 详细描述
+                    * @enddetails
+                    * @other 其他
+                    ****/
+					static std::string UTF82String(std::u8string str)
+					{
+						return reinterpret_cast<std::string&>(str);
+					}
+					
+					
                 public:
 
                     /****

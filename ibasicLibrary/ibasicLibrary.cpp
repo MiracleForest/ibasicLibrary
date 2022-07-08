@@ -3,6 +3,7 @@
 #include <iostream>
 #include <thread>
 #include <functional>
+#include <format>
 
 #include "../include/icore/family/ifamily.hpp"
 #include "../include/icore/type/type/type.hpp"
@@ -76,7 +77,7 @@ IERROR i::core::Main::start(::i::core::Ref< N_ISTD _p_start> p_start) {
         /*10*/r.yday,
         /*11*/r.isdst) << std::endl;
 
-    {
+    { 
         type::istring str = "f,l,l~";
         std::cout << str.split2List(",").front() << std::endl;
     } {
