@@ -82,7 +82,7 @@ SPACE(i) {
                     if (isBinary) {
                         mode |= std::ios_base::binary;
                     }
-                    fRead.open(type::istring::str2wstr(filePath.data()), mode);
+                    fRead.open(filePath.data(), mode);
                     if (!fRead.is_open()) {
                         return std::nullopt;
                     }
@@ -119,7 +119,7 @@ SPACE(i) {
                     if (isBinary)
                         mode |= std::ios_base::binary;
 
-                    fWrite.open(i::core::type::istring::str2wstr(filePath), mode);
+                    fWrite.open(filePath, mode);
                     if (!fWrite.is_open()) {
                         return false;
                     }
