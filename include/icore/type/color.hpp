@@ -1,307 +1,483 @@
-// Copyright(C) MiracleForest Studio. All Rights Reserved
-// Notes: all of the color value must be clamped to [0.0, 1.0], such as (0.2, 0.5, 0.8, 1.0)
-
-#pragma once
-#ifndef MIRACLEFOREST_IBASICLIBRARY_INCLUDE_ICORE_TYPE_COLOR_HPP_
-#define MIRACLEFOREST_IBASICLIBRARY_INCLUDE_ICORE_TYPE_COLOR_HPP_
-
-// temporary define to compatible IDE formatter settings
-#define _IBASICLIBRARY_BEGIN namespace i {
-#define _ICORE_BEGIN         namespace core {
-#define _TYPE_BEGIN          namespace type {
-
-#define _IBASICLIBRARY_END }
-#define _ICORE_END         }
-#define _TYPE_END          }
-// those macros can romave after submit by SPACE(x)
-
-#include <cmath>
-#include <string>
-#include <vector>
-#include <glm/glm.hpp>
+/****
+*
+* Copyright(C) 2022 MiracleForest Studio. All Rights Reserved.
+*
+* @文件名：color.hpp
+* @创建时间：****.**.**.**:**
+* @创建者：***
+* -----------------------------------------------------------------------------
+*
+*
+* -----------------------------------------------------------------------------
+* 如果你发现了bug，你可以去Github或邮箱(MiracleForest@Outlook.com)反馈给我们！
+* 我们一定会努力做得更好的！
+*
+****/
+#ifndef ___MIRACLEFOREST_I_COLOR___
+#define ___MIRACLEFOREST_I_COLOR___
 
 #include "../family/imacrofamily.h"
 #include "filepos.hpp"
 #include "istring.hpp"
 
-_IBASICLIBRARY_BEGIN
-_ICORE_BEGIN
-_TYPE_BEGIN
-
-enum class Colors {
-    // unknown
-};
-
-class Color {
-public:
-    enum class ImageType { // unfinished
-        JPEG, PNG, TIFF, DDS, TGA, BMP
-    };
-
-    enum class ConsoleTargetType {
-        // unknown
-    };
-
-    // structure function
-    // ------------------
-    Color() : _rgba({ 0.0f, 0.0f, 0.0f, 0.0f }) {}
-    Color(glm::dvec4 Value) : _rgba(Value) {}
-    Color(CRef<glm::dvec4> Value) : _rgba(Value) {}
-
-    // functions to convert color data
-    // -------------------------
-    static Color convertColorValueFromHex(uint HexValue);
-    uint         convertColorValueToHex(CRef<glm::dvec3> Value);
-    static Color convertColorValueFromHexIString(CRef<istring> iString);
-    istring      convertColorValueToIString(CRef<glm::dvec4> Value);
-    static Color convertColorValueFromRgba(CRef<glm::dvec4> Value);
-    glm::dvec4   convertColorValueToRgba(CRef<glm::dvec3> Value);
-    static Color convertColorValueFromRgb();
-    glm::dvec3   convertColorValueToRgb();
-
-    // functions to convert image type
-    // -------------------------------
-    istring convertImageTypeToIString(ImageType Type);
-
-    std::vector<std::vector<Color>> getAllFragColor(CRef<istring> Filename, ImageType Type);
-    Color   getColorFromFragCoord(CRef<FilePos> FragCoord, ImageType Type);
+#include <cmath>
+#include <vector>
+#include <glm/glm.hpp>
 
 
-    // functions to convert console target type
-    // ----------------------------------------
-    istring convertConsoleTargetTypeToIString(ConsoleTargetType Type);
+SPACE(i) {
+    SPACE(core) {
+        SPACE(type) {
 
-    // setter functions
-    // set color value
-    // ---------------
-    void setRed(double Value);
-    void setGreen(double Value);
-    void setBlue(double Value);
-    void setAlpha(double Value);
+            struct RGB {
+                ushort r;
+                ushort g;
+                ushort b;
 
-    // set console target color
-    // ------------------------
-    void setConsoleTargetColor(ConsoleTargetType, CRef<FilePos> Coord, Color Value);
+                static inline RGB makeRGB(ushort r, ushort g, ushort b) {
+                    RGB rgb{ r,b,g };
+                    return rgb;
+                }
 
-    void       reset();
-    glm::dvec4 getColor();
-    Color      getGrayscale(CRef<glm::dvec4> Value);
-    glm::dvec4 data();
-    glm::dvec4 mix(CRef<glm::dvec4> Color1, CRef<glm::dvec4> Color2, double Level);
-    std::vector<FilePos> findOutAllSameColor(CRef<istring> Filename, CRef<Color> Target);
+                static inline RGB makeDefault() {
+                    RGB rgb;
+                    rgb.r = 0;
+                    rgb.g = 0;
+                    rgb.b = 0;
+                    return rgb;
+                }
+            };
 
-    // Gradient class
-    // --------------
-    class Gradient {
-    public:
-    protected:
-    private:
-        // TODO
-    };
+            struct RGBA {
+                RGBA(CRef<RGB>)=delete;
+                RGBA()=default;
+                RGB rgb;
+                ushort a;
 
-    // overload operators
-    // ------------------
-    Color operator+(CRef<Color> Value) {
-        Color Result;
-        Result._rgba += Value._rgba;
+                static inline RGBA makeRGBA(ushort r, ushort g, ushort b, ushort a = 255) {
+                    RGBA rgba;
+                    rgba.rgb = { r,b,g };
+                    rgba.a = a;
+                    return rgba;
+                }
 
-        return Result;
-    }
+                static inline RGBA makeDefault() {
+                    RGBA rgba;
+                    rgba.rgb = RGB::makeDefault();
+                    rgba.a = 255;
+                    return rgba;
+                }
+            };
 
-    Color operator-(CRef<Color> Value) {
-        Color Result;
-        Result._rgba -= Value._rgba;
+            class color {
+            public:
+                enum Colors : ulong {
+                    black = 0x000000,//0,0,0
+                    white = 0xFFFFFF,//255,255,255
+                    blue = 0x0000FF,//0,0,255
+                    green = 0x00FF00,//0,0,255
+                    red = 0xFF0000,//255,0,0
+                    yellow = 0xFFFF00//255,255,0
+                };
 
-        return Result;
-    }
+                enum class ImageType {
+                    JPEG,
+                    PNG,
+                    TIFF,
+                    DDS,
+                    TGA,
+                    BMP
+                };
 
-    Color operator*(CRef<Color> Value) {
-        Color Result;
-        Result._rgba *= Value._rgba;
+                enum class ConsoleTargetType {
+                    text,
+                    background
+                };
 
-        return Result;
-    }
+            public:
 
-    Color operator/(CRef<Color> Value) {
-        Color Result;
-        Result._rgba /= Value._rgba;
+                color() :_rgb(RGB::makeDefault()) {}
 
-        return Result;
-    }
+                color(RGB rgb) :_rgb(rgb) {}
 
-    CRef<Color> operator+=(CRef<Color> Value) {
-        _rgba += Value._rgba;
-        return *this;
-    }
+                color(RGBA rgba) :_rgb(rgba.rgb) {}
 
-    CRef<Color> operator-=(CRef<Color> Value) {
-        _rgba -= Value._rgba;
-        return *this;
-    }
+                color(ushort r, ushort g, ushort b) :_rgb({ r,g,b }) {}
 
-    CRef<Color> operator*=(CRef<Color> Value) {
-        _rgba *= Value._rgba;
-        return *this;
-    }
+                color(ulong hex)
+                    :_rgb(RGB::makeRGB(((hex >> 16) & 0xFF), ((hex >> 8) & 0xFF), (hex & 0xFF)))
+                {}
 
-    CRef<Color> operator/=(CRef<Color> Value) {
-        _rgba /= Value._rgba;
-        return *this;
-    }
+                color(Colors Color)
+                    : _rgb(RGB::makeRGB(((Color >> 16) & 0xFF), ((Color >> 8) & 0xFF), (Color & 0xFF)))
+                {}
 
-    bool operator<(CRef<Color> Value) {
-        return convertColorValueToHex(this->_rgba) < convertColorValueToHex(Value._rgba);
-    }
+                ~color() {}
 
-    bool operator>(CRef<Color> Value) {
-        return convertColorValueToHex(this->_rgba) > convertColorValueToHex(Value._rgba);
-    }
+            public:
 
-    bool operator<=(CRef<Color> Value) {
-        return convertColorValueToHex(this->_rgba) <= convertColorValueToHex(Value._rgba);
-    }
+                ulong toHex()const {
+                    return
+                        ((_rgb.r & 0xff) << 16) +
+                        ((_rgb.g & 0xff) << 8)
+                        + (_rgb.b & 0xff);
+                }
 
-    bool operator>=(CRef<Color> Value) {
-        return convertColorValueToHex(this->_rgba) >= convertColorValueToHex(Value._rgba);
-    }
+            public:
 
-    bool operator==(CRef<Color> Value) {
-        return convertColorValueToHex(this->_rgba) == convertColorValueToHex(Value._rgba);
-    }
+                RGB data()const { return _rgb; }
 
-    bool operator!=(CRef<Color> Value) {
-        return convertColorValueToHex(this->_rgba) != convertColorValueToHex(Value._rgba);
-    }
+                void setData(RGB rgb) { _rgb = rgb; }
 
-private:
-    glm::dvec4 _rgba;
-    static glm::dvec4 _static_rgba;
-};
+                void reset() { _rgb = RGB::makeDefault(); }
 
-inline Color Color::convertColorValueFromHex(uint HexValue) {
-    glm::dvec3 Result(0.0);
-    Result.r = (HexValue >> 16) & 0xff / 255;
-    Result.r = (HexValue >>  8) & 0xff / 255;
-    Result.r = (HexValue)       & 0xff / 255;
+                RGBA getRGBA()const {
+                    return RGBA::makeRGBA(_rgb.r, _rgb.g, _rgb.b);
+                }
 
-    Color Object;
-    Object._static_rgba = glm::dvec4(Result, 1.0);
+                RGB getRGB()const { return _rgb; }
 
-    return Object;
-}
+                void setRGB(RGB rgb) { _rgb = rgb; }
 
-inline inline uint Color::convertColorValueToHex(CRef<glm::dvec3> Value) {
-    return (((static_cast<uint>(std::round(Value.r * 255.0)))) << 16) |
-           (((static_cast<uint>(std::round(Value.g * 255.0)))) <<  8) |
-           (((static_cast<uint>(std::round(Value.b * 255.0)))));
-}
+                ushort getR()const { return _rgb.r; }
 
-inline Color Color::convertColorValueFromHexIString(CRef<istring> iString) {
-    uint HexValue = std::stoi(iString.data());
-    Color Result = convertColorValueFromHex(HexValue);
+                void setR(ushort r) { _rgb.r = r; }
 
-    return Result;
-}
+                ushort getG()const { return _rgb.g; }
 
-inline istring Color::convertColorValueToIString(CRef<glm::dvec4> Value) {
-    uint Result = convertColorValueToHex(Value);
-    return istring(std::to_string(Result));
-}
+                void setG(ushort g) { _rgb.g = g; }
 
-inline Color Color::convertColorValueFromRgba(CRef<glm::dvec4> Value) {
-    Color Object;
-    Object._rgba = Value;
+                ushort getB()const { return _rgb.b; }
 
-    return Object;
-}
+                void setB(ushort b) { _rgb.b = b; }
 
-inline glm::dvec4 Color::convertColorValueToRgba(CRef<glm::dvec3> Value) {
-    return glm::dvec4();
-}
+                public C_STATIC:
 
-inline Color Color::convertColorValueFromRgb() {
-    return Color();
-}
+                static ulong toHex(RGBA rgba) {
+                    return ((rgba.rgb.r & 0xff) << 24) +
+                        ((rgba.rgb.g & 0xff) << 16) +
+                        ((rgba.rgb.b & 0xff) << 8)
+                        + (rgba.a & 0xff);
+                }
 
-inline glm::dvec3 Color::convertColorValueToRgb() {
-    return glm::dvec3();
-}
+                static ulong toHex(ushort _r, ushort _g, ushort _b, ushort _a) {
+                    return ((_r & 0xff) << 24) +
+                        ((_g & 0xff) << 16) +
+                        ((_b & 0xff) << 8)
+                        + (_a & 0xff);
+                }
 
-istring Color::convertImageTypeToIString(ImageType Type) {
-    switch (Type) {
-    case ImageType::JPEG:
-        return istring(".jpg");
-    case ImageType::PNG:
-        return istring(".png");
-    case ImageType::TIFF:
-        return istring(".tif");
-    case ImageType::BMP:
-        return istring(".bmp");
-    case ImageType::DDS:
-        return istring(".dds");
-    case ImageType::TGA:
-        return istring(".tga");
-    }
-}
+                static ulong toHex(ushort _r, ushort _g, ushort _b) {
+                    return ((_r & 0xff) << 16) +
+                        ((_g & 0xff) << 8) +
+                        (_b & 0xff);
+                }
 
-inline std::vector<std::vector<Color>> Color::getAllFragColor(CRef<istring> Filename, ImageType Type) {
-    return std::vector<std::vector<Color>>();
-}
+                static ulong toHex(RGB rgb) {
+                    return ((rgb.r & 0xff) << 16) +
+                        ((rgb.g & 0xff) << 8) +
+                        (rgb.b & 0xff);
+                }
 
-inline Color Color::getColorFromFragCoord(CRef<FilePos> FragCoord, ImageType Type) {
-    return Color();
-}
+                static type::istring getConsoleColorIString(RGB _rgb) {
+                    return istring("\033[38;2;" +
+                        std::to_string(_rgb.r) +
+                        ";" +
+                        std::to_string(_rgb.g) +
+                        ";" +
+                        std::to_string(_rgb.b) +
+                        "m");
+                }
 
-inline istring Color::convertConsoleTargetTypeToIString(ConsoleTargetType Type) {
-    return istring();
-}
+                static type::istring getConsoleColorIString(RGBA _rgb) {
+                    return istring("\033[38;2;" +
+                        std::to_string(_rgb.rgb.r) +
+                        ";" +
+                        std::to_string(_rgb.rgb.g) +
+                        ";" +
+                        std::to_string(_rgb.rgb.b) +
+                        "m");
+                }
 
-inline void Color::setRed(double Value) {
-    _rgba.r = Value;
-}
+                static type::istring getConsoleColorIString(CRef<color> _color) {
+                    auto c = _color.getRGB();
+                    return istring("\033[38;2;" +
+                        std::to_string(c.r) +
+                        ";" +
+                        std::to_string(c.g) +
+                        ";" +
+                        std::to_string(c.b) +
+                        "m");
+                }
 
-inline void Color::setGreen(double Value) {
-    _rgba.g = Value;
-}
+                public C_OPERATOR:
 
-inline void Color::setBlue(double Value) {
-    _rgba.b = Value;
-}
+                public C_CLASS :
 
-inline void Color::setAlpha(double Value) {
-    _rgba.a = Value;
-}
+                    class Gradient {
 
-inline void Color::setConsoleTargetColor(ConsoleTargetType, CRef<FilePos> Coord, Color Value) {}
+                };
 
-inline void Color::reset() {
-    _rgba = glm::dvec4(0.0);
-}
+            protected:
+            private:
+                RGB _rgb;
+            };
 
-inline glm::dvec4 Color::getColor() {
-    return data();
-}
+            /*
+            class Color {
+            public:
 
-inline Color Color::getGrayscale(CRef<glm::dvec4> Value) {
-    return Color();
-}
 
-inline glm::dvec4 Color::data() {
-    return _rgba;
-}
+            public:
 
-inline glm::dvec4 i::core::type::Color::mix(CRef<glm::dvec4> Color1, CRef<glm::dvec4> Color2, double Level) {
-    glm::dvec4 Result;
-    Result = Color1 * (1.0 - Level) + Color2 * Level;
-    return Result;
-}
+                Color() : _rgba(RGBA::makeDefault()) {}
 
-inline std::vector<FilePos> Color::findOutAllSameColor(CRef<istring> Filename, CRef<Color> Target) {
-    return std::vector<FilePos>();
-}
+                Color(CRef<RGBA> Value) : _rgba(Value) {}
 
-_IBASICLIBRARY_END
-_ICORE_END
-_TYPE_END
+            public:
+                uint toHex() {
+                    return (((static_cast<uint>(std::round(_rgba.rgb.r * 255.0)))) << 16) |
+                        (((static_cast<uint>(std::round(_rgba.rgb.g * 255.0)))) << 8) |
+                        (((static_cast<uint>(std::round(_rgba.rgb.b * 255.0)))));
+                }
 
-#endif // !MIRACLEFOREST_IBASICLIBRARY_INCLUDE_ICORE_TYPE_COLOR_HPP_
+                istring convertColorValueToIString(CRef<glm::dvec4> Value) {
+                    uint Result = convertColorValueToHex(Value);
+                    return istring(std::to_string(Result));
+                }
+
+                glm::dvec4 convertColorValueToRgba(CRef<glm::dvec3> Value) {
+                    return glm::dvec4();
+                }
+
+                glm::dvec3 convertColorValueToRgb();
+
+                istring convertImageTypeToIString(ImageType Type);
+
+                std::vector<std::vector<Color>> getAllFragColor(CRef<istring> Filename, ImageType Type);
+                Color   getColorFromFragCoord(CRef<FilePos> FragCoord, ImageType Type);
+
+
+                istring convertConsoleTargetTypeToIString(ConsoleTargetType Type);
+
+                void setRed(double Value);
+                void setGreen(double Value);
+                void setBlue(double Value);
+                void setAlpha(double Value);
+                void setConsoleTargetColor(ConsoleTargetType, CRef<FilePos> Coord, Color Value);
+
+                void       reset();
+                glm::dvec4 getColor();
+                Color      getGrayscale(CRef<glm::dvec4> Value);
+                glm::dvec4 data();
+                glm::dvec4 mix(CRef<glm::dvec4> Color1, CRef<glm::dvec4> Color2, double Level);
+                std::vector<FilePos> findOutAllSameColor(CRef<istring> Filename, CRef<Color> Target);
+
+                public C_STATIC:
+
+                static Color convertColorValueFromHex(uint HexValue);
+
+                static Color convertColorValueFromHexIString(CRef<istring> iString);
+
+                static Color convertColorValueFromRgba(CRef<glm::dvec4> Value);
+
+                static Color convertColorValueFromRgb();
+
+
+                class Gradient {
+                public:
+                protected:
+                private:
+
+                };
+
+
+                Color operator+(CRef<Color> Value) {
+                    Color Result;
+                    Result._rgba += Value._rgba;
+
+                    return Result;
+                }
+
+                Color operator-(CRef<Color> Value) {
+                    Color Result;
+                    Result._rgba -= Value._rgba;
+
+                    return Result;
+                }
+
+                Color operator*(CRef<Color> Value) {
+                    Color Result;
+                    Result._rgba *= Value._rgba;
+
+                    return Result;
+                }
+
+                Color operator/(CRef<Color> Value) {
+                    Color Result;
+                    Result._rgba /= Value._rgba;
+
+                    return Result;
+                }
+
+                CRef<Color> operator+=(CRef<Color> Value) {
+                    _rgba += Value._rgba;
+                    return *this;
+                }
+
+                CRef<Color> operator-=(CRef<Color> Value) {
+                    _rgba -= Value._rgba;
+                    return *this;
+                }
+
+                CRef<Color> operator*=(CRef<Color> Value) {
+                    _rgba *= Value._rgba;
+                    return *this;
+                }
+
+                CRef<Color> operator/=(CRef<Color> Value) {
+                    _rgba /= Value._rgba;
+                    return *this;
+                }
+
+                bool operator<(CRef<Color> Value) {
+                    return convertColorValueToHex(this->_rgba) < convertColorValueToHex(Value._rgba);
+                }
+
+                bool operator>(CRef<Color> Value) {
+                    return convertColorValueToHex(this->_rgba) > convertColorValueToHex(Value._rgba);
+                }
+
+                bool operator<=(CRef<Color> Value) {
+                    return convertColorValueToHex(this->_rgba) <= convertColorValueToHex(Value._rgba);
+                }
+
+                bool operator>=(CRef<Color> Value) {
+                    return convertColorValueToHex(this->_rgba) >= convertColorValueToHex(Value._rgba);
+                }
+
+                bool operator==(CRef<Color> Value) {
+                    return convertColorValueToHex(this->_rgba) == convertColorValueToHex(Value._rgba);
+                }
+
+                bool operator!=(CRef<Color> Value) {
+                    return convertColorValueToHex(this->_rgba) != convertColorValueToHex(Value._rgba);
+                }
+
+            private:
+                //glm::dvec4 _rgba;
+                static glm::dvec4 _static_rgba;
+                RGBA _rgba;
+            };
+
+            inline Color Color::convertColorValueFromHex(uint HexValue) {
+                glm::dvec3 Result(0.0);
+                Result.r = (HexValue >> 16) & 0xff / 255;
+                Result.r = (HexValue >> 8) & 0xff / 255;
+                Result.r = (HexValue) & 0xff / 255;
+
+                Color Object;
+                Object._static_rgba = glm::dvec4(Result, 1.0);
+
+                return Object;
+            }
+
+
+            inline Color Color::convertColorValueFromHexIString(CRef<istring> iString) {
+                uint HexValue = std::stoi(iString.data());
+                Color Result = convertColorValueFromHex(HexValue);
+
+                return Result;
+            }
+
+            inline Color Color::convertColorValueFromRgba(CRef<glm::dvec4> Value) {
+                Color Object;
+                Object._rgba = Value;
+
+                return Object;
+            }
+
+
+            inline Color Color::convertColorValueFromRgb() {
+                return Color();
+            }
+
+            istring Color::convertImageTypeToIString(ImageType Type) {
+                switch (Type) {
+                case ImageType::JPEG:
+                    return istring(".jpg");
+                case ImageType::PNG:
+                    return istring(".png");
+                case ImageType::TIFF:
+                    return istring(".tif");
+                case ImageType::BMP:
+                    return istring(".bmp");
+                case ImageType::DDS:
+                    return istring(".dds");
+                case ImageType::TGA:
+                    return istring(".tga");
+                }
+            }
+
+            inline std::vector<std::vector<Color>> Color::getAllFragColor(CRef<istring> Filename, ImageType Type) {
+                return std::vector<std::vector<Color>>();
+            }
+
+            inline Color Color::getColorFromFragCoord(CRef<FilePos> FragCoord, ImageType Type) {
+                return Color();
+            }
+
+            inline istring Color::convertConsoleTargetTypeToIString(ConsoleTargetType Type) {
+                return istring();
+            }
+
+            inline void Color::setRed(double Value) {
+                _rgba.r = Value;
+            }
+
+            inline void Color::setGreen(double Value) {
+                _rgba.g = Value;
+            }
+
+            inline void Color::setBlue(double Value) {
+                _rgba.b = Value;
+            }
+
+            inline void Color::setAlpha(double Value) {
+                _rgba.a = Value;
+            }
+
+            inline void Color::setConsoleTargetColor(ConsoleTargetType, CRef<FilePos> Coord, Color Value) {}
+
+            inline void Color::reset() {
+                _rgba = glm::dvec4(0.0);
+            }
+
+            inline glm::dvec4 Color::getColor() {
+                return data();
+            }
+
+            inline Color Color::getGrayscale(CRef<glm::dvec4> Value) {
+                return Color();
+            }
+
+            inline glm::dvec4 Color::data() {
+                return _rgba;
+            }
+
+            inline glm::dvec4 i::core::type::Color::mix(CRef<glm::dvec4> Color1, CRef<glm::dvec4> Color2, double Level) {
+                glm::dvec4 Result;
+                Result = Color1 * (1.0 - Level) + Color2 * Level;
+                return Result;
+            }
+
+            inline std::vector<FilePos> Color::findOutAllSameColor(CRef<istring> Filename, CRef<Color> Target) {
+                return std::vector<FilePos>();
+            }
+            */
+
+        }//SPACE(type)
+    }//SPACE(core)
+}//SPACE(i)
+
+#endif //!___MIRACLEFOREST_I_COLOR___

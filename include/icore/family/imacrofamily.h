@@ -168,7 +168,7 @@
 /*------------------------类------------------------*/
 #define C_STATIC
 #define C_OPERATOR
-
+#define C_CLASS
 
 /*------------------------快捷------------------------*/
 #define CATCH(x) catch(...){printf(x);}
@@ -191,6 +191,7 @@ SPACE(i) {
         using uint = unsigned int;
         using ulong = unsigned long;
         using u = unsigned;
+        using uchar = unsigned char;
 
         using __unk_type__ = void*;
 

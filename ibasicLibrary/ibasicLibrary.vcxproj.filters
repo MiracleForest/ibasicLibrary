@@ -130,6 +130,21 @@
     <Filter Include="third-party\glm\simd">
       <UniqueIdentifier>{f04bc3c0-2e79-4a04-a3de-089fa468c0e8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="third-party\dyncall">
+      <UniqueIdentifier>{c9ec86bf-c448-4c4e-8fda-901694716199}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="third-party\dyncall\lib">
+      <UniqueIdentifier>{bffe7a37-f910-42ce-a7a7-7eb836179191}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="third-party\httplib">
+      <UniqueIdentifier>{32b62fbf-1438-453e-a62e-fd22fc3fb426}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="third-party\leveldb">
+      <UniqueIdentifier>{d81870b9-3397-4844-918d-ab3be3026aa3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="third-party\leveldb\lib">
+      <UniqueIdentifier>{e98e37dc-ed09-4780-a9a0-d537558d1466}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ibasicLibrary.cpp">
@@ -1228,6 +1243,111 @@
     <ClInclude Include="..\third-party\glm\simd\vector_relational.h">
       <Filter>third-party\glm\simd</Filter>
     </ClInclude>
+    <ClInclude Include="..\third-party\dyncall\dyncall.h">
+      <Filter>third-party\dyncall</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third-party\dyncall\dyncall_alloc.h">
+      <Filter>third-party\dyncall</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third-party\dyncall\dyncall_alloc_wx.h">
+      <Filter>third-party\dyncall</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third-party\dyncall\dyncall_args.h">
+      <Filter>third-party\dyncall</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third-party\dyncall\dyncall_callback.h">
+      <Filter>third-party\dyncall</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third-party\dyncall\dyncall_callf.h">
+      <Filter>third-party\dyncall</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third-party\dyncall\dyncall_callvm.h">
+      <Filter>third-party\dyncall</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third-party\dyncall\dyncall_config.h">
+      <Filter>third-party\dyncall</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third-party\dyncall\dyncall_macros.h">
+      <Filter>third-party\dyncall</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third-party\dyncall\dyncall_signature.h">
+      <Filter>third-party\dyncall</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third-party\dyncall\dyncall_struct.h">
+      <Filter>third-party\dyncall</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third-party\dyncall\dyncall_thunk.h">
+      <Filter>third-party\dyncall</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third-party\dyncall\dyncall_types.h">
+      <Filter>third-party\dyncall</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third-party\dyncall\dyncall_utils.h">
+      <Filter>third-party\dyncall</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third-party\dyncall\dyncall_value.h">
+      <Filter>third-party\dyncall</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third-party\dyncall\dyncall_vector.h">
+      <Filter>third-party\dyncall</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third-party\dyncall\dyncall_version.h">
+      <Filter>third-party\dyncall</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third-party\dyncall\dynload.h">
+      <Filter>third-party\dyncall</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third-party\dyncall\dynload_alloc.h">
+      <Filter>third-party\dyncall</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third-party\httplib\httplib.h">
+      <Filter>third-party\httplib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third-party\leveldb\c.h">
+      <Filter>third-party\leveldb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third-party\leveldb\cache.h">
+      <Filter>third-party\leveldb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third-party\leveldb\comparator.h">
+      <Filter>third-party\leveldb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third-party\leveldb\db.h">
+      <Filter>third-party\leveldb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third-party\leveldb\dumpfile.h">
+      <Filter>third-party\leveldb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third-party\leveldb\env.h">
+      <Filter>third-party\leveldb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third-party\leveldb\export.h">
+      <Filter>third-party\leveldb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third-party\leveldb\filter_policy.h">
+      <Filter>third-party\leveldb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third-party\leveldb\iterator.h">
+      <Filter>third-party\leveldb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third-party\leveldb\options.h">
+      <Filter>third-party\leveldb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third-party\leveldb\slice.h">
+      <Filter>third-party\leveldb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third-party\leveldb\status.h">
+      <Filter>third-party\leveldb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third-party\leveldb\table.h">
+      <Filter>third-party\leveldb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third-party\leveldb\table_builder.h">
+      <Filter>third-party\leveldb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third-party\leveldb\write_batch.h">
+      <Filter>third-party\leveldb</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />
@@ -1649,6 +1769,18 @@
     </Library>
     <Library Include="..\third-party\detours\lib\syelog.lib">
       <Filter>third-party\detours\lib</Filter>
+    </Library>
+    <Library Include="..\third-party\dyncall\lib\dyncall_s.lib">
+      <Filter>third-party\dyncall\lib</Filter>
+    </Library>
+    <Library Include="..\third-party\dyncall\lib\dyncallback_s.lib">
+      <Filter>third-party\dyncall\lib</Filter>
+    </Library>
+    <Library Include="..\third-party\dyncall\lib\dynload_s.lib">
+      <Filter>third-party\dyncall\lib</Filter>
+    </Library>
+    <Library Include="..\third-party\leveldb\lib\leveldb.lib">
+      <Filter>third-party\leveldb\lib</Filter>
     </Library>
   </ItemGroup>
   <ItemGroup>

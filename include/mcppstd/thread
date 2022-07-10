@@ -1,3 +1,5 @@
+#ifndef __linux__
+
 // thread standard header
 
 // Copyright (c) Microsoft Corporation.
@@ -390,3 +392,7 @@ _STL_RESTORE_CLANG_WARNINGS
 #pragma pack(pop)
 #endif // _STL_COMPILER_PREPROCESSOR
 #endif // _THREAD_
+
+#else
+#include <thread>
+#endif // !__linux__
