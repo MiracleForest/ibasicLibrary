@@ -9,7 +9,7 @@
 #include "../include/icore/type/type/type.hpp"
 #include "../include/icore/type/istring.hpp"
 #include "../include/icore/type/time.hpp"
-
+#include "../include/icore/type/color.hpp"
 
 #include "../include/icore/lib/libmath/vec4.hpp"
 
@@ -108,6 +108,12 @@ IERROR i::core::Main::start(::i::core::Ref< N_ISTD _p_start> p_start) {
         std::cout << gfnl[i] << std::endl;
     }
 
+    std::cout << type::color::toHex({ 123,123,123 }) << std::endl;
+    std::cout << type::color::toHex(type::RGBA::makeRGBA(123,123,123,222)) << std::endl;
+    type::color c(type::color::toHex({ 123,123,123 }));
+    std::cout << c.data().r << std::endl;
+    std::cout << c.data().g << std::endl;
+    std::cout << c.data().b << std::endl;
     system("pause");
     return i::core::iexception::error::noError();
 }
