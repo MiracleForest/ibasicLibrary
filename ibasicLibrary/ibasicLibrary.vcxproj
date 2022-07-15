@@ -114,7 +114,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <WarningLevel>EnableAllWarnings</WarningLevel>
+      <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
@@ -287,15 +287,17 @@
     <None Include="cpp.hint" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\ichEdiPLoader\LiteLoaderBDS\LiteLoader\Header\LLAPI.h" />
     <ClInclude Include="..\include\icore\exception\error.hpp" />
     <ClInclude Include="..\include\icore\exception\errorcode.hpp" />
     <ClInclude Include="..\include\icore\exception\exception.hpp" />
     <ClInclude Include="..\include\icore\family\ifamily.hpp" />
     <ClInclude Include="..\include\icore\lib\libIO\console.h" />
+    <ClInclude Include="..\include\icore\lib\libIO\console\redirection.h" />
     <ClInclude Include="..\include\icore\lib\libIO\file.h" />
+    <ClInclude Include="..\include\icore\lib\libIO\file\shelllinkfile.h" />
     <ClInclude Include="..\include\icore\lib\libIO\ifilesystem.h" />
     <ClInclude Include="..\include\icore\lib\libIO\io.h" />
-    <ClInclude Include="..\include\icore\lib\libIO\shelllinkfile.h" />
     <ClInclude Include="..\include\icore\lib\libmath\math.h" />
     <ClInclude Include="..\include\icore\lib\libmath\matrix.hpp" />
     <ClInclude Include="..\include\icore\lib\libmath\rect.hpp" />
@@ -306,15 +308,16 @@
     <ClInclude Include="..\include\icore\type\basic\basic\ibasic.hpp" />
     <ClInclude Include="..\include\icore\type\basic\basic\position.hpp" />
     <ClInclude Include="..\include\icore\type\basic\istring.hpp" />
-    <ClInclude Include="..\include\icore\type\basic\numberArray.hpp" />
     <ClInclude Include="..\include\icore\type\color.hpp" />
     <ClInclude Include="..\include\icore\type\filepos.hpp" />
     <ClInclude Include="..\include\icore\type\istring.hpp" />
     <ClInclude Include="..\include\icore\type\level.hpp" />
+    <ClInclude Include="..\include\icore\type\library.hpp" />
     <ClInclude Include="..\include\icore\type\time.hpp" />
     <ClInclude Include="..\include\icore\type\type\concepts.hpp" />
     <ClInclude Include="..\include\icore\type\type\type.hpp" />
     <ClInclude Include="..\include\icore\type\type\type_traits.hpp" />
+    <ClInclude Include="..\include\icore\type\version.hpp" />
     <ClInclude Include="..\third-party\detours\detours.h" />
     <ClInclude Include="..\third-party\detours\detver.h" />
     <ClInclude Include="..\third-party\detours\syelog.h" />
@@ -652,7 +655,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\icore\family\imacrofamily.h" />
-    <ClInclude Include="..\include\icore\type\basic\number.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\third-party\detours\lib\detours.lib" />

@@ -6,8 +6,7 @@
 * @创建时间：2022.6.23.20:06
 * @创建者：Lovelylavender4
 * -----------------------------------------------------------------------------
-*
-*
+* shelllinkfile
 * -----------------------------------------------------------------------------
 * 如果你发现了bug，你可以去Github或邮箱(MiracleForest@Outlook.com)反馈给我们！
 * 我们一定会努力做得更好的！
@@ -17,7 +16,7 @@
 #define ___MIRACLEFOREST_I__LIBIO_SHELLLINKFILE___
 
 
-#include "../../type/istring.hpp"
+#include "../../../type/istring.hpp"
 #include <exception>
 
 #if __WINDOWS__

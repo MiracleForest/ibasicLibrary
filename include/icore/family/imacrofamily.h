@@ -172,7 +172,7 @@
 
 /*------------------------快捷------------------------*/
 #define CATCH(x) catch(...){printf(x);}
-#define IERROR i::core::iexception::error
+#define IERROR ::i::core::iexception::error
 #define SPACE(x) namespace x
 #define SPACE_ namespace
 
@@ -186,7 +186,7 @@
 
 SPACE(i) {
     SPACE(core) {
-
+        
         using ushort = unsigned short;
         using uint = unsigned int;
         using ulong = unsigned long;
@@ -194,7 +194,7 @@ SPACE(i) {
         using uchar = unsigned char;
 
         using __unk_type__ = void*;
-
+        using handle = void*;
 #ifdef __WINDOWS__
         typedef __int64   int64;
         typedef unsigned __int64   uint64;

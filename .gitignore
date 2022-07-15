@@ -367,3 +367,6 @@ MigrationBackup/
 FodyWeavers.xsd
 /build/*
 .vscode/
+/ibasicLibrary/1-2.json
+/ibasicLibrary/1.json
+/ibasicLibrary/command.json
