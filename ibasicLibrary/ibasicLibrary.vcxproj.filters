@@ -91,17 +91,11 @@
     <Filter Include="include\icore\lib\libIO">
       <UniqueIdentifier>{448151e4-939f-4279-a792-b25b64b345e6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="include\icore\lib\libmath">
-      <UniqueIdentifier>{4f1c6938-e106-4234-8b8d-2fd1deb5e9a9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="include\icore\lib\libMessageBox">
       <UniqueIdentifier>{38c9d0e5-eacb-476e-995f-0f2a5b851a22}</UniqueIdentifier>
     </Filter>
     <Filter Include="include\icore\lib\libProcess">
       <UniqueIdentifier>{80fb0bb3-5b5e-46d7-ad6b-af2187fb8ac9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="include\icore\lib\linDbg">
-      <UniqueIdentifier>{48310852-3ff2-4ab7-8736-0388712e5fee}</UniqueIdentifier>
     </Filter>
     <Filter Include="include\icore\lib\libNet">
       <UniqueIdentifier>{2ee77632-a490-4c89-99ae-5e2696a99ec3}</UniqueIdentifier>
@@ -145,6 +139,18 @@
     <Filter Include="third-party\leveldb\lib">
       <UniqueIdentifier>{e98e37dc-ed09-4780-a9a0-d537558d1466}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include\icore\lib\libDbg">
+      <UniqueIdentifier>{48310852-3ff2-4ab7-8736-0388712e5fee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\icore\lib\libMath">
+      <UniqueIdentifier>{4f1c6938-e106-4234-8b8d-2fd1deb5e9a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\icore\lib\libIO\console">
+      <UniqueIdentifier>{7c8dfd6e-b8f9-48e8-96e2-13ea0be52cd4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\icore\lib\libIO\file">
+      <UniqueIdentifier>{d99e2f8a-7c9b-4498-b019-d23143c58a33}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ibasicLibrary.cpp">
@@ -181,14 +187,8 @@
     <ClInclude Include="..\include\icore\family\imacrofamily.h">
       <Filter>include\icore\family</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\icore\type\basic\number.hpp">
-      <Filter>include\icore\type\basic</Filter>
-    </ClInclude>
     <ClInclude Include="..\include\icore\type\type\type_traits.hpp">
       <Filter>include\icore\type\type</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\icore\type\basic\numberArray.hpp">
-      <Filter>include\icore\type\basic</Filter>
     </ClInclude>
     <ClInclude Include="..\include\icore\type\basic\basic\ibasic.hpp">
       <Filter>include\icore\type\basic\basic</Filter>
@@ -356,19 +356,19 @@
       <Filter>include\icore\lib\libIO</Filter>
     </ClInclude>
     <ClInclude Include="..\include\icore\lib\libmath\math.h">
-      <Filter>include\icore\lib\libmath</Filter>
+      <Filter>include\icore\lib\libMath</Filter>
     </ClInclude>
     <ClInclude Include="..\include\icore\lib\libmath\rect.hpp">
-      <Filter>include\icore\lib\libmath</Filter>
+      <Filter>include\icore\lib\libMath</Filter>
     </ClInclude>
     <ClInclude Include="..\include\icore\lib\libmath\vec2.hpp">
-      <Filter>include\icore\lib\libmath</Filter>
+      <Filter>include\icore\lib\libMath</Filter>
     </ClInclude>
     <ClInclude Include="..\include\icore\lib\libmath\vec3.hpp">
-      <Filter>include\icore\lib\libmath</Filter>
+      <Filter>include\icore\lib\libMath</Filter>
     </ClInclude>
     <ClInclude Include="..\include\icore\lib\libmath\vec4.hpp">
-      <Filter>include\icore\lib\libmath</Filter>
+      <Filter>include\icore\lib\libMath</Filter>
     </ClInclude>
     <ClInclude Include="..\include\icore\lib\libProcess\process.h">
       <Filter>include\icore\lib\libProcess</Filter>
@@ -382,14 +382,11 @@
     <ClInclude Include="resource.h">
       <Filter>resource</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\icore\lib\libIO\shelllinkfile.h">
-      <Filter>include\icore\lib\libIO</Filter>
-    </ClInclude>
     <ClInclude Include="..\include\icore\type\time.hpp">
       <Filter>include\icore\type</Filter>
     </ClInclude>
     <ClInclude Include="..\include\icore\lib\libmath\matrix.hpp">
-      <Filter>include\icore\lib\libmath</Filter>
+      <Filter>include\icore\lib\libMath</Filter>
     </ClInclude>
     <ClInclude Include="..\include\icore\lib\libIO\ifilesystem.h">
       <Filter>include\icore\lib\libIO</Filter>
@@ -1243,110 +1240,20 @@
     <ClInclude Include="..\third-party\glm\simd\vector_relational.h">
       <Filter>third-party\glm\simd</Filter>
     </ClInclude>
-    <ClInclude Include="..\third-party\dyncall\dyncall.h">
-      <Filter>third-party\dyncall</Filter>
+    <ClInclude Include="..\include\icore\lib\libIO\console\redirection.h">
+      <Filter>include\icore\lib\libIO\console</Filter>
     </ClInclude>
-    <ClInclude Include="..\third-party\dyncall\dyncall_alloc.h">
-      <Filter>third-party\dyncall</Filter>
+    <ClInclude Include="..\include\icore\lib\libIO\file\shelllinkfile.h">
+      <Filter>include\icore\lib\libIO\file</Filter>
     </ClInclude>
-    <ClInclude Include="..\third-party\dyncall\dyncall_alloc_wx.h">
-      <Filter>third-party\dyncall</Filter>
+    <ClInclude Include="..\include\icore\type\version.hpp">
+      <Filter>include\icore\type</Filter>
     </ClInclude>
-    <ClInclude Include="..\third-party\dyncall\dyncall_args.h">
-      <Filter>third-party\dyncall</Filter>
+    <ClInclude Include="..\include\icore\type\library.hpp">
+      <Filter>include\icore\type</Filter>
     </ClInclude>
-    <ClInclude Include="..\third-party\dyncall\dyncall_callback.h">
-      <Filter>third-party\dyncall</Filter>
-    </ClInclude>
-    <ClInclude Include="..\third-party\dyncall\dyncall_callf.h">
-      <Filter>third-party\dyncall</Filter>
-    </ClInclude>
-    <ClInclude Include="..\third-party\dyncall\dyncall_callvm.h">
-      <Filter>third-party\dyncall</Filter>
-    </ClInclude>
-    <ClInclude Include="..\third-party\dyncall\dyncall_config.h">
-      <Filter>third-party\dyncall</Filter>
-    </ClInclude>
-    <ClInclude Include="..\third-party\dyncall\dyncall_macros.h">
-      <Filter>third-party\dyncall</Filter>
-    </ClInclude>
-    <ClInclude Include="..\third-party\dyncall\dyncall_signature.h">
-      <Filter>third-party\dyncall</Filter>
-    </ClInclude>
-    <ClInclude Include="..\third-party\dyncall\dyncall_struct.h">
-      <Filter>third-party\dyncall</Filter>
-    </ClInclude>
-    <ClInclude Include="..\third-party\dyncall\dyncall_thunk.h">
-      <Filter>third-party\dyncall</Filter>
-    </ClInclude>
-    <ClInclude Include="..\third-party\dyncall\dyncall_types.h">
-      <Filter>third-party\dyncall</Filter>
-    </ClInclude>
-    <ClInclude Include="..\third-party\dyncall\dyncall_utils.h">
-      <Filter>third-party\dyncall</Filter>
-    </ClInclude>
-    <ClInclude Include="..\third-party\dyncall\dyncall_value.h">
-      <Filter>third-party\dyncall</Filter>
-    </ClInclude>
-    <ClInclude Include="..\third-party\dyncall\dyncall_vector.h">
-      <Filter>third-party\dyncall</Filter>
-    </ClInclude>
-    <ClInclude Include="..\third-party\dyncall\dyncall_version.h">
-      <Filter>third-party\dyncall</Filter>
-    </ClInclude>
-    <ClInclude Include="..\third-party\dyncall\dynload.h">
-      <Filter>third-party\dyncall</Filter>
-    </ClInclude>
-    <ClInclude Include="..\third-party\dyncall\dynload_alloc.h">
-      <Filter>third-party\dyncall</Filter>
-    </ClInclude>
-    <ClInclude Include="..\third-party\httplib\httplib.h">
-      <Filter>third-party\httplib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\third-party\leveldb\c.h">
-      <Filter>third-party\leveldb</Filter>
-    </ClInclude>
-    <ClInclude Include="..\third-party\leveldb\cache.h">
-      <Filter>third-party\leveldb</Filter>
-    </ClInclude>
-    <ClInclude Include="..\third-party\leveldb\comparator.h">
-      <Filter>third-party\leveldb</Filter>
-    </ClInclude>
-    <ClInclude Include="..\third-party\leveldb\db.h">
-      <Filter>third-party\leveldb</Filter>
-    </ClInclude>
-    <ClInclude Include="..\third-party\leveldb\dumpfile.h">
-      <Filter>third-party\leveldb</Filter>
-    </ClInclude>
-    <ClInclude Include="..\third-party\leveldb\env.h">
-      <Filter>third-party\leveldb</Filter>
-    </ClInclude>
-    <ClInclude Include="..\third-party\leveldb\export.h">
-      <Filter>third-party\leveldb</Filter>
-    </ClInclude>
-    <ClInclude Include="..\third-party\leveldb\filter_policy.h">
-      <Filter>third-party\leveldb</Filter>
-    </ClInclude>
-    <ClInclude Include="..\third-party\leveldb\iterator.h">
-      <Filter>third-party\leveldb</Filter>
-    </ClInclude>
-    <ClInclude Include="..\third-party\leveldb\options.h">
-      <Filter>third-party\leveldb</Filter>
-    </ClInclude>
-    <ClInclude Include="..\third-party\leveldb\slice.h">
-      <Filter>third-party\leveldb</Filter>
-    </ClInclude>
-    <ClInclude Include="..\third-party\leveldb\status.h">
-      <Filter>third-party\leveldb</Filter>
-    </ClInclude>
-    <ClInclude Include="..\third-party\leveldb\table.h">
-      <Filter>third-party\leveldb</Filter>
-    </ClInclude>
-    <ClInclude Include="..\third-party\leveldb\table_builder.h">
-      <Filter>third-party\leveldb</Filter>
-    </ClInclude>
-    <ClInclude Include="..\third-party\leveldb\write_batch.h">
-      <Filter>third-party\leveldb</Filter>
+    <ClInclude Include="..\..\ichEdiPLoader\LiteLoaderBDS\LiteLoader\Header\LLAPI.h">
+      <Filter>build</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1769,18 +1676,6 @@
     </Library>
     <Library Include="..\third-party\detours\lib\syelog.lib">
       <Filter>third-party\detours\lib</Filter>
-    </Library>
-    <Library Include="..\third-party\dyncall\lib\dyncall_s.lib">
-      <Filter>third-party\dyncall\lib</Filter>
-    </Library>
-    <Library Include="..\third-party\dyncall\lib\dyncallback_s.lib">
-      <Filter>third-party\dyncall\lib</Filter>
-    </Library>
-    <Library Include="..\third-party\dyncall\lib\dynload_s.lib">
-      <Filter>third-party\dyncall\lib</Filter>
-    </Library>
-    <Library Include="..\third-party\leveldb\lib\leveldb.lib">
-      <Filter>third-party\leveldb\lib</Filter>
     </Library>
   </ItemGroup>
   <ItemGroup>

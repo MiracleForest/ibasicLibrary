@@ -25,18 +25,57 @@
 #include <string>
 
 
+
 SPACE(i) {
 	SPACE(core) {
 
 		enum class typeList {
 			unkType,
 			itype,
+			ibasic,
+			ibasic_data_type,
 			basic_number,
-			numberArray_const_iterator,
-			numberArray_iterator,
-			numberArray,
-			basic_istring
-			
+			ErrorInfo,
+			error,
+			ErrorCode,
+			createErrorFailed,
+			_p_start,
+			basic_istring,
+			Main,
+			position,
+			is_std_string,
+			arithmetic,
+			stdString,
+			is_std_string_v,
+			RGB,
+			RGBA,
+			color,
+			Colors,
+			ImageType,
+			ConsoleTargetType,
+			Gradient,
+			fPos,
+			FilePos,
+			istring,
+			iwstring,
+			iu8string,
+			iu16string,
+			iu32string,
+			level,
+			Level,
+			time_s,
+			time,
+			ConsoleType,
+			Console,
+			iFileInfo,
+			File,
+			ShellLinkFile,
+			Matrix,
+			rect,
+			Vec2,
+			Vec3,
+			Vec4,
+			Process
 		};
 		using iType = typeList;
 
@@ -94,10 +133,10 @@ SPACE(i) {
 			* 设置mType的值
 			* @enddetails
 			****/
-			void setdata(iType t) { mType = t; }
+			void setData(iType t) { mType = t; }
 
-		public C_STATIC:
-			 
+			public C_STATIC:
+
 			/****
 			* @author Lovelylavender4
 			* @since 2022.6.21.13:30
@@ -106,7 +145,7 @@ SPACE(i) {
 			* @param t 类型枚举
 			* @retval 类型枚举的字符串名称
 			*
-			* @par Example
+			* @par 示例
 			* @code
 			* 代码示例
 			* @endcode
@@ -126,16 +165,7 @@ SPACE(i) {
 				case iType::basic_number: {
 					return "basic_number";
 				}
-				case iType::numberArray_const_iterator: {
-					return "numberArray_const_iterator";
-				}
-				case iType::numberArray_iterator: {
-					return "numberArray_iterator";
-				}
-				case iType::numberArray: {
-					return "numberArray";
-				}
-				case iType::basic_istring:{
+				case iType::basic_istring: {
 					return "basic_istring";
 				}
 				default: {

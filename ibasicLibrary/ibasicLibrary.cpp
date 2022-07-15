@@ -1,8 +1,10 @@
 #pragma warning(disable:4996)
 #pragma warning(disable:4819)
+#pragma warning(disable:4464)
 #include <iostream>
 #include <thread>
 #include <functional>
+
 #include <format>
 
 #include "../include/icore/family/ifamily.hpp"
@@ -14,14 +16,13 @@
 #include "../include/icore/lib/libmath/vec4.hpp"
 
 #include "../include/icore/lib/libIO/file.h"
-#include "../include/icore/lib/libIO/shelllinkfile.h"
 #pragma comment(lib,R"(E:\program\MiracleForest\ibasicLibrary\build\x64\Debug\libIO.lib)")
-
 
 
 #if __WINDOWS__
 #include <Windows.h>
 #endif
+
 
 IERROR fun() {
     return IERROR::make(i::core::iexception::ErrorCode::unkError, { "ibasicLibrary.cpp",1,__LINE__ });

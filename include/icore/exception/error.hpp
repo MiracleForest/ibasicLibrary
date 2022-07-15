@@ -49,7 +49,7 @@ SPACE(i) {
                 type::level _level;       // 等级
                 bool _canBeIgnored;       // 是否可以忽略
 
-                ErrorInfo makeDefault() {
+                static ErrorInfo makeDefault() {
                     ErrorInfo e;
                     e._code = ErrorCode::unkError;
                     e._icode = -1;
