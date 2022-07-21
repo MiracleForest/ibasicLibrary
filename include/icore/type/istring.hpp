@@ -22,13 +22,13 @@
 SPACE(i) {
     SPACE(core) {
         SPACE(type) {
-                using istring = basic::basic_istring<std::string>;
-                using iwstring = basic::basic_istring<std::wstring>;
+            using istring = basic::basic_istring<std::string>;
+            using iwstring = basic::basic_istring<std::wstring>;
 #ifdef __cpp_lib_char8_t
-                using iu8string = basic::basic_istring<std::u8string>;
+            using iu8string = basic::basic_istring<std::u8string>;
 #endif // __cpp_lib_char8_t
-                using iu16string = basic::basic_istring<std::u16string>;
-                using iu32string = basic::basic_istring<std::u32string>;
+            using iu16string = basic::basic_istring<std::u16string>;
+            using iu32string = basic::basic_istring<std::u32string>;
         }//SPACE(type)
     }//SPACE(core)
 }//SPACE(i)

@@ -29,39 +29,41 @@ SPACE(i) {
 		SPACE(libmath) {
 
 			template <typename T>
-			class Vec3{
+			class Vec3 {
 			public:
-				Vec3() : x((T)0), y((T)0), z((T)0) {}
+				Vec3() : x((T) 0), y((T) 0), z((T) 0) {}
 
 				template <typename U>
 				Vec3<T>(Vec3<U> a) {
-					x = (T)a.x;
-					y = (T)a.y;
-					z = (T)a.z;
+					x = (T) a.x;
+					y = (T) a.y;
+					z = (T) a.z;
 				}
 
 				Vec3(const T& xyz) : x(xyz), y(xyz), z(xyz) {}
 
 				Vec3(const T& x, const T& y, const T& z) : x(x), y(y), z(z) {}
-				
+
 				Vec3(const Vec2<T>& xy, const T& z) : x(xy.x), y(xy.y), z(z) {}
-				
-				Vec3(const type::istring& vec, const char& c = ';', Vec3<T>* def = nullptr){
-					if (def) { x = def->x; y = def->y; z = def->z; }
+
+				Vec3(const type::istring& vec, const char& c = ';', Vec3<T>* def = nullptr) {
+					if ( def ) {
+						x = def->x; y = def->y; z = def->z;
+					}
 					std::vector<T> result = _function::StringToNumberVector<T>(vec.data(), c);
 					const size_t s = result.size();
-					if (s > 0) x = result[0];
-					if (s > 1) y = result[1];
-					if (s > 2) z = result[2];
+					if ( s > 0 ) x = result[0];
+					if ( s > 1 ) y = result[1];
+					if ( s > 2 ) z = result[2];
 				}
 
 			public:
-				
 
-				T& operator [] (const size_t& i) { 
+
+				T& operator [] (const size_t& i) {
 					return (&x)[i];
 				}
-				
+
 
 				Vec3<T> offset(
 					const T& vX,
@@ -70,8 +72,8 @@ SPACE(i) {
 				) const {
 					return Vec3<T>(x + vX, y + vY, z + vZ);
 				}
-				
-				
+
+
 				void setXYZ(
 					const T& vX,
 					const T& vY,
@@ -81,22 +83,22 @@ SPACE(i) {
 					y = vY;
 					z = vZ;
 				}
-				
-				
+
+
 				Vec3<T> operator -() const {
 					return Vec3<T>(-x, -y, -z);
 				}
-				
-				
+
+
 				Vec3<T> operator !() const {
 					return Vec3<T>(!x, !y, !z);
 				}
-				
-				
+
+
 				Vec2<T> xy() const {
 					return Vec2<T>(x, y);
 				}
-				
+
 
 				Vec2<T> xz() const {
 					return Vec2<T>(x, z);
@@ -187,7 +189,7 @@ SPACE(i) {
 
 
 				bool operator != (const Vec3<T>& v) {
-					return (x != v.x) || (y != v.y) || (z != v.z); 
+					return (x != v.x) || (y != v.y) || (z != v.z);
 				}
 
 
@@ -220,7 +222,7 @@ SPACE(i) {
 
 
 				T length() const {
-					return (T)sqrt(lengthSquared());
+					return (T) sqrt(lengthSquared());
 				}
 
 
@@ -231,8 +233,10 @@ SPACE(i) {
 
 				T normalize() {
 					T _length = length();
-					if (_length < (T)1e-5) { return (T)0; }
-					T _invLength = (T)1 / _length;
+					if ( _length < (T) 1e-5 ) {
+						return (T) 0;
+					}
+					T _invLength = (T) 1 / _length;
 					x *= _invLength;
 					y *= _invLength;
 					z *= _invLength;
@@ -261,19 +265,19 @@ SPACE(i) {
 
 
 				bool emptyAND() const {
-					return x == (T)0 && y == (T)0 && z == (T)0;
+					return x == (T) 0 && y == (T) 0 && z == (T) 0;
 				}
 
 
 				bool emptyOR() const {
-					return x == (T)0 || y == (T)0 || z == (T)0;
+					return x == (T) 0 || y == (T) 0 || z == (T) 0;
 				}
 
 
 				type::istring istring(const char& c = ';') const {
-					return (std::to_string(x) + c 
-						+ std::to_string(y) + c 
-						+ std::to_string(z));
+					return (std::to_string(x) + c
+							+ std::to_string(y) + c
+							+ std::to_string(z));
 				}
 
 
@@ -292,37 +296,37 @@ SPACE(i) {
 			};
 
 			template <typename T>
-			inline Vec3<T>& operator ++ (Vec3<T>& v) {
+			inline Vec3<T>& operator ++ (Vec3<T>&v) {
 				++v;
 				return v;
-			} 
-			
-
-			template <typename T> 
-			inline Vec3<T>& operator -- (Vec3<T>& v) {
-				--v;
-				return v;
-			} 
+			}
 
 
 			template <typename T>
-			inline Vec3<T> operator ++ (Vec3<T>& v, int) {
+			inline Vec3<T>& operator -- (Vec3<T>&v) {
+				--v;
+				return v;
+			}
+
+
+			template <typename T>
+			inline Vec3<T> operator ++ (Vec3<T>&v, int) {
 				Vec3<T> a = v;
 				++a;
 				return a;
-			} 
+			}
 
 
 			template <typename T>
-			inline Vec3<T> operator -- (Vec3<T>& v, int) {
+			inline Vec3<T> operator -- (Vec3<T>&v, int) {
 				Vec3<T> a = v;
 				--a;
 				return a;
-			} 
+			}
 
 
 			template <typename T>
-			inline Vec3<T> operator + (Vec3<T> v, T f) { 
+			inline Vec3<T> operator + (Vec3<T> v, T f) {
 				return Vec3<T>(v.x + f, v.y + f, v.z + f);
 			}
 
@@ -411,9 +415,9 @@ SPACE(i) {
 			}
 
 
-			template <typename T> 
+			template <typename T>
 			inline bool operator > (Vec3<T> v, T f) {
-				return v.x > f && v.y > f && v.z > f; 
+				return v.x > f && v.y > f && v.z > f;
 			}
 
 
@@ -481,7 +485,7 @@ SPACE(i) {
 
 
 			template <typename T>
-			inline Vec3<T> ceil(Vec3<T> a) { 
+			inline Vec3<T> ceil(Vec3<T> a) {
 				return Vec3<T>(
 					_function::ceil<T>(a.x),
 					_function::ceil<T>(a.y),
@@ -492,7 +496,7 @@ SPACE(i) {
 			template <typename T>
 			inline Vec2<T> abs(Vec2<T> a) {
 				return Vec2<T>(_function::abs<T>(a.x),
-					_function::abs<T>(a.y));
+							   _function::abs<T>(a.y));
 			}
 
 
@@ -519,9 +523,9 @@ SPACE(i) {
 
 			template <typename T>
 			inline Vec3<T> cReflect(Vec3<T> I, Vec3<T> N) {
-				return I - (T)2 * dotS(N, I) * N;
+				return I - (T) 2 * dotS(N, I) * N;
 			}
-			
+
 
 			using dVec3 = Vec3<double>;
 			using fVec3 = Vec3<float>;
@@ -539,21 +543,21 @@ SPACE(i) {
 			using u64Vec3 = Vec3<uint64_t>;
 
 
-			inline bool valid(const fVec3& a) {
+			inline bool valid(const fVec3 & a) {
 				return _function::floatIsValid(a.x) &&
 					_function::floatIsValid(a.y) &&
 					_function::floatIsValid(a.z);
 			}
 
-			
-			inline bool operator == (const fVec3& v, const fVec3& f) {
+
+			inline bool operator == (const fVec3 & v, const fVec3 & f) {
 				return IS_FLOAT_EQUAL(f.x, v.x) &&
 					IS_FLOAT_EQUAL(f.y, v.y) &&
 					IS_FLOAT_EQUAL(f.z, v.z);
 			}
 
 
-			inline bool operator != (const fVec3& v, const fVec3& f) {
+			inline bool operator != (const fVec3 & v, const fVec3 & f) {
 				return IS_FLOAT_DIFFERENT(f.x, v.x) ||
 					IS_FLOAT_DIFFERENT(f.y, v.y) ||
 					IS_FLOAT_DIFFERENT(f.z, v.z);

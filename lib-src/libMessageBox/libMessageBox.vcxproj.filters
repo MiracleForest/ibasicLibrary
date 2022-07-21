@@ -13,9 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="dllmain">
-      <UniqueIdentifier>{65faae15-4b2b-425c-8a86-117b11d44ccf}</UniqueIdentifier>
-    </Filter>
     <Filter Include="include">
       <UniqueIdentifier>{b2fb577a-8b75-4b2a-9308-1750c31145e8}</UniqueIdentifier>
     </Filter>
@@ -40,9 +37,6 @@
     </ClCompile>
     <ClCompile Include="MessageBoxDlg.cpp">
       <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="dllmain.cpp">
-      <Filter>dllmain</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

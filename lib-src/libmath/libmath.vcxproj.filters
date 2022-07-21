@@ -1,10 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="other">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
     <Filter Include="include">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
@@ -16,17 +12,8 @@
     <Filter Include="src">
       <UniqueIdentifier>{94788ffb-3437-4827-bc9d-ef75af9901f1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="dllmain">
-      <UniqueIdentifier>{b663ef6a-9b01-44cf-8e3d-34d857b4345c}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="framework.h">
-      <Filter>other</Filter>
-    </ClInclude>
-    <ClInclude Include="pch.h">
-      <Filter>other</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\icore\lib\libmath\math.h">
       <Filter>include</Filter>
     </ClInclude>
@@ -47,14 +34,8 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="pch.cpp">
-      <Filter>other</Filter>
-    </ClCompile>
     <ClCompile Include="src\math.cpp">
       <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="dllmain.cpp">
-      <Filter>dllmain</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

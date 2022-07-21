@@ -52,9 +52,6 @@
     <Filter Include="include\icore\type\basic\basic">
       <UniqueIdentifier>{adf5a426-2904-45cd-a787-8a419f10f52f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="include\icore\exception">
-      <UniqueIdentifier>{55604364-b858-48b4-bf79-ecc0e33e5d06}</UniqueIdentifier>
-    </Filter>
     <Filter Include="third-party\nlohmann">
       <UniqueIdentifier>{456b3dcd-d44d-488a-b592-5530be515432}</UniqueIdentifier>
     </Filter>
@@ -151,6 +148,9 @@
     <Filter Include="include\icore\lib\libIO\file">
       <UniqueIdentifier>{d99e2f8a-7c9b-4498-b019-d23143c58a33}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include\icore\exception">
+      <UniqueIdentifier>{55604364-b858-48b4-bf79-ecc0e33e5d06}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ibasicLibrary.cpp">
@@ -172,9 +172,6 @@
     </Text>
     <Text Include="..\tools\filelist.txt">
       <Filter>tools</Filter>
-    </Text>
-    <Text Include="..\other\filelist.txt">
-      <Filter>other</Filter>
     </Text>
     <Text Include="..\resource\filelist.txt">
       <Filter>resource</Filter>
@@ -1668,6 +1665,12 @@
     </None>
     <None Include="..\third-party\glm\gtx\wrap.inl">
       <Filter>third-party\glm\gtx</Filter>
+    </None>
+    <None Include="CodeMap1.dgml">
+      <Filter>other</Filter>
+    </None>
+    <None Include="IncludeFileDependencies1.dgml">
+      <Filter>other</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

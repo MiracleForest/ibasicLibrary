@@ -45,7 +45,7 @@ SPACE(i) {
             {
             public:
                 FilePos() :_pos(fPos::makeDefault()) {}
-                FilePos(istring fileName, int x, int y) :_pos({ fileName ,x,y }) {}
+                FilePos(istring fileName, int x, int y) :_pos({ fileName, x, y }) {}
                 FilePos(fPos pos) :_pos(pos) {}
                 ~FilePos() {}
             public:
@@ -58,7 +58,7 @@ SPACE(i) {
                     _pos._fileName = fileName;
                 }
 
-                int getX() const{
+                int getX() const {
                     return _pos.x;
                 }
 
@@ -66,7 +66,7 @@ SPACE(i) {
                     _pos.x = x;
                 }
 
-                void setY(int y){
+                void setY(int y) {
                     _pos.y = y;
                 }
 
@@ -75,7 +75,7 @@ SPACE(i) {
                 }
 
                 fPos data()const {
-                    return _pos; 
+                    return _pos;
                 }
 
             public:

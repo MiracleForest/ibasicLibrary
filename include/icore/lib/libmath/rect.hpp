@@ -25,13 +25,19 @@ SPACE(i) {
 
 			// bottom left to top right
 			template <typename T>
-			class rect {			
+			class rect {
 			public:
 
-				rect() { setRect((T)0, (T)0, (T)0, (T)0); }
-				rect(T vX, T vY, T vW, T vH) { setRect(vX, vY, vW, vH); }
-				rect(Vec2<T> xy, Vec2<T> zw) { setRect(xy.x, xy.y, zw.x, zw.y); }
-			
+				rect() {
+					setRect((T) 0, (T) 0, (T) 0, (T) 0);
+				}
+				rect(T vX, T vY, T vW, T vH) {
+					setRect(vX, vY, vW, vH);
+				}
+				rect(Vec2<T> xy, Vec2<T> zw) {
+					setRect(xy.x, xy.y, zw.x, zw.y);
+				}
+
 			public:
 
 
@@ -73,7 +79,7 @@ SPACE(i) {
 
 
 				Vec2<T> center() const {
-					return Vec2<T>((left + right) / (T)2, (top + bottom) / (T)2);
+					return Vec2<T>((left + right) / (T) 2, (top + bottom) / (T) 2);
 				}
 
 
@@ -89,10 +95,10 @@ SPACE(i) {
 
 				Ptr<Vec2<T>> texCoords(T scaleX, T scaleY) {
 					Ptr<Vec2<T>> buf = new Vec2<T>[4];
-					buf[0] = Vec2<T>((T)0, (T)0);
-					buf[1] = Vec2<T>((T)scaleX, (T)0);
+					buf[0] = Vec2<T>((T) 0, (T) 0);
+					buf[1] = Vec2<T>((T) scaleX, (T) 0);
 					buf[2] = Vec2<T>(scaleX, scaleY);
-					buf[3] = Vec2<T>((T)0, scaleY);
+					buf[3] = Vec2<T>((T) 0, scaleY);
 					return buf;
 				}
 
@@ -134,34 +140,34 @@ SPACE(i) {
 
 
 				bool isContainPoint(Vec2<T> pt) {
-					if (pt.x > left)
-						if (pt.x < right)
-							if (pt.y > bottom)
-								if (pt.y < top)return true;
+					if ( pt.x > left )
+						if ( pt.x < right )
+							if ( pt.y > bottom )
+								if ( pt.y < top )return true;
 					return false;
 				}
 
 
 				bool isIntersectedByLine(Vec2<T> v0, Vec2<T> v1) {
-					if ((v0.x <= left && v1.x <= left) ||
+					if ( (v0.x <= left && v1.x <= left) ||
 						(v0.y <= bottom && v1.y <= bottom) ||
 						(v0.x >= right && v1.x >= right) ||
-						(v0.y >= top && v1.y >= top))
+						(v0.y >= top && v1.y >= top) )
 						return false; // Completely outside.
-					if (IS_FLOAT_EQUAL(v1.y, v0.y) && IS_FLOAT_EQUAL(v1.x, v0.x)) return true;
-					if (IS_FLOAT_DIFFERENT(v1.x, v0.x)) // avoid div by zero
+					if ( IS_FLOAT_EQUAL(v1.y, v0.y) && IS_FLOAT_EQUAL(v1.x, v0.x) ) return true;
+					if ( IS_FLOAT_DIFFERENT(v1.x, v0.x) ) // avoid div by zero
 					{
 						float _m = (v1.y - v0.y) / (v1.x - v0.x);
 						float _y = _m * (left - v0.x) + v0.y;
-						if (_y >= bottom && _y <= top) return true;
+						if ( _y >= bottom && _y <= top ) return true;
 						_y = _m * (right - v0.x) + v0.y;
-						if (_y >= bottom && _y <= top) return true;
-						if (IS_FLOAT_DIFFERENT(_m, 0.0f)) // avoid div by zero
+						if ( _y >= bottom && _y <= top ) return true;
+						if ( IS_FLOAT_DIFFERENT(_m, 0.0f) ) // avoid div by zero
 						{
 							float _x = (bottom - v0.y) / _m + v0.x;
-							if (_x >= left && _x <= right) return true;
+							if ( _x >= left && _x <= right ) return true;
 							_x = (top - v0.y) / _m + v0.x;
-							if (_x >= left && _x <= right) return true;
+							if ( _x >= left && _x <= right ) return true;
 						}
 					}
 					return false;
@@ -171,13 +177,15 @@ SPACE(i) {
 
 				bool isIntersectedByCircle(Vec2<T> vPos, T vRadius) // only for axis aligned box
 				{
-					T d = maxi<T>(abs<T>(center() - vPos) - size() / (T)2, (T)0).lengthSquared();
+					T d = maxi<T>(abs<T>(center() - vPos) - size() / (T) 2, (T) 0).lengthSquared();
 					return d < vRadius* vRadius;
 				}
 
 
 
-				Vec2<T> size() { return Vec2<T>(w, h); }
+				Vec2<T> size() {
+					return Vec2<T>(w, h);
+				}
 			public:
 				T x, y, w, h;
 				T left, right, top, bottom;

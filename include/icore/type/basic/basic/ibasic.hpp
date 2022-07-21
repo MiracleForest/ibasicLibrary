@@ -40,7 +40,7 @@ SPACE(i) {
 
 
 		}//SPACE(basic)
-    }//SPACE(core)
+	}//SPACE(core)
 }//SPACE(i)
 
 #endif //!___MIRACLEFOREST_I_INASIC___

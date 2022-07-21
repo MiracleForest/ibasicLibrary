@@ -56,7 +56,7 @@ SPACE(i) {
                 ~File();
             public:
 
-                public C_STATIC : 
+                public C_STATIC :
 
                     /****
                         * @author Lovelylavender4
@@ -79,11 +79,11 @@ SPACE(i) {
                     std::ifstream fRead;
 
                     std::ios_base::openmode mode = std::ios_base::in;
-                    if (isBinary) {
+                    if ( isBinary ) {
                         mode |= std::ios_base::binary;
                     }
                     fRead.open(filePath.data(), mode);
-                    if (!fRead.is_open()) {
+                    if ( !fRead.is_open() ) {
                         return std::nullopt;
                     }
                     type::istring data(
@@ -116,11 +116,11 @@ SPACE(i) {
                     std::ofstream fWrite;
 
                     std::ios_base::openmode mode = std::ios_base::out;
-                    if (isBinary)
+                    if ( isBinary )
                         mode |= std::ios_base::binary;
 
                     fWrite.open(filePath, mode);
-                    if (!fWrite.is_open()) {
+                    if ( !fWrite.is_open() ) {
                         return false;
                     }
                     fWrite << content;
@@ -159,12 +159,12 @@ SPACE(i) {
                 ****/
                 static std::vector<std::string> getFileNameList(CRef<std::string> dir) {
                     std::filesystem::directory_entry d(dir);
-                    if (!d.is_directory())
-                        return {};
+                    if ( !d.is_directory() )
+                        return { };
 
                     std::vector<std::string> list;
                     std::filesystem::directory_iterator deps(d);
-                    for (auto& i : deps)
+                    for ( auto& i : deps )
                     {
                         list.push_back(i.path().filename().string());
                     }

@@ -65,7 +65,7 @@ SPACE(i) {
             };
 
             class time {
-            public:                
+            public:
                 time(time_s _time = time_s::makeDefault()) :__stime(_time) {}
 
                 ~time() {}
@@ -84,7 +84,7 @@ SPACE(i) {
                     __stime.hours = now_tm->tm_hour;
                     __stime.minutes = now_tm->tm_min;
                     __stime.seconds = now_tm->tm_sec;
-                    
+
                     __stime.yday = now_tm->tm_yday;
                     __stime.isdst = now_tm->tm_isdst;
 
@@ -95,20 +95,20 @@ SPACE(i) {
                     ms = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch()) % 1000;
                     cs = std::chrono::duration_cast<std::chrono::microseconds>(now.time_since_epoch()) % 1000000;
                     ns = std::chrono::duration_cast<std::chrono::nanoseconds>(now.time_since_epoch()) % 1000000000;
-                    
+
                     __stime.milliseconds = ms.count();
                     __stime.microseconds = cs.count() % 1000;
                     __stime.nanoseconds = ns.count() % 1000;
                 }
 
 
-                time_s data(){
+                time_s data() {
                     return __stime;
                 }
 
-            public C_OPERATOR:
-            
-            public C_STATIC:
+                public C_OPERATOR:
+
+                public C_STATIC :
 
             protected:
             private:

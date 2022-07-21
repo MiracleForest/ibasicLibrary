@@ -13,7 +13,9 @@ public:
 
 
 #ifdef AFX_DESIGN_TIME
-	enum { IDD = IDD_DIALOG1 };
+	enum {
+		IDD = IDD_DIALOG1
+	};
 #endif
 
 protected:
