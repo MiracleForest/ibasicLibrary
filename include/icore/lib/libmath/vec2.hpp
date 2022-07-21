@@ -29,26 +29,26 @@ SPACE(i) {
 	SPACE(core) {
 		SPACE(libmath) {
 
-			
+
 
 			template <typename T>
 			class Vec2 {
 			public:
 
 				Vec2<T>() {
-					x = (T)0;
-					y = (T)0;
+					x = (T) 0;
+					y = (T) 0;
 				}
 
 				template <typename U>
 				Vec2<T>(CRef<Vec2<U>> a) {
-					x = (T)a.x;
-					y = (T)a.y;
+					x = (T) a.x;
+					y = (T) a.y;
 				}
 
 				Vec2<T>(CRef<T> a) {
 					x = a;
-					y = a; 
+					y = a;
 				}
 
 				Vec2<T>(CRef<T> a, CRef<T> b) {
@@ -57,21 +57,21 @@ SPACE(i) {
 				}
 
 				Vec2<T>(CRef<type::istring> Vec, CRef<char> c = ';', Ptr<Vec2<T>> def = nullptr) {
-					if (def) {
+					if ( def ) {
 						x = def->x;
 						y = def->y;
 					}
 					::std::vector<T> result = _function::StringToNumberVector<T>(Vec.data(), c);
 					const size_t s = result.size();
-					if (s > 0) x = result[0];
-					if (s > 1) y = result[1];
+					if ( s > 0 ) x = result[0];
+					if ( s > 1 ) y = result[1];
 				}
-				
+
 
 				T& operator [] (CRef<size_t> i) {
 					return (&x)[i];
 				}
-				
+
 
 				Vec2<T> offset(CRef<T> vX, CRef<T> vY) const {
 					return Vec2<T>(x + vX, y + vY);
@@ -93,26 +93,26 @@ SPACE(i) {
 					return Vec2<T>(!x, !y);
 				}
 
-				
+
 
 				Ref<Vec2<T>> operator ++ () {
 					++x; ++y; return *this;
 				}
 
-				
+
 
 				Ref<Vec2<T>> operator -- () {
 					--x; --y; return *this;
 				}
 
-				
+
 
 				Vec2<T> operator ++ (int) {
 					Vec2<T> tmp = *this;
 					++* this; return tmp;
 				}
 
-				
+
 
 				Vec2<T> operator -- (int) {
 					Vec2<T> tmp = *this;
@@ -120,10 +120,10 @@ SPACE(i) {
 					return tmp;
 				}
 
-				
+
 
 				void operator += (CRef<T> a) {
-					x += a; y += a; 
+					x += a; y += a;
 				}
 
 
@@ -137,18 +137,18 @@ SPACE(i) {
 					x -= a;
 					y -= a;
 				}
-				
+
 
 				void operator -= (CRef<Vec2<T>> v) {
 					x -= v.x;
-					y -= v.y; 
+					y -= v.y;
 				}
 
 
 				bool operator == (CRef<T> a) {
 					return (x == a) && (y == a);
 				}
-				
+
 
 				bool operator == (CRef<Vec2<T>> v) {
 					return (x == v.x) && (y == v.y);
@@ -161,48 +161,50 @@ SPACE(i) {
 
 
 				bool operator != (CRef<Vec2<T>> v) {
-					return (x != v.x) || (y != v.y); 
+					return (x != v.x) || (y != v.y);
 				}
 
 
 				void operator *= (CRef<T> a) {
 					x *= a;
-					y *= a; 
+					y *= a;
 				}
 
 
 				void operator *= (CRef<Vec2<T>> v) {
 					x *= v.x;
-					y *= v.y; 
+					y *= v.y;
 				}
 
 
-				void operator /= (CRef<T> a) { 
+				void operator /= (CRef<T> a) {
 					x /= a;
 					y /= a;
 				}
 
 
-				void operator /= (CRef<Vec2<T>> v) { 
-					x /= v.x; 
-					y /= v.y; 
+				void operator /= (CRef<Vec2<T>> v) {
+					x /= v.x;
+					y /= v.y;
 				}
-				
+
 
 				T lengthSquared() const {
 					return x * x + y * y;
 				}
-				
+
 
 				T length() const {
-					return (T)sqrt(lengthSquared());
+					return (T) sqrt(lengthSquared());
 				}
-				
+
 
 				T normalize() {
 					T _length = length();
-					if (_length < (T)1e-5) { return (T)0.0; }
-					T _invLength = (T)1.0 / _length;
+					if ( _length < (T) 1e-5 ) {
+						return (T) 0.0;
+					}
+					T _invLength = (T) 1.0 / _length;
 					x *= _invLength;
 					y *= _invLength;
 					return _length;
@@ -219,46 +221,46 @@ SPACE(i) {
 				T sum() const {
 					return x + y;
 				}
-				
+
 
 				T sumAbs() const {
-					return _function::abs<T>(x) + _function::abs<T>(y); 
+					return _function::abs<T>(x) + _function::abs<T>(y);
 				}
-				
+
 
 				bool emptyAND() const {
-					return x == (T)0 && y == (T)0;
+					return x == (T) 0 && y == (T) 0;
 				}
-				
+
 
 				bool emptyOR() const {
-					return x == (T)0 || y == (T)0;
+					return x == (T) 0 || y == (T) 0;
 				}
 
 
 				type::istring string(CRef<char> c = ';') const {
 					return (std::to_string(x) + c + std::to_string(y));
 				}
-				
+
 
 				template <typename U>
 				U ratioXY() const {
-					if (y != (T)0) return (U)x / (U)y;
-					return (U)0;
+					if ( y != (T) 0 ) return (U) x / (U) y;
+					return (U) 0;
 				}
-				
+
 
 				template <typename U>
 				U ratioYX() const {
-					if (x != (T)0) return (U)y / (U)x;
-					return (U)0;
+					if ( x != (T) 0 ) return (U) y / (U) x;
+					return (U) 0;
 				}
-				
+
 
 				T mini() const {
 					return _function::internalMini<T>(x, y);
 				}
-				
+
 
 				T maxi() const {
 					return _function::internalMaxi<T>(x, y);
@@ -285,8 +287,8 @@ SPACE(i) {
 			template <typename T>
 			inline Vec2<T> operator ++ (Ref<Vec2<T>> v, int) {
 				Vec2<T> a = v;
-					++a;
-					return a;
+				++a;
+				return a;
 			}
 
 
@@ -306,7 +308,7 @@ SPACE(i) {
 
 			template <typename T>
 			inline Vec2<T> operator + (T f, Vec2<T> v) {
-				return Vec2<T>(v.x + f, v.y + f); 
+				return Vec2<T>(v.x + f, v.y + f);
 			}
 
 
@@ -330,11 +332,11 @@ SPACE(i) {
 
 			template <typename T>
 			inline Vec2<T> operator - (Vec2<T> v, Vec2<T> f) {
-				return Vec2<T>(v.x - f.x, v.y - f.y); 
+				return Vec2<T>(v.x - f.x, v.y - f.y);
 			}
 
 
-			template <typename T> 
+			template <typename T>
 			inline Vec2<T> operator * (Vec2<T> v, T f) {
 				return Vec2<T>(v.x * f, v.y * f);
 			}
@@ -348,13 +350,13 @@ SPACE(i) {
 
 			template <typename T>
 			inline Vec2<T> operator * (Vec2<T> v, Vec2<T> f) {
-				return Vec2<T>(v.x * f.x, v.y * f.y); 
+				return Vec2<T>(v.x * f.x, v.y * f.y);
 			}
 
 
 			template <typename T>
 			inline Vec2<T> operator / (Vec2<T> v, T f) {
-				return Vec2<T>(v.x / f, v.y / f); 
+				return Vec2<T>(v.x / f, v.y / f);
 			}
 
 
@@ -372,7 +374,7 @@ SPACE(i) {
 
 			template <typename T>
 			inline bool operator < (Vec2<T> v, Vec2<T> f) {
-				return v.x < f.x&& v.y < f.y; 
+				return v.x < f.x&& v.y < f.y;
 			}
 
 
@@ -383,32 +385,32 @@ SPACE(i) {
 
 
 			template <typename T>
-			inline bool operator > (Vec2<T> v, Vec2<T> f) { 
+			inline bool operator > (Vec2<T> v, Vec2<T> f) {
 				return v.x > f.x && v.y > f.y;
 			}
 
 
 			template <typename T>
 			inline bool operator > (Vec2<T> v, T f) {
-				return v.x > f && v.y > f; 
+				return v.x > f && v.y > f;
 			}
 
 
 			template <typename T>
 			inline bool operator <= (Vec2<T> v, Vec2<T> f) {
-				return v.x <= f.x && v.y <= f.y; 
+				return v.x <= f.x && v.y <= f.y;
 			}
 
 
 			template <typename T>
 			inline bool operator <= (Vec2<T> v, T f) {
-				return v.x <= f && v.y <= f; 
+				return v.x <= f && v.y <= f;
 			}
 
 
 			template <typename T>
 			inline bool operator >= (Vec2<T> v, Vec2<T> f) {
-				return v.x >= f.x && v.y >= f.y; 
+				return v.x >= f.x && v.y >= f.y;
 			}
 
 
@@ -419,7 +421,7 @@ SPACE(i) {
 
 
 			template <typename T>
-			inline bool operator != (Vec2<T> v, Vec2<T> f) { 
+			inline bool operator != (Vec2<T> v, Vec2<T> f) {
 				return f.x != v.x || f.y != v.y;
 			}
 
@@ -441,45 +443,45 @@ SPACE(i) {
 			template <typename T>
 			inline Vec2<T> fract(Vec2<T> a) {
 				return Vec2<T>(_function::fract(a.x),
-					_function::fract(a.y));
+							   _function::fract(a.y));
 			}
 
 
 			template <typename T>
-			inline Vec2<T> ceil(Vec2<T> a) { 
+			inline Vec2<T> ceil(Vec2<T> a) {
 				return Vec2<T>(_function::ceil(a.x),
-					_function::ceil(a.y)); 
+							   _function::ceil(a.y));
 			}
 
 
 			template <typename T>
 			inline Vec2<T> mini(Vec2<T> a, Vec2<T> b) {
 				return Vec2<T>(_function::mini(a.x, b.x),
-					_function::mini(a.y, b.y));
+							   _function::mini(a.y, b.y));
 			}
 
 
 			template <typename T>
 			inline Vec2<T> maxi(Vec2<T> a, Vec2<T> b) {
 				return Vec2<T>(_function::maxi(a.x, b.x),
-					_function::maxi(a.y, b.y));
+							   _function::maxi(a.y, b.y));
 			}
 
 
 			template <typename T>
-			inline T dot(Vec2<T> a, Vec2<T> b) { 
+			inline T dot(Vec2<T> a, Vec2<T> b) {
 				return a.x * b.x + a.y * b.y;
 			}
 
 
 			template <typename T>
-			inline T det(Vec2<T> a, Vec2<T> b) { 
-				return a.x * b.y - a.y * b.x; 
+			inline T det(Vec2<T> a, Vec2<T> b) {
+				return a.x * b.y - a.y * b.x;
 			}
 
 
 			template <typename T>
-			inline Vec2<T> cross(Vec2<T> a, Vec2<T> b) { 
+			inline Vec2<T> cross(Vec2<T> a, Vec2<T> b) {
 				return Vec2<T>(
 					a.x * b.y - a.y * b.x,
 					a.y * b.x - a.x * b.y);
@@ -488,38 +490,38 @@ SPACE(i) {
 
 			template <typename T>
 			inline Vec2<T> reflect(Vec2<T> I, Vec2<T> N) {
-				return I - (T)2 * dotS(N, I) * N; 
+				return I - (T) 2 * dotS(N, I) * N;
 			}
 
 
 			template <typename T>
 			inline Vec2<T> sign(Vec2<T> a) {
-				return Vec2<T>(a.x < (T)0 ? -(T)1 : (T)1,
-					a.y < (T)0 ? (T)-1 : (T)1);
+				return Vec2<T>(a.x < (T) 0 ? -(T) 1 : (T) 1,
+							   a.y < (T) 0 ? (T) -1 : (T) 1);
 			}
 
 
 			template <typename T>
 			inline Vec2<T> sin(Vec2<T> a) {
 				return Vec2<T>(_function::sin<T>(a.x),
-					_function::sin<T>(a.y));
+							   _function::sin<T>(a.y));
 			}
 
 
 			template <typename T>
 			inline Vec2<T> cos(Vec2<T> a) {
 				return Vec2<T>(_function::cos<T>(a.x),
-					_function::cos<T>(a.y)); 
+							   _function::cos<T>(a.y));
 			}
-			
-			
+
+
 			template <typename T>
 			inline Vec2<T> tan(Vec2<T> a) {
 				return Vec2<T>(
 					_function::tan<T>(a.x),
 					_function::tan<T>(a.y));
 			}
-			
+
 
 			template <typename T>
 			inline Vec2<T> atan(Vec2<T> a) {
@@ -528,8 +530,8 @@ SPACE(i) {
 					_function::atan<T>(a.y)
 					);
 			}
-			
-			
+
+
 			using dvec2 = Vec2<double>;
 			using fvec2 = Vec2<float>;
 			using bvec2 = Vec2<bool>;
@@ -547,16 +549,16 @@ SPACE(i) {
 
 			inline fvec2 convert(CRef<ivec2> v) {
 				return fvec2(
-					(float)v.x,
-					(float)v.y
+					(float) v.x,
+					(float) v.y
 				);
 			}
 
 
 			inline ivec2 convert(CRef<fvec2> v) {
 				return ivec2(
-					(int)v.x,
-					(int)v.y);
+					(int) v.x,
+					(int) v.y);
 			}
 
 
@@ -568,7 +570,7 @@ SPACE(i) {
 
 			inline bool operator == (CRef<fvec2> v, CRef<fvec2> f) {
 				return (IS_FLOAT_EQUAL(f.x, v.x) &&
-					IS_FLOAT_EQUAL(f.y, v.y));
+						IS_FLOAT_EQUAL(f.y, v.y));
 			}
 
 			inline bool operator != (CRef<fvec2> v, CRef<fvec2> f) {
@@ -581,7 +583,7 @@ SPACE(i) {
 			template <typename T>
 			inline T prototypeRadAngleFromVec2(Vec2<T> vec) {
 				T angle = 0.0f;
-				if (vec.lengthSquared() > T(0) && vec.x != T(0)) {
+				if ( vec.lengthSquared() > T(0) && vec.x != T(0) ) {
 					angle = _function::atan<T>(vec.y / vec.x);
 				}
 				return angle;
@@ -594,6 +596,7 @@ SPACE(i) {
 			inline double radAngleFromVec2(CRef<dvec2> vec) {
 				return prototypeRadAngleFromVec2(vec);
 			}
+
 
 		}//SPACE(libmath)
 	}//SPACE(core) 

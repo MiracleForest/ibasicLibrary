@@ -6,21 +6,21 @@
 void i::core::libIO::ShellLinkFile::_Init()
 {
     auto res = ::CoInitialize(nullptr);
-    if (res != S_OK && res != S_FALSE)
+    if ( res != S_OK && res != S_FALSE )
     {
         throw std::exception("ShellLinkFile::ShellLinkFile:: Error when initializing the COM library");
     }
 
     // Init IShellLink
-    res = ::CoCreateInstance(CLSID_ShellLink, nullptr, CLSCTX_INPROC_SERVER, IID_IShellLinkW, (LPVOID*)&this->shellLink);
-    if (res != S_OK)
+    res = ::CoCreateInstance(CLSID_ShellLink, nullptr, CLSCTX_INPROC_SERVER, IID_IShellLinkW, (LPVOID*) &this->shellLink);
+    if ( res != S_OK )
     {
         throw std::exception("ShellLinkFile::ShellLinkFile:: Error when creating the IShellLink instance");
     }
 
-    res = shellLink->QueryInterface(IID_IPersistFile, (void**)&this->presistFile);
+    res = shellLink->QueryInterface(IID_IPersistFile, (void**) &this->presistFile);
 
-    if (res != S_OK)
+    if ( res != S_OK )
     {
         throw std::exception("ShellLinkFile::ShellLinkFile:: Error when querying to get the interface");
     }
@@ -30,7 +30,7 @@ void i::core::libIO::ShellLinkFile::_Init()
 i::core::libIO::ShellLinkFile::ShellLinkFile(const std::string& path)
 {
     _Init();
-    if (!path.empty())
+    if ( !path.empty() )
     {
         load(path);
         lnkPath = type::istring::str2wstr(path);
@@ -41,7 +41,7 @@ i::core::libIO::ShellLinkFile::ShellLinkFile(const std::string& path)
 i::core::libIO::ShellLinkFile::ShellLinkFile(const std::wstring& path)
 {
     _Init();
-    if (!path.empty())
+    if ( !path.empty() )
     {
         load(path);
         lnkPath = path;
@@ -62,17 +62,17 @@ i::core::libIO::ShellLinkFile& i::core::libIO::ShellLinkFile::load(const std::st
 
 i::core::libIO::ShellLinkFile& i::core::libIO::ShellLinkFile::load(const std::wstring& path)
 {
-    if (path.empty())
+    if ( path.empty() )
     {
         throw std::exception("ShellLinkFile::load:: The path is empty");
     }
-    if (!presistFile)
+    if ( !presistFile )
     {
         throw std::exception("ShellLinkFile::load: presistFile is null");
     }
     auto res = presistFile->Load(path.c_str(), 0);
     lnkPath = path;
-    if (res != S_OK)
+    if ( res != S_OK )
     {
         throw std::exception("ShellLinkFile::load: Failed to load");
     }
@@ -88,12 +88,12 @@ i::core::libIO::ShellLinkFile& i::core::libIO::ShellLinkFile::save(const std::st
 
 i::core::libIO::ShellLinkFile& i::core::libIO::ShellLinkFile::save(const std::wstring& path)
 {
-    if (!presistFile)
+    if ( !presistFile )
     {
         throw std::exception("ShellLinkFile::save: presistFile is null");
     }
     auto res = presistFile->Load((path.empty() ? lnkPath : path).c_str(), true);
-    if (res != S_OK)
+    if ( res != S_OK )
     {
         throw std::exception("ShellLinkFile::save: Failed to save");
     }
@@ -103,7 +103,7 @@ i::core::libIO::ShellLinkFile& i::core::libIO::ShellLinkFile::save(const std::ws
 
 bool i::core::libIO::ShellLinkFile::resolve(HWND hwnd, DWORD flags)
 {
-    if (!shellLink)
+    if ( !shellLink )
     {
         throw std::exception("ShellLinkFile::resolve: shellLink is null");
     }
@@ -113,12 +113,12 @@ bool i::core::libIO::ShellLinkFile::resolve(HWND hwnd, DWORD flags)
 
 void i::core::libIO::ShellLinkFile::close()
 {
-    if (presistFile)
+    if ( presistFile )
     {
         presistFile->Release();
         presistFile = nullptr;
     }
-    if (shellLink)
+    if ( shellLink )
     {
         shellLink->Release();
         shellLink = nullptr;
@@ -135,13 +135,13 @@ std::string i::core::libIO::ShellLinkFile::getPath()
 
 std::wstring i::core::libIO::ShellLinkFile::getPathW()
 {
-    if (!shellLink)
+    if ( !shellLink )
     {
         throw std::exception("ShellLinkFile::getPathW: shellLink is null");
     }
     wchar_t buf[8192] = { 0 };
     auto res = shellLink->GetPath(buf, 8192, nullptr, 0);
-    if (res != S_OK)
+    if ( res != S_OK )
     {
         throw std::exception("ShellLinkFile::getPathW: Failed to get the path");
     }
@@ -157,12 +157,12 @@ i::core::libIO::ShellLinkFile& i::core::libIO::ShellLinkFile::setPath(const std:
 
 i::core::libIO::ShellLinkFile& i::core::libIO::ShellLinkFile::setPath(const std::wstring& path)
 {
-    if (!shellLink)
+    if ( !shellLink )
     {
         throw std::exception("ShellLinkFile::setPath: shellLink is null");
     }
     auto res = shellLink->SetPath(path.c_str());
-    if (res != S_OK)
+    if ( res != S_OK )
     {
         throw std::exception("ShellLinkFile::setPath: Failed to set the path");
     }
@@ -178,13 +178,13 @@ std::string i::core::libIO::ShellLinkFile::getWorkingDirectory()
 
 std::wstring i::core::libIO::ShellLinkFile::getWorkingDirectoryW()
 {
-    if (!shellLink)
+    if ( !shellLink )
     {
         throw std::exception("ShellLinkFile::getWorkingDirectoryW: shellLink is null");
     }
     wchar_t buf[8192] = { 0 };
     auto res = shellLink->GetWorkingDirectory(buf, 8192);
-    if (res != S_OK)
+    if ( res != S_OK )
     {
         throw std::exception("ShellLinkFile::getWorkingDirectoryW: Failed to get the working directory");
     }
@@ -200,12 +200,12 @@ i::core::libIO::ShellLinkFile& i::core::libIO::ShellLinkFile::setWorkingDirector
 
 i::core::libIO::ShellLinkFile& i::core::libIO::ShellLinkFile::setWorkingDirectory(const std::wstring& path)
 {
-    if (!shellLink)
+    if ( !shellLink )
     {
         throw std::exception("ShellLinkFile::setWorkingDirectory: shellLink is null");
     }
     auto res = shellLink->SetWorkingDirectory(path.c_str());
-    if (res != S_OK)
+    if ( res != S_OK )
     {
         throw std::exception("ShellLinkFile::setWorkingDirectory: Failed to set the working directory");
     }
@@ -221,13 +221,13 @@ std::string i::core::libIO::ShellLinkFile::getDescription()
 
 std::wstring i::core::libIO::ShellLinkFile::getDescriptionW()
 {
-    if (!shellLink)
+    if ( !shellLink )
     {
         throw std::exception("ShellLinkFile::getDescriptionW: shellLink is null");
     }
     wchar_t buf[8192] = { 0 };
     auto res = shellLink->GetDescription(buf, 8192);
-    if (res != S_OK)
+    if ( res != S_OK )
     {
         throw std::exception("ShellLinkFile::getDescriptionW: Failed to get the description");
     }
@@ -243,12 +243,12 @@ i::core::libIO::ShellLinkFile& i::core::libIO::ShellLinkFile::setDescription(con
 
 i::core::libIO::ShellLinkFile& i::core::libIO::ShellLinkFile::setDescription(const std::wstring& desc)
 {
-    if (!shellLink)
+    if ( !shellLink )
     {
         throw std::exception("ShellLinkFile::setDescription: shellLink is null");
     }
     auto res = shellLink->SetDescription(desc.c_str());
-    if (res != S_OK)
+    if ( res != S_OK )
     {
         throw std::exception("ShellLinkFile::setDescription: Failed to set the description");
     }
@@ -264,13 +264,13 @@ std::string i::core::libIO::ShellLinkFile::getArguments()
 
 std::wstring i::core::libIO::ShellLinkFile::getArgumentsW()
 {
-    if (!shellLink)
+    if ( !shellLink )
     {
         throw std::exception("ShellLinkFile::getArgumentsW: shellLink is null");
     }
     wchar_t buf[8192] = { 0 };
     auto res = shellLink->GetArguments(buf, 8192);
-    if (res != S_OK)
+    if ( res != S_OK )
     {
         throw std::exception("ShellLinkFile::getArgumentsW: Failed to get the arguments");
     }
@@ -286,12 +286,12 @@ i::core::libIO::ShellLinkFile& i::core::libIO::ShellLinkFile::setArguments(const
 
 i::core::libIO::ShellLinkFile& i::core::libIO::ShellLinkFile::setArguments(const std::wstring& arguments)
 {
-    if (!shellLink)
+    if ( !shellLink )
     {
         throw std::exception("ShellLinkFile::setArguments: shellLink is null");
     }
     auto res = shellLink->SetArguments(arguments.c_str());
-    if (res != S_OK)
+    if ( res != S_OK )
     {
         throw std::exception("ShellLinkFile::setArguments: Failed to set the arguments");
     }
@@ -307,13 +307,13 @@ std::string i::core::libIO::ShellLinkFile::getIconLocation()
 
 std::wstring i::core::libIO::ShellLinkFile::getIconLocationW()
 {
-    if (!shellLink)
+    if ( !shellLink )
     {
         throw std::exception("ShellLinkFile::getIconLocationW: shellLink is null");
     }
     wchar_t buf[8192] = { 0 };
     auto res = shellLink->GetIconLocation(buf, 8192, 0);
-    if (res != S_OK)
+    if ( res != S_OK )
     {
         throw std::exception("ShellLinkFile::getIconLocationW: Failed to get the icon location");
     }
@@ -329,12 +329,12 @@ i::core::libIO::ShellLinkFile& i::core::libIO::ShellLinkFile::setIconLocation(co
 
 i::core::libIO::ShellLinkFile& i::core::libIO::ShellLinkFile::setIconLocation(const std::wstring& iconLocation)
 {
-    if (!shellLink)
+    if ( !shellLink )
     {
         throw std::exception("ShellLinkFile::setIconLocation: shellLink is null");
     }
     auto res = shellLink->SetIconLocation(iconLocation.c_str(), 0);
-    if (res != S_OK)
+    if ( res != S_OK )
     {
         throw std::exception("ShellLinkFile::setIconLocation: Failed to set the icon location");
     }
@@ -344,13 +344,13 @@ i::core::libIO::ShellLinkFile& i::core::libIO::ShellLinkFile::setIconLocation(co
 
 int i::core::libIO::ShellLinkFile::getShowCmd()
 {
-    if (!shellLink)
+    if ( !shellLink )
     {
         throw std::exception("ShellLinkFile::getShowCmd: shellLink is null");
     }
     int showCmd = 0;
     auto res = shellLink->GetShowCmd(&showCmd);
-    if (res != S_OK)
+    if ( res != S_OK )
     {
         throw std::exception("ShellLinkFile::getShowCmd: Failed to get the show command");
     }
@@ -360,12 +360,12 @@ int i::core::libIO::ShellLinkFile::getShowCmd()
 
 i::core::libIO::ShellLinkFile& i::core::libIO::ShellLinkFile::setShowCmd(int showCmd)
 {
-    if (!shellLink)
+    if ( !shellLink )
     {
         throw std::exception("ShellLinkFile::setShowCmd: shellLink is null");
     }
     auto res = shellLink->SetShowCmd(showCmd);
-    if (res != S_OK)
+    if ( res != S_OK )
     {
         throw std::exception("ShellLinkFile::setShowCmd: Failed to set the show command");
     }
@@ -375,7 +375,7 @@ i::core::libIO::ShellLinkFile& i::core::libIO::ShellLinkFile::setShowCmd(int sho
 
 i::core::libIO::ShellLinkFile::HotKey i::core::libIO::ShellLinkFile::getHotKey()
 {
-    if (!shellLink)
+    if ( !shellLink )
     {
         throw std::exception("ShellLinkFile::getHotKey: shellLink is null");
     }
@@ -386,7 +386,7 @@ i::core::libIO::ShellLinkFile::HotKey i::core::libIO::ShellLinkFile::getHotKey()
         WORD   in;
     } hotKey;
     auto res = shellLink->GetHotkey(&hotKey.in);
-    if (res != S_OK)
+    if ( res != S_OK )
     {
         throw std::exception("ShellLinkFile::getHotKey: Failed to get the hot key");
     }
@@ -396,7 +396,7 @@ i::core::libIO::ShellLinkFile::HotKey i::core::libIO::ShellLinkFile::getHotKey()
 
 i::core::libIO::ShellLinkFile& i::core::libIO::ShellLinkFile::setHotKey(const HotKey& hotKey)
 {
-    if (!shellLink)
+    if ( !shellLink )
     {
         throw std::exception("ShellLinkFile::setHotKey: shellLink is null");
     }
@@ -408,7 +408,7 @@ i::core::libIO::ShellLinkFile& i::core::libIO::ShellLinkFile::setHotKey(const Ho
     } hotKey1;
     hotKey1.in = hotKey;
     auto res = shellLink->SetHotkey(hotKey1.out);
-    if (res != S_OK)
+    if ( res != S_OK )
     {
         throw std::exception("ShellLinkFile::setHotKey: Failed to set the hot key");
     }

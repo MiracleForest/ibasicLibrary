@@ -1,10 +1,10 @@
 #include "../../../include/icore/lib/libmath/math.h"
 
 
-namespace i {
-	namespace core {
-		namespace libmath {
-			namespace _function {
+SPACE(i) {
+	SPACE(core) {
+		SPACE(libmath) {
+			SPACE(_function) {
 
 				inline bool floatIsValid(float x) {
 					const union {
@@ -14,7 +14,7 @@ namespace i {
 					return (v.i & 0x7f800000) != 0x7f800000;
 				}
 
-			}
-		}
-	}
-}
+			}//SPACE(_function)
+		}//SPACE(libmath)
+	}//SPACE(core)
+}//SPACE(i)

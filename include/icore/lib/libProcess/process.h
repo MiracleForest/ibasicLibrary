@@ -31,7 +31,7 @@ SPACE(i) {
                 ~Process();
             public:
 
-            public C_STATIC:
+                public C_STATIC :
 
             protected:
             private:

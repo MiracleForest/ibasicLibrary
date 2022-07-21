@@ -22,13 +22,13 @@
 #include <vector>
 #include <initializer_list>
 
-SPACE(i){
-    SPACE(core){
-        SPACE(libmath){
+SPACE(i) {
+    SPACE(core) {
+        SPACE(libmath) {
 
 
             template <typename T>
-            class Matrix{
+            class Matrix {
             public:
                 typedef size_t MATRIX_TYPE;
                 typedef size_t MATRIX_NUM;
@@ -42,8 +42,10 @@ SPACE(i){
                 Matrix(MATRIX_TYPE row, MATRIX_TYPE col)
                     : _rows_num(row)
                     , _cols_num(col)
-                    , _size(_rows_num * _cols_num)
-                { zeros(); }
+                    , _size(_rows_num* _cols_num)
+                {
+                    zeros();
+                }
 
                 ~Matrix() {
 
@@ -51,33 +53,33 @@ SPACE(i){
 
             public:
                 void zeros() {
-                    _matrix = {0};
+                    _matrix = { 0 };
                 }
 
                 void ones() {
-                    for (size_t row = 0; row < _rows_num; row++) {
-                        for (size_t col = 0; col < _cols_num; col++) {
+                    for ( size_t row = 0; row < _rows_num; row++ ) {
+                        for ( size_t col = 0; col < _cols_num; col++ ) {
                             _matrix[row][col] = 1;
                         }
                     }
                 }
 
                 Matrix& array(std::initializer_list<T> li) {
-                    for (auto e : li) {
+                    for ( auto e : li ) {
                         _matrix = e;
                     }
                     return _matrix;
                 }
 
                 Matrix& arange(size_t start, size_t end) {
-                    if ((start * end) != _size) {
+                    if ( (start * end) != _size ) {
                         perror("The numbers can't get a matrix!");
                         exit(1);
                     }
-                    for (size_t row = 0; row < _rows_num; row++){
-                        for (size_t col = 0; col < _cols_num; col++) {
+                    for ( size_t row = 0; row < _rows_num; row++ ) {
+                        for ( size_t col = 0; col < _cols_num; col++ ) {
                             _matrix[row][col] = start;
-                            if (start < end) {
+                            if ( start < end ) {
                                 start++;
                             }
                         }

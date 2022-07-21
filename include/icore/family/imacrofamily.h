@@ -1,27 +1,25 @@
 /****
-*
-* Copyright(C) 2022 MiracleForest Studio. All Rights Reserved.
-*
-* @文件名：imacrofamily.h
-* @创建时间：2022.5.2.17:09
-* @创建者：Lovelylavender4
-* -----------------------------------------------------------------------------
-* 此文件定义了一些全局性的宏，别名等
-* -----------------------------------------------------------------------------
-* 如果你发现了bug，你可以去Github或邮箱(MiracleForest@Outlook.com)反馈给我们！
-* 我们一定会努力做得更好的！
-*
-****/
+ *
+ * Copyright(C) 2022 MiracleForest Studio. All Rights Reserved.
+ *
+ * @文件名：imacrofamily.h
+ * @创建时间：2022.5.2.17:09
+ * @创建者：Lovelylavender4
+ * -----------------------------------------------------------------------------
+ * 此文件定义了一些全局性的宏，别名等
+ * -----------------------------------------------------------------------------
+ * 如果你发现了bug，你可以去Github或邮箱(MiracleForest@Outlook.com)反馈给我们！
+ * 我们一定会努力做得更好的！
+ *
+ ****/
 #ifndef ___MIRACLEFOREST_I_IMACROFAMILY___
 #define ___MIRACLEFOREST_I_IMACROFAMILY___
-
-
 
 #ifdef _MSVC_LANG
 #define _STL_LANG _MSVC_LANG
 #elif defined(__cplusplus) // ^^^ use _MSVC_LANG / use __cplusplus vvv
 #define _STL_LANG __cplusplus
-#else  // ^^^ use __cplusplus / no C++ support vvv
+#else // ^^^ use __cplusplus / no C++ support vvv
 #define _STL_LANG 0L
 #endif // ^^^ no C++ support ^^^
 
@@ -67,17 +65,18 @@
 #error _HAS_CXX23 must imply _HAS_CXX20.
 #endif
 
-
-/*------------------------编译器判断------------------------*/
+ /*------------------------编译器判断------------------------*/
 #if defined(__ICC) || defined(__INTEL_COMPILER)
 #define __ICC__ __INTEL_COMPILER
 #elif defined(__clang__)
 #define __CLANG__ __clang_version__
 #elif defined(__GNUC__) || defined(__GNUG__)
 #define __GCC__ 1
-#define __GCCV__ std::to_string(__GNUC__) + "." + std::to_string(__GNUC_MINOR__) + "." + std::to_string(__GNUC_PATCHLEVEL__)
+#define __GCCV__                                                               \
+  std::to_string(__GNUC__) + "." + std::to_string(__GNUC_MINOR__) + "." +      \
+      std::to_string(__GNUC_PATCHLEVEL__)
 #elif defined(__HP_cc) || defined(__HP_aCC)
-#define __HP__ 1  
+#define __HP__ 1
 #elif defined(__IBMCPP__)
 #define __ILECPP__ __IBMCPP__
 #elif defined(_MSC_VER)
@@ -90,14 +89,10 @@
 #define __UNKNOWN__ 1
 #endif
 
-
 /*------------------------C++标准判断------------------------*/
-#if !defined(__CPP_23__) &&\
-    !defined(__CPP_20__) &&\
-    !defined(__CPP_17__) &&\
-    !defined(__CPP_14__) &&\
-    !defined(__CPP_11__)
-#if _HAS_CXX23 
+#if !defined(__CPP_23__) && !defined(__CPP_20__) && !defined(__CPP_17__) &&    \
+    !defined(__CPP_14__) && !defined(__CPP_11__)
+#if _HAS_CXX23
 #define __CPP_23__ 1
 #define __CPP_20__ 1
 #define __CPP_17__ 1
@@ -120,7 +115,6 @@
 #endif
 #endif
 
-
 /*------------------------平台的判断------------------------*/
 
 #ifdef _WIN32
@@ -138,11 +132,10 @@
 
 /*------------------------小数------------------------*/
 
-#define IS_FLOAT_DIFFERENT(a,b) (fabsf((a) - (b)) > FLT_EPSILON)
-#define IS_FLOAT_EQUAL(a,b) (fabsf((a) - (b)) < FLT_EPSILON)
-#define IS_DOUBLE_DIFFERENT(a,b) (fabs((a) - (b)) > DBL_EPSILON)
-#define IS_DOUBLE_EQUAL(a,b) (fabs((a) - (b)) < DBL_EPSILON)
-
+#define IS_FLOAT_DIFFERENT(a, b) (fabsf((a) - (b)) > FLT_EPSILON)
+#define IS_FLOAT_EQUAL(a, b) (fabsf((a) - (b)) < FLT_EPSILON)
+#define IS_DOUBLE_DIFFERENT(a, b) (fabs((a) - (b)) > DBL_EPSILON)
+#define IS_DOUBLE_EQUAL(a, b) (fabs((a) - (b)) < DBL_EPSILON)
 
 /*------------------------关于 dll------------------------*/
 #ifdef ___STATICLIB___
@@ -159,11 +152,10 @@
 #define IAPI_IMPORT _declspec(dllimport)
 
 #elif defined(__GCC__)
-#define IAPI __attribute__​((visibility(​"​default​"​)))
+#define IAPI __attribute__​((visibility(​ "​default​"​)))
 #else
 #define IAPI
 #endif
-
 
 /*------------------------类------------------------*/
 #define C_STATIC
@@ -171,11 +163,13 @@
 #define C_CLASS
 
 /*------------------------快捷------------------------*/
-#define CATCH(x) catch(...){printf(x);}
+#define CATCH(x)                                                               \
+  catch (...) {                                                                \
+    printf(x);                                                                 \
+  }
 #define IERROR ::i::core::iexception::error
 #define SPACE(x) namespace x
 #define SPACE_ namespace
-
 
 /*------------------------命名空间------------------------*/
 #define N_STD ::std::
@@ -183,10 +177,9 @@
 #define N_IBASIC ::i::core::type::basic::
 #define N_ISTD ::i::core::
 
-
 SPACE(i) {
     SPACE(core) {
-        
+
         using ushort = unsigned short;
         using uint = unsigned int;
         using ulong = unsigned long;
@@ -195,31 +188,27 @@ SPACE(i) {
 
         using __unk_type__ = void*;
         using handle = void*;
+
 #ifdef __WINDOWS__
-        typedef __int64   int64;
-        typedef unsigned __int64   uint64;
-#else//!__WINDOWS__
+        typedef __int64 int64;
+        typedef unsigned __int64 uint64;
+#else  //!__WINDOWS__
         typedef long long int64;
         typedef unsigned long long uint64;
 #endif //__WINDOWS__
 
-
         using VA = uint64;
         using RVA = unsigned int;
 
-        template<typename Type>
-        using Ptr = Type*;
-        
-        template<typename Type>
-        using CPtr = const Type*;
+        template <typename Type> using Ptr = Type*;
 
-        template<typename Type>
-        using CRef = const Type&;
+        template <typename Type> using CPtr = const Type*;
 
-        template<typename Type>
-        using Ref = Type&;
+        template <typename Type> using CRef = const Type&;
 
-    }//SPACE(core)
-}//SPACE(i)
+        template <typename Type> using Ref = Type&;
+
+    } // SPACE(core)
+} // SPACE(i)
 
 #endif //!___MIRACLEFOREST_I_IMACROFAMILY___

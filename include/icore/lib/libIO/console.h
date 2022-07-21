@@ -39,7 +39,7 @@ SPACE(i) {
             class IAPI Console {};
 
             /**
-             * 模板特化，普通Cnsole类
+             * 模板特化，普通Console类
              */
             template <>
             class IAPI Console<ConsoleType::Normal> {
@@ -55,9 +55,9 @@ SPACE(i) {
                 // 单例模式，确保只有一个 Console 类
                 static Console& getConsole()
                 {
-                    if (!_console_instance){
+                    if ( !_console_instance ) {
                         std::lock_guard<std::mutex> lock(_mutex);
-                        if (nullptr == _console_instance){
+                        if ( nullptr == _console_instance ) {
                             _console_instance = new Console();
                         }
                     }
@@ -65,9 +65,9 @@ SPACE(i) {
                 }
                 static Console* getConsolePtr()
                 {
-                    if (!_console_instance){
+                    if ( !_console_instance ) {
                         std::lock_guard<std::mutex> lock(_mutex);
-                        if (nullptr == _console_instance){
+                        if ( nullptr == _console_instance ) {
                             _console_instance = new Console();
                         }
                     }
@@ -107,42 +107,42 @@ SPACE(i) {
                 **/
                 void setOutBufferType(BufferType type)
                 {
-                    switch (type) {
-                        case BufferType::NoBuffer:
-                            fflush(stdout);
-                            this->_out_buf_type = BufferType::NoBuffer;
-                            std::setvbuf(stdout, nullptr, _IONBF, 0);
-                            break;
-                        case BufferType::LineBuffer:
-                            fflush(stdout);
-                            this->_out_buf_type = BufferType::LineBuffer;
-                            std::setvbuf(stdout, this->_out_buf, _IOLBF, this->_out_buf_size);
-                            break;
-                        case BufferType::FullBuffer:
-                            fflush(stdout);
-                            this->_out_buf_type = BufferType::FullBuffer;
-                            std::setvbuf(stdout, this->_out_buf, _IOFBF, this->_out_buf_size);
-                            break;
+                    switch ( type ) {
+                    case BufferType::NoBuffer:
+                        fflush(stdout);
+                        this->_out_buf_type = BufferType::NoBuffer;
+                        std::setvbuf(stdout, nullptr, _IONBF, 0);
+                        break;
+                    case BufferType::LineBuffer:
+                        fflush(stdout);
+                        this->_out_buf_type = BufferType::LineBuffer;
+                        std::setvbuf(stdout, this->_out_buf, _IOLBF, this->_out_buf_size);
+                        break;
+                    case BufferType::FullBuffer:
+                        fflush(stdout);
+                        this->_out_buf_type = BufferType::FullBuffer;
+                        std::setvbuf(stdout, this->_out_buf, _IOFBF, this->_out_buf_size);
+                        break;
                     }
                 }
                 void setInBufferType(BufferType type)
                 {
-                    switch (type) {
-                        case BufferType::NoBuffer:
-                            fflush(stdin);
-                            this->_out_buf_type = BufferType::NoBuffer;
-                            std::setvbuf(stdin, nullptr, _IONBF, 0);
-                            break;
-                        case BufferType::LineBuffer:
-                            fflush(stdin);
-                            this->_out_buf_type = BufferType::LineBuffer;
-                            std::setvbuf(stdin, this->_out_buf, _IOLBF, this->_out_buf_size);
-                            break;
-                        case BufferType::FullBuffer:
-                            fflush(stdin);
-                            this->_out_buf_type = BufferType::FullBuffer;
-                            std::setvbuf(stdin, this->_out_buf, _IOFBF, this->_out_buf_size);
-                            break;
+                    switch ( type ) {
+                    case BufferType::NoBuffer:
+                        fflush(stdin);
+                        this->_out_buf_type = BufferType::NoBuffer;
+                        std::setvbuf(stdin, nullptr, _IONBF, 0);
+                        break;
+                    case BufferType::LineBuffer:
+                        fflush(stdin);
+                        this->_out_buf_type = BufferType::LineBuffer;
+                        std::setvbuf(stdin, this->_out_buf, _IOLBF, this->_out_buf_size);
+                        break;
+                    case BufferType::FullBuffer:
+                        fflush(stdin);
+                        this->_out_buf_type = BufferType::FullBuffer;
+                        std::setvbuf(stdin, this->_out_buf, _IOFBF, this->_out_buf_size);
+                        break;
                     }
                 }
 
@@ -150,14 +150,14 @@ SPACE(i) {
                 * @author Ticks
                 * @since 22-7-8 下午1:05
                 *
-                * @brief 编写函数描述 
+                * @brief 编写函数描述
                 *
                 * @param 编写参数 注释
-                * @tparam 编写模板参数 注释 
+                * @tparam 编写模板参数 注释
                 * @retval 编写函数返回值 注释
                 * @future 编写未来计划
                 * @throws 编写函数抛出异常
-                * 
+                *
                 * @note
                 * 编写注意事项
                 * @endnote
@@ -165,32 +165,32 @@ SPACE(i) {
                 * @code
                 * 编写代码示例
                 * @endcode
-                * 
+                *
                 * @include 包含头文件
                 * @details
-                * 
+                *
                 * @enddetails
-                * 
-                * @warning  
-                * @bug 
-                * 
-                * @other 
+                *
+                * @warning
+                * @bug
+                *
+                * @other
                 *
                 **/
                 void setOutBufferSize(size_t size)
                 {
-                    if (size == 0){
+                    if ( size == 0 ) {
                         this->setOutBufferType(BufferType::NoBuffer);
                         this->_out_buf_size = 0;
                         delete[] this->_out_buf;
                         this->_out_buf = nullptr;
                         return;
                     }
-                    if (this->_out_buf_size == 0) {
+                    if ( this->_out_buf_size == 0 ) {
                         this->_out_buf_size = size;
                         char* tmp_buf = this->_out_buf;
                         this->_out_buf = new char[this->_out_buf_size];
-                        if (tmp_buf) {
+                        if ( tmp_buf ) {
                             std::memcpy(this->_out_buf, tmp_buf, this->_out_buf_size);
                             delete[] tmp_buf;
                         }
@@ -200,7 +200,7 @@ SPACE(i) {
                     this->_out_buf_size = size;
                     char* tmp_buf = this->_out_buf;
                     this->_out_buf = new char[this->_out_buf_size];
-                    if (tmp_buf) {
+                    if ( tmp_buf ) {
                         std::memcpy(this->_out_buf, tmp_buf, this->_out_buf_size);
                         delete[] tmp_buf;
                     }
@@ -209,18 +209,18 @@ SPACE(i) {
 
                 void setInBufferSize(size_t size)
                 {
-                    if (size == 0){
+                    if ( size == 0 ) {
                         this->setInBufferType(BufferType::NoBuffer);
                         this->_in_buf_size = 0;
                         delete[] this->_in_buf;
                         this->_in_buf = nullptr;
                         return;
                     }
-                    if (this->_in_buf_size == 0) {
+                    if ( this->_in_buf_size == 0 ) {
                         this->_in_buf_size = size;
                         char* tmp_buf = this->_in_buf;
                         this->_in_buf = new char[this->_in_buf_size];
-                        if (tmp_buf) {
+                        if ( tmp_buf ) {
                             std::memcpy(this->_in_buf, tmp_buf, this->_in_buf_size);
                             delete[] tmp_buf;
                         }
@@ -230,16 +230,16 @@ SPACE(i) {
                     this->_in_buf_size = size;
                     char* tmp_buf = this->_in_buf;
                     this->_in_buf = new char[this->_in_buf_size];
-                    if (tmp_buf) {
+                    if ( tmp_buf ) {
                         std::memcpy(this->_in_buf, tmp_buf, this->_in_buf_size);
                         delete[] tmp_buf;
                     }
                     this->setInBufferType(this->_in_buf_type);
                 }
 
-                Console& write(CPtr<char> format, ... )
+                Console& write(CPtr<char> format, ...)
                 {
-                    va_list list;
+                    va_list list = new char;
                     vprintf(format, list);
                     return *this;
                 }
@@ -264,14 +264,14 @@ SPACE(i) {
 
                 char read()
                 {
-                    return (char)getchar();
+                    return (char) getchar();
                 }
                 Console& readLine(char* buf, size_t buf_len)
                 {
                     size_t read_len = 0;
                     int tmp;
-                    while (read_len < buf_len && (tmp = getchar()) != '\n'){
-                        buf[read_len++] = (char)tmp;
+                    while ( read_len < buf_len && (tmp = getchar()) != '\n' ) {
+                        buf[read_len++] = (char) tmp;
                     }
                     buf[read_len] = '\0';
                     return *this;
@@ -281,8 +281,8 @@ SPACE(i) {
                 {
                     type::istring str;
                     int tmp;
-                    while ((tmp = getchar()) != '\n'){
-                        str.pushBack((char)tmp);
+                    while ( (tmp = getchar()) != '\n' ) {
+                        str.pushBack((char) tmp);
                     }
                     return str;
                 }
@@ -313,12 +313,12 @@ SPACE(i) {
 
             private:
                 Console()
-                : _out_buf_size(default_console_buffer_size)
-                , _out_buf(new char[default_console_buffer_size])
-                , _out_buf_type(BufferType::LineBuffer)
-                , _in_buf_size(default_console_buffer_size)
-                , _in_buf(new char[default_console_buffer_size])
-                , _in_buf_type(BufferType::LineBuffer)
+                    : _out_buf_size(default_console_buffer_size)
+                    , _out_buf(new char[default_console_buffer_size])
+                    , _out_buf_type(BufferType::LineBuffer)
+                    , _in_buf_size(default_console_buffer_size)
+                    , _in_buf(new char[default_console_buffer_size])
+                    , _in_buf_type(BufferType::LineBuffer)
                 {
                     this->setOutBufferType(this->_out_buf_type);
                     this->setInBufferType(this->_in_buf_type);

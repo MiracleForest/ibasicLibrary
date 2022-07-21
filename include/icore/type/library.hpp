@@ -26,6 +26,8 @@
 SPACE(i) {
 	SPACE(core) {
 
+		enum class Library::LibraryType;
+
 		struct ilibrary {
 			type::istring filename;//库文件名
 			type::istring name;//库名
@@ -34,6 +36,8 @@ SPACE(i) {
 			handle _handle;//句柄
 			type::istring dscription;//描述
 			type::level _level;// 等级
+			std::map<std::string, std::string> others;//其他
+			Library::LibraryType type;
 
 			static ilibrary makeDefault() {
 				ilibrary lib;
@@ -44,12 +48,21 @@ SPACE(i) {
 				lib._handle = NULL;
 				lib.dscription = "";
 				lib._level = 0;
+				lib.others = { };
+				lib.type = Library::LibraryType::unk;
 				return lib;
 			}
 
 		};
 
 		class Library {
+		public:
+			enum class LibraryType
+			{
+				unk,
+				dll,
+				so
+			};
 		public:
 
 			Library() {}
@@ -58,15 +71,29 @@ SPACE(i) {
 
 		public:
 
-		public C_OPERATOR :
 
 
-		public C_STATIC:
+			template <typename ReturnType = void, typename... Args>
+			ReturnType call(const char* functionSymbol, Args... args)
+			{
+#ifdef __WINDOWS__
+				void* address = GetProcAddress(library._handle, functionSymbol);
+				if ( !address ) {
+					return ReturnType();
+				}
+				return reinterpret_cast<ReturnType(*)(Args...)>(address)(std::forward<Args>(args)...);
+#endif
+			}
+
+			public C_OPERATOR :
+
+
+			public C_STATIC :
 
 		public:
 		protected:
 		private:
-
+			ilibrary library;
 		};//class Library
 
 	}//SPACE(core)

@@ -148,7 +148,7 @@ SPACE(i) {
                     **/
                     Ref<basic_istring> assign(CRef<basic_istring> str)
                     {
-                        if (*this == str) {
+                        if ( *this == str ) {
                             return *this;
                         }
                         this->_data.assign(str._data);
@@ -199,7 +199,7 @@ SPACE(i) {
 
                     /****
                     * @author ticks
-                    * @since 22-6-23 下午12:13 
+                    * @since 22-6-23 下午12:13
                     * @brief 获取 basic_istring 底层内存分配器
                     *
                     * @retval allocator_type: 底层内存分配器
@@ -385,7 +385,7 @@ SPACE(i) {
                     * @brief 获取字符串开始迭代器
                     *
                     * @retval 返回值注释
-                    * @throws 
+                    * @throws
                     *
                     * @note
                     * 注意事项
@@ -1180,7 +1180,7 @@ SPACE(i) {
                     }
 
                     Ref<basic_istring> replace(size_type pos, size_type count, CRef<basic_istring> str,
-                        size_type str_pos, size_type str_count = basic_istring::npos)
+                                               size_type str_pos, size_type str_count = basic_istring::npos)
                     {
                         this->_data.replace(pos, count, str._data, str_pos, str_count);
                         return *this;
@@ -1342,7 +1342,7 @@ SPACE(i) {
 
                     void swap(Ref<basic_istring> other)
                     {
-                        if (*this == other) {
+                        if ( *this == other ) {
                             return;
                         }
                         this->_data.swap(other._data);
@@ -1522,12 +1522,12 @@ SPACE(i) {
                     {
                         std::vector<basic_istring> strs;
                         size_type pos = this->find(ch), start = 0;
-                        while (pos != basic_istring::npos) {
+                        while ( pos != basic_istring::npos ) {
                             strs.push_back(this->substr(start, pos));
                             start = pos + 1;
                             pos = this->find(ch, pos + 1);
                         }
-                        if (start < this->length()) {
+                        if ( start < this->length() ) {
                             strs.push_back(this->substr(start));
                         }
                         return strs;
@@ -1563,7 +1563,7 @@ SPACE(i) {
                     ****/
                     bool match(const std::basic_regex<value_type>& regex, bool search = false)
                     {
-                        if (!search) {
+                        if ( !search ) {
                             return std::regex_match(this->_data, regex);
                         }
                         return std::regex_search(this->_data, regex);
@@ -1572,7 +1572,7 @@ SPACE(i) {
                     std::match_results<CPtr<value_type>> matchResult(const std::basic_regex<value_type>& regex, bool search)
                     {
                         std::match_results<CPtr<value_type>> result;
-                        if (!search) {
+                        if ( !search ) {
                             std::regex_match(this->_data, result, regex);
                         }
                         else {
@@ -1580,7 +1580,7 @@ SPACE(i) {
                         }
                         return result;
                     }
-                public C_STATIC:
+                    public C_STATIC:
 
                     template<typename Type1>
                     static std::string toStdString(Type1 value) {
@@ -1636,16 +1636,16 @@ SPACE(i) {
                     * @other 其他
                     ****/
                     static std::wstring toWideChar(std::uint32_t code_page, CRef<std::string> src_str) {
-                        if (src_str.empty()) {
+                        if ( src_str.empty() ) {
                             return L"";
                         }
 #ifdef __WINDOWS__
                         auto len = MultiByteToWideChar(code_page, 0, src_str.c_str(), -1, nullptr, 0);
-                        if (!len) {
+                        if ( !len ) {
                             return L"";
                         }
                         auto wstr_c = new wchar_t[len + 1];
-                        if (!wstr_c) {
+                        if ( !wstr_c ) {
                             return L"";
                         }
                         memset(wstr_c, 0, len + 1);
@@ -1687,16 +1687,16 @@ SPACE(i) {
                     * @other 其他
                     ****/
                     static std::string fromWideChar(std::uint32_t code_page, CRef<std::wstring> src_wstr) {
-                        if (src_wstr.empty()) {
+                        if ( src_wstr.empty() ) {
                             return "";
                         }
 #ifdef __WINDOWS__
                         auto len = WideCharToMultiByte(code_page, 0, src_wstr.c_str(), -1, nullptr, 0, nullptr, nullptr);
-                        if (!len) {
+                        if ( !len ) {
                             return "";
                         }
                         auto str_c = new char[len + 1];
-                        if (!str_c) {
+                        if ( !str_c ) {
                             return "";
                         }
                         memset(str_c, 0, len + 1);
@@ -1770,10 +1770,10 @@ SPACE(i) {
                     * @other 其他
                     ****/
                     static std::uint8_t wideChar2hex(wchar_t wch) {
-                        if (wch >= L'0' && wch <= L'9') {
+                        if ( wch >= L'0' && wch <= L'9' ) {
                             return wch - L'0';
                         }
-                        else if (wch >= L'a' && wch <= L'f') {
+                        else if ( wch >= L'a' && wch <= L'f' ) {
                             return wch - L'a' + 10;
                         }
                         else {// wch >= L'A' && wch <= L'F'
@@ -1810,7 +1810,7 @@ SPACE(i) {
                     * @other 其他
                     ****/
                     static char hex2char(uint8_t hex) {
-                        if (hex <= 9) {
+                        if ( hex <= 9 ) {
                             return '0' + hex;
                         }
                         else { // hex >= 10 && hex <= 15
@@ -1887,7 +1887,7 @@ SPACE(i) {
                     * @other 其他
                     ****/
                     static char hex2wideChar(uint8_t hex) {
-                        if (hex <= 9) {
+                        if ( hex <= 9 ) {
                             return L'0' + hex;
                         }
                         else {
@@ -2142,30 +2142,30 @@ SPACE(i) {
                     * @other 其他
                     ****/
                     static std::string wideChar2ANSIWithUCS2(CRef<std::wstring> wstr, CRef<std::wstring> force_escape_wide_chars) {
-                        if (wstr.empty()) {
+                        if ( wstr.empty() ) {
                             return "";
                         }
 #ifdef __WINDOWS__
                         int need_escape = 0;
-                        if (!force_escape_wide_chars.empty()) {
-                            for (auto wch : wstr) {
-                                if (force_escape_wide_chars.find(wch) != std::wstring::npos) {
+                        if ( !force_escape_wide_chars.empty() ) {
+                            for ( auto wch : wstr ) {
+                                if ( force_escape_wide_chars.find(wch) != std::wstring::npos ) {
                                     need_escape = 1;
                                     break;
                                 }
                             }
                         }
                         int len;
-                        if (need_escape == 0) {
+                        if ( need_escape == 0 ) {
                             need_escape = 0;
                             len = WideCharToMultiByte(CP_ACP, 0, wstr.c_str(), -1, nullptr, 0, nullptr, &need_escape);
-                            if (!len) {
+                            if ( !len ) {
                                 return "";
                             }
                         }
-                        if (!need_escape) {
+                        if ( !need_escape ) {
                             auto ansi_c = new char[len + 1];
-                            if (!ansi_c) {
+                            if ( !ansi_c ) {
                                 return "";
                             }
                             memset(ansi_c, 0, len + 1);
@@ -2176,32 +2176,32 @@ SPACE(i) {
                         }
                         else {
                             auto wstr_c_tmp = new wchar_t[2];
-                            if (!wstr_c_tmp) {
+                            if ( !wstr_c_tmp ) {
                                 return "";
                             }
                             wstr_c_tmp[1] = L'\0';
                             auto ansi_c_tmp = new char[8];
-                            if (!ansi_c_tmp) {
+                            if ( !ansi_c_tmp ) {
                                 delete[] wstr_c_tmp;
                                 return "";
                             }
                             std::string ansi_with_ucs2;
-                            for (auto it : wstr) {
-                                if (force_escape_wide_chars.find(it) == std::wstring::npos) {
-                                    if (static_cast<uint16_t>(it) <= 0x7f) {
+                            for ( auto it : wstr ) {
+                                if ( force_escape_wide_chars.find(it) == std::wstring::npos ) {
+                                    if ( static_cast<uint16_t>(it) <= 0x7f ) {
                                         ansi_with_ucs2 += static_cast<char>(it);
                                         continue;
                                     }
-                                    else if ((uint16_t)(it) >> 11 != 0b11011) {
+                                    else if ( (uint16_t) (it) >> 11 != 0b11011 ) {
                                         need_escape = 0;
                                         wstr_c_tmp[0] = it;
                                         auto len = WideCharToMultiByte(CP_ACP, 0, wstr_c_tmp, -1, nullptr, 0, nullptr, &need_escape);
-                                        if (!len) {
+                                        if ( !len ) {
                                             delete[] wstr_c_tmp;
                                             delete[] ansi_c_tmp;
                                             return "";
                                         }
-                                        if (!need_escape) {
+                                        if ( !need_escape ) {
                                             memset(ansi_c_tmp, 0, len + 1);
                                             WideCharToMultiByte(CP_ACP, 0, wstr_c_tmp, -1, ansi_c_tmp, len, nullptr, nullptr);
                                             ansi_with_ucs2 += ansi_c_tmp;
@@ -2249,15 +2249,15 @@ SPACE(i) {
                     * @other 其他
                     ****/
                     static std::wstring escapeWideChar(CRef<std::wstring> wstr, CRef<std::wstring> escape_wide_chars) {
-                        if (wstr.empty()) {
+                        if ( wstr.empty() ) {
                             return L"";
                         }
-                        if (escape_wide_chars.empty()) {
+                        if ( escape_wide_chars.empty() ) {
                             return wstr;
                         }
                         std::wstring wstr_with_ucs2;
-                        for (wchar_t wch : wstr) {
-                            if (escape_wide_chars.find(wch) == std::wstring::npos) {
+                        for ( wchar_t wch : wstr ) {
+                            if ( escape_wide_chars.find(wch) == std::wstring::npos ) {
                                 wstr_with_ucs2 += wch;
                             }
                             else {
@@ -2296,33 +2296,33 @@ SPACE(i) {
                     * @other 其他
                     ****/
                     static std::wstring unescapeWideChar(CRef<std::wstring> wstr_with_ucs2, CRef<std::wstring> not_unescape_wide_chars) {
-                        if (wstr_with_ucs2.empty()) {
+                        if ( wstr_with_ucs2.empty() ) {
                             return L"";
                         }
                         std::wstring wstr;
                         wstr.reserve(wstr_with_ucs2.size());
                         std::wstring ucs2_tmp;
                         ucs2_tmp.reserve(6);
-                        for (auto it = wstr_with_ucs2.cbegin(), cend = wstr_with_ucs2.cend(); it != cend; it++) {
-                            if (*it == L'\\') {
+                        for ( auto it = wstr_with_ucs2.cbegin(), cend = wstr_with_ucs2.cend(); it != cend; it++ ) {
+                            if ( *it == L'\\' ) {
                                 ucs2_tmp = L"\\";
                                 it++;
-                                if (it != cend && *it == L'u') {
+                                if ( it != cend && *it == L'u' ) {
                                     ucs2_tmp += L'u';
                                     it++;
-                                    if (it != cend && isWideCharHex(*it)) {
+                                    if ( it != cend && isWideCharHex(*it) ) {
                                         ucs2_tmp += *it;
                                         it++;
-                                        if (it != cend && isWideCharHex(*it)) {
+                                        if ( it != cend && isWideCharHex(*it) ) {
                                             ucs2_tmp += *it;
                                             it++;
-                                            if (it != cend && isWideCharHex(*it)) {
+                                            if ( it != cend && isWideCharHex(*it) ) {
                                                 ucs2_tmp += *it;
                                                 it++;
-                                                if (it != cend && isWideCharHex(*it)) {
+                                                if ( it != cend && isWideCharHex(*it) ) {
                                                     ucs2_tmp += *it;
                                                     auto wch = UCS22WideChar(ucs2_tmp);
-                                                    if (not_unescape_wide_chars.find(wch) == std::wstring::npos) {
+                                                    if ( not_unescape_wide_chars.find(wch) == std::wstring::npos ) {
                                                         wstr += wch;
                                                         continue;
                                                     }
@@ -2332,7 +2332,7 @@ SPACE(i) {
                                     }
                                 }
                                 wstr += ucs2_tmp;
-                                if (it == cend) {
+                                if ( it == cend ) {
                                     break;
                                 }
                             }
@@ -2437,7 +2437,7 @@ SPACE(i) {
                         auto it = ucs2.cbegin();
                         it += 2; // L'\\u'
                         uint16_t wch_value = 0;
-                        for (auto i = 0; i < 4; i++) {
+                        for ( auto i = 0; i < 4; i++ ) {
                             wch_value <<= 4;
                             wch_value += wideChar2hex(*it);
                             it++;
@@ -2481,7 +2481,7 @@ SPACE(i) {
                     ) {
                         bool found = false;
                         size_t pos = 0;
-                        while ((pos = str.find(oldStr.data(), pos)) != npos) {
+                        while ( (pos = str.find(oldStr.data(), pos)) != npos ) {
                             found = true;
                             str.replace(pos, oldStr.length(), newStr.data());
                             pos += newStr.length();
@@ -2524,21 +2524,21 @@ SPACE(i) {
                         bool pushEmpty = false,
                         bool vInversion = false) {
                         std::list<Type> arr;
-                        if (!str.empty()) {
+                        if ( !str.empty() ) {
                             size_type start = 0;
                             size_type end = str.data().find_first_of(delimiters.data(), start);
-                            while (end != npos) {
+                            while ( end != npos ) {
                                 Type token = str.data().substr(start, end - start);
-                                if (!token.empty() || (token.empty() && pushEmpty)) {
-                                    if (vInversion) arr.emplace_front(token);
+                                if ( !token.empty() || (token.empty() && pushEmpty) ) {
+                                    if ( vInversion ) arr.emplace_front(token);
                                     else arr.emplace_back(token);
                                 }
                                 start = end + 1;
                                 end = str.data().find_first_of(delimiters.data(), start);
                             }
                             Type token = str.data().substr(start);
-                            if (!token.empty() || (token.empty() && pushEmpty)) {
-                                if (vInversion) {
+                            if ( !token.empty() || (token.empty() && pushEmpty) ) {
+                                if ( vInversion ) {
                                     arr.emplace_front(token);
                                 }
                                 else {
@@ -2582,19 +2582,19 @@ SPACE(i) {
                         CRef<basic_istring> delimiters,
                         bool pushEmpty = false) {
                         std::vector<Type> arr;
-                        if (!str.empty()) {
+                        if ( !str.empty() ) {
                             size_type start = 0;
                             size_type end = str.data().find_first_of(delimiters.data(), start);
-                            while (end != npos) {
+                            while ( end != npos ) {
                                 Type token = str.data().substr(start, end - start);
-                                if (!token.empty() || (token.empty() && pushEmpty)) {
+                                if ( !token.empty() || (token.empty() && pushEmpty) ) {
                                     arr.emplace_back(token);
                                 }
                                 start = end + 1;
                                 end = str.data().find_first_of(delimiters.data(), start);
                             }
                             Type token = str.data().substr(start);
-                            if (!token.empty() || (token.empty() && pushEmpty)) {
+                            if ( !token.empty() || (token.empty() && pushEmpty) ) {
                                 arr.emplace_back(token);
                             }
                         }
@@ -2787,7 +2787,7 @@ SPACE(i) {
                     * @enddetails
                     * @other 其他
                     ****/
-                    static std::string wstr2str(CRef<std::wstring> wstr,uint codePage){
+                    static std::string wstr2str(CRef<std::wstring> wstr, uint codePage) {
 #ifdef __WINDOWS__
                         auto len = WideCharToMultiByte(codePage, 0, wstr.c_str(), -1, nullptr, 0, nullptr, nullptr);
                         Ptr<char> buffer = new char[len + 1];
@@ -2830,12 +2830,12 @@ SPACE(i) {
                     * @enddetails
                     * @other 其他
                     ****/
-					static std::string UTF82String(std::u8string str)
-					{
-						return reinterpret_cast<std::string&>(str);
-					}
-					
-					
+                    static std::string UTF82String(std::u8string str)
+                    {
+                        return reinterpret_cast<std::string&>(str);
+                    }
+
+
                 public:
 
                     /****
@@ -2870,23 +2870,23 @@ SPACE(i) {
                     std::list<Type> split2List(
                         CRef<basic_istring> delimiters,
                         bool pushEmpty = false,
-                        bool vInversion = false){
+                        bool vInversion = false) {
                         std::list<Type> arr;
-                        if (!this->_data.empty()) {
+                        if ( !this->_data.empty() ) {
                             size_type start = 0;
                             size_type end = (this->_data).find_first_of(delimiters.data(), start);
-                            while (end != npos) {
+                            while ( end != npos ) {
                                 Type token = (this->_data).substr(start, end - start);
-                                if (!token.empty() || (token.empty() && pushEmpty)) {
-                                    if (vInversion) arr.emplace_front(token);
+                                if ( !token.empty() || (token.empty() && pushEmpty) ) {
+                                    if ( vInversion ) arr.emplace_front(token);
                                     else arr.emplace_back(token);
                                 }
                                 start = end + 1;
                                 end = (this->_data).find_first_of(delimiters.data(), start);
                             }
                             Type token = (this->_data).substr(start);
-                            if (!token.empty() || (token.empty() && pushEmpty)) {
-                                if (vInversion) {
+                            if ( !token.empty() || (token.empty() && pushEmpty) ) {
+                                if ( vInversion ) {
                                     arr.emplace_front(token);
                                 }
                                 else {
@@ -2896,7 +2896,7 @@ SPACE(i) {
                         }
                         return arr;
                     }
-                    
+
                     /****
                     * @author Lovelylavender4
                     * @since 编写此代码的时间或版本
@@ -2929,25 +2929,25 @@ SPACE(i) {
                         CRef<basic_istring> delimiters,
                         bool pushEmpty = false) {
                         std::vector<Type> arr;
-                        if (!(this->_data).empty()) {
+                        if ( !(this->_data).empty() ) {
                             size_type start = 0;
                             size_type end = (this->_data).find_first_of(delimiters.data(), start);
-                            while (end != npos) {
+                            while ( end != npos ) {
                                 Type token = (this->_data).substr(start, end - start);
-                                if (!token.empty() || (token.empty() && pushEmpty)) {
+                                if ( !token.empty() || (token.empty() && pushEmpty) ) {
                                     arr.emplace_back(token);
                                 }
                                 start = end + 1;
                                 end = (this->_data).find_first_of(delimiters.data(), start);
                             }
                             Type token = (this->_data).substr(start);
-                            if (!token.empty() || (token.empty() && pushEmpty)) {
+                            if ( !token.empty() || (token.empty() && pushEmpty) ) {
                                 arr.emplace_back(token);
                             }
                         }
                         return arr;
                     }
-                    
+
                     /****
                     * @author Lovelylavender4
                     * @since 编写此代码的时间或版本
@@ -2980,26 +2980,26 @@ SPACE(i) {
                         CRef<basic_istring> delimiters,
                         bool pushEmpty = false) {
                         std::set<Type> arr;
-                        if (!(this->_data).empty()) {
+                        if ( !(this->_data).empty() ) {
                             size_type start = 0;
                             size_type end = (this->_data).find_first_of(delimiters.data(), start);
-                            while (end != npos){
+                            while ( end != npos ) {
                                 Type token = (this->_data).substr(start, end - start);
-                                if (!token.empty() || (token.empty() && pushEmpty))
+                                if ( !token.empty() || (token.empty() && pushEmpty) )
                                     arr.emplace(token);
                                 start = end + 1;
                                 end = (this->_data).find_first_of(delimiters, start);
                             }
                             Type token = (this->_data).substr(start);
-                            if (!token.empty() || (token.empty() && pushEmpty)) {
+                            if ( !token.empty() || (token.empty() && pushEmpty) ) {
                                 arr.emplace(token);
                             }
                         }
                         return arr;
                     }
-                    
 
-                public C_STATIC:
+
+                    public C_STATIC:
 
                     /****
                     * @brief Integer to hex string.
@@ -3019,23 +3019,23 @@ SPACE(i) {
                     ****/
                     template <typename T>
                     static std::string IntToHexStr(CRef<T> value, bool upper = true, bool no0x = true,
-                        bool noLeadingZero = true)
+                                                   bool noLeadingZero = true)
                     {
                         std::string result;
-                        if (value < 0) result += '-';
-                        if (!no0x) result += "0x";
+                        if ( value < 0 ) result += '-';
+                        if ( !no0x ) result += "0x";
                         auto hexStr = upper ? "0123456789ABCDEF" : "0123456789abcdef";
                         bool leadingZero = true;
-                        for (int i = sizeof(T) * 2; i > 0; --i)
+                        for ( int i = sizeof(T) * 2; i > 0; --i )
                         {
                             auto hex = (value >> (i - 1) * 4) & 0xF;
-                            if (noLeadingZero && leadingZero && hex == 0) continue;
+                            if ( noLeadingZero && leadingZero && hex == 0 ) continue;
                             leadingZero = false;
                             result += hexStr[hex];
                         }
                         return result;
-                    }                    
-                
+                    }
+
                 public:
 
                     /****
@@ -3066,11 +3066,11 @@ SPACE(i) {
                     * @enddetails
                     * @other 其他
                     ****/
-                    std::string toHexStdString(){
+                    std::string toHexStdString() {
                         std::ostringstream os;
                         os << std::hex << this->_data;
                         return os.str();
-                    } 
+                    }
 
                     /****
                     * @author Lovelylavender4
@@ -3100,13 +3100,13 @@ SPACE(i) {
                     * @enddetails
                     * @other 其他
                     ****/
-                    std::string toDecStr(){
+                    std::string toDecStr() {
                         std::ostringstream os;
                         os << std::dec << this->_data;
                         return os.str();
                     }
 
-                public C_OPERATOR:
+                    public C_OPERATOR:
 
                     /****
                     * @author ticks
@@ -3138,7 +3138,7 @@ SPACE(i) {
                     ****/
                     Ref<basic_istring> operator = (CRef<basic_istring> str)
                     {
-                        if (*this == str) {
+                        if ( *this == str ) {
                             return *this;
                         }
                         this->_data = str;
@@ -3147,7 +3147,7 @@ SPACE(i) {
 
                     Ref<basic_istring> operator = (Ref<Ref<basic_istring>> str) noexcept
                     {
-                        if (*this == str) {
+                        if ( *this == str ) {
                             return *this;
                         }
                         this->_data = std::move(str);
@@ -3584,19 +3584,19 @@ SPACE(i) {
                     * @bug 存在的漏洞
                     * @include <string>
                     * @details
-                    *  
+                    *
                     * @enddetails
                     ****/
                     template <typename T>
                     static basic_istring valueOf(Ref<Ref<T>> value)
                     {
 #ifdef __CPP_17__
-                        if constexpr (std::is_same_v<Type, std::string>) {
+                        if constexpr ( std::is_same_v<Type, std::string> ) {
                             return static_cast<basic_istring>(std::to_string(value));
                         }
                         return static_cast<basic_istring>(std::to_wstring(value));
 #else
-                        if (std::is_same_v<Type, std::string>) {
+                        if ( std::is_same_v<Type, std::string> ) {
                             return static_cast<basic_istring>(std::to_string(value));
                         }
                         return static_cast<basic_istring>(std::to_wstring(value));
@@ -3680,13 +3680,13 @@ SPACE(i) {
                 bool basic_istring<Type, t>::startsWith(CRef<basic_istring> sub, CRef<basic_istring> str)
 #endif
                 {
-                    if (sub.length() > str.length()) {
+                    if ( sub.length() > str.length() ) {
                         return false;
                     }
                     auto sub_iter = sub.cbegin();
                     auto str_iter = str.cbegin();
-                    while (sub_iter != sub.cend()) {
-                        if (*sub_iter != *str_iter) {
+                    while ( sub_iter != sub.cend() ) {
+                        if ( *sub_iter != *str_iter ) {
                             return false;
                         }
                         ++sub_iter;
@@ -3694,8 +3694,8 @@ SPACE(i) {
                     }
                     return true;
                 }
-                
-                
+
+
 #ifdef __CPP_20__
                 template <typename Type> requires type::type_traits::is_std_string_v<Type>
                 bool basic_istring<Type>::endsWith(CRef<basic_istring> sub, CRef<basic_istring> str)
@@ -3704,13 +3704,13 @@ SPACE(i) {
                 bool basic_istring<Type, t>::endsWith(CRef<basic_istring> sub, CRef<basic_istring> str)
 #endif
                 {
-                    if (sub.length() > str.length()) {
+                    if ( sub.length() > str.length() ) {
                         return false;
                     }
                     auto sub_iter = sub.crbegin();
                     auto str_iter = str.crbegin();
-                    while (sub_iter != sub.crend()) {
-                        if (*sub_iter != *str_iter) {
+                    while ( sub_iter != sub.crend() ) {
+                        if ( *sub_iter != *str_iter ) {
                             return false;
                         }
                         ++sub_iter;

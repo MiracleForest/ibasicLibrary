@@ -5,19 +5,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="other">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
     <Filter Include="include">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
     <Filter Include="src">
       <UniqueIdentifier>{5819986f-c8d0-48f1-bd44-1f73a37430f2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="dllmain">
-      <UniqueIdentifier>{19c4cc5c-21b1-4e4e-916e-8a8afdfd7794}</UniqueIdentifier>
     </Filter>
     <Filter Include="include\console">
       <UniqueIdentifier>{d3383e8c-4324-4fa2-93e1-7b7fe9a4274f}</UniqueIdentifier>
@@ -33,12 +26,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="pch.h">
-      <Filter>other</Filter>
-    </ClInclude>
-    <ClInclude Include="framework.h">
-      <Filter>other</Filter>
-    </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>resource</Filter>
     </ClInclude>
@@ -59,14 +46,8 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="pch.cpp">
-      <Filter>other</Filter>
-    </ClCompile>
     <ClCompile Include="src\io.cpp">
       <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="dllmain.cpp">
-      <Filter>dllmain</Filter>
     </ClCompile>
     <ClCompile Include="src\file.cpp">
       <Filter>src</Filter>

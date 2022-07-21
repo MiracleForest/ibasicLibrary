@@ -114,7 +114,9 @@ SPACE(i) {
 				return typeList::itype;
 			}
 
-			iType data()const { return mType; }
+			iType data()const {
+				return mType;
+			}
 
 			/****
 			* @author Lovelylavender4
@@ -133,7 +135,9 @@ SPACE(i) {
 			* 设置mType的值
 			* @enddetails
 			****/
-			void setData(iType t) { mType = t; }
+			void setData(iType t) {
+				mType = t;
+			}
 
 			public C_STATIC:
 
@@ -155,7 +159,7 @@ SPACE(i) {
 			* @enddetails
 			****/
 			static CPtr<char> getString(iType t) {
-				switch (t) {
+				switch ( t ) {
 				case iType::unkType: {
 					return "unkType";
 				}
