@@ -18,6 +18,7 @@
 #include "../include/icore/lib/libmath/vec4.hpp"
 
 #include "../include/icore/lib/libIO/file.h"
+#include "../include/icore/lib/libIO/console/redirection.h"
 #pragma comment(lib,R"(..\build\x64\Debug\libIO.lib)")
 
 
@@ -32,6 +33,21 @@ IERROR fun() {
 
 
 IERROR i::core::Main::start(::i::core::Ref< N_ISTD _p_start> p_start) {
+    system("chcp 65001");
+
+    i::core::libIO::console::Redirection re;
+    std::cout << "-" << re.runProcess(L"cmd.exe");
+    for ( ;; ) {
+        type::istring istr = "";
+        std::cout << re.getOutput(1000, istr);
+        if ( istr == "" || istr == " " ) {
+            //istr = "";
+        }
+        else {
+            std::cout << istr << std::endl;
+            //istr = "";
+        }
+    }
 
     try {
         auto rtet = fun();

@@ -151,6 +151,9 @@
     <Filter Include="include\icore\exception">
       <UniqueIdentifier>{55604364-b858-48b4-bf79-ecc0e33e5d06}</UniqueIdentifier>
     </Filter>
+    <Filter Include="readme">
+      <UniqueIdentifier>{7ada44b4-9746-4eab-a175-dc8a9ece55a2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ibasicLibrary.cpp">
@@ -163,9 +166,6 @@
   <ItemGroup>
     <Text Include="..\docs\filelist.txt">
       <Filter>docs</Filter>
-    </Text>
-    <Text Include="..\lib-src\filelist.txt">
-      <Filter>lib-src</Filter>
     </Text>
     <Text Include="..\build\filelist.txt">
       <Filter>build</Filter>
@@ -348,9 +348,6 @@
     </ClInclude>
     <ClInclude Include="..\include\icore\type\istring.hpp">
       <Filter>include\icore\type</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\icore\lib\libIO\io.h">
-      <Filter>include\icore\lib\libIO</Filter>
     </ClInclude>
     <ClInclude Include="..\include\icore\lib\libmath\math.h">
       <Filter>include\icore\lib\libMath</Filter>
@@ -1666,11 +1663,20 @@
     <None Include="..\third-party\glm\gtx\wrap.inl">
       <Filter>third-party\glm\gtx</Filter>
     </None>
-    <None Include="CodeMap1.dgml">
-      <Filter>other</Filter>
+    <None Include="..\README.md">
+      <Filter>readme</Filter>
     </None>
-    <None Include="IncludeFileDependencies1.dgml">
-      <Filter>other</Filter>
+    <None Include="..\README_en.md">
+      <Filter>readme</Filter>
+    </None>
+    <None Include="..\README_i_il.md">
+      <Filter>readme</Filter>
+    </None>
+    <None Include="..\README_i_innovation.md">
+      <Filter>readme</Filter>
+    </None>
+    <None Include="..\README_qq.md">
+      <Filter>readme</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

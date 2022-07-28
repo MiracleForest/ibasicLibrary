@@ -1,4 +1,4 @@
-#ifndef __linux__
+#ifndef __GCC__
 
 // thread standard header
 
@@ -395,4 +395,4 @@ _STL_RESTORE_CLANG_WARNINGS
 
 #else
 #include <thread>
-#endif // !__linux__
+#endif // !__GCC__

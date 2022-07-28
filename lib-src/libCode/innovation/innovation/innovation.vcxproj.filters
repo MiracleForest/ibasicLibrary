@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="source">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="resource">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{4e2082c3-0dfa-46fd-a382-e6f4f7f05fcd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="other">
+      <UniqueIdentifier>{48c7c14f-7374-4587-a437-eabc6989b5b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="third-party">
+      <UniqueIdentifier>{c62de259-7d62-4915-8642-005832ecfbf4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="docs">
+      <UniqueIdentifier>{4fcb395e-904d-4a65-bd6f-0dbcd9d34021}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\reader">
+      <UniqueIdentifier>{1ba2337d-378e-40b4-b6a9-8e2f879df130}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\cpp">
+      <UniqueIdentifier>{86c3521f-4c7d-45e8-91a9-d1e92d02b6c4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\reader.iset">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\cpp\cpp.hpp">
+      <Filter>include\cpp</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
+  </ItemGroup>
+</Project>

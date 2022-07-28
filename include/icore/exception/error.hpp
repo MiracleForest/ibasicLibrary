@@ -25,19 +25,38 @@
 #include "../family/imacrofamily.h"
 #include "../type/filepos.hpp"
 #include "../type/level.hpp"
+#include <map>
 
 #ifndef ___ERROR_MAP
 // ErrorCode, icode, description, description2, suggestion, level, canIgnore
 #define ___ERROR_MAP(XX) \
-    XX (unkError, -1, "未知的错误！", "此错误未被记载！是未知的错误！", "仔细检查代码，或向i官方反馈并提交此错误！", -1, false)\
-    XX (createErrorFailed, -2, "创建错误失败！", "创建错误失败！在构建错误时发生了严重的错误！此错误不可忽略！", "仔细检查代码中引发此错误的地方，例如确定参数code是有效！", -1, false)
-#else
+    XX(unkError,-1, "未知的错误！", "[unkError]此错误未被记载！是未知的错误！", "仔细检查代码，或向i官方反馈并提交此错误！", -1, false)\
+    XX(createErrorFailed, -2, "创建错误失败！", "[createErrorFailed]创建错误失败！在构建错误时发生了严重的错误！此错误不可忽略！", "仔细检查代码中引发此错误的地方，例如确定参数code是有效！", -1, false)\
+    XX(loadDynamicLinkLibraryFailed, -1000, "加载动态链接库失败！", "[loadDynamicLinkLibraryFailed]加载动态链接库（dll/so）失败！", "确认动态库路径正确，动态库文件存在，检查动态库文件是否无损！", -1, false)\
+    XX(initializationWinsockFailed, -1001, "初始化 Winsock 失败！", "[initializationWinsockFailed]初始化 Winsock 失败！", "", -1, false)\
+    XX(socketError, -1002, "无效的socket！", "[socketError]加载动态链接库（dll/so）失败！", "", -1, false)\
+    XX(loadDynamicLinkLibraryFailed, -1000, "[loadDynamicLinkLibraryFailed]加载动态链接库失败！", "加载动态链接库（dll/so）失败！", "确认动态库路径正确，动态库文件存在，检查动态库文件是否无损！", -1, false)\
+    XX(loadDynamicLinkLibraryFailed, -1000, "[loadDynamicLinkLibraryFailed]加载动态链接库失败！", "加载动态链接库（dll/so）失败！", "确认动态库路径正确，动态库文件存在，检查动态库文件是否无损！", -1, false)\
+    XX(loadDynamicLinkLibraryFailed, -1000, "[loadDynamicLinkLibraryFailed]加载动态链接库失败！", "加载动态链接库（dll/so）失败！", "确认动态库路径正确，动态库文件存在，检查动态库文件是否无损！", -1, false)\
+    XX(loadDynamicLinkLibraryFailed, -1000, "[loadDynamicLinkLibraryFailed]加载动态链接库失败！", "加载动态链接库（dll/so）失败！", "确认动态库路径正确，动态库文件存在，检查动态库文件是否无损！", -1, false)\
+    XX(loadDynamicLinkLibraryFailed, -1000, "[loadDynamicLinkLibraryFailed]加载动态链接库失败！", "加载动态链接库（dll/so）失败！", "确认动态库路径正确，动态库文件存在，检查动态库文件是否无损！", -1, false)\
+    XX(loadDynamicLinkLibraryFailed, -1000, "[loadDynamicLinkLibraryFailed]加载动态链接库失败！", "加载动态链接库（dll/so）失败！", "确认动态库路径正确，动态库文件存在，检查动态库文件是否无损！", -1, false)\
+    XX(loadDynamicLinkLibraryFailed, -1000, "[loadDynamicLinkLibraryFailed]加载动态链接库失败！", "加载动态链接库（dll/so）失败！", "确认动态库路径正确，动态库文件存在，检查动态库文件是否无损！", -1, false)\
+    XX(loadDynamicLinkLibraryFailed, -1000, "[loadDynamicLinkLibraryFailed]加载动态链接库失败！", "加载动态链接库（dll/so）失败！", "确认动态库路径正确，动态库文件存在，检查动态库文件是否无损！", -1, false)\
+    XX(loadDynamicLinkLibraryFailed, -1000, "[loadDynamicLinkLibraryFailed]加载动态链接库失败！", "加载动态链接库（dll/so）失败！", "确认动态库路径正确，动态库文件存在，检查动态库文件是否无损！", -1, false)\
+    XX(loadDynamicLinkLibraryFailed, -1000, "[loadDynamicLinkLibraryFailed]加载动态链接库失败！", "加载动态链接库（dll/so）失败！", "确认动态库路径正确，动态库文件存在，检查动态库文件是否无损！", -1, false)\
+    XX(loadDynamicLinkLibraryFailed, -1000, "[loadDynamicLinkLibraryFailed]加载动态链接库失败！", "加载动态链接库（dll/so）失败！", "确认动态库路径正确，动态库文件存在，检查动态库文件是否无损！", -1, false)\
+    XX(loadDynamicLinkLibraryFailed, -1000, "[loadDynamicLinkLibraryFailed]加载动态链接库失败！", "加载动态链接库（dll/so）失败！", "确认动态库路径正确，动态库文件存在，检查动态库文件是否无损！", -1, false)\
+    XX(loadDynamicLinkLibraryFailed, -1000, "[loadDynamicLinkLibraryFailed]加载动态链接库失败！", "加载动态链接库（dll/so）失败！", "确认动态库路径正确，动态库文件存在，检查动态库文件是否无损！", -1, false)\
+    XX(loadDynamicLinkLibraryFailed, -1000, "[loadDynamicLinkLibraryFailed]加载动态链接库失败！", "加载动态链接库（dll/so）失败！", "确认动态库路径正确，动态库文件存在，检查动态库文件是否无损！", -1, false)\
 
 #endif//!___ERROR_MAP
 
 SPACE(i) {
     SPACE(core) {
         SPACE(iexception) {
+
+            class error;
 
             struct ErrorInfo {
                 ErrorCode _code;
@@ -48,6 +67,7 @@ SPACE(i) {
                 type::FilePos _position;  // 位置
                 type::level _level;       // 等级
                 bool _canBeIgnored;       // 是否可以忽略
+                std::map<type::istring, error> other;//其他
 
                 static ErrorInfo makeDefault() {
                     ErrorInfo e;
@@ -59,27 +79,18 @@ SPACE(i) {
                     e._position = type::fPos::makeDefault();
                     e._level = -1;
                     e._canBeIgnored = false;
+                    e.other = { };
                     return e;
                 }
 
-                void operator=(CRef<ErrorInfo> errorinfo) {
-                    _code = errorinfo._code;
-                    _icode = errorinfo._icode;
-                    _dscription = errorinfo._dscription;
-                    _dscription2 = errorinfo._dscription2;
-                    _suggestion = errorinfo._suggestion;
-                    _position = errorinfo._position;
-                    _level = errorinfo._level;
-                    _position = errorinfo._position;
-                    _canBeIgnored = errorinfo._canBeIgnored;
-                }
             };
 
 
 
             class error {
             public:
-                enum class EMT {//error message type
+                //error message type
+                enum class EMT {
                     errorCode_enum,
                     errorCode_int,
                     dscription,
@@ -89,11 +100,25 @@ SPACE(i) {
                 };
             private:
 
-                error() :_noError(1) {}
+                error()
+                    :_noError(true),
+                    _isIString(false),
+                    _errorstr("")
+                {}
 
                 error(ErrorInfo errorinfo)
                     :_errorinfo(errorinfo),
-                    _noError(0) {}
+                    _noError(false),
+                    _isIString(false),
+                    _errorstr("")
+                {}
+
+                error(type::istring str)
+                    : _noError(false),
+                    _isIString(true),
+                    _errorstr(str)
+                {}
+
             public:
 
                 ~error() {}
@@ -149,8 +174,12 @@ SPACE(i) {
                 * 是否没有错误
                 * @enddetails
                 ****/
-                bool isNoError() {
+                bool isNoError() const {
                     return _noError;
+                }
+
+                bool isIString() const {
+                    return _isIString;
                 }
 
                 public C_STATIC:
@@ -208,7 +237,7 @@ SPACE(i) {
                 * @param _position = type::fPos::makeDefault() 错误位置
                 * @future 根据参数_code找到此错误的ErrorInfo，并创建error
                 * @retval 创建完毕的错误
-                * 
+                *
                 * @note
                 * _code必须是有效的错误代码
                 * @endnote
@@ -235,7 +264,7 @@ SPACE(i) {
                         errorinfo = getErrorInfoFrom(EMT::errorCode_enum, code);
                         errorinfo._position = position;
                     }
-                    catch (...) {
+                    catch ( ... ) {
                         throw createErrorFailed("错误！参数code是无效的！");
                     }
                     return errorinfo;
@@ -267,7 +296,7 @@ SPACE(i) {
                 * @param emsg 枚举对应类型
                 * @tparam emsg_t 通过emsg_t类型获取
                 * @retval ErrorInfo 错误信息结构体
-                * 
+                *
                 * @note
                 * emsg类型需要与emt枚举中类型对应，否则会发生未定义错误
                 * @endnote
@@ -276,125 +305,133 @@ SPACE(i) {
                 * ErrorInfo info = getErrorInfo(EMT::errorCode_int, -1);
                 * std::cout << "错误描述: " << info.dscription << std::endl;
                 * @endcode
-                * 
+                *
                 * @include error.hpp
                 * @details
                 * 详细描述
                 * @enddetails
-                * 
-                * @warning  
-                * @bug 
-                * 
+                *
+                * @warning
+                * @bug
+                *
                 **/
 
                 template<class emsg_t>
-                static ErrorInfo getErrorInfoFrom(EMT emt, emsg_t emsg){}
+                static ErrorInfo getErrorInfoFrom(EMT emt, emsg_t emsg) {
+                    throw - 1;
+                }
 
 
                 template<>
                 static ErrorInfo getErrorInfoFrom<ErrorCode>(EMT emt, ErrorCode emsg) {
-                    if (emt == EMT::errorCode_enum) {
-                        if (emsg == ErrorCode::unkError) {
-                            return ErrorInfo{ErrorCode::unkError, -1, "未知的错误",
-                                             "此错误未被记载！是未知的错误！",
-                                             "仔细检查代码，或向i官方反馈并提交此错误！",
-                                             type::fPos::makeDefault(), -1, false};
+                    if ( emt == EMT::errorCode_enum ) {
+                        if ( emsg == ErrorCode::unkError ) {
+                            return ErrorInfo { ErrorCode::unkError, -1, "未知的错误",
+                                "此错误未被记载！是未知的错误！",
+                                "仔细检查代码，或向i官方反馈并提交此错误！",
+                                type::fPos::makeDefault(), -1, false };
                         }
 #define XX(error, icode, des, des2, sug, level, ignore) else if (emsg == ErrorCode:: error){ \
             return ErrorInfo{ErrorCode:: error, icode, des, des2, sug, type::fPos::makeDefault(), level, ignore};}
                         ___ERROR_MAP(XX)
 #undef XX
-                        else {
-                            throw -1;
+else {
+                            throw - 1;
                         }
-                    } else {
-                        throw -1;
+                    }
+                    else {
+                        throw - 1;
                     }
                 }
+
                 template<>
                 static ErrorInfo getErrorInfoFrom<int>(EMT emt, int emsg)
                 {
-                    if (emt == EMT::errorCode_int) {
-                        if (emsg == static_cast<int>(-1)){
-                            return ErrorInfo{ErrorCode::unkError, -1, "未知的错误",
-                                             "此错误未被记载！是未知的错误！",
-                                             "仔细检查代码，或向i官方反馈并提交此错误！",
-                                             type::fPos::makeDefault(), -1, false};
+                    if ( emt == EMT::errorCode_int ) {
+                        if ( emsg == static_cast<int>(-1) ) {
+                            return ErrorInfo { ErrorCode::unkError, -1, "未知的错误",
+                                "此错误未被记载！是未知的错误！",
+                                "仔细检查代码，或向i官方反馈并提交此错误！",
+                                type::fPos::makeDefault(), -1, false };
                         }
 #define XX(error, icode, des, des2, sug, level, ignore) else if (emsg == static_cast<int>(icode)){ \
             return ErrorInfo{ErrorCode:: error, icode, des, des2, sug, type::fPos::makeDefault(), level, ignore};}
                         ___ERROR_MAP(XX)
 #undef XX
-                        else{
-                            throw -1;
+else {
+                            throw - 1;
                         }
-                    } else if (emt == EMT::level) {
-                        if (emsg == -1){
-                            return ErrorInfo{ErrorCode::unkError, -1, "未知的错误",
-                                             "此错误未被记载！是未知的错误！",
-                                             "仔细检查代码，或向i官方反馈并提交此错误！",
-                                             type::fPos::makeDefault(), -1, false};
+                    }
+                    else if ( emt == EMT::level ) {
+                        if ( emsg == -1 ) {
+                            return ErrorInfo { ErrorCode::unkError, -1, "未知的错误",
+                                "此错误未被记载！是未知的错误！",
+                                "仔细检查代码，或向i官方反馈并提交此错误！",
+                                type::fPos::makeDefault(), -1, false };
                         }
 #define XX(error, icode, des, des2, sug, level, ignore) else if (emsg == level){ \
             return ErrorInfo{ErrorCode:: error, icode, des, des2, sug, type::fPos::makeDefault(), level, ignore};}
                         ___ERROR_MAP(XX)
 #undef XX
-                        else{
-                            throw -1;
+else {
+                            throw - 1;
                         }
-                    } else {
-                        throw -1;
+                    }
+                    else {
+                        throw - 1;
                     }
                 }
 
                 template<>
                 static ErrorInfo getErrorInfoFrom<CRef<std::string>>(EMT emt, CRef<std::string> emsg)
                 {
-                    if (emt == EMT::dscription) {
-                        if (emsg == ("未知的错误")){
-                            return ErrorInfo{ErrorCode::unkError, -1, "未知的错误",
-                                             "此错误未被记载！是未知的错误！",
-                                             "仔细检查代码，或向i官方反馈并提交此错误！",
-                                             type::fPos::makeDefault(), -1, false};
+                    if ( emt == EMT::dscription ) {
+                        if ( emsg == ("未知的错误") ) {
+                            return ErrorInfo { ErrorCode::unkError, -1, "未知的错误",
+                                "此错误未被记载！是未知的错误！",
+                                "仔细检查代码，或向i官方反馈并提交此错误！",
+                                type::fPos::makeDefault(), -1, false };
                         }
 #define XX(error, icode, des, des2, sug, level, ignore) else if (emsg == des){ \
             return ErrorInfo{ErrorCode:: error, icode, des, des2, sug, type::fPos::makeDefault(), level, ignore};}
                         ___ERROR_MAP(XX)
 #undef XX
-                        else{
-                            throw -1;
+else {
+                            throw - 1;
                         }
                     }
-                    else if (emt == EMT::dscription2) {
-                        if (emsg == ("此错误未被记载！是未知的错误！")){
-                            return ErrorInfo{ErrorCode::unkError, -1, "未知的错误",
-                                             "此错误未被记载！是未知的错误！",
-                                             "仔细检查代码，或向i官方反馈并提交此错误！",
-                                             type::fPos::makeDefault(), -1, false};
+                    else if ( emt == EMT::dscription2 ) {
+                        if ( emsg == ("此错误未被记载！是未知的错误！") ) {
+                            return ErrorInfo { ErrorCode::unkError, -1, "未知的错误",
+                                "此错误未被记载！是未知的错误！",
+                                "仔细检查代码，或向i官方反馈并提交此错误！",
+                                type::fPos::makeDefault(), -1, false };
                         }
 #define XX(error, icode, des, des2, sug, level, ignore) else if (emsg == des2){ \
             return ErrorInfo{ErrorCode:: error, icode, des, des2, sug, type::fPos::makeDefault(), level, ignore};}
                         ___ERROR_MAP(XX)
 #undef XX
-                        else{
-                            throw -1;
+else {
+                            throw - 1;
                         }
-                    } else if (emt == EMT::suggestion) {
-                        if (emsg == ("仔细检查代码，或向i官方反馈并提交此错误！")){
-                            return ErrorInfo{ErrorCode::unkError, -1, "未知的错误",
-                                             "此错误未被记载！是未知的错误！",
-                                             "仔细检查代码，或向i官方反馈并提交此错误！",
-                                             type::fPos::makeDefault(), -1, false};
+                    }
+                    else if ( emt == EMT::suggestion ) {
+                        if ( emsg == ("仔细检查代码，或向i官方反馈并提交此错误！") ) {
+                            return ErrorInfo { ErrorCode::unkError, -1, "未知的错误",
+                                "此错误未被记载！是未知的错误！",
+                                "仔细检查代码，或向i官方反馈并提交此错误！",
+                                type::fPos::makeDefault(), -1, false };
                         }
 #define XX(error, icode, des, des2, sug, level, ignore) else if (emsg == sug){ \
             return ErrorInfo{ErrorCode:: error, icode, des, des2, sug, type::fPos::makeDefault(), level, ignore};}
                         ___ERROR_MAP(XX)
 #undef XX
-                        else {
-                            throw -1;
+else {
+                            throw - 1;
                         }
-                    } else {
-                        throw -1;
+                    }
+                    else {
+                        throw - 1;
                     }
                 }
 
@@ -422,16 +459,22 @@ SPACE(i) {
                     return _errorinfo;
                 }
 
+                type::istring getIString() const {
+                    return _errorstr;
+                }
+
             private:
                 ErrorInfo _errorinfo;
                 bool _noError;
+                bool _isIString;
+                type::istring _errorstr;
             };//class error
 
         }//SPACE(iexception)
     }//SPACE(core)
 }//SPACE(i)
 
- 
+
 #undef ___ERROR_MAP
 
 #endif //!___MIRACLEFOREST_I_ERROR___

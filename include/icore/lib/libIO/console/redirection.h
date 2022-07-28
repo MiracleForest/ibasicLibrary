@@ -48,12 +48,13 @@ SPACE(i) {
 					handle _ChildInputRead;
 					handle _ChildOutputWrite;
 					handle _ChildOutputRead;
-					PROCESS_INFORMATION CmdPI;
+					PROCESS_INFORMATION _CmdPI;
 
 				};
-			}
-		}
-	}
-}
+
+			}//SPACE(console)
+		}//SPACE(libIO)
+	}//SPACE(core)
+}//SPACE(i) 
 
 #endif//!___MIRACLEFOREST_I__LIBIO_CONSOLE_REDIRECTION___

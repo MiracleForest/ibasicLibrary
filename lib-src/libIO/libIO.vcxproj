@@ -163,7 +163,6 @@
     <ClInclude Include="..\..\include\icore\lib\libIO\console\redirection.h" />
     <ClInclude Include="..\..\include\icore\lib\libIO\file.h" />
     <ClInclude Include="..\..\include\icore\lib\libIO\file\shelllinkfile.h" />
-    <ClInclude Include="..\..\include\icore\lib\libIO\io.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
@@ -171,7 +170,6 @@
     <ClCompile Include="src\console\redirection.cpp" />
     <ClCompile Include="src\file.cpp" />
     <ClCompile Include="src\file\shelllinkfile.cpp" />
-    <ClCompile Include="src\io.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="libIO.rc" />

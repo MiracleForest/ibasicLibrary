@@ -83,6 +83,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)build/$(Platform)\$(Configuration)\</OutDir>
+    <IncludePath>$(SolutionDir)third-party;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -121,8 +123,11 @@
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/utf-8 /cli %(AdditionalOptions)</AdditionalOptions>
       <BrowseInformation>true</BrowseInformation>
+      <OpenMPSupport>false</OpenMPSupport>
+      <EnableModules>true</EnableModules>
+      <CompileAsManaged>true</CompileAsManaged>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -140,6 +145,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -152,6 +159,11 @@
     <ClCompile Include="..\third-party\glm\detail\glm.cpp" />
     <ClCompile Include="ibasicLibrary.cpp" />
     <None Include="..\include\mcppstd\thread" />
+    <None Include="..\README.md" />
+    <None Include="..\README_en.md" />
+    <None Include="..\README_i_il.md" />
+    <None Include="..\README_i_innovation.md" />
+    <None Include="..\README_qq.md" />
     <None Include="..\third-party\glm\detail\func_common.inl" />
     <None Include="..\third-party\glm\detail\func_common_simd.inl" />
     <None Include="..\third-party\glm\detail\func_exponential.inl" />
@@ -288,9 +300,7 @@
     <None Include="..\third-party\glm\gtx\vector_angle.inl" />
     <None Include="..\third-party\glm\gtx\vector_query.inl" />
     <None Include="..\third-party\glm\gtx\wrap.inl" />
-    <None Include="CodeMap1.dgml" />
     <None Include="cpp.hint" />
-    <None Include="IncludeFileDependencies1.dgml" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\ichEdiPLoader\LiteLoaderBDS\LiteLoader\Header\LLAPI.h" />
@@ -303,7 +313,6 @@
     <ClInclude Include="..\include\icore\lib\libIO\file.h" />
     <ClInclude Include="..\include\icore\lib\libIO\file\shelllinkfile.h" />
     <ClInclude Include="..\include\icore\lib\libIO\ifilesystem.h" />
-    <ClInclude Include="..\include\icore\lib\libIO\io.h" />
     <ClInclude Include="..\include\icore\lib\libmath\math.h" />
     <ClInclude Include="..\include\icore\lib\libmath\matrix.hpp" />
     <ClInclude Include="..\include\icore\lib\libmath\rect.hpp" />
@@ -653,7 +662,6 @@
   <ItemGroup>
     <Text Include="..\build\filelist.txt" />
     <Text Include="..\docs\filelist.txt" />
-    <Text Include="..\lib-src\filelist.txt" />
     <Text Include="..\resource\filelist.txt" />
     <Text Include="..\third-party\glm\CMakeLists.txt" />
     <Text Include="..\tools\filelist.txt" />

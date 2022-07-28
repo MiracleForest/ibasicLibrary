@@ -22,8 +22,7 @@
 #include <mutex>
 #include <memory>
 #include "../../family/imacrofamily.h"
-// TODO 22-7-8 : format 待实现
-// #include <format>
+#include <format>
 #include "../../type/istring.hpp"
 
 SPACE(i) {

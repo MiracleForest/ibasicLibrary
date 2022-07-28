@@ -91,6 +91,7 @@ int main(int argc, N_ISTD Ptr<N_ISTD Ptr<char>> argv,
         }
     }
     catch ( N_ISTD CRef<::i::core::iexception::createErrorFailed> e ) {
+        printf(e.what());
         return -3;
     }
     catch ( ... ) {

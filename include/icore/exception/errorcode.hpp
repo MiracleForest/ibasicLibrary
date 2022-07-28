@@ -22,14 +22,32 @@ SPACE(i) {
     SPACE(core) {
         SPACE(iexception) {
 
-            enum class ErrorCode {
+            enum class ErrorCode : int{
                 unkError = -1,
-                /*1*/createErrorFailed = -2
+                createErrorFailed = -2,
+                loadDynamicLinkLibraryFailed = -1000,
+				initializationWinsockFailed = -1001,
+				socketError=-1002,
+				bindError = -1003,
+				listenError = -1004,
+				acceptError = -1005,
+				sendFailed = -1006,
+				recvFailed = -1007,
+				portTooSmall = -1008,
+				maxcouTooBig = -1009,
+				connectFailed = -1010,
+				unsupportedOperations = -1011,
+				connecting = -1012,
+				noConnected = -1013,
+				changeError = -1014,
+				theMaximumNumberOfConnectionsHasBeenReached = -1015,
+				theClientIsDisconnected = -1016
+
             };
 
         }//SPACE(iexception)
     }//SPACE(core)
 }//SPACE(i)
 
- 
+
 #endif //!___MIRACLEFOREST_I_ERRORCODE___

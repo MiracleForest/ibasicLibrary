@@ -6,8 +6,7 @@
 * @创建时间：2022.5.4 12:50
 * @创建者：ticks-tan
 * -----------------------------------------------------------------------------
-* Extension to standard string
-*
+* 对std::string的扩展
 * -----------------------------------------------------------------------------
 * 如果你发现了bug，你可以去Github或邮箱(MiracleForest@Outlook.com)反馈给我们！
 * 我们一定会努力做得更好的！
@@ -3293,37 +3292,37 @@ SPACE(i) {
 
                     friend bool operator == (CPtr<value_type> s, CRef<basic_istring> rs) noexcept
                     {
-                        return s == rs;
+                        return s == rs._data;
                     }
 
                     friend bool operator == (CRef<basic_istring> ls, CPtr<value_type> s)
                     {
-                        return ls == s;
+                        return ls.data() == s;
                     }
 
                     friend bool operator != (CRef<basic_istring> ls, CPtr<value_type> s)
                     {
-                        return ls != s;
+                        return ls.data() != s;
                     }
 
                     friend bool operator < (CRef<basic_istring> ls, CPtr<value_type> s)
                     {
-                        return ls < s;
+                        return ls.data() < s;
                     }
 
                     friend bool operator <= (CRef<basic_istring> ls, CPtr<value_type> s)
                     {
-                        return ls <= s;
+                        return ls.data() <= s;
                     }
 
                     friend bool operator > (CRef<basic_istring> ls, CPtr<value_type> s)
                     {
-                        return ls > s;
+                        return ls.data() > s;
                     }
 
                     friend bool operator >= (CRef<basic_istring> ls, CPtr<value_type> s)
                     {
-                        return ls >= s;
+                        return ls.data() >= s;
                     }
 
                     friend Ref<std::ostream> operator << (Ref<std::ostream> os, CRef<basic_istring> str)
@@ -3603,122 +3602,12 @@ SPACE(i) {
 #endif
                     }
 
-#if __LINUX__ && __GCC__ 
-
-                    /****
-                    * @author ticks
-                    * @since 编写此代码的时间或版本
-                    * @brief check str start with sub
-                    *
-                    * @param 参数名 注释
-                    * @tparam 模板参数名 注释
-                    * @future 未来要做的事情
-                    * @retval 返回值注释
-                    * @throws 抛出的异常
-                    *
-                    * @note
-                    * 注意事项
-                    * @endnote
-                    * @pre 使用此函数的前提条件
-                    * @par Example
-                    * @code
-                    * 代码示例
-                    * @endcode
-                    *
-                    * @warning 警告
-                    * @bug 存在的漏洞
-                    * @include 需要包含的头文件
-                    * @details
-                    * 详细描述
-                    * @enddetails
-                    * @other 其他
-                    ****/
-                    static bool startsWith(CRef<basic_istring> sub, CRef<basic_istring> str);
-
-                    /****
-                    * @author ticks
-                    * @since 编写此代码的时间或版本
-                    * @brief check str end with sub
-                    *
-                    * @param 参数名 注释
-                    * @tparam 模板参数名 注释
-                    * @future 未来要做的事情
-                    * @retval 返回值注释
-                    * @throws 抛出的异常
-                    *
-                    * @note
-                    * 注意事项
-                    * @endnote
-                    * @pre 使用此函数的前提条件
-                    * @par Example
-                    * @code
-                    * 代码示例
-                    * @endcode
-                    *
-                    * @warning 警告
-                    * @bug 存在的漏洞
-                    * @include 需要包含的头文件
-                    * @details
-                    * 详细描述
-                    * @enddetails
-                    * @other 其他
-                    ****/
-                    static bool endsWith(CRef<basic_istring> sub, CRef<basic_istring> str);
-#endif
                 protected:
 
                 private:
                     Type _data;
                 };
 
-#if __LINUX__ && __GCC__ 
-#ifdef __CPP_20__
-                template <typename Type> requires type::type_traits::is_std_string_v<Type>
-                bool basic_istring<Type>::startsWith(CRef<basic_istring> sub, CRef<basic_istring> str)
-#else
-                template <typename Type, std::enable_if_t <type_traits::is_std_string_v<Type>, Type> t>
-                bool basic_istring<Type, t>::startsWith(CRef<basic_istring> sub, CRef<basic_istring> str)
-#endif
-                {
-                    if ( sub.length() > str.length() ) {
-                        return false;
-                    }
-                    auto sub_iter = sub.cbegin();
-                    auto str_iter = str.cbegin();
-                    while ( sub_iter != sub.cend() ) {
-                        if ( *sub_iter != *str_iter ) {
-                            return false;
-                        }
-                        ++sub_iter;
-                        ++str_iter;
-                    }
-                    return true;
-                }
-
-
-#ifdef __CPP_20__
-                template <typename Type> requires type::type_traits::is_std_string_v<Type>
-                bool basic_istring<Type>::endsWith(CRef<basic_istring> sub, CRef<basic_istring> str)
-#else
-                template <typename Type, std::enable_if_t <type_traits::is_std_string_v<Type>, Type> t>
-                bool basic_istring<Type, t>::endsWith(CRef<basic_istring> sub, CRef<basic_istring> str)
-#endif
-                {
-                    if ( sub.length() > str.length() ) {
-                        return false;
-                    }
-                    auto sub_iter = sub.crbegin();
-                    auto str_iter = str.crbegin();
-                    while ( sub_iter != sub.crend() ) {
-                        if ( *sub_iter != *str_iter ) {
-                            return false;
-                        }
-                        ++sub_iter;
-                        ++str_iter;
-                    }
-                    return true;
-                }
-#endif// __LINUX__ && __GCC__ 
 
             }//SPACE(basic)
         }//SPACE(type)

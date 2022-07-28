@@ -19,6 +19,7 @@
 #include "../family/imacrofamily.h"
 #include "istring.hpp"
 #include "basic/basic/position.hpp"
+#include <source_location>
 
 SPACE(i) {
     SPACE(core) {
@@ -44,9 +45,19 @@ SPACE(i) {
                 public position<int>
             {
             public:
+
                 FilePos() :_pos(fPos::makeDefault()) {}
+
                 FilePos(istring fileName, int x, int y) :_pos({ fileName, x, y }) {}
+
                 FilePos(fPos pos) :_pos(pos) {}
+
+                FilePos(std::source_location loc) {
+                    _pos._fileName = loc.file_name();
+                    _pos.x = loc.column();
+                    _pos.y = loc.line();
+                }
+
                 ~FilePos() {}
             public:
 

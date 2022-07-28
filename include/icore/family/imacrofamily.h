@@ -171,6 +171,11 @@
 #define SPACE(x) namespace x
 #define SPACE_ namespace
 
+//因为error全大写实在太难看了，所以这两个宏没全大写
+#define iError  i::core::iexception::error
+#define iErrorCode  i::core::iexception::ErrorCode
+
+
 /*------------------------命名空间------------------------*/
 #define N_STD ::std::
 #define N_ITYPE ::i::core::type::
@@ -207,6 +212,7 @@ SPACE(i) {
         template <typename Type> using CRef = const Type&;
 
         template <typename Type> using Ref = Type&;
+
 
     } // SPACE(core)
 } // SPACE(i)

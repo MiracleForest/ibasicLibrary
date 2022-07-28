@@ -19,9 +19,11 @@
 #include "istring.hpp"
 #include "version.hpp"
 #include "level.hpp"
+#include "../exception/error.hpp"
 #include <functional>
 #include <vector>
 #include <map>
+
 
 SPACE(i) {
 	SPACE(core) {
@@ -65,13 +67,32 @@ SPACE(i) {
 			};
 		public:
 
-			Library() {}
+			Library() :library(ilibrary::makeDefault()) {}
+
+			Library(ilibrary _library):library(_library) {}
+
+			Library(type::istring libfname) {
+				library.filename = libfname;
+			}
 
 			~Library() {}
 
 		public:
 
+			IERROR load() {
+				if ( !(library.filename == "") ) {
+#ifdef __WINDOWS__
+					library._handle = LoadLibrary(type::istring::str2wstr(library.filename.data()).data());
+					if ( !library._handle ) {
+						return IERROR::make(iexception::ErrorCode::loadDynamicLinkLibraryFailed, std::source_location::current());
+					}
+					return IERROR::noError();
+#endif
+				}
+				else {
 
+				}
+			}
 
 			template <typename ReturnType = void, typename... Args>
 			ReturnType call(const char* functionSymbol, Args... args)
